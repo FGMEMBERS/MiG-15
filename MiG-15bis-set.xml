@@ -1,0 +1,286 @@
+<?xml version="1.0"?>
+<!--
+************************************************************************
+MiG-15bis simulation config.
+
+2005-09-08 Lee Elliott
+************************************************************************
+-->
+
+<PropertyList>
+  <sim>
+
+    <startup>
+      <splash-texture>Aircraft/MiG-15/MiG-15bis-splash.rgb</splash-texture>
+    </startup>
+
+    <help>
+      <key>
+        <name>C</name>
+        <desc>Open/Close Canopy (Open at start up)</desc>
+      </key>
+      <key>
+        <name>K</name>
+        <desc>toggle trajectory markers</desc>
+      </key>
+      <key>
+        <name>U</name>
+        <desc>update drop view position</desc>
+      </key>
+      <line>---</line>
+    </help>
+
+    <flight-model>yasim</flight-model>
+    <status>alpha</status>
+    <author>Lee Elliott</author>
+    <aero>MiG-15bis-yasim</aero>
+    <fuel-fraction>1.0</fuel-fraction>
+
+    <description>MiG-15bis (YASim FDM)</description>
+
+    <number-views type="int" archive="y">7</number-views>
+
+    <virtual-cockpit archive="y">true</virtual-cockpit>
+
+    <chase-distance-m type="double" archive="y">-20.0</chase-distance-m>
+
+    <view n="0">
+      <internal archive="y">true</internal>
+      <config>
+        <x-offset-m archive="y">0.0</x-offset-m>
+        <y-offset-m archive="y">0.84</y-offset-m>
+        <z-offset-m archive="y">2.34</z-offset-m>
+        <pitch-offset-deg>0</pitch-offset-deg>
+        <default-field-of-view-deg>55</default-field-of-view-deg>
+      </config>
+    </view>
+
+<!-- Shift the camera target point back -->
+    <view n="1">
+      <config>
+        <target-z-offset-m archive="y" type="double">3.75</target-z-offset-m>
+      </config>
+    </view>
+
+    <view n="2">
+      <config>
+        <x-offset-m archive="y" type="double">3.4</x-offset-m>
+        <z-offset-m archive="y">-19.7</z-offset-m>
+        <target-z-offset-m archive="y" type="double">3.75</target-z-offset-m>
+      </config>
+    </view>
+
+    <view n="3">
+      <config>
+        <target-z-offset-m archive="y" type="double">3.75</target-z-offset-m>
+      </config>
+    </view>
+
+    <view n="5">
+      <config>
+        <target-z-offset-m archive="y" type="double">3.75</target-z-offset-m>
+      </config>
+    </view>
+
+<!-- Drop view -->
+    <view n="6">
+      <name>Drop View</name>
+      <type>lookat</type>
+      <config>
+        <eye-lat-deg-path>/sim/view[6]/latitude-deg</eye-lat-deg-path>
+        <eye-lon-deg-path>/sim/view[6]/longitude-deg</eye-lon-deg-path>
+        <eye-alt-ft-path>/sim/view[6]/altitude-ft</eye-alt-ft-path>
+        <eye-roll-deg-path>/sim/view[6]/roll-deg</eye-roll-deg-path>
+        <eye-pitch-deg-path>/sim/view[6]/pitch-deg</eye-pitch-deg-path>
+        <eye-heading-deg-path>/sim/view[6]/heading-deg</eye-heading-deg-path>
+
+        <at-model type="bool">true</at-model>
+        <at-model-idx type="int">0</at-model-idx>
+
+        <ground-level-nearplane-m type="double">1.0f</ground-level-nearplane-m>
+        <default-field-of-view-deg type="double">8.0</default-field-of-view-deg>
+
+        <x-offset-m type="double">0</x-offset-m>
+        <y-offset-m type="double">0</y-offset-m>
+        <z-offset-m type="double">0</z-offset-m>
+        <target-z-offset-m archive="y" type="double">4.0</target-z-offset-m>
+      </config>
+    </view>
+
+    <current-view>
+      <field-of-view>55.0</field-of-view>
+    </current-view>
+
+    <sound>
+      <audible>true</audible>
+      <path>Aircraft/MiG-15/Sounds/MiG-15bis-sound.xml</path>
+    </sound>
+
+    <panel>
+      <path>Aircraft/MiG-15/Panels/MiG-15bis-vfr-panel.xml</path>
+    </panel>
+    <panel_2>
+      <path>Aircraft/MiG-15/Panels/MiG-15bis-mini-panel.xml</path>
+    </panel_2>
+
+    <hud>
+      <path>Aircraft/MiG-15/Huds/MiG-15bis-hud1.xml</path>
+      <visibility>true</visibility>
+    </hud>
+
+    <model>
+      <path>Aircraft/MiG-15/Models/MiG-15bis-model.xml</path>
+    </model>
+
+    <systems>
+      <autopilot>
+        <path>Aircraft/MiG-15/Systems/MiG-15bis-autopilot.xml</path>
+      </autopilot>
+      <electrical>
+        <path>Aircraft/MiG-15/Systems/MiG-15bis-electrical.xml</path>
+      </electrical>
+    </systems>
+
+<!--sub models -->
+    <submodels>
+      <serviceable type="bool">1</serviceable>
+      <path>Aircraft/MiG-15/MiG-15bis-submodels.xml</path>
+    </submodels>
+    
+    <flaps>
+      <setting>0.00</setting>
+      <setting>0.36</setting>
+      <setting>1.00</setting>
+    </flaps>
+
+  </sim>
+
+<!-- Key mappings -->
+  <input>
+    <keyboard>
+
+<!-- Open/Close Canopy -->
+      <key n="67">
+        <name>C</name>
+        <desc>Toggle Canopy</desc>
+        <binding n="0">
+          <command>nasal</command>
+          <script>MIG15BIS.toggle_canopy()</script>
+        </binding>
+      </key>
+
+<!-- Trajectory Markers -->
+      <key n="75">
+        <name>K</name>
+        <desc>Toggle trajectory markers</desc>
+        <binding n="0">
+          <command>nasal</command>
+          <script>MIG15BIS.toggle_traj_mkr()</script>
+        </binding>
+      </key>
+
+<!-- Update Drop View position -->
+       <key n="85">
+        <name>U</name>
+        <desc>Update Drop View position</desc>
+        <binding n="0">
+          <command>nasal</command>
+          <script>MIG15BIS.update_drop_view_pos()</script>
+        </binding>
+      </key>
+      
+    </keyboard>
+  </input>
+
+<!-- Autopilot -->
+  <autopilot>
+    <settings>
+      <auto-speed-brake-mach type="float">0.89</auto-speed-brake-mach>
+      <common-elevator-mode-agl-ft type="float">20000</common-elevator-mode-agl-ft>
+      <target-agl-ft type="float">800</target-agl-ft>
+      <target-altitude-ft type="float">3000</target-altitude-ft>
+      <target-ap-aoa-deg type="float">5.0</target-ap-aoa-deg>
+      <target-climb-rate-fps type="float">0</target-climb-rate-fps>
+      <target-gr-heading-deg type="float">-999.9</target-gr-heading-deg>
+      <target-gr-pitch-deg type="float">3.8</target-gr-pitch-deg>
+      <target-gr-rot-spd-kt type="float">85</target-gr-rot-spd-kt>
+      <target-mach type="float">0.66</target-mach>
+      <target-pitch-deg type="float">10</target-pitch-deg>
+      <target-speed-kt type="float">350.0</target-speed-kt>
+      <target-to-pitch-deg type="float">10</target-to-pitch-deg>
+    </settings>
+
+    <locks>
+      <auto-take-off type="string">enabled</auto-take-off>
+      <auto-landing type="string">enabled</auto-landing>
+      <auto-speed-brake type="string">engaged</auto-speed-brake>
+      <rudder-control type="string">off</rudder-control>
+      <approach-aoa-hold type="string">off</approach-aoa-hold>
+      <common-elevator-control type="string">off</common-elevator-control>
+      <common-aileron-control type="string">off</common-aileron-control>
+    </locks>
+    
+  </autopilot>
+  
+<!-- Set the mini panel monitor instruments to minimised -->
+  <instrumentation>
+    <apmonitor>
+      <minimised type="bool">true</minimised>
+    </apmonitor>
+    <engmonitor>
+      <minimised type="bool">true</minimised>
+    </engmonitor>
+    <velmonitor>
+      <minimised type="bool">true</minimised>
+    </velmonitor>
+    <posmonitor>
+      <minimised type="bool">true</minimised>
+    </posmonitor>
+  </instrumentation>
+
+<!-- Pre-set/initialise some of the controls -->
+  <controls>
+
+<!-- Start with the Parking Brake on -->
+    <gear>
+      <brake-parking type="double">1.0</brake-parking>
+    </gear>
+    
+<!-- Initialise the canopy -->
+    <canopy>
+      <canopy-pos-norm type="float">1.0</canopy-pos-norm>
+    </canopy>
+    
+  </controls>
+
+<!-- Engine indexes -->
+  <engines>
+    <engine n="0">
+      <engine-num type="int">0</engine-num>
+    </engine>
+  </engines>
+
+<!-- Set (non-existant) tank 1 level due to bug -->
+  <consumables>
+    <fuel>
+      <tank n="1">
+        <level-gal_us type="double">0</level-gal_us>
+      </tank>
+    </fuel>
+  </consumables>
+
+  <instrumentation>
+    <radar>
+      <range type="int" archive="y">40</range>
+      <minimized type="bool" archive="y">true</minimized>
+    </radar>
+  </instrumentation>
+
+  <nasal>
+    <MIG15BIS>
+      <file>Aircraft/MiG-15/Nasal/MiG-15bis.nas</file>
+      <script>start_up();</script>
+    </MIG15BIS>
+  </nasal>
+
+</PropertyList>

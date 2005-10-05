@@ -1,0 +1,658 @@
+<?xml version="1.0"?>
+
+<!--
+
+-->
+
+<PropertyList>
+
+  <name>Velocities Monitor</name>
+  <w-base>110</w-base>
+  <h-base>120</h-base>
+
+  <layers>
+<!-- Background -->
+    <layer>
+      <name>background</name>
+      <texture>
+        <path>Aircraft/MiG-15/Panels/Instruments/Textures/trans-dgrey-bg.rgb</path>
+      </texture>
+      <w>110</w>
+      <h>120</h>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>0</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>0</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+<!-- Title -->
+    <layer>
+      <name>Title</name>
+      <type>text</type>
+      <point-size>10</point-size>
+      <color>
+        <red>1</red>
+        <green>1</green>
+        <blue>0</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>literal</type>
+          <text>VEL Monitor       X</text>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>-53</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>51</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+<!-- KIAS -->
+<!-- KIAS Title -->
+    <layer>
+      <name>Title</name>
+      <type>text</type>
+      <point-size>9</point-size>
+      <color>
+        <red>1</red>
+        <green>1</green>
+        <blue>0</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>literal</type>
+          <text>KIAS:</text>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>-53</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>39</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+<!-- KIAS (Speed x Throttle Disengaged) -->
+    <layer>
+      <name>KIAS (Speed x Throttle Disehgaged)</name>
+      <condition>
+        <not-equals>
+          <property>/autopilot/locks/speed</property>
+          <value>speed-with-throttle</value>
+        </not-equals>
+      </condition>
+      <type>text</type>
+      <font>led</font>
+      <point-size>4</point-size>
+      <color>
+        <red>1</red>
+        <green>1</green>
+        <blue>1</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>/velocities/airspeed-kt</property>
+          <format>%08.3f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>1</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>39</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+<!-- KIAS (Speed x Throttle Engaged) < Target -->
+    <layer>
+      <name>KIAS (Speed x Throttle Engaged LT Target)</name>
+      <condition>
+        <and>
+          <equals>
+            <property>/autopilot/locks/speed</property>
+            <value>speed-with-throttle</value>
+          </equals>
+          <less-than>
+            <property>/velocities/airspeed-kt</property>
+            <property>/autopilot/settings/target-speed-kt</property>
+          </less-than>
+        </and>
+      </condition>
+      <type>text</type>
+      <font>led</font>
+      <point-size>4</point-size>
+      <color>
+        <red>1</red>
+        <green>0.4</green>
+        <blue>0.4</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>/velocities/airspeed-kt</property>
+          <format>%08.3f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>1</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>39</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+<!-- KIAS (Speed x Throttle Engaged) >= Target -->
+    <layer>
+      <name>KIAS (Speed x Throttle Engaged GTE Target)</name>
+      <condition>
+        <and>
+          <equals>
+            <property>/autopilot/locks/speed</property>
+            <value>speed-with-throttle</value>
+          </equals>
+          <greater-than-equals>
+            <property>/velocities/airspeed-kt</property>
+            <property>/autopilot/settings/target-speed-kt</property>
+          </greater-than-equals>
+        </and>
+      </condition>
+      <type>text</type>
+      <font>led</font>
+      <point-size>4</point-size>
+      <color>
+        <red>0.4</red>
+        <green>1</green>
+        <blue>0.4</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>/velocities/airspeed-kt</property>
+          <format>%08.3f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>1</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>39</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+<!-- MACH -->
+<!-- Mach Title -->
+    <layer>
+      <name>Title</name>
+      <type>text</type>
+      <point-size>9</point-size>
+      <color>
+        <red>1</red>
+        <green>1</green>
+        <blue>0</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>literal</type>
+          <text>Mach:</text>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>-53</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>27</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+<!-- Mach (Mach x Throttle Disengaged) -->
+    <layer>
+      <name>Mach (Mach x Throttle Disengaged)</name>
+      <condition>
+        <not-equals>
+          <property>/autopilot/locks/speed</property>
+          <value>mach-with-throttle</value>
+        </not-equals>
+      </condition>
+      <type>text</type>
+      <font>led</font>
+      <point-size>4</point-size>
+      <color>
+        <red>1</red>
+        <green>1</green>
+        <blue>1</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>/velocities/mach</property>
+          <format>%05.3f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>19</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>27</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+<!-- Mach (Mach x Throttle Engaged) (Mach LT Target) -->
+    <layer>
+      <name>Mach (Mach x Throttle Disengaged - Mach LT Target)</name>
+      <condition>
+        <and>
+          <equals>
+            <property>/autopilot/locks/speed</property>
+            <value>mach-with-throttle</value>
+          </equals>
+          <less-than>
+            <property>/velocities/mach</property>
+            <property>/autopilot/settings/target-mach</property>
+          </less-than>
+        </and>
+      </condition>
+      <type>text</type>
+      <font>led</font>
+      <point-size>4</point-size>
+      <color>
+        <red>1</red>
+        <green>0.4</green>
+        <blue>0.4</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>/velocities/mach</property>
+          <format>%05.3f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>19</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>27</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+<!-- Mach (Mach x Throttle Engaged) (Mach GTE Target) -->
+    <layer>
+      <name>Mach (Mach x Throttle Disengaged - Mach GTE Target)</name>
+      <condition>
+        <and>
+          <equals>
+            <property>/autopilot/locks/speed</property>
+            <value>mach-with-throttle</value>
+          </equals>
+          <greater-than-equals>
+            <property>/velocities/mach</property>
+            <property>/autopilot/settings/target-mach</property>
+          </greater-than-equals>
+        </and>
+      </condition>
+      <type>text</type>
+      <font>led</font>
+      <point-size>4</point-size>
+      <color>
+        <red>0.4</red>
+        <green>1</green>
+        <blue>0.4</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>/velocities/mach</property>
+          <format>%05.3f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>19</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>27</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+<!-- VFPS -->
+<!-- VFPS Title -->
+    <layer>
+      <name>Title</name>
+      <type>text</type>
+      <point-size>9</point-size>
+      <color>
+        <red>1</red>
+        <green>1</green>
+        <blue>0</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>literal</type>
+          <text>VFPS:</text>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>-53</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>15</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+<!-- VFPS -->
+    <layer>
+      <name>VFPS GTE 0</name>
+      <type>text</type>
+      <font>led</font>
+      <point-size>4</point-size>
+      <color>
+        <red>1</red>
+        <green>1</green>
+        <blue>1</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>/velocities/vertical-speed-fps</property>
+          <format>%08.3f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>1</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>15</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+<!-- ACCELERATION -->
+<!-- Acceleration Title -->
+    <layer>
+      <name>Title</name>
+      <type>text</type>
+      <point-size>9</point-size>
+      <color>
+        <red>1</red>
+        <green>1</green>
+        <blue>0</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>literal</type>
+          <text>Accel:</text>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>-53</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>3</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+<!-- Acceleration >= 0 -->
+    <layer>
+      <name>Acceleration GTE 0</name>
+      <condition>
+        <greater-than-equals>
+          <property>/accelerations/pilot-g</property>
+          <value>0</value>
+        </greater-than-equals>
+      </condition>
+      <type>text</type>
+      <font>led</font>
+      <point-size>4</point-size>
+      <color>
+        <red>0.4</red>
+        <green>1</green>
+        <blue>0.4</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>/accelerations/pilot-g</property>
+          <format>%05.3f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>19</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>3</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+<!-- Acceleration < 0 -->
+    <layer>
+      <name>Acceleration LT 0</name>
+      <condition>
+        <less-than>
+          <property>/accelerations/pilot-g</property>
+          <value>0</value>
+        </less-than>
+      </condition>
+      <type>text</type>
+      <font>led</font>
+      <point-size>4</point-size>
+      <color>
+        <red>1</red>
+        <green>0.4</green>
+        <blue>0.4</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>/accelerations/pilot-g</property>
+          <format>%05.3f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>19</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>3</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+<!-- WIND SPEED -->
+<!-- Wind Speed Title -->
+    <layer>
+      <name>Title</name>
+      <type>text</type>
+      <point-size>9</point-size>
+      <color>
+        <red>1</red>
+        <green>1</green>
+        <blue>0</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>literal</type>
+          <text>Wind Spd:</text>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>-53</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>-9</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+<!-- Wind Speed -->
+    <layer>
+      <name>Wind Speed</name>
+      <type>text</type>
+      <font>led</font>
+      <point-size>4</point-size>
+      <color>
+        <red>1</red>
+        <green>1</green>
+        <blue>1</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>/environment/wind-speed-kt</property>
+          <format>%07.3f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>7</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>-9</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+<!-- WIND DIRECTION -->
+<!-- Wind Direction Title -->
+    <layer>
+      <name>Title</name>
+      <type>text</type>
+      <point-size>9</point-size>
+      <color>
+        <red>1</red>
+        <green>1</green>
+        <blue>0</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>literal</type>
+          <text>Wind Dir:</text>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>-53</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>-21</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+<!-- Wind Direction -->
+    <layer>
+      <name>Wind Direction</name>
+      <type>text</type>
+      <font>led</font>
+      <point-size>4</point-size>
+      <color>
+        <red>1</red>
+        <green>1</green>
+        <blue>1</blue>
+      </color>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>/environment/wind-from-heading-deg</property>
+          <format>%07.3f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>7</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>-21</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+  </layers>
+
+  <actions>
+
+    <action>
+      <name>Minimise</name>
+      <button>0</button>
+      <x>35</x>
+      <y>50</y>
+      <w>20</w>
+      <h>9</h>
+      <binding>
+        <command>property-assign</command>
+        <property>/instrumentation/velmonitor/minimised</property>
+        <value type="string">true</value>
+      </binding>
+    </action>
+    
+  </actions>
+
+</PropertyList>
