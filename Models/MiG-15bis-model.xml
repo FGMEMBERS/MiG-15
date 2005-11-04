@@ -4,7 +4,7 @@
 
 <PropertyList>
 
-  <path>MIG-15-005-008.ac</path>
+  <path>MiG-15bis-005-008d.ac</path>
   <offsets>
     <z-m>0.0</z-m>
     <pitch-deg>0</pitch-deg>
@@ -77,7 +77,7 @@
     <factor>-15</factor>
     <center>
       <x-m>9.16</x-m>
-      <y-m>0.12</y-m>
+      <y-m>-0.12</y-m>
       <z-m>1.59</z-m>
     </center>
     <axis>
@@ -95,7 +95,7 @@
     <factor>15</factor>
     <center>
       <x-m>9.16</x-m>
-      <y-m>-0.15</y-m>
+      <y-m>0.12</y-m>
       <z-m>1.59</z-m>
     </center>
     <axis>

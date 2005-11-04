@@ -44,7 +44,7 @@ ato_main = func {
       interpolate("/autopilot/internal/target-pitch-deg-unfiltered", tgt_to_p_deg, 2);
     } else {
       if(as_kt < 150) {
-        interpolate("/controls/flight/elevator", 0.0, 10);
+        interpolate("/controls/flight/elevator", 0.0, 15);
       } else {
         if(as_kt < 160) {
           setprop("/autopilot/locks/heading", "wing-leveler");
@@ -125,8 +125,8 @@ atl_spddep = func {
 
   # Set the target speed to 200 kt.
   setprop("/autopilot/locks/speed", "speed-with-throttle");
-  if(getprop("/autopilot/settings/target-speed-kt") > 160) {
-    setprop("/autopilot/settings/target-speed-kt", 160);
+  if(getprop("/autopilot/settings/target-speed-kt") > 150) {
+    setprop("/autopilot/settings/target-speed-kt", 150);
   }
 
   gsvfps = getprop("/instrumentation/nav[0]/gs-rate-of-climb");
