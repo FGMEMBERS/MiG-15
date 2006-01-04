@@ -4,7 +4,7 @@
 
 <PropertyList>
 
-  <path>MiG-15bis-005-008d.ac</path>
+  <path>MiG-15bis-005-008e.ac</path>
   <offsets>
     <z-m>0.0</z-m>
     <pitch-deg>0</pitch-deg>
@@ -884,5 +884,11 @@
       <z>1.0</z>
     </axis>
   </animation>
+  
+<!-- Panel -->
+
+  <model>
+    <path>Aircraft/MiG-15/Models/MiG-15bis-panel.xml</path>
+  </model>
 
 </PropertyList>

@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+  <path>MiG-15bis-IAS.ac</path> 
+
+  <animation>
+    <type>rotate</type>
+    <object-name>IAS_NeedleX1</object-name>
+    <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+    <interpolation>
+      <entry>
+        <ind>0.0</ind>
+        <dep>0.0</dep>
+      </entry>
+      <entry>
+        <ind>107.9916036</ind>
+        <dep>-360.0</dep>
+      </entry>
+      <entry>
+        <ind>161.9874054</ind>
+        <dep>-720.0</dep>
+      </entry>
+      <entry>
+        <ind>529.958018</ind>
+        <dep>-3240.0</dep>
+      </entry>
+    </interpolation>
+    <center>
+      <x-m>0</x-m>
+      <y-m>0</y-m>
+      <z-m>0</z-m>
+    </center>  
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>IAS_NeedleX10</object-name>
+    <property>/instrumentation/airspeed-indicator/indicated-speed-kt</property>
+    <interpolation>
+      <entry>
+        <ind>0.0</ind>
+        <dep>0.0</dep>
+      </entry>
+      <entry>
+        <ind>107.9916036</ind>
+        <dep>-36.0</dep>
+      </entry>
+      <entry>
+        <ind>161.9874054</ind>
+        <dep>-72.0</dep>
+      </entry>
+      <entry>
+        <ind>529.958018</ind>
+        <dep>-324.0</dep>
+      </entry>
+    </interpolation>
+    <center>
+      <x-m>0</x-m>
+      <y-m>0</y-m>
+      <z-m>0</z-m>
+    </center>  
+    <axis>
+      <x>1</x>
+      <y>0</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+</PropertyList> 

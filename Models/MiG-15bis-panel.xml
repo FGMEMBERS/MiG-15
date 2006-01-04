@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+  <path>MiG-15bis-panel.ac</path> 
+
+  <model>
+    <path>Aircraft/MiG-15/Models/MiG-15bis-IAS.xml</path>
+    <offsets>
+      <x-m>1.56</x-m>
+      <y-m>-0.153</y-m>
+      <z-m>0.532</z-m>
+      <pitch-deg>0.0</pitch-deg>
+    </offsets>
+  </model>
+
+  <model>
+    <path>Aircraft/MiG-15/Models/MiG-15bis-VSI.xml</path>
+    <offsets>
+      <x-m>1.56</x-m>
+      <y-m>0.1</y-m>
+      <z-m>0.532</z-m>
+      <pitch-deg>0.0</pitch-deg>
+    </offsets>
+  </model>
+
+</PropertyList> 
