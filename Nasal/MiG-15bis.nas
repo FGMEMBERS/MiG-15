@@ -254,7 +254,7 @@ ap_common_elevator_monitor = func {
   if(curr_ah_state == "altitude-hold") {
     setprop("/autopilot/locks/common-elevator-control", "engaged");
   } else {
-    if(curr_ah_state == "terrain-follow") {
+    if(curr_ah_state == "agl-hold") {
       setprop("/autopilot/locks/common-elevator-control", "engaged");
     } else {
       if(curr_ah_state == "mach-climb") {

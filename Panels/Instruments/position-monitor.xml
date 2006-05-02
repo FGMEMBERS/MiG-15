@@ -361,7 +361,7 @@
       <condition>
         <not-equals>
           <property>/autopilot/locks/altitude</property>
-          <value>terrain-follow</value>
+          <value>agl-hold</value>
         </not-equals>
       </condition>
       <type>text</type>
@@ -398,7 +398,7 @@
         <and>
           <equals>
             <property>/autopilot/locks/altitude</property>
-            <value>terrain-follow</value>
+            <value>agl-hold</value>
           </equals>
           <greater-than-equals>
             <property>/position/altitude-agl-ft</property>
@@ -440,7 +440,7 @@
         <and>
           <equals>
             <property>/autopilot/locks/altitude</property>
-            <value>terrain-follow</value>
+            <value>agl-hold</value>
           </equals>
           <less-than>
             <property>/position/altitude-agl-ft</property>

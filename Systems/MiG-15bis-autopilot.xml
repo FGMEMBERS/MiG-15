@@ -364,7 +364,7 @@
     <debug>false</debug>
     <enable>
       <prop>/autopilot/locks/altitude</prop>
-      <value>terrain-follow</value>
+      <value>agl-hold</value>
     </enable>
     <input>
       <prop>/autopilot/internal/altitude-agl-ft-filtered</prop>

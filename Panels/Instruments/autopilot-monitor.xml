@@ -156,15 +156,15 @@
       </transformations>
     </layer>
 
-<!-- Terrain follow -->
+<!-- AGL Hold -->
     <layer>
       <condition>
         <equals>
           <property>/autopilot/locks/altitude</property>
-          <value>terrain-follow</value>
+          <value>agl-hold</value>
         </equals>
       </condition>
-      <name>Altitude mode - terrain-follow</name>
+      <name>Altitude mode - agl-hold</name>
       <type>text</type>
       <point-size>9</point-size>
       <color>
@@ -175,7 +175,7 @@
       <chunks>
         <chunk>
           <type>literal</type>
-          <text>T-FOLLW</text>
+          <text>AGL-HLD</text>
         </chunk>
       </chunks>
       <transformations>
