@@ -304,8 +304,8 @@
       <point-size>4</point-size>
       <color>
         <red>1</red>
-        <green>0.4</green>
-        <blue>0.4</blue>
+        <green>1</green>
+        <blue>0</blue>
       </color>
       <chunks>
         <chunk>

@@ -574,6 +574,16 @@
         <property>/autopilot/locks/auto-landing</property>
         <value type="string">enabled</value>
       </binding>
+      <binding>
+        <command>property-assign</command>
+        <property>/autopilot/locks/altitude</property>
+        <value type="string">""</value>
+      </binding>
+      <binding>
+        <command>property-assign</command>
+        <property>/autopilot/locks/approach-aoa-hold</property>
+        <value type="string">""</value>
+      </binding>
     </action>
 
 <!-- Engage Alititude Hold -->

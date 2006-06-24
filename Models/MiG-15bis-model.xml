@@ -4,7 +4,7 @@
 
 <PropertyList>
 
-  <path>MiG-15bis-005-008e.ac</path>
+  <path>MiG-15bis-005-008f.ac</path>
   <offsets>
     <z-m>0.0</z-m>
     <pitch-deg>0</pitch-deg>
@@ -25,6 +25,34 @@
         </equals>
       </not>
     </condition>
+  </animation>
+
+<!-- Chrome animation, courtesy of Vivian  -->
+<!-- Heh :) not sure how this is supposed to work -->
+  <animation>
+	<type>shader</type>
+	<shader>chrome</shader>
+	<texture>MiG-15bis-tx00.rgb</texture>
+	<object-name>FUS_Hull</object-name>
+    <object-name>FUS_SpeedBrakeDoorLS</object-name>
+    <object-name>FUS_SpeedBrakeDoorRS</object-name>
+	<object-name>FUS_Intake</object-name>
+	<object-name>FUS_NoseDoorLS</object-name>
+	<object-name>FUS_NoseDoorRS</object-name>
+	<object-name>CP_FrontCanopyFrame</object-name>
+	<object-name>CP_RearCanopyFrame</object-name>
+	<object-name>WNG_FlapL</object-name>
+	<object-name>WNG_AileronL</object-name>
+	<object-name>WNG_FlapR</object-name>
+	<object-name>WNG_AileronR</object-name>
+	<object-name>WNG_PitotProbe</object-name>
+	<object-name>TF_Rudder</object-name>
+	<object-name>TP_ElevatorL</object-name>
+	<object-name>TP_ElevatorR</object-name>
+	<object-name>UC_MainL_CStrutLower</object-name>
+	<object-name>UC_MainL_RStrutLower</object-name>
+	<object-name>UC_MainR_CStrutLower</object-name>
+	<object-name>UC_MainR_RStrutLower</object-name>
   </animation>
 
 <!-- Disable shadows on the glass objects -->
@@ -272,8 +300,8 @@
   <animation>
     <type>select</type>
     <object-name>FUS_Nose_WWell</object-name>
-    <object-name>FUS_Nose_DoorLB</object-name>
-    <object-name>FUS_Nose_DoorRB</object-name>
+    <object-name>FUS_NoseDoorLB</object-name>
+    <object-name>FUS_NoseDoorRB</object-name>
     <object-name>UC_Nose_MainPost</object-name>
     <object-name>UC_Nose_ArmHub</object-name>
     <object-name>UC_Nose_Tyre</object-name>
@@ -322,8 +350,8 @@
 <!-- Left Door -->
   <animation>
     <type>rotate</type>
-    <object-name>FUS_Nose_DoorLS</object-name>
-    <object-name>FUS_Nose_DoorLB</object-name>
+    <object-name>FUS_NoseDoorLS</object-name>
+    <object-name>FUS_NoseDoorLB</object-name>
     <property>gear/gear[0]/position-norm</property>
     <interpolation>
       <entry>
@@ -354,8 +382,8 @@
 <!-- Right Door -->
   <animation>
     <type>rotate</type>
-    <object-name>FUS_Nose_DoorRS</object-name>
-    <object-name>FUS_Nose_DoorRB</object-name>
+    <object-name>FUS_NoseDoorRS</object-name>
+    <object-name>FUS_NoseDoorRB</object-name>
     <property>gear/gear[0]/position-norm</property>
     <interpolation>
       <entry>

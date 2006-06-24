@@ -3,7 +3,7 @@
 ************************************************************************
 MiG-15bis simulation config.
 
-2005-09-08 Lee Elliott
+2006-04-14 Lee Elliott
 ************************************************************************
 -->
 
@@ -15,6 +15,10 @@ MiG-15bis simulation config.
     </startup>
 
     <help>
+      <key>
+        <name>e</name>
+        <desc>Fire cannon</desc>
+      </key>
       <key>
         <name>C</name>
         <desc>Open/Close Canopy (Open at start up)</desc>
@@ -153,11 +157,33 @@ MiG-15bis simulation config.
       <setting>1.00</setting>
     </flaps>
 
+    <aoa-indexer>
+      <too-slow-deg>6.5</too-slow-deg>  <!-- target +1.5 deg -->
+      <slow-deg>5.5</slow-deg>          <!-- target +0.5 deg -->         
+      <fast-deg>4.5</fast-deg>          <!-- target -0.5 deg -->         
+      <too-fast-deg>3.5</too-fast-deg>  <!-- target -1.5 deg -->         
+    </aoa-indexer>
+
   </sim>
 
 <!-- Key mappings -->
   <input>
     <keyboard>
+<!-- Fire the cannons -->
+      <key n="101">
+        <name>e</name>
+        <desc>Fire cannons</desc>
+        <binding>
+          <command>nasal</command>
+          <script>MIG15BIS.fire_cannon()</script>
+        </binding>
+        <mod-up>
+          <binding>
+            <command>nasal</command>
+            <script>MIG15BIS.cfire_cannon()</script>
+          </binding>
+        </mod-up>
+      </key>
 
 <!-- Open/Close Canopy -->
       <key n="67">
@@ -275,6 +301,15 @@ MiG-15bis simulation config.
       <minimized type="bool" archive="y">true</minimized>
     </radar>
   </instrumentation>
+
+<!-- Weight entries for the ammunition -->
+  <yasim>
+    <weights>
+      <N-37-ammunition-weight-lbs type="float">80</N-37-ammunition-weight-lbs>
+      <NR-23-I-ammunition-weight-lbs type="float">31</NR-23-I-ammunition-weight-lbs>
+      <NR-23-O-ammunition-weight-lbs type="float">31</NR-23-O-ammunition-weight-lbs>
+    </weights>
+  </yasim>
 
   <nasal>
     <MIG15BIS>

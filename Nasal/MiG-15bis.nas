@@ -5,16 +5,24 @@ autotakeoff = func {
 # /autopilot/locks/auto-take-off is disabled.
 
 #  print("autotakeoff called");
-  ato_start();      # Initialisation.
-  ato_main();       # Main loop.
+  if(getprop("/autopilot/locks/auto-take-off") == "enabled") {
+    ato_start();      # Initialisation.
+    ato_main();       # Main loop.
+  }
 }
 #--------------------------------------------------------------------
 ato_start = func {
 
   if(getprop("/autopilot/settings/target-gr-heading-deg") < -999) {
+
+    setprop("/controls/flight/flaps", 0.0);
+    setprop("/controls/flight/spoilers", 0.0);
+    setprop("/controls/gear/brake-left", 0.0);
+    setprop("/controls/gear/brake-right", 0.0);
+    setprop("/controls/gear/brake-parking", 0.0);
+
     hdgdeg = getprop("/orientation/heading-deg");
     tgt_gr_pitch_deg= getprop("/autopilot/settings/target-gr-pitch-deg");
-    setprop("/controls/flight/flaps", 0.36);
     setprop("/autopilot/settings/target-gr-heading-deg", hdgdeg);
     setprop("/autopilot/settings/true-heading-deg", hdgdeg);
     setprop("/autopilot/settings/target-speed-kt", 350);
@@ -23,7 +31,6 @@ ato_start = func {
     setprop("/autopilot/locks/rudder-control", "gr-rudder-hold");
     setprop("/autopilot/locks/altitude", "take-off");
     setprop("/autopilot/internal/target-roll-deg-unfiltered", 0);
-#    setprop("/autopilot/locks/heading", "wing-leveler");
     setprop("/autopilot/locks/auto-take-off", "engaged");
   }
 }
@@ -34,37 +41,30 @@ ato_main = func {
   tgt_gr_rot_spd_kt= getprop("/autopilot/settings/target-gr-rot-spd-kt");
   tgt_to_p_deg= getprop("/autopilot/settings/target-to-pitch-deg");
 
-  airspeed = getprop("/velocities/airspeed-kt");
-
   if(as_kt < tgt_gr_rot_spd_kt) {
     # Do nothing
   } else {
-    if(as_kt < 135) {
+    if(as_kt < 145) {
       interpolate("/controls/flight/elevator", -1.0, 2);
       interpolate("/autopilot/internal/target-pitch-deg-unfiltered", tgt_to_p_deg, 2);
+      setprop("/autopilot/locks/heading", "wing-leveler");
     } else {
-      if(as_kt < 150) {
+      if(as_kt < 160) {
         interpolate("/controls/flight/elevator", 0.0, 15);
       } else {
-        if(as_kt < 160) {
-          setprop("/autopilot/locks/heading", "wing-leveler");
+        if(as_kt < 170) {
           setprop("/controls/gear/gear-down", "false");
           setprop("/autopilot/locks/rudder-control", "");
           setprop("/controls/flight/flaps", 0.0);
           interpolate("/controls/flight/rudder", 0, 10);
-#          interpolate("/controls/flight/elevator", 0, 10);
         } else {
-          if(as_kt < 180) {
+          if(as_kt > 200) {
             setprop("/controls/flight/flaps", 0.0);
-          } else {
-            if(as_kt > 200) {
-              setprop("/controls/flight/flaps", 0.0);
-              setprop("/autopilot/locks/heading", "true-heading-hold");
-              setprop("/autopilot/locks/speed", "mach-with-throttle");
-              setprop("/autopilot/locks/altitude", "mach-climb");
-              setprop("/autopilot/locks/auto-take-off", "disabled");
-              setprop("/autopilot/locks/auto-landing", "enabled");
-            }
+            setprop("/autopilot/locks/heading", "true-heading-hold");
+            setprop("/autopilot/locks/speed", "mach-with-throttle");
+            setprop("/autopilot/locks/altitude", "mach-climb");
+            setprop("/autopilot/locks/auto-take-off", "disabled");
+            setprop("/autopilot/locks/auto-landing", "enabled");
           }
         }
       }
@@ -72,22 +72,28 @@ ato_main = func {
   }
 
   # Re-schedule the next loop
-  if(getprop("/autopilot/locks/auto-take-off") != "engaged") {
-#    print("ato_main: disabled");
-  } else {
+  if(getprop("/autopilot/locks/auto-take-off") == "engaged") {
     settimer(ato_main, 0.2);
   }
 }
 #--------------------------------------------------------------------
 autoland = func {
+  if(getprop("/autopilot/locks/auto-landing") == "enabled") {
+    atl_start();      # Initialisation.
+    atl_main();       # Main loop.
+  }
+}
+#--------------------------------------------------------------------
+atl_start = func {
+  setprop("/autopilot/locks/auto-landing", "engaged");
+}
+#--------------------------------------------------------------------
+
+atl_main = func {
   # Get the agl, kias, vfps & heading.
   agl = getprop("/position/altitude-agl-ft");
   hdgdeg = getprop("/orientation/heading-deg");
 
-  if(getprop("/autopilot/locks/auto-landing") == "enabled") {
-    setprop("/autopilot/locks/auto-landing", "engaged");
-  }
-  
   if(agl > 200) {
     # Glide Slope phase.
     atl_heading();
@@ -98,10 +104,8 @@ autoland = func {
     atl_touchdown();
   }
   # Re-schedule the next loop if the Landing function is enabled.
-  if(getprop("/autopilot/locks/auto-landing") != "engaged") {
-    print("Auto Landing disabled");
-  } else {
-    settimer(autoland, 0.2);
+  if(getprop("/autopilot/locks/auto-landing") == "engaged") {
+    settimer(atl_main, 0.2);
   }
 }
 #--------------------------------------------------------------------
@@ -116,7 +120,7 @@ atl_glideslope= func {
     interpolate("/autopilot/settings/target-climb-rate-fps", gsvfps, 4);
     setprop("/autopilot/locks/altitude", "vfps-hold");
   } else {
-    interpolate("/autopilot/settings/target-climb-rate-fps", gsvfps,1);
+    interpolate("/autopilot/settings/target-climb-rate-fps", gsvfps, 1);
   }
 }
 #--------------------------------------------------------------------
@@ -148,9 +152,6 @@ atl_spddep = func {
           if(getprop("/velocities/vertical-speed-fps") < -10) {
             if(gsvfps < 0) {
               setprop("/autopilot/settings/target-speed-kt", 150);
-#              setprop("/controls/flight/spoilers", 1.0);
-#              setprop("/controls/gear/gear-down", "true");
-#              setprop("/controls/flight/flaps", 0.36);
             }
           }
         }
@@ -199,8 +200,8 @@ atl_touchdown = func {
 atl_heading = func {
   # This script handles heading dependent actions.
   curr_kias = getprop("/velocities/airspeed-kt");
-  hdnddf = getprop("/autopilot/internal/heading-needle-deflection-filtered");
-
+#  hdnddf = getprop("/autopilot/internal/heading-needle-deflection");
+  hdnddf = getprop("/instrumentation/nav[0]/heading-needle-deflection");
   if(curr_kias > 200) {
     setprop("/autopilot/locks/heading", "nav1-hold");
   } else {
@@ -246,6 +247,29 @@ update_drop_view_pos = func {
   interpolate("/sim/view[6]/latitude-deg", eyelatdeg, 5);
   interpolate("/sim/view[6]/longitude-deg", eyelondeg, 5);
   interpolate("/sim/view[6]/altitude-ft", eyealtft, 5);
+}
+#--------------------------------------------------------------------
+fire_cannon = func {
+  setprop("ai/submodels/N-37", 1);
+  setprop("ai/submodels/NR-23-I", 1);
+  setprop("ai/submodels/NR-23-O", 1);
+
+  n37_cnt = getprop("ai/submodels/submodel[1]/count");
+  nr23I_cnt = getprop("ai/submodels/submodel[2]/count");
+  nr23O_cnt = getprop("ai/submodels/submodel[3]/count");
+  n37_wgt = n37_cnt * 2;
+  nr23I_wgt = nr23I_cnt * 0.38;
+  nr23O_wgt = nr23O_cnt * 0.38;
+  
+  setprop("yasim/weights/N-37-ammunition-weight-lbs", n37_wgt);
+  setprop("yasim/weights/NR-23-I-ammunition-weight-lbs", nr23I_wgt);
+  setprop("yasim/weights/NR-23-O-ammunition-weight-lbs", nr23O_wgt);
+}
+#--------------------------------------------------------------------
+cfire_cannon = func {
+  setprop("ai/submodels/N-37", 0);
+  setprop("ai/submodels/NR-23-I", 0);
+  setprop("ai/submodels/NR-23-O", 0);
 }
 #--------------------------------------------------------------------
 ap_common_elevator_monitor = func {

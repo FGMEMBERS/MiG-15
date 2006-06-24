@@ -30,7 +30,7 @@
       </condition>
       <volume>
         <property>/engines/engine[0]/n2</property>
-        <factor>0.01</factor>
+        <factor>0.009</factor>
       </volume>
       <pitch>
         <property>/engines/engine[0]/n2</property>
