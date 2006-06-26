@@ -272,6 +272,8 @@ cfire_cannon = func {
   setprop("ai/submodels/NR-23-O", 0);
 }
 #--------------------------------------------------------------------
+controls.trigger = func(b) { b ? fire_cannon() : cfire_cannon() }
+#--------------------------------------------------------------------
 ap_common_elevator_monitor = func {
   curr_ah_state = getprop("/autopilot/locks/altitude");
 
