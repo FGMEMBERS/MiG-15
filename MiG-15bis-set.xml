@@ -42,8 +42,6 @@ MiG-15bis simulation config.
 
     <description>MiG-15bis (YASim FDM)</description>
 
-    <number-views type="int" archive="y">7</number-views>
-
     <virtual-cockpit archive="y">true</virtual-cockpit>
 
     <chase-distance-m type="double" archive="y">-20.0</chase-distance-m>
@@ -87,16 +85,16 @@ MiG-15bis simulation config.
     </view>
 
 <!-- Drop view -->
-    <view n="6">
+    <view n="100">
       <name>Drop View</name>
       <type>lookat</type>
       <config>
-        <eye-lat-deg-path>/sim/view[6]/latitude-deg</eye-lat-deg-path>
-        <eye-lon-deg-path>/sim/view[6]/longitude-deg</eye-lon-deg-path>
-        <eye-alt-ft-path>/sim/view[6]/altitude-ft</eye-alt-ft-path>
-        <eye-roll-deg-path>/sim/view[6]/roll-deg</eye-roll-deg-path>
-        <eye-pitch-deg-path>/sim/view[6]/pitch-deg</eye-pitch-deg-path>
-        <eye-heading-deg-path>/sim/view[6]/heading-deg</eye-heading-deg-path>
+        <eye-lat-deg-path>/sim/view[100]/latitude-deg</eye-lat-deg-path>
+        <eye-lon-deg-path>/sim/view[100]/longitude-deg</eye-lon-deg-path>
+        <eye-alt-ft-path>/sim/view[100]/altitude-ft</eye-alt-ft-path>
+        <eye-roll-deg-path>/sim/view[100]/roll-deg</eye-roll-deg-path>
+        <eye-pitch-deg-path>/sim/view[100]/pitch-deg</eye-pitch-deg-path>
+        <eye-heading-deg-path>/sim/view[100]/heading-deg</eye-heading-deg-path>
 
         <at-model type="bool">true</at-model>
         <at-model-idx type="int">0</at-model-idx>
