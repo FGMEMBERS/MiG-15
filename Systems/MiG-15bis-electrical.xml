@@ -1,58 +1,156 @@
 <?xml version="1.0"?>
  
-<!-- Generic 28 Volt electrical system -->
-
 <PropertyList>
 
-  <!-- Supplier list -->
+	<!-- Supplier list -->
 
-  <supplier>
-    <name>Battery 1</name>
-    <prop>/systems/electrical/suppliers/battery[0]</prop>
-    <kind>battery</kind>
-    <volts>28</volts> <!-- needs to be > 24.5, but this is a guess -->
-    <amps>60</amps>   <!-- I have no idea! -->
-  </supplier>
+	<supplier>
+		<name>Battery</name>
+		<prop>/systems/electrical/suppliers/battery</prop>
+		<kind>battery</kind>
+		<volts>24.5</volts>
+		<amps>105</amps>
+	</supplier>
 
-  <supplier>
-    <name>Alternator 1</name>
-    <prop>/systems/electrical/suppliers/alternator[0]</prop>
-    <kind>alternator</kind>
-    <rpm-source>/engines/engine[0]/rpm</rpm-source>
-    <volts>28</volts> <!-- stubbed in -->
-    <amps>60</amps>   <!-- from the 172S Skyhawk Information Manual -->
-  </supplier>
+	<supplier>
+		<name>Alternator</name>
+		<prop>/systems/electrical/suppliers/alternator</prop>
+		<kind>alternator</kind>
+		<rpm-source>/engines/engine/rpm</rpm-source>
+		<volts>28.5</volts>
+		<amps>100</amps>
+	</supplier>
 
+<!--
   <supplier>
-    <name>External 1</name>
+    <name>External</name>
     <prop>/systems/electrical/suppliers/external[0]</prop>
     <kind>external</kind>
-    <volts>0</volts> <!-- by default not connected -->
+    <volts>0</volts> 
     <amps>0</amps>
   </supplier>
+-->
 
-  <!-- Bus list -->
+  <!-- Bus List -->
 
-  <bus>
-    <name>Master Bus</name>
-    <prop>/systems/electrical/outputs/bus[0]</prop>
-    <!-- Avionics outputs tied directly to bus, note that this is a -->
-    <!-- simple way to provide electrical outputs if you don't need -->
-    <!-- to put a circuit breaker or switch in front of the output. -->
-    <prop>/systems/electrical/outputs/avionics-fan</prop>
-    <prop>/systems/electrical/outputs/gps-mfd</prop>
-    <prop>/systems/electrical/outputs/hsi</prop>
-    <prop>/systems/electrical/outputs/nav[0]</prop>
-    <prop>/systems/electrical/outputs/dme</prop>
-    <prop>/systems/electrical/outputs/audio-panel[0]</prop>
-    <prop>/systems/electrical/outputs/nav[1]</prop>
-    <prop>/systems/electrical/outputs/audio-panel[1]</prop>
-    <prop>/systems/electrical/outputs/transponder</prop>
-    <prop>/systems/electrical/outputs/autopilot</prop>
-    <prop>/systems/electrical/outputs/adf</prop>
-  </bus>
+	<bus>
+		<name>Bus</name>
+		<prop>/systems/electrical/outputs/bus</prop>
+	<!-- Avionics outputs tied directly to bus, note that this is a -->
+	<!-- simple way to provide electrical outputs if you don't need -->
+	<!-- to put a circuit breaker or switch in front of the output. -->
+<!--
+	<prop>/systems/electrical/outputs/avionics-fan</prop>
+	<prop>/systems/electrical/outputs/gps-mfd</prop>
+	<prop>/systems/electrical/outputs/hsi</prop>
+	<prop>/systems/electrical/outputs/dme</prop>
+	<prop>/systems/electrical/outputs/transponder</prop>
+	<prop>/systems/electrical/outputs/autopilot</prop>
+	<prop>/systems/electrical/outputs/adf</prop>
+	<prop>/systems/electrical/outputs/heading-indicator</prop>
+-->
 
-  <!-- Generic Outputs -->
+	<prop>/systems/electrical/outputs/audio-panel[0]</prop>
+	<prop>/systems/electrical/outputs/audio-panel[1]</prop>
+	<prop>/systems/electrical/outputs/nav[0]</prop>
+	<prop>/systems/electrical/outputs/nav[1]</prop>
+
+	</bus>
+
+<!-- Inputs -->
+
+	<connector>
+		<input>Battery</input>
+		<output>Bus</output>
+		<switch>
+      			<prop>/controls/switches/battery</prop>
+			<initial-state>off</initial-state>
+		</switch>
+	</connector>
+
+	<connector>
+		<input>Alternator</input>
+		<output>Bus</output>
+		<switch>
+			<prop>/controls/switches/generator</prop>
+			<initial-state>off</initial-state>
+		</switch>
+	</connector>
+
+<!-- Outputs -->
+
+	<output>
+		<name>Fuel Pump</name>
+		<prop>/systems/electrical/outputs/pump</prop>
+	</output>
+
+	<connector>
+		<input>Bus</input>
+		<output>Fuel Pump</output>
+		<switch>
+			<prop>/controls/switches/pump</prop>
+			<initial-state>off</initial-state>
+		</switch>
+	</connector>
+
+	<output>
+		<name>Ignition</name>
+		<prop>/systems/electrical/outputs/ignition</prop>
+	</output>
+
+	<connector>
+		<input>Bus</input>
+		<output>Ignition</output>
+		<switch>
+			<prop>/controls/switches/ignition</prop>
+			<initial-state>off</initial-state>
+		</switch>
+	</connector>
+
+	<output>
+		<name>Engine control instrumentation</name>
+		<prop>/systems/electrical/outputs/engine-control</prop>
+	</output>
+
+	<connector>
+		<input>Bus</input>
+		<output>Engine control instrumentation</output>
+		<switch>
+			<prop>/controls/switches/engine-control</prop>
+			<initial-state>off</initial-state>
+		</switch>
+	</connector>
+
+	<output>
+		<name>Adf</name>
+		<prop>/systems/electrical/outputs/adf</prop>
+	</output>
+
+	<output>
+		<name>Adf2</name>
+		<prop>/systems/electrical/outputs/adf[1]</prop>
+	</output>
+
+	<connector>
+		<input>Bus</input>
+		<output>Adf</output>
+		<switch>
+			<prop>/controls/switches/radiocompass</prop>
+			<initial-state>off</initial-state>
+		</switch>
+	</connector>
+
+	<connector>
+		<input>Bus</input>
+		<output>Adf2</output>
+		<switch>
+			<prop>/controls/switches/radiocompass</prop>
+			<initial-state>off</initial-state>
+		</switch>
+	</connector>
+
+
+<!--
 
   <output>
     <name>Starter 1 Power</name>
@@ -119,8 +217,12 @@
     <prop>/systems/electrical/outputs/pitot-heat</prop>
   </output>
 
+-->
+
 
   <!-- connect in power sources -->
+
+<!--
 
   <connector>
     <input>Alternator 1</input>
@@ -143,7 +245,11 @@
     </switch>
   </connector>
 
+-->
+
   <!-- connect starter output -->
+
+<!--
 
   <connector>
     <input>Master Bus</input>
@@ -154,7 +260,11 @@
     </switch>
   </connector>
 
+-->
+
   <!-- connect master bus outputs -->
+
+<!--
 
   <connector>
     <input>Master Bus</input>
@@ -251,5 +361,7 @@
       <prop>/controls/switches/pitot-heat</prop>
     </switch>
   </connector>
+
+-->
 
 </PropertyList>

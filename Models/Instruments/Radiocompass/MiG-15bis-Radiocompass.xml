@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+
+<PropertyList>
+
+  <path>MiG-15bis-Radiocompass.ac</path> 
+
+	<animation>
+		<type>material</type>
+		<object-name>RC_Needle</object-name>
+		<object-name>RC_Backplate</object-name>
+		<object-name>RC_Foreplate</object-name>
+  		<emission>
+			<factor-prop>/instrumentation/radiocompass/lamp</factor-prop>
+			<red>0.222</red>
+			<green>0.212</green>
+			<blue>0.212</blue>
+		</emission>
+	</animation>
+
+<!--
+
+	<animation>
+		<type>material</type>
+		<object-name>RC_Needle</object-name>
+		<object-name>RC_Backplate</object-name>
+		<object-name>RC_Foreplate</object-name>
+		<object-name>RC_Bezel</object-name>
+  		<emission>
+			<factor-prop>/systems/light/canopy-lamps-norm</factor-prop>
+			<red>0.777</red>
+			<green>0.700</green>
+			<blue>0.700</blue>
+		</emission>
+		<condition>
+			<equals>
+				<property>/systems/light/use-canopy-lamps</property>
+				<value>1</value>
+			</equals>
+		</condition>
+	</animation>
+
+-->
+
+	<animation>
+		<type>rotate</type>
+		<object-name>RC_Needle</object-name>
+		<property>/instrumentation/radiocompass/degree</property>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>  
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
+
+</PropertyList> 

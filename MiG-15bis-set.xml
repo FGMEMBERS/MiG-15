@@ -4,70 +4,199 @@
 MiG-15bis simulation config.
 
 2006-04-14 Lee Elliott
+
+2010 Victor Slavutinsky
 ************************************************************************
 -->
 
 <PropertyList>
+
+<!-- Light colour propertys wont'read at all, bad thing
+
+	<systems>
+		<light>
+			<instrumentation>
+				<red type="double">0.222</red>
+				<green type="double">0.212</green>
+				<blue type="double">0.212</blue>
+			</instrumentation>
+			<ultraviolet-reflection>
+				<red type="double">0.046</red>
+				<green type="double">0.195</green>
+				<blue type="double">0.176</blue>
+			</ultraviolet-reflection>
+			<canopy-lamps>
+				<red type="double">0.229</red>
+				<green type="double">0.228</green>
+				<blue type="double">0.209</blue>
+			</canopy-lamps>
+		</light>
+	</systems>
+
+ -->
+
+	<one>1</one>
+
+
   <sim>
 
     <startup>
       <splash-texture>Aircraft/MiG-15/MiG-15bis-splash.rgb</splash-texture>
     </startup>
 
-    <help>
-      <key>
-        <name>e</name>
-        <desc>Fire cannon</desc>
-      </key>
-      <key>
-        <name>C</name>
-        <desc>Open/Close Canopy (Open at start up)</desc>
-      </key>
-      <key>
-        <name>K</name>
-        <desc>toggle trajectory markers</desc>
-      </key>
-      <key>
-        <name>U</name>
-        <desc>update drop view position</desc>
-      </key>
-      <line>---</line>
-    </help>
+	<help>
+		<title>MiG-15 bis</title>
+		<line>Aircraft documentation in /MiG-15/Documentation directory</line>
+		<key>
+			<name>Ctrl-F</name>
+			<desc>Swap cannon switch saFer (on at startup)</desc>
+		</key>
+		<key>
+			<name>F</name>
+			<desc>Fire cannon</desc>
+		</key>
+		<key>
+			<name>Shift-F</name>
+			<desc>Drop tanks to Free Float</desc>
+		</key>
+		<key>
+			<name>Shift-C</name>
+			<desc>Open/Close Canopy (Open at start up)</desc>
+		</key>
+		<key>
+			<name>Shift-K</name>
+			<desc>toggle trajectory markers</desc>
+		</key>
+		<key>
+			<name>Shift-U</name>
+			<desc>update drop view position</desc>
+		</key>
+		<key>
+			<name>q/Q</name>
+			<desc>More/Less aileron booster (Middle at start up)</desc>
+		</key>
+		<key>
+			<name>Ctrl-Q</name>
+			<desc>Swap main pump power switch (Off at start up)</desc>
+		</key>
+		<key>
+			<name>R</name>
+			<desc>Lock/Unlock thRottle handle (Locked at start up)</desc>
+		</key>
+		<key>
+			<name>Shift-R</name>
+			<desc>On/Off low throttle holdeR (Switched off at start up)</desc>
+		</key>
+		<key>
+			<name>Ctrl-R</name>
+			<desc>On/Off egine emeRgency brake (Switched on at start up)</desc>
+		</key>
+		<key>
+			<name>Ctrl-S</name>
+			<desc>Swap ignition Starter panel power (Off at start up)</desc>
+		</key>
+		<key>
+			<name>Shift-S</name>
+			<desc>Earth/Air Starter ignition type (Earth at start up)</desc>
+		</key>
+		<key>
+			<name>d/D</name>
+			<desc>Ajust sight target Distance (400m at start up)</desc>
+		</key>
+		<key>
+			<name>Ctrl-D</name>
+			<desc>Up/down heaDsight (up at start up)</desc>
+		</key>
+		<key>
+			<name>E</name>
+			<desc>Swap battEry switch (off at start up)</desc>
+		</key>
+		<key>
+			<name>Shift-E</name>
+			<desc>Swap APU gEnerator switch (off at start up)</desc>
+		</key>
+		<key>
+			<name>Ctrl-E</name>
+			<desc>Swap Egine control instrumEntattion powEr switch (off at start up)</desc>
+		</key>
+		<key>
+			<name>Ctrl-B</name>
+			<desc>Swap speedbrakes position (closed at start up)</desc>
+		</key>
+		<key>
+			<name>j</name>
+			<desc>Close speedbrakes</desc>
+		</key>
+		<key>
+			<name>k</name>
+			<desc>Open speedbrakes</desc>
+		</key>
+		<key>
+			<name>`</name>
+			<desc>Swap engine isolation valve</desc>
+		</key>
+		<key>
+			<name>U</name>
+			<desc>Swap fUel source, standart tanks or balance tank</desc>
+		</key>
+		<key>
+			<name>Shift-U</name>
+			<desc>Swap fUel source, inrernal or external tanks</desc>
+		</key>
+	</help>
 
-    <flight-model>yasim</flight-model>
-    <status>alpha</status>
-    <author>Lee Elliott</author>
-    <aero>MiG-15bis-yasim</aero>
+    <flight-model>jsb</flight-model>
+    <status>beta</status>
+    <author>Lee Elliott, Victor Slavutinskiy, with great help from Yurik V. Nikiforoff</author>
+    <aero>MiG-15bis</aero>
     <fuel-fraction>1.0</fuel-fraction>
 
-    <description>MiG-15bis (YASim FDM)</description>
+    <description>MiG-15bis (JDBSim FDM)</description>
 
     <virtual-cockpit archive="y">true</virtual-cockpit>
 
     <chase-distance-m type="double" archive="y">-20.0</chase-distance-m>
 
-    <view n="0">
-      <internal archive="y">true</internal>
-      <config>
-        <x-offset-m archive="y">0.0</x-offset-m>
-        <y-offset-m archive="y">0.84</y-offset-m>
-        <z-offset-m archive="y">2.34</z-offset-m>
-        <pitch-offset-deg>0</pitch-offset-deg>
-        <default-field-of-view-deg>55</default-field-of-view-deg>
-      </config>
-    </view>
+	<view n="0">
+		<name>Pilot View</name>
+		<internal type="bool" archive="y">true</internal>
+		<config>
+			<x-offset-m type="double" archive="y">0.0</x-offset-m>
+			<y-offset-m type="double" archive="y">0.84</y-offset-m>
+			<z-offset-m type="double" archive="y">2.34</z-offset-m>
+			<pitch-offset-deg type="double">-20</pitch-offset-deg>
+			<default-field-of-view-deg type="double">75</default-field-of-view-deg>
+		</config>
+	</view>
 
-<!-- Shift the camera target point back -->
+	<view n="1">
+		<name>Headsight View</name>
+		<type>lookfrom</type>
+		<internal type="bool">true</internal>
+		<config>
+			<from-model type="bool">true</from-model>
+			<from-model-idx type="int">0</from-model-idx>
+			<x-offset-m type="double">0</x-offset-m>
+			<y-offset-m type="double">0.84</y-offset-m>
+			<z-offset-m type="double">1.94</z-offset-m>
+			<pitch-offset-deg type="double">-10</pitch-offset-deg>
+			<default-field-of-view-deg type="double">75</default-field-of-view-deg>
+		</config>
+	</view>
+
+
+<!-- Shift the camera target point back 
     <view n="1">
       <config>
         <target-z-offset-m archive="y" type="double">3.75</target-z-offset-m>
       </config>
     </view>
+-->
 
     <view n="2">
       <config>
         <y-offset-m archive="y" type="double">3.4</y-offset-m>
-        <z-offset-m archive="y">-19.7</z-offset-m>
+        <z-offset-m archive="y" type="double">-19.7</z-offset-m>
         <target-z-offset-m archive="y" type="double">3.75</target-z-offset-m>
       </config>
     </view>
@@ -96,7 +225,6 @@ MiG-15bis simulation config.
       </config>
     </view>
 
-<!-- Drop view -->
     <view n="100">
       <name>Drop View</name>
       <type>lookat</type>
@@ -121,30 +249,55 @@ MiG-15bis simulation config.
       </config>
     </view>
 
-    <current-view>
-      <field-of-view>55.0</field-of-view>
-    </current-view>
+	<view n="101">
+		<name>Right Panel View</name>
+		<type>lookfrom</type>
+		<internal type="bool">true</internal>
+		<config>
+			<from-model type="bool">true</from-model>
+			<from-model-idx type="int">0</from-model-idx>
+			<x-offset-m type="double">0</x-offset-m>
+			<y-offset-m type="double">0.7</y-offset-m>
+			<z-offset-m type="double">1.94</z-offset-m>
+			<pitch-offset-deg type="double">-45</pitch-offset-deg>
+			<heading-offset-deg type="double">-70</heading-offset-deg>
+			<default-field-of-view-deg type="double">75</default-field-of-view-deg>
+		</config>
+	</view>
 
-    <sound>
-      <audible>true</audible>
-      <path>Aircraft/MiG-15/Sounds/MiG-15bis-sound.xml</path>
-    </sound>
+	<view n="102">
+		<name>Left Panel View</name>
+		<type>lookfrom</type>
+		<internal type="bool">true</internal>
+		<config>
+			<from-model type="bool">true</from-model>
+			<from-model-idx type="int">0</from-model-idx>
+			<x-offset-m type="double">0</x-offset-m>
+			<y-offset-m type="double">0.70</y-offset-m>
+			<z-offset-m type="double">1.94</z-offset-m>
+			<pitch-offset-deg type="double">-45</pitch-offset-deg>
+			<heading-offset-deg type="double">70</heading-offset-deg>
+			<default-field-of-view-deg type="double">75</default-field-of-view-deg>
+		</config>
+	</view>
 
-    <panel>
-      <path>Aircraft/MiG-15/Panels/MiG-15bis-vfr-panel.xml</path>
-    </panel>
-    <panel_2>
-      <path>Aircraft/MiG-15/Panels/MiG-15bis-mini-panel.xml</path>
-    </panel_2>
+	<current-view>
+		<field-of-view type="double">55.0</field-of-view>
+	</current-view>
 
-    <hud>
-      <path>Aircraft/MiG-15/Huds/MiG-15bis-hud1.xml</path>
-      <visibility>true</visibility>
-    </hud>
+	<sound>
+		<audible>true</audible>
+		<path>Aircraft/MiG-15/Sounds/MiG-15bis-sound.xml</path>
+	</sound>
 
-    <model>
-      <path>Aircraft/MiG-15/Models/MiG-15bis-model.xml</path>
-    </model>
+	<model>
+		<path>Aircraft/MiG-15/Models/MiG-15bis-model.xml</path>
+		<MiG-15bis-model>
+			<particles>
+				<enabled type="bool">true</enabled>
+			</particles>
+		</MiG-15bis-model>
+	</model>
 
     <systems>
       <autopilot>
@@ -155,11 +308,10 @@ MiG-15bis simulation config.
       </electrical>
     </systems>
 
-<!--sub models -->
-    <submodels>
-      <serviceable type="bool">1</serviceable>
-      <path>Aircraft/MiG-15/MiG-15bis-submodels.xml</path>
-    </submodels>
+	<submodels>
+		<serviceable type="bool">1</serviceable>
+		<path>Aircraft/MiG-15/Models/Submodels/MiG-15bis-submodels.xml</path>
+	</submodels>
     
     <flaps>
       <setting>0.00</setting>
@@ -174,59 +326,336 @@ MiG-15bis simulation config.
       <too-fast-deg>3.5</too-fast-deg>  <!-- target -1.5 deg -->         
     </aoa-indexer>
 
+	<instrumentation>
+		<path>Aircraft/MiG-15/MiG-15bis-instrumentation.xml</path>
+	</instrumentation>
+
+	<menubar>
+		<default>
+			<menu n="50">
+				<label>MiG-15bis</label>
+				<item n="0">
+					<label>Autostart aircraft</label>
+					<binding>
+						<command>nasal</command>
+						<script>MIG15BIS.aircraft_autostart();</script>
+					</binding>
+				</item>
+				<label>MiG-15bis</label>
+				<item n="1">
+					<label>Refuel aircraft</label>
+					<binding>
+						<command>nasal</command>
+						<script>MIG15BIS.aircraft_refuel();</script>
+					</binding>
+				</item>
+				<label>MiG-15bis</label>
+				<item n="2">
+					<label>Repair aircraft</label>
+					<binding>
+						<command>nasal</command>
+						<script>MIG15BIS.aircraft_repair();</script>
+					</binding>
+				</item>
+				<item n="3">
+					<label>Full restart</label>
+					<binding>
+						<command>nasal</command>
+						<script>MIG15BIS.aircraft_restart();</script>
+					</binding>
+				</item>
+				<item n="4">
+					<label>Properties dump</label>
+					<binding>
+						<command>nasal</command>
+						<script>MIG15BIS.dump_properties();</script>
+					</binding>
+				</item>
+			</menu>
+		</default>
+	</menubar>
+
   </sim>
 
 <!-- Key mappings -->
-  <input>
-    <keyboard>
+	<input>
+		<keyboard>
+<!-- Swap cannon safer -->
+			<key n="6">
+				<name>Ctrl-F</name>
+				<desc>Swap cannon switch saFer</desc>
+				<binding>
+					<command>nasal</command>
+					<script>MIG15BIS.switchswap("/instrumentation/stick/fix")</script>
+				</binding>
+			</key>
 <!-- Fire the cannons -->
-      <key n="101">
-        <name>e</name>
-        <desc>Fire cannons</desc>
-        <binding>
-          <command>nasal</command>
-          <script>MIG15BIS.fire_cannon()</script>
-        </binding>
-        <mod-up>
-          <binding>
-            <command>nasal</command>
-            <script>MIG15BIS.cfire_cannon()</script>
-          </binding>
-        </mod-up>
-      </key>
+			<key n="102">
+				<name>F</name>
+				<desc>Fire cannons</desc>
+				<binding>
+					<command>nasal</command>
+					<script>MIG15BIS.press_fire()</script>
+				</binding>
+				<mod-up>
+					<binding>
+						<command>nasal</command>
+						<script>MIG15BIS.unpress_fire()</script>
+					</binding>
+				</mod-up>
+			</key>
+
+<!-- Drop tanks -->
+			<key n="70">
+				<name>Shift-F</name>
+				<desc>Drop tanks to Free Float</desc>
+				<binding>
+					<command>nasal</command>
+					<script>MIG15BIS.press_bomb()</script>
+				</binding>
+				<mod-up>
+					<binding>
+						<command>nasal</command>
+						<script>MIG15BIS.unpress_bomb()</script>
+					</binding>
+				</mod-up>
+			</key>
 
 <!-- Open/Close Canopy -->
-      <key n="67">
-        <name>C</name>
-        <desc>Toggle Canopy</desc>
-        <binding n="0">
-          <command>nasal</command>
-          <script>MIG15BIS.toggle_canopy()</script>
-        </binding>
-      </key>
+			<key n="67">
+				<name>C</name>
+				<desc>Toggle Canopy</desc>
+				<binding n="0">
+					<command>nasal</command>
+					<script>MIG15BIS.switchswap("/instrumentation/canopy")</script>
+				</binding>
+			</key>
 
 <!-- Trajectory Markers -->
-      <key n="75">
-        <name>K</name>
-        <desc>Toggle trajectory markers</desc>
-        <binding n="0">
-          <command>nasal</command>
-          <script>MIG15BIS.toggle_traj_mkr()</script>
-        </binding>
-      </key>
+			<key n="75">
+				<name>K</name>
+				<desc>Toggle trajectory markers</desc>
+				<binding n="0">
+					<command>nasal</command>
+					<script>MIG15BIS.toggle_traj_mkr()</script>
+				</binding>
+			</key>
 
 <!-- Update Drop View position -->
-       <key n="85">
-        <name>U</name>
-        <desc>Update Drop View position</desc>
-        <binding n="0">
-          <command>nasal</command>
-          <script>MIG15BIS.update_drop_view_pos()</script>
-        </binding>
-      </key>
-      
-    </keyboard>
-  </input>
+			<key n="85">
+				<name>U</name>
+				<desc>Update Drop View position</desc>
+				<binding n="0">
+					<command>nasal</command>
+					<script>MIG15BIS.update_drop_view_pos()</script>
+				</binding>
+			</key>
+
+<!-- More Aileron Booster -->
+			<key n="113">
+				<name>Q</name>
+				<desc>More aileron booster</desc>
+				<binding n="0">
+					<command>nasal</command>
+					<script>MIG15BIS.more_booster()</script>
+				</binding>
+			</key>
+
+<!-- Less Aileron Booster -->
+			<key n="81">
+				<name>Shift-Q</name>
+				<desc>Less aileron booster</desc>
+				<binding n="0">
+					<command>nasal</command>
+					<script>MIG15BIS.less_booster()</script>
+				</binding>
+			</key>
+
+<!-- Main pump power -->
+			<key n="17">
+				<name>Ctrl-Q</name>
+				<desc>Swap main pump power</desc>
+				<binding n="0">
+					<command>nasal</command>
+					<script>MIG15BIS.switchswap("/instrumentation/switches/pump")</script>
+				</binding>
+			</key>
+            
+<!-- Swap throttle lock -->
+			<key n="114">
+				<name>R</name>
+				<desc>Lock/Unlock thRottle handle</desc>
+				<binding n="0">
+					<command>nasal</command>
+					<script>MIG15BIS.switchswap("/instrumentation/gas-control/lock")</script>
+				</binding>
+			</key>
+
+<!-- Swap low throttle holder -->
+			<key n="82">
+				<name>Shift-R</name>
+				<desc>On/Off low throttle holder</desc>
+				<binding n="0">
+					<command>nasal</command>
+					<script>MIG15BIS.switchswap("/instrumentation/gas-control/fix")</script>
+				</binding>
+			</key>
+
+<!-- Swap engine emergency brake -->
+			<key n="18">
+				<name>Ctrl-R</name>
+				<desc>Swap egine emeRgency brake</desc>
+				<binding n="0">
+					<command>nasal</command>
+					<script>MIG15BIS.switchswap("/instrumentation/stop-control")</script>
+				</binding>
+			</key>
+
+
+<!-- Swap ignition type -->
+			<key n="83">
+				<name>Shift-S</name>
+				<desc>Earth/Air Starter ignition type</desc>
+				<binding n="0">
+					<command>nasal</command>
+					<script>MIG15BIS.switchswap("/instrumentation/switches/ignition-type")</script>
+				</binding>
+			</key>
+
+<!-- Swap ignition panel power -->
+			<key n="19">
+				<name>Ctrl-S</name>
+				<desc>Swap ignition Starter panel power</desc>
+				<binding n="0">
+					<command>nasal</command>
+					<script>MIG15BIS.switchswap("/instrumentation/switches/ignition")</script>
+				</binding>
+			</key>
+
+<!-- Less sight target distance -->
+			<key n="100">
+				<name>D</name>
+				<desc>Less sight target Distance</desc>
+				<binding n="0">
+					<command>nasal</command>
+					<script>MIG15BIS.less_sight_distance()</script>
+				</binding>
+			</key>
+
+<!-- More sight target distance -->
+			<key n="68">
+				<name>Shift-D</name>
+				<desc>More sight target Distance</desc>
+				<binding n="0">
+					<command>nasal</command>
+					<script>MIG15BIS.more_sight_distance()</script>
+				</binding>
+			</key>
+
+<!-- Swap headsight up/down -->
+			<key n="4">
+				<name>Ctrl-D</name>
+				<desc>Up/Down heaDsight</desc>
+				<binding n="0">
+					<command>nasal</command>
+					<script>MIG15BIS.switchswap("/instrumentation/headsight/up")</script>
+				</binding>
+			</key>
+
+<!-- Swap battery power -->
+			<key n="101">
+				<name>E</name>
+				<desc>Swap battEry powEr switch</desc>
+				<binding n="0">
+					<command>nasal</command>
+					<script>MIG15BIS.switchswap("/instrumentation/switches/battery")</script>
+				</binding>
+			</key>
+
+<!-- Swap generator power -->
+			<key n="69">
+				<name>Shift-E</name>
+				<desc>Swap APU gEnerator powEr switch</desc>
+				<binding n="0">
+					<command>nasal</command>
+					<script>MIG15BIS.switchswap("/instrumentation/switches/generator")</script>
+				</binding>
+			</key>
+
+<!-- Swap engine control instrumentation -->
+			<key n="5">
+				<name>Ctrl-E</name>
+				<desc>Swap Egine control instrumEntattion powEr</desc>
+				<binding n="0">
+					<command>nasal</command>
+					<script>MIG15BIS.switchswap("/instrumentation/switches/engine-control")</script>
+				</binding>
+			</key>
+
+<!-- Speedbrakes -->
+			<key n="106">
+				<name>j</name>
+				<desc>Close speedbrakes</desc>
+				<binding n="0">
+					<command>nasal</command>
+					<script>setprop("/controls/flight/speedbrake", 0)</script>
+				</binding>
+			</key>
+
+			<key n="107">
+				<name>k</name>
+				<desc>Open speedbrakes</desc>
+				<binding n="0">
+					<command>nasal</command>
+					<script>setprop("/controls/flight/speedbrake", 1)</script>
+				</binding>
+			</key>
+
+<!-- Starter key -->
+			<key n="115">
+				<name>s</name>
+				<desc>Start engine</desc>
+				<binding n="0">
+					<command>nasal</command>
+					<script>setprop("/controls/engines/engine/starter-key", 1)</script>
+				</binding>
+				<mod-up>
+					<binding>
+						<command>nasal</command>
+						<script>setprop("/controls/engines/engine/starter-key", 0)</script>
+					</binding>
+				</mod-up>
+			</key>
+
+			<key n="96">
+				<name>`</name>
+				<desc>Swap engine isolation valve</desc>
+				<binding n="0">
+					<command>nasal</command>
+					<script>MIG15BIS.switchswap("/instrumentation/switches/isolation-valve")</script>
+				</binding>
+			</key>
+
+			<key n="117">
+				<name>U</name>
+				<desc>Swap fUel source, standart tanks or balance tank </desc>
+				<binding n="0">
+					<command>nasal</command>
+					<script>MIG15BIS.switchswap("/instrumentation/switches/fuel-control")</script>
+				</binding>
+			</key>
+
+			<key n="85">
+				<name>Shift-U</name>
+				<desc>Swap fUel source, inrernal or external tanks </desc>
+				<binding n="0">
+					<command>nasal</command>
+					<script>MIG15BIS.switchswap("/instrumentation/switches/third-tank-pump")</script>
+				</binding>
+			</key>
+
+		</keyboard>
+	</input>
 	
 	<ai>
 		<submodels>
@@ -281,57 +710,103 @@ MiG-15bis simulation config.
   </instrumentation>
 
 <!-- Pre-set/initialise some of the controls -->
-  <controls>
+	<controls>
 
-<!-- Start with the Parking Brake on -->
-    <gear>
-      <brake-parking type="double">1.0</brake-parking>
-    </gear>
-    
-<!-- Initialise the canopy -->
-    <canopy>
-      <canopy-pos-norm type="float">1.0</canopy-pos-norm>
-    </canopy>
-    
-  </controls>
+		<!-- Start with the Parking Brake on and gears extracted -->
+		<gear>
+			<brake-parking type="double">1.0</brake-parking>
+			<gear-down type="bool">1.0</gear-down>
+		</gear>
+
+		<!-- Initialise the canopy -->
+		<canopy>
+			<canopy-pos-norm type="float">1.0</canopy-pos-norm>
+		</canopy>
+
+	</controls>
+
+<!-- FDM gear fast initialization -->
+
+	<fdm>
+		<jsbsim>
+			<gear>
+				<gear-cmd-norm type="int">1</gear-cmd-norm>
+				<gear-cmd-norm-real type="int">1</gear-cmd-norm-real>
+				<gear-pos-norm type="float">1</gear-pos-norm>
+				<finally-initialized type="int">0</finally-initialized>
+				<unit n="0">
+					<pos-norm type="float">1</pos-norm>
+				</unit>
+				<unit n="1">
+					<pos-norm type="float">1</pos-norm>
+				</unit>
+				<unit n="2">
+					<pos-norm type="float">1</pos-norm>
+				</unit>
+			</gear>
+		</jsbsim>
+	</fdm>
+
+
+	<gear>
+		<gear n="0">
+			<position-norm type="float">1</position-norm>
+		</gear>
+		<gear n="1">
+			<position-norm type="float">1</position-norm>
+		</gear>
+		<gear n="2">
+			<position-norm type="float">1</position-norm>
+		</gear>
+	</gear>
+
+<!-- Engine rpm needed to make vacuum system happy
+	without it vacuum system does not work and gyro stops spin -->
 
 <!-- Engine indexes -->
-  <engines>
-    <engine n="0">
-      <engine-num type="int">0</engine-num>
-    </engine>
-  </engines>
+	<engines>
+		<engine n="0">
+			<rpm type="float">0</rpm>
+		</engine>
+	</engines>
 
-<!-- Set (non-existant) tank 1 level due to bug -->
-  <consumables>
-    <fuel>
-      <tank n="1">
-        <level-gal_us type="double">0</level-gal_us>
-      </tank>
-    </fuel>
-  </consumables>
+<!-- No radar on MiG-15bis -->
 
-  <instrumentation>
-    <radar>
-      <range type="int" archive="y">40</range>
-      <minimized type="bool" archive="y">true</minimized>
-    </radar>
-  </instrumentation>
+<!--
+	<instrumentation>
+		<radar>
+			<range type="int" archive="y">40</range>
+			<minimized type="bool" archive="y">true</minimized>
+		</radar>
+	</instrumentation>
+-->
 
-<!-- Weight entries for the ammunition -->
-  <yasim>
-    <weights>
-      <N-37-ammunition-weight-lbs type="float">80</N-37-ammunition-weight-lbs>
-      <NR-23-I-ammunition-weight-lbs type="float">31</NR-23-I-ammunition-weight-lbs>
-      <NR-23-O-ammunition-weight-lbs type="float">31</NR-23-O-ammunition-weight-lbs>
-    </weights>
-  </yasim>
+<!-- Start up -->
 
-  <nasal>
-    <MIG15BIS>
-      <file>Aircraft/MiG-15/Nasal/MiG-15bis.nas</file>
-      <script>start_up();</script>
-    </MIG15BIS>
-  </nasal>
+	<nasal>
+		<MIG15BIS>
+			<file>Aircraft/MiG-15/Nasal/MiG-15bis.nas</file>
+			<script>start_up();</script>
+		</MIG15BIS>
+	</nasal>
+
+<!-- Instrumentation special values -->
+	<instrumentation n="0">
+		<heading-indicator n="0">
+			<name>heading-indicator</name>
+			<number>0</number>
+			<suction>/systems/vacuum/suction-inhg</suction>
+			<heading-bug-deg type="double">95</heading-bug-deg>
+			<heading-source type="bool">true</heading-source>
+		</heading-indicator>
+		<heading-indicator-dg n="0">
+			<name>heading-indicator-dg</name>
+			<number>0</number>
+		</heading-indicator-dg>
+		<adf n="1">
+			<serviceable type="bool">true</serviceable>
+			<mode type="string">adf</mode>
+		</adf>
+	</instrumentation>
 
 </PropertyList>

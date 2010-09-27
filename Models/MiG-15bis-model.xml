@@ -1,89 +1,93 @@
 <?xml version="1.0"?>
 
-<!-- MiG-15bis model config file - Lee Elliott -->
+<!-- MiG-15bis model config file - Lee Elliott, Victor Slavutinsky -->
 
 <PropertyList>
 
-  <path>MiG-15bis-005-008f.ac</path>
-  <offsets>
-    <z-m>0.0</z-m>
-    <pitch-deg>0</pitch-deg>
-  </offsets>
+<path>MiG-15bis.ac</path>
 
-<!-- De-select pilot when in view 0 -->
+	<offsets>
+		<z-m>0.0</z-m>
+		<pitch-deg>0</pitch-deg>
+	</offsets>
+
+<!-- De-select pilot when view in cabine -->
+	<animation>
+		<type>select</type>
+		<object-name>PLT_Torso</object-name>
+		<object-name>PLT_LThigh</object-name>
+		<object-name>PLT_LShin</object-name>
+		<object-name>PLT_RThigh</object-name>
+		<object-name>PLT_RShin</object-name>
+		<object-name>PLT_Ass</object-name>
+		<object-name>PLT_Head</object-name>
+		<object-name>PLT_Helmet</object-name>
+		<object-name>PLT_FaceMask</object-name>
+		<object-name>PLT_Glass</object-name>
+		<condition>
+			<equals>
+				<property>/sim/current-view/internal</property>
+				<value>false</value>	
+			</equals>
+		</condition>
+	</animation>
+
+
+<!-- Remove oxygen mask if oxy is not on -->
   <animation>
     <type>select</type>
-    <object-name>PLT_Pilot_Head</object-name>
-    <object-name>PLT_Helmet</object-name>
-    <object-name>PLT_Visor</object-name>
-    <object-name>PLT_Facemask</object-name>
+    <object-name>PLT_FaceMask</object-name>
     <condition>
       <not>
         <equals>
-          <property>sim/current-view/view-number</property>
+          <property>/instrumentation/oxygen-pressure-meter/oxygen-on</property>
           <value>0</value>
         </equals>
       </not>
     </condition>
   </animation>
 
-<!-- Chrome animation, courtesy of Vivian  -->
-<!-- Heh :) not sure how this is supposed to work -->
-  <animation>
-	<type>shader</type>
-	<shader>chrome</shader>
-	<texture>MiG-15bis-tx00.rgb</texture>
-	<object-name>FUS_Hull</object-name>
-    <object-name>FUS_SpeedBrakeDoorLS</object-name>
-    <object-name>FUS_SpeedBrakeDoorRS</object-name>
-	<object-name>FUS_Intake</object-name>
-	<object-name>FUS_NoseDoorLS</object-name>
-	<object-name>FUS_NoseDoorRS</object-name>
-	<object-name>CP_FrontCanopyFrame</object-name>
-	<object-name>CP_RearCanopyFrame</object-name>
-	<object-name>WNG_FlapL</object-name>
-	<object-name>WNG_AileronL</object-name>
-	<object-name>WNG_FlapR</object-name>
-	<object-name>WNG_AileronR</object-name>
-	<object-name>WNG_PitotProbe</object-name>
-	<object-name>TF_Rudder</object-name>
-	<object-name>TP_ElevatorL</object-name>
-	<object-name>TP_ElevatorR</object-name>
-	<object-name>UC_MainL_CStrutLower</object-name>
-	<object-name>UC_MainL_RStrutLower</object-name>
-	<object-name>UC_MainR_CStrutLower</object-name>
-	<object-name>UC_MainR_RStrutLower</object-name>
-  </animation>
-
-<!-- Disable shadows on the glass objects -->
 <!--
-  <animation>
-	<type>noshadow</type>
-	<name>GLS_FrontCanopyGlass</name>
-	<name>GLS_RearCanopyGlass</name>
-  </animation>
--->  
-<!-- Canopy -->
-  <animation>
-    <type>translate</type>
-    <object-name>CP_RearCanopyFrame</object-name>
-    <object-name>CP_RearCanopyFrameLiner</object-name>
-    <object-name>GLS_RearCanopyGlass</object-name>
-    <property>controls/canopy/canopy-pos-norm</property>
-    <factor>1.0</factor>
-    <axis>
-      <x>1</x>
-      <y>0</y>
-      <z>0.1</z>
-    </axis>
-  </animation>
+
+	<effect>
+		<inherits-from>Aircraft/Generic/Effects/Fuselagereflect</inherits-from>
+		<object-name>WNG_PitotProbe</object-name>
+		<object-name>UC_MainL_CStLow</object-name>
+		<object-name>UC_MainR_CStLow</object-name>
+		<object-name>UC_MainL_StLow</object-name>
+		<object-name>UC_MainR_StLow</object-name>
+		<object-name>FUS_Hull</object-name>
+		<object-name>UC_MainL_DoorIS</object-name>
+		<object-name>UC_MainR_DoorIS</object-name>
+		<object-name>UC_MainL_DoorLS</object-name>
+		<object-name>UC_MainR_DoorLS</object-name>
+		<object-name>UC_MainL_DoorMS</object-name>
+		<object-name>UC_MainR_DoorMS</object-name>
+		<object-name>UC_MainL_DoorOS</object-name>
+		<object-name>UC_MainR_DoorOS</object-name>
+		<object-name>WNG_FlapLUp</object-name>
+		<object-name>WNG_FlapLDown</object-name>
+		<object-name>WNG_FlapRUp</object-name>
+		<object-name>WNG_FlapRDown</object-name>
+		<object-name>WNG_AileronL</object-name>
+		<object-name>WNG_AileronR</object-name>
+		<object-name>WNG_Trimmer</object-name>
+		<object-name>TF_Rudder</object-name>
+		<object-name>TP_ElevatorL</object-name>
+		<object-name>TP_ElevatorR</object-name>
+		<object-name>TP_Trimmer</object-name>
+		<object-name>FUS_RSBPisSmall</object-name>
+		<object-name>FUS_LSBPisSmall</object-name>
+	</effect>
+
+-->
 
 <!-- Rudder -->
   <animation>
     <type>rotate</type>
     <object-name>TF_Rudder</object-name>
     <property>surface-positions/rudder-pos-norm</property>
-    <factor>-10</factor>
+    <factor>10</factor>
     <center>
       <x-m>8</x-m>
       <y-m>0</y-m>
@@ -96,150 +100,333 @@
     </axis>
   </animation>
 
-<!-- Elevator -->
-<!-- Left -->
-  <animation>
-    <type>rotate</type>
-    <object-name>TP_ElevatorL</object-name>
-    <property>surface-positions/left-elevator-pos-norm</property>
-    <factor>-15</factor>
-    <center>
-      <x-m>9.16</x-m>
-      <y-m>-0.12</y-m>
-      <z-m>1.59</z-m>
-    </center>
-    <axis>
-      <x>0.6</x>
-      <y>-1.0</y>
-      <z>0.0</z>
-    </axis>
-  </animation>
+<!-- Pilot Move Left Pedal -->
 
-<!-- Right -->
-  <animation>
-    <type>rotate</type>
-    <object-name>TP_ElevatorR</object-name>
-    <property>surface-positions/right-elevator-pos-norm</property>
-    <factor>15</factor>
-    <center>
-      <x-m>9.16</x-m>
-      <y-m>0.12</y-m>
-      <z-m>1.59</z-m>
-    </center>
-    <axis>
-      <x>0.6</x>
-      <y>1.0</y>
-      <z>0.0</z>
-    </axis>
-  </animation>
+	<animation>
+		<type>translate</type>
+		<object-name>PLT_LShin</object-name>
+		<property>/instrumentation/pedals/shift_x</property>
+		<factor>1</factor>
+		<axis>
+			<x>-1</x>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>PLT_LThigh</object-name>
+		<property>/instrumentation/pedals/rudder</property>
+		<factor>10</factor>
+		<center>
+			<x-m>2.059</x-m>
+			<z-m>-0.040</z-m>
+		</center>
+		<axis>
+			<y>-1</y>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>PLT_LShin</object-name>
+		<property>/instrumentation/pedals/rudder</property>
+		<factor>-10</factor>
+		<center>
+			<x-m>1.333</x-m>
+			<z-m>-0.057</z-m>
+		</center>
+		<axis>
+			<y>-1</y>
+		</axis>
+	</animation>
+
+<!-- Right pedal -->
+
+	<animation>
+		<type>translate</type>
+		<object-name>PLT_RShin</object-name>
+		<property>/instrumentation/pedals/shift_x</property>
+		<factor>1</factor>
+		<axis>
+			<x>1</x>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>PLT_RThigh</object-name>
+		<property>/instrumentation/pedals/rudder</property>
+		<factor>10</factor>
+		<center>
+			<x-m>2.059</x-m>
+			<z-m>-0.040</z-m>
+		</center>
+		<axis>
+			<y>1</y>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>PLT_RShin</object-name>
+		<property>/instrumentation/pedals/rudder</property>
+		<factor>-10</factor>
+		<center>
+			<x-m>1.333</x-m>
+			<z-m>-0.057</z-m>
+		</center>
+		<axis>
+			<y>1</y>
+		</axis>
+	</animation>
+
+
+
+<!-- Elevator -->
+	<animation>
+		<type>rotate</type>
+		<object-name>TP_ElevatorL</object-name>
+		<object-name>TP_Trimmer</object-name>
+		<property>/fdm/jsbsim/fcs/elevator-indicated-pos-rad</property>
+		<factor>-57.29</factor>
+		<center>
+			<x-m>9.16</x-m>
+			<y-m>-0.12</y-m>
+			<z-m>1.59</z-m>
+		</center>
+		<axis>
+			<x>0.6</x>
+			<y>-1.0</y>
+			<z>0.0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>TP_ElevatorR</object-name>
+		<property>/fdm/jsbsim/fcs/elevator-indicated-pos-rad</property>
+		<factor>57.29</factor>
+		<center>
+			<x-m>9.16</x-m>
+			<y-m>0.12</y-m>
+			<z-m>1.59</z-m>
+		</center>
+		<axis>
+			<x>0.6</x>
+			<y>1.0</y>
+			<z>0.0</z>
+		</axis>
+	</animation>
+
+<!--Elevator trimmer -->
+
+	<animation>
+		<type>rotate</type>
+		<object-name>TP_Trimmer</object-name>
+		<property>/fdm/jsbsim/fcs/pitch-trim-norm-indicated</property>
+		<factor>15</factor>
+		<axis>   
+			<x1-m>9.704</x1-m>
+			<y1-m>-0.668</y1-m>
+			<z1-m>1.591</z1-m>
+			<x2-m>9.433</x2-m>
+			<y2-m>-0.122</y2-m>
+			<z2-m>1.591</z2-m>
+		</axis>
+	</animation>
+
+<!-- Pilot Move Front or Bottom -->
+
+	<animation>
+		<type>rotate</type>
+		<object-name>PLT_Torso</object-name>
+		<object-name>PLT_Head</object-name>
+		<object-name>PLT_Helmet</object-name>
+		<object-name>PLT_FaceMask</object-name>
+		<object-name>PLT_Glass</object-name>
+		<property>/instrumentation/stick/elevator_stick_deg</property>
+		<factor>1</factor>
+		<center>
+			<x-m>1.709</x-m>
+			<y-m>0.0</y-m>
+			<z-m>-0.055</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>1.0</y>
+			<z>0.0</z>
+		</axis>
+	</animation>
 
 <!-- Ailerons -->
 <!-- Left -->
-  <animation>
-    <type>rotate</type>
-    <object-name>WNG_AileronL</object-name>
-    <property>surface-positions/left-aileron-pos-norm</property>
-    <factor>-15</factor>
-    <center>
-      <x-m>5.76</x-m>
-      <y-m>-3.18</y-m>
-      <z-m>-0.07</z-m>
-    </center>
-    <axis>
-      <x>0.588</x>
-      <y>-1.0</y>
-      <z>-0.033</z>
-    </axis>
-  </animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>WNG_AileronL</object-name>
+		<object-name>WNG_Trimmer</object-name>
+		<property>/fdm/jsbsim/fcs/left-aileron-indicated-pos-rad</property>
+		<factor>-57.29</factor>
+		<center>
+			<x-m>5.76</x-m>
+			<y-m>-3.18</y-m>
+			<z-m>-0.07</z-m>
+		</center>
+		<axis>
+			<x>0.588</x>
+			<y>-1.0</y>
+			<z>-0.033</z>
+		</axis>
+	</animation>
 
 <!-- Right -->
-  <animation>
-    <type>rotate</type>
-    <object-name>WNG_AileronR</object-name>
-    <property>surface-positions/right-aileron-pos-norm</property>
-    <factor>15</factor>
-    <center>
-      <x-m>5.76</x-m>
-      <y-m>3.18</y-m>
-      <z-m>-0.07</z-m>
-    </center>
-    <axis>
-      <x>0.588</x>
-      <y>1.0</y>
-      <z>-0.033</z>
-    </axis>
-  </animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>WNG_AileronR</object-name>
+		<property>/fdm/jsbsim/fcs/right-aileron-indicated-pos-rad</property>
+		<factor>57.29</factor>
+		<center>
+			<x-m>5.76</x-m>
+			<y-m>3.18</y-m>
+			<z-m>-0.07</z-m>
+		</center>
+		<axis>
+			<x>0.588</x>
+			<y>1.0</y>
+			<z>-0.033</z>
+		</axis>
+	</animation>
+
+<!-- Trimmer -->
+	<animation>
+		<type>rotate</type>
+		<object-name>WNG_Trimmer</object-name>
+		<property>/fdm/jsbsim/fcs/roll-trim-norm-indicated</property>
+		<factor>15</factor>
+		<axis>   
+			<x1-m>6.228</x1-m>
+			<y1-m>-3.519</y1-m>
+			<z1-m>-0.082</z1-m>
+			<x2-m>6.052</x2-m>
+			<y2-m>-3.182</y2-m>
+			<z2-m>-0.078</z2-m>
+		</axis>
+	</animation>
+
+<!-- Pilot Move Left or Right-->
+
+	<animation>
+		<type>rotate</type>
+		<object-name>PLT_Torso</object-name>
+		<object-name>PLT_Head</object-name>
+		<object-name>PLT_Helmet</object-name>
+		<object-name>PLT_FaceMask</object-name>
+		<object-name>PLT_Glass</object-name>
+		<property>/instrumentation/stick/aileron_stick_deg</property>
+		<factor>1</factor>
+		<center>
+			<x-m>1.709</x-m>
+			<y-m>0.0</y-m>
+			<z-m>-0.055</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0.0</y>
+			<z>0.0</z>
+		</axis>
+	</animation>
 
 <!-- Flaps -->
-<!-- Left -->
-  <animation>
-    <type>translate</type>
-    <object-name>WNG_FlapL</object-name>
-    <property>surface-positions/left-flap-pos-norm</property>
-    <factor>0.25</factor>
-    <axis>
-      <x>1</x>
-      <y>0</y>
-      <z>-0.01</z>
-    </axis>
-  </animation>
 
-  <animation>
-    <type>rotate</type>
-    <object-name>WNG_FlapL</object-name>
-    <property>surface-positions/left-flap-pos-norm</property>
-    <factor>-50</factor>
-    <center>
-      <x-m>4.32</x-m>
-      <y-m>-1.04</y-m>
-      <z-m>-0.08</z-m>
-    </center>
-    <axis>
-      <x>0.596</x>
-      <y>-1.0</y>
-      <z>-0.008</z>
-    </axis>
-  </animation>
+<!-- Check if tored -->
+
+	<animation>
+		<type>select</type>
+		<object-name>WNG_FlapLUp</object-name>
+		<object-name>WNG_FlapLDown</object-name>
+		<object-name>WNG_FlapRUp</object-name>
+		<object-name>WNG_FlapRDown</object-name>
+		<condition>
+			<equals>
+				<property>/fdm/jsbsim/fcs/flap-tored</property>
+				<value>0</value>	
+			</equals>
+		</condition>
+	</animation>
+
+<!-- Left -->
+	<animation>
+		<type>translate</type>
+		<object-name>WNG_FlapLUp</object-name>
+		<object-name>WNG_FlapLDown</object-name>
+		<property>/fdm/jsbsim/fcs/flap-pos-norm</property>
+		<factor>0.25</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>-0.01</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>rotate</type>
+		<object-name>WNG_FlapLUp</object-name>
+		<object-name>WNG_FlapLDown</object-name>
+		<property>/fdm/jsbsim/fcs/flap-pos-norm</property>
+		<factor>-50</factor>
+		<center>
+			<x-m>4.32</x-m>
+			<y-m>-1.04</y-m>
+			<z-m>-0.08</z-m>
+		</center>
+		<axis>
+			<x>0.596</x>
+			<y>-1.0</y>
+			<z>-0.008</z>
+		</axis>
+	</animation>
 
 <!-- Right -->
-  <animation>
-    <type>translate</type>
-    <object-name>WNG_FlapR</object-name>
-    <property>surface-positions/right-flap-pos-norm</property>
-    <factor>0.25</factor>
-    <axis>
-      <x>1</x>
-      <y>0</y>
-      <z>-0.01</z>
-    </axis>
-  </animation>
+	<animation>
+		<type>translate</type>
+		<object-name>WNG_FlapRUp</object-name>
+		<object-name>WNG_FlapRDown</object-name>
+		<property>/fdm/jsbsim/fcs/flap-pos-norm</property>
+		<factor>0.25</factor>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>-0.01</z>
+		</axis>
+	</animation>
 
-  <animation>
-    <type>rotate</type>
-    <object-name>WNG_FlapR</object-name>
-    <property>surface-positions/right-flap-pos-norm</property>
-    <factor>50</factor>
-    <center>
-      <x-m>4.32</x-m>
-      <y-m>1.04</y-m>
-      <z-m>-0.08</z-m>
-    </center>
-    <axis>
-      <x>0.596</x>
-      <y>1.0</y>
-      <z>-0.008</z>
-    </axis>
-  </animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>WNG_FlapRUp</object-name>
+		<object-name>WNG_FlapRDown</object-name>
+		<property>/fdm/jsbsim/fcs/flap-pos-norm</property>
+		<factor>50</factor>
+		<center>
+			<x-m>4.32</x-m>
+			<y-m>1.04</y-m>
+			<z-m>-0.08</z-m>
+		</center>
+		<axis>
+			<x>0.596</x>
+			<y>1.0</y>
+			<z>-0.008</z>
+		</axis>
+	</animation>
 
 <!-- Spoiler/Airbrake -->
 <!-- Left -->
+
   <animation>
     <type>select</type>
-    <object-name>FUS_SpeedBrakeDoorLB</object-name>
-    <object-name>FUS_SpeedBrakeWellL</object-name>
+    <object-name>FUS_SBDoorLB</object-name>
+    <object-name>FUS_SBWellL</object-name>
     <condition>
       <greater-than>
-        <property>surface-positions/left-spoiler-pos-norm</property>
+        <property>surface-positions/speedbrake-pos-norm</property>
         <value>0.0</value>
       </greater-than>
     </condition>
@@ -247,9 +434,9 @@
 
   <animation>
     <type>rotate</type>
-    <object-name>FUS_SpeedBrakeDoorLS</object-name>
-    <object-name>FUS_SpeedBrakeDoorLB</object-name>
-    <property>surface-positions/left-spoiler-pos-norm</property>
+    <object-name>FUS_SBDoorLS</object-name>
+    <object-name>FUS_SBDoorLB</object-name>
+    <property>surface-positions/speedbrake-pos-norm</property>
     <factor>-50</factor>
     <center>
       <x-m>7.1</x-m>
@@ -263,14 +450,15 @@
     </axis>
   </animation>
 
-<!-- Right -->
+<!-- Left Piston -->
+
   <animation>
     <type>select</type>
-    <object-name>FUS_SpeedBrakeDoorRB</object-name>
-    <object-name>FUS_SpeedBrakeWellR</object-name>
+    <object-name>FUS_LSBPisBig</object-name>
+    <object-name>FUS_LSBPisSmall</object-name>
     <condition>
       <greater-than>
-        <property>surface-positions/right-spoiler-pos-norm</property>
+        <property>surface-positions/speedbrake-pos-norm</property>
         <value>0.0</value>
       </greater-than>
     </condition>
@@ -278,9 +466,41 @@
 
   <animation>
     <type>rotate</type>
-    <object-name>FUS_SpeedBrakeDoorRS</object-name>
-    <object-name>FUS_SpeedBrakeDoorRB</object-name>
-    <property>surface-positions/right-spoiler-pos-norm</property>
+    <object-name>FUS_LSBPisBig</object-name>
+    <object-name>FUS_LSBPisSmall</object-name>
+    <property>surface-positions/speedbrake-pos-norm</property>
+    <factor>-10</factor>
+    <center>
+      <x-m>7.767</x-m>
+      <y-m>-0.355</y-m>
+      <z-m>-0.082</z-m>
+    </center>
+    <axis>
+      <x>0.0</x>
+      <y>0.0</y>
+      <z>-0.0001</z>
+    </axis>
+  </animation>
+
+<!-- Right -->
+
+  <animation>
+    <type>select</type>
+    <object-name>FUS_SBDoorRB</object-name>
+    <object-name>FUS_SBWellR</object-name>
+    <condition>
+      <greater-than>
+        <property>surface-positions/speedbrake-pos-norm</property>
+        <value>0.0</value>
+      </greater-than>
+    </condition>
+  </animation>
+
+  <animation>
+    <type>rotate</type>
+    <object-name>FUS_SBDoorRS</object-name>
+    <object-name>FUS_SBDoorRB</object-name>
+    <property>surface-positions/speedbrake-pos-norm</property>
     <factor>50</factor>
     <center>
       <x-m>7.1</x-m>
@@ -294,629 +514,733 @@
     </axis>
   </animation>
 
-<!-- Landing Gear -->
-<!-- Front -->
-<!-- Select/Deslect u/c and doors -->
+<!-- Right Piston -->
+
   <animation>
     <type>select</type>
-    <object-name>FUS_Nose_WWell</object-name>
-    <object-name>FUS_NoseDoorLB</object-name>
-    <object-name>FUS_NoseDoorRB</object-name>
-    <object-name>UC_Nose_MainPost</object-name>
-    <object-name>UC_Nose_ArmHub</object-name>
-    <object-name>UC_Nose_Tyre</object-name>
+    <object-name>FUS_RSBPisBig</object-name>
+    <object-name>FUS_RSBPisSmall</object-name>
     <condition>
       <greater-than>
-        <property>gear/gear[0]/position-norm</property>
+        <property>surface-positions/speedbrake-pos-norm</property>
         <value>0.0</value>
       </greater-than>
     </condition>
   </animation>
 
-<!-- Extend/Retract gear -->
   <animation>
     <type>rotate</type>
-    <object-name>UC_Nose_MainPost</object-name>
-    <object-name>UC_Nose_ArmHub</object-name>
-    <object-name>UC_Nose_Tyre</object-name>
-    <property>gear/gear[0]/position-norm</property>
-    <interpolation>
-      <entry>
-        <ind>0.0</ind>
-        <dep>-105.0</dep>
-      </entry>
-      <entry>
-        <ind>0.5</ind>
-        <dep>-105.0</dep>
-      </entry>
-      <entry>
-        <ind>1.0</ind>
-        <dep>0.0</dep>
-      </entry>
-    </interpolation>
+    <object-name>FUS_RSBPisBig</object-name>
+    <object-name>FUS_RSBPisSmall</object-name>
+    <property>surface-positions/speedbrake-pos-norm</property>
+    <factor>10</factor>
     <center>
-      <x-m>1.18</x-m>
-      <y-m>0.00</y-m>
-      <z-m>-0.56</z-m>
+      <x-m>7.766</x-m>
+      <y-m>0.360</y-m>
+      <z-m>0.088</z-m>
     </center>
     <axis>
-      <x>0</x>
-      <y>-1</y>
-      <z>0</z>
+      <x>0.0</x>
+      <y>0.0</y>
+      <z>-0.0001</z>
     </axis>
   </animation>
+
+<!-- Landing Gears -->
+<!-- Front -->
+<!-- Show or hide u/c and doors -->
+	<animation>
+		<type>select</type>
+		<object-name>FUS_Nose_WWell</object-name>
+		<condition>
+			<or>
+				<greater-than>
+					<property>/fdm/jsbsim/gear/unit[0]/pos-norm</property>
+					<value>0.0</value>
+				</greater-than>
+				<greater-than>
+					<property>/fdm/jsbsim/gear/unit[0]/tored</property>
+					<value>0.0</value>
+				</greater-than>
+			</or>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>FUS_NoseDoorLB</object-name>
+		<object-name>FUS_NoseDoorRB</object-name>
+		<object-name>UC_Nose_MainPost</object-name>
+		<object-name>UC_Nose_ArmHub</object-name>
+		<object-name>UC_Nose_Axle</object-name>
+		<object-name>UC_Nose_Tyre</object-name>
+		<condition>
+			<greater-than>
+				<property>/fdm/jsbsim/gear/unit[0]/pos-norm</property>
+				<value>0.0</value>
+			</greater-than>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>FUS_NoseDoorLS</object-name>
+		<object-name>FUS_NoseDoorRS</object-name>
+		<condition>
+			<less-than>
+				<property>/fdm/jsbsim/gear/unit[0]/tored</property>
+				<value>1.0</value>
+			</less-than>
+		</condition>
+	</animation>
+
+<!-- Extend/Retract gear -->
+	<animation>
+		<type>rotate</type>
+		<object-name>UC_Nose_MainPost</object-name>
+		<object-name>UC_Nose_ArmHub</object-name>
+		<object-name>UC_Nose_Axle</object-name>
+		<object-name>UC_Nose_Tyre</object-name>
+		<property>/fdm/jsbsim/gear/unit[0]/pos-norm</property>
+		<interpolation>
+			<entry><ind>0.0</ind><dep>-105.0</dep></entry>
+			<entry><ind>0.5</ind><dep>-105.0</dep></entry>
+			<entry><ind>1.0</ind><dep>0.0</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>1.18</x-m>
+			<y-m>0.00</y-m>
+			<z-m>-0.56</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
 
 <!-- Open/Close doors -->
 <!-- Left Door -->
-  <animation>
-    <type>rotate</type>
-    <object-name>FUS_NoseDoorLS</object-name>
-    <object-name>FUS_NoseDoorLB</object-name>
-    <property>gear/gear[0]/position-norm</property>
-    <interpolation>
-      <entry>
-        <ind>0.0</ind>
-        <dep>0.0</dep>
-      </entry>
-      <entry>
-        <ind>0.5</ind>
-        <dep>-95.0</dep>
-      </entry>
-      <entry>
-        <ind>1.0</ind>
-        <dep>-95.0</dep>
-      </entry>
-    </interpolation>
-    <center>
-      <x-m>0.23</x-m>
-      <y-m>-0.14</y-m>
-      <z-m>-0.43</z-m>
-    </center>
-    <axis>
-      <x>1.0</x>
-      <y>0.0</y>
-      <z>-0.216</z>
-    </axis>
-  </animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>FUS_NoseDoorLS</object-name>
+		<object-name>FUS_NoseDoorLB</object-name>
+		<property>/fdm/jsbsim/gear/unit[0]/pos-norm</property>
+		<interpolation>
+			<entry><ind>0.0</ind><dep>0.0</dep></entry>
+			<entry><ind>0.5</ind><dep>-95.0</dep></entry>
+			<entry><ind>1.0</ind><dep>-95.0</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>0.23</x-m>
+			<y-m>-0.14</y-m>
+			<z-m>-0.43</z-m>
+		</center>
+		<axis>
+			<x>1.0</x>
+			<y>0.0</y>
+			<z>-0.216</z>
+		</axis>
+	</animation>
 
 <!-- Right Door -->
-  <animation>
-    <type>rotate</type>
-    <object-name>FUS_NoseDoorRS</object-name>
-    <object-name>FUS_NoseDoorRB</object-name>
-    <property>gear/gear[0]/position-norm</property>
-    <interpolation>
-      <entry>
-        <ind>0.0</ind>
-        <dep>0.0</dep>
-      </entry>
-      <entry>
-        <ind>0.5</ind>
-        <dep>95.0</dep>
-      </entry>
-      <entry>
-        <ind>1.0</ind>
-        <dep>95.0</dep>
-      </entry>
-    </interpolation>
-    <center>
-      <x-m>0.23</x-m>
-      <y-m>0.14</y-m>
-      <z-m>-0.43</z-m>
-    </center>
-    <axis>
-      <x>1.0</x>
-      <y>0.0</y>
-      <z>-0.216</z>
-    </axis>
-  </animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>FUS_NoseDoorRS</object-name>
+		<object-name>FUS_NoseDoorRB</object-name>
+		<property>/fdm/jsbsim/gear/unit[0]/pos-norm</property>
+		<interpolation>
+			<entry><ind>0.0</ind><dep>0.0</dep></entry>
+			<entry><ind>0.5</ind><dep>95.0</dep></entry>
+			<entry><ind>1.0</ind><dep>95.0</dep></entry>
+		</interpolation>
+			<center>
+				<x-m>0.23</x-m>
+				<y-m>0.14</y-m>
+				<z-m>-0.43</z-m>
+			 </center>
+			<axis>
+				<x>1.0</x>
+				<y>0.0</y>
+				<z>-0.216</z>
+			</axis>
+	</animation>
+
 
 <!-- Steering -->
-  <animation>
-    <type>rotate</type>
-    <object-name>UC_Nose_MainPost</object-name>
-    <object-name>UC_Nose_ArmHub</object-name>
-    <object-name>UC_Nose_Tyre</object-name>
-    <property>gear/gear[0]/steering-norm</property>
-    <offset-deg>0</offset-deg>
-    <factor>-45</factor>
-    <center>
-      <x-m>1.07</x-m>
-      <y-m>0.0</y-m>
-      <z-m>-0.6</z-m>
-    </center>
-    <axis>
-      <x>0</x>
-      <y>0</y>
-      <z>1</z>
-    </axis>
-  </animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>UC_Nose_MainPost</object-name>
+		<object-name>UC_Nose_ArmHub</object-name>
+		<object-name>UC_Nose_Axle</object-name>
+		<object-name>UC_Nose_Tyre</object-name>
+		<property>gear/gear[0]/steering-norm</property>
+		<offset-deg>0</offset-deg>
+		<factor>-45</factor>
+		<center>
+			<x-m>1.07</x-m>
+			<y-m>0.0</y-m>
+			<z-m>-0.6</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
 
 <!-- Compression -->
-  <animation>
-    <type>rotate</type>
-    <object-name>UC_Nose_ArmHub</object-name>
-    <object-name>UC_Nose_Tyre</object-name>
-    <property>gear/gear[0]/compression-norm</property>
-    <factor>-70</factor>
-    <center>
-      <x-m>0.88</x-m>
-      <y-m>0.0</y-m>
-      <z-m>-0.88</z-m>
-    </center>
-    <axis>
-      <x>0.0</x>
-      <y>1.0</y>
-      <z>0.0</z>
-    </axis>
-  </animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>UC_Nose_ArmHub</object-name>
+		<object-name>UC_Nose_Axle</object-name>
+		<object-name>UC_Nose_Tyre</object-name>
+		<property>gear/gear[0]/compression-norm</property>
+		<factor>-70</factor>
+		<center>
+			<x-m>0.88</x-m>
+			<y-m>0.0</y-m>
+			<z-m>-0.88</z-m>
+		</center>
+		<axis>
+			<x>0.0</x>
+			<y>1.0</y>
+			<z>0.0</z>
+		</axis>
+	</animation>
 
 <!-- Left Main -->
-<!-- Select/Deslect u/c and doors -->
-  <animation>
-    <type>select</type>
-    <object-name>WNG_WheelWellL</object-name>
-    <object-name>UC_MainL_ArmHub</object-name>
-    <object-name>UC_MainL_Tyre</object-name>
-    <object-name>UC_MainL_Strut</object-name>
-    <object-name>UC_MainL_CStrutUpper</object-name>
-    <object-name>UC_MainL_CStrutLower</object-name>
-    <object-name>UC_MainL_RStrutUpper</object-name>
-    <object-name>UC_MainL_RStrutLower</object-name>
-    <object-name>UC_MainL_DoorIB</object-name>
-    <object-name>UC_MainL_DoorMB</object-name>
-    <object-name>UC_MainL_DoorOB</object-name>
-    <condition>
-      <greater-than>
-        <property>gear/gear[1]/position-norm</property>
-        <value>0.0</value>
-      </greater-than>
-    </condition>
-  </animation>
+
+<!-- Show\Hide -->
+
+	<animation>
+		<type>select</type>
+		<object-name>WNG_WheelWellL</object-name>
+		<condition>
+			<or>
+				<greater-than>
+					<property>/fdm/jsbsim/gear/unit[1]/pos-norm</property>
+					<value>0.0</value>
+				</greater-than>
+				<greater-than>
+					<property>/fdm/jsbsim/gear/unit[1]/tored</property>
+					<value>0.0</value>
+				</greater-than>
+			</or>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>UC_MainL_ArmHub</object-name>
+		<object-name>UC_MainL_Axle</object-name>
+		<object-name>UC_MainL_Tyre</object-name>
+		<object-name>UC_MainL_Strut</object-name>
+		<object-name>UC_MainL_CStUp</object-name>
+		<object-name>UC_MainL_CStLow</object-name>
+		<object-name>UC_MainL_StUp</object-name>
+		<object-name>UC_MainL_StLow</object-name>
+		<object-name>UC_MainL_DoorIB</object-name>
+		<object-name>UC_MainL_DoorMB</object-name>
+		<object-name>UC_MainL_DoorOB</object-name>
+		<condition>
+			<greater-than>
+				<property>/fdm/jsbsim/gear/unit[1]/pos-norm</property>
+				<value>0.0</value>
+			</greater-than>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>UC_MainL_DoorIS</object-name>
+		<object-name>UC_MainL_DoorMS</object-name>
+		<object-name>UC_MainL_DoorOS</object-name>
+		<condition>
+			<less-than>
+				<property>/fdm/jsbsim/gear/unit[1]/tored</property>
+				<value>1.0</value>
+			</less-than>
+		</condition>
+	</animation>
+
 
 <!-- Extend/Retract -->
-  <animation>
-    <type>rotate</type>
-    <object-name>UC_MainL_ArmHub</object-name>
-    <object-name>UC_MainL_Tyre</object-name>
-    <object-name>UC_MainL_Strut</object-name>
-    <object-name>UC_MainL_CStrutUpper</object-name>
-    <object-name>UC_MainL_CStrutLower</object-name>
-    <object-name>UC_MainL_RStrutUpper</object-name>
-    <object-name>UC_MainL_RStrutLower</object-name>
-    <property>gear/gear[1]/position-norm</property>
-<!--    <property>surface-positions/rudder-pos-norm</property> -->
-    <interpolation>
-      <entry>
-        <ind>0.0</ind>
-        <dep>95.0</dep>
-      </entry>
-      <entry>
-        <ind>0.5</ind>
-        <dep>95.0</dep>
-      </entry>
-      <entry>
-        <ind>1.0</ind>
-        <dep>0.0</dep>
-      </entry>
-    </interpolation>
-    <center>
-      <x-m>3.94</x-m>
-      <y-m>-2.10</y-m>
-      <z-m>-0.18</z-m>
-    </center>
-    <axis>
-      <x>1.0</x>
-      <y>0.35</y>
-      <z>0.35</z>
-    </axis>
-  </animation>
+	<animation>
+	<type>rotate</type>
+	<object-name>UC_MainL_ArmHub</object-name>
+	<object-name>UC_MainL_Axle</object-name>
+	<object-name>UC_MainL_Tyre</object-name>
+	<object-name>UC_MainL_Strut</object-name>
+	<object-name>UC_MainL_CStUp</object-name>
+	<object-name>UC_MainL_CStLow</object-name>
+	<object-name>UC_MainL_StUp</object-name>
+	<object-name>UC_MainL_StLow</object-name>
+	<property>/fdm/jsbsim/gear/unit[1]/pos-norm</property>
+	<interpolation>
+		<entry><ind>0.0</ind><dep>95.0</dep></entry>
+		<entry><ind>0.5</ind><dep>95.0</dep></entry>
+		<entry><ind>1.0</ind><dep>0.0</dep></entry>
+	</interpolation>
+	<center>
+		<x-m>3.94</x-m>
+		<y-m>-2.10</y-m>
+		<z-m>-0.18</z-m>
+	</center>
+	<axis>
+		<x>1.0</x>
+		<y>0.35</y>
+		<z>0.35</z>
+	</axis>
+	</animation>
 
-  <animation>
-    <type>rotate</type>
-    <object-name>UC_MainL_RStrutUpper</object-name>
-    <object-name>UC_MainL_RStrutLower</object-name>
-    <property>gear/gear[1]/position-norm</property>
-<!--    <property>surface-positions/rudder-pos-norm</property> -->
-    <interpolation>
-      <entry>
-        <ind>0.0</ind>
-        <dep>-120.0</dep>
-      </entry>
-      <entry>
-        <ind>0.5</ind>
-        <dep>-120.0</dep>
-      </entry>
-      <entry>
-        <ind>1.0</ind>
-        <dep>0.0</dep>
-      </entry>
-    </interpolation>
-    <center>
-      <x-m>3.97</x-m>
-      <y-m>-2.03</y-m>
-      <z-m>-0.45</z-m>
-    </center>
-    <axis>
-      <x>1.0</x>
-      <y>0.35</y>
-      <z>0.35</z>
-    </axis>
-  </animation>
+	<animation>
+	<type>rotate</type>
+	<object-name>UC_MainL_StUp</object-name>
+	<object-name>UC_MainL_StLow</object-name>
+	<property>/fdm/jsbsim/gear/unit[1]/pos-norm</property>
+	<interpolation>
+		<entry><ind>0.0</ind><dep>-120.0</dep></entry>
+		<entry><ind>0.5</ind><dep>-120.0</dep></entry>
+		<entry><ind>1.0</ind><dep>0.0</dep></entry>
+	</interpolation>
+	 <center>
+		<x-m>3.97</x-m>
+		<y-m>-2.03</y-m>
+		<z-m>-0.45</z-m>
+	</center>
+	<axis>
+		<x>1.0</x>
+		<y>0.35</y>
+		<z>0.35</z>
+	</axis>
+	</animation>
 
 <!-- Open/Close doors -->
 <!-- Inner Door -->
-  <animation>
-    <type>rotate</type>
-    <object-name>UC_MainL_DoorIS</object-name>
-    <object-name>UC_MainL_DoorIB</object-name>
-    <property>gear/gear[0]/position-norm</property>
-<!--    <property>surface-positions/rudder-pos-norm</property> -->
-    <interpolation>
-      <entry>
-        <ind>0.0</ind>
-        <dep>0.0</dep>
-      </entry>
-      <entry>
-        <ind>0.5</ind>
-        <dep>90.0</dep>
-      </entry>
-      <entry>
-        <ind>1.0</ind>
-        <dep>90.0</dep>
-      </entry>
-    </interpolation>
-    <center>
-      <x-m>3.31</x-m>
-      <y-m>-0.85</y-m>
-      <z-m>-0.13</z-m>
-    </center>
-    <axis>
-      <x>1.0</x>
-      <y>0.0</y>
-      <z>0.0</z>
-    </axis>
-  </animation>
-
+	<animation>
+		<type>rotate</type> 
+		<object-name>UC_MainL_DoorIS</object-name>
+		<object-name>UC_MainL_DoorIB</object-name>
+		<property>/fdm/jsbsim/gear/unit[1]/pos-norm</property>
+		<interpolation>
+			<entry><ind>0.0</ind><dep>0.0</dep></entry>
+			<entry><ind>0.5</ind><dep>90.0</dep></entry>
+			<entry><ind>1.0</ind><dep>90.0</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>3.31</x-m>
+			<y-m>-0.85</y-m>
+			<z-m>-0.13</z-m>
+		</center>
+		<axis>
+			<x>1.0</x>
+			<y>0.0</y>
+			<z>0.0</z>
+		</axis>
+	</animation>
+ 
 <!-- Mid Door -->
-  <animation>
-    <type>rotate</type>
-    <object-name>UC_MainL_DoorMS</object-name>
-    <object-name>UC_MainL_DoorMB</object-name>
-    <property>gear/gear[1]/position-norm</property>
-<!--    <property>surface-positions/rudder-pos-norm</property> -->
-    <interpolation>
-      <entry>
-        <ind>0.0</ind>
-        <dep>0.0</dep>
-      </entry>
-      <entry>
-        <ind>0.5</ind>
-        <dep>0.0</dep>
-      </entry>
-      <entry>
-        <ind>1.0</ind>
-        <dep>-97.0</dep>
-      </entry>
-    </interpolation>
-    <center>
-      <x-m>3.94</x-m>
-      <y-m>-2.10</y-m>
-      <z-m>-0.18</z-m>
-    </center>
-    <axis>
-      <x>1.0</x>
-      <y>0.35</y>
-      <z>0.35</z>
-    </axis>
-  </animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>UC_MainL_DoorMS</object-name>
+		<object-name>UC_MainL_DoorMB</object-name>
+		<property>/fdm/jsbsim/gear/unit[1]/pos-norm</property>
+		<interpolation>
+			<entry><ind>0.0</ind><dep>0.0</dep></entry>
+			<entry><ind>0.5</ind><dep>0.0</dep></entry>
+			<entry><ind>1.0</ind><dep>-97.0</dep></entry>
+			</interpolation>
+		<center>
+			<x-m>3.94</x-m>
+			<y-m>-2.10</y-m>
+			<z-m>-0.18</z-m>
+		</center>
+		<axis>
+			<x>1.0</x>
+			<y>0.35</y>
+			<z>0.35</z>
+		</axis>
+	</animation>
 
 
 <!-- Outer Door -->
-  <animation>
-    <type>rotate</type>
-    <object-name>UC_MainL_DoorOS</object-name>
-    <object-name>UC_MainL_DoorOB</object-name>
-    <property>gear/gear[1]/position-norm</property>
-<!--    <property>surface-positions/rudder-pos-norm</property> -->
-    <interpolation>
-      <entry>
-        <ind>0.0</ind>
-        <dep>0.0</dep>
-      </entry>
-      <entry>
-        <ind>0.5</ind>
-        <dep>0.0</dep>
-      </entry>
-      <entry>
-        <ind>1.0</ind>
-        <dep>-95.0</dep>
-      </entry>
-    </interpolation>
-    <center>
-      <x-m>3.94</x-m>
-      <y-m>-2.10</y-m>
-      <z-m>-0.18</z-m>
-    </center>
-    <axis>
-      <x>1.0</x>
-      <y>0.35</y>
-      <z>0.35</z>
-    </axis>
-  </animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>UC_MainL_DoorOS</object-name>
+		<object-name>UC_MainL_DoorOB</object-name>
+		<property>/fdm/jsbsim/gear/unit[1]/pos-norm</property>
+		<interpolation>
+			<entry><ind>0.0</ind><dep>0.0</dep></entry>
+			<entry><ind>0.5</ind><dep>0.0</dep></entry>
+			<entry><ind>1.0</ind><dep>-95.0</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>3.94</x-m>
+			<y-m>-2.10</y-m>
+			<z-m>-0.18</z-m>
+		</center>
+		<axis>
+			<x>1.0</x>
+			<y>0.35</y>
+			<z>0.35</z>
+		</axis>
+	</animation>
 
 <!-- Compression -->
-  <animation>
-    <type>rotate</type>
-    <object-name>UC_MainL_ArmHub</object-name>
-    <object-name>UC_MainL_Tyre</object-name>
-    <property>gear/gear[1]/compression-norm</property>
-    <factor>-100</factor>
-    <center>
-      <x-m>4.06</x-m>
-      <y-m>-2.03</y-m>
-      <z-m>-0.67</z-m>
-    </center>
-    <axis>
-      <x>0.0</x>
-      <y>1.0</y>
-      <z>0.0</z>
-    </axis>
-  </animation>
+	<animation>
+	<type>rotate</type>
+	<object-name>UC_MainL_ArmHub</object-name>
+	<object-name>UC_MainL_Axle</object-name>
+	<object-name>UC_MainL_Tyre</object-name>
+	<property>gear/gear[1]/compression-norm</property>
+	<factor>-100</factor>
+	<center>
+		<x-m>4.06</x-m>
+		<y-m>-2.03</y-m>
+		<z-m>-0.67</z-m>
+	</center>
+	<axis>
+		<x>0.0</x>
+		<y>1.0</y>
+		<z>0.0</z>
+	</axis>
+	</animation>
 
-  <animation>
-    <type>rotate</type>
-    <object-name>UC_MainL_DoorMS</object-name>
-    <object-name>UC_MainL_DoorMB</object-name>
-    <property>gear/gear[1]/compression-norm</property>
-    <factor>-100</factor>
-    <center>
-      <x-m>3.62</x-m>
-      <y-m>-1.62</y-m>
-      <z-m>-0.67</z-m>
-    </center>
-    <axis>
-      <x>0.0</x>
-      <y>0.0</y>
-      <z>1.0</z>
-    </axis>
-  </animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>UC_MainL_DoorMS</object-name>
+		<object-name>UC_MainL_DoorMB</object-name>
+		<property>gear/gear[1]/compression-norm</property>
+		<factor>-100</factor>
+		<center>
+			<x-m>3.62</x-m>
+			<y-m>-1.62</y-m>
+			<z-m>-0.67</z-m>
+		</center>
+		<axis>
+			<x>0.0</x>
+			<y>0.0</y>
+			<z>1.0</z>
+		</axis>
+	</animation>
 
 <!-- Right Main -->
-<!-- Select/Deslect u/c and doors -->
-  <animation>
-    <type>select</type>
-    <object-name>WNG_WheelWellR</object-name>
-    <object-name>UC_MainR_ArmHub</object-name>
-    <object-name>UC_MainR_Tyre</object-name>
-    <object-name>UC_MainR_Strut</object-name>
-    <object-name>UC_MainR_CStrutUpper</object-name>
-    <object-name>UC_MainR_CStrutLower</object-name>
-    <object-name>UC_MainR_RStrutUpper</object-name>
-    <object-name>UC_MainR_RStrutLower</object-name>
-    <object-name>UC_MainR_DoorIB</object-name>
-    <object-name>UC_MainR_DoorMB</object-name>
-    <object-name>UC_MainR_DoorOB</object-name>
-    <condition>
-      <greater-than>
-        <property>gear/gear[2]/position-norm</property>
-        <value>0.0</value>
-      </greater-than>
-    </condition>
-  </animation>
+
+<!-- Show\Hide -->
+
+	<animation>
+		<type>select</type>
+		<object-name>WNG_WheelWellR</object-name>
+		<condition>
+			<or>
+				<greater-than>
+					<property>/fdm/jsbsim/gear/unit[2]/pos-norm</property>
+					<value>0.0</value>
+				</greater-than>
+				<greater-than>
+					<property>/fdm/jsbsim/gear/unit[2]/tored</property>
+					<value>0.0</value>
+				</greater-than>
+			</or>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>UC_MainR_ArmHub</object-name>
+		<object-name>UC_MainR_Tyre</object-name>
+		<object-name>UC_MainR_Axle</object-name>
+		<object-name>UC_MainR_Strut</object-name>
+		<object-name>UC_MainR_CStUp</object-name>
+		<object-name>UC_MainR_CStLow</object-name>
+		<object-name>UC_MainR_StUp</object-name>
+		<object-name>UC_MainR_StLow</object-name>
+		<object-name>UC_MainR_DoorIB</object-name>
+		<object-name>UC_MainR_DoorMB</object-name>
+		<object-name>UC_MainR_DoorOB</object-name>
+		<condition>
+			<greater-than>
+				<property>/fdm/jsbsim/gear/unit[2]/pos-norm</property>
+				<value>0.0</value>
+			</greater-than>
+		</condition>
+	</animation>
+
+	<animation>
+		<type>select</type>
+		<object-name>UC_MainR_DoorIS</object-name>
+		<object-name>UC_MainR_DoorMS</object-name>
+		<object-name>UC_MainR_DoorOS</object-name>
+		<condition>
+			<less-than>
+				<property>/fdm/jsbsim/gear/unit[2]/tored</property>
+				<value>1.0</value>
+			</less-than>
+		</condition>
+	</animation>
 
 <!-- Extend/Retract -->
-  <animation>
-    <type>rotate</type>
-    <object-name>UC_MainR_ArmHub</object-name>
-    <object-name>UC_MainR_Tyre</object-name>
-    <object-name>UC_MainR_Strut</object-name>
-    <object-name>UC_MainR_CStrutUpper</object-name>
-    <object-name>UC_MainR_CStrutLower</object-name>
-    <object-name>UC_MainR_RStrutUpper</object-name>
-    <object-name>UC_MainR_RStrutLower</object-name>
-    <property>gear/gear[2]/position-norm</property>
-<!--    <property>surface-positions/rudder-pos-norm</property> -->
-    <interpolation>
-      <entry>
-        <ind>0.0</ind>
-        <dep>-95.0</dep>
-      </entry>
-      <entry>
-        <ind>0.5</ind>
-        <dep>-95.0</dep>
-      </entry>
-      <entry>
-        <ind>1.0</ind>
-        <dep>0.0</dep>
-      </entry>
-    </interpolation>
-    <center>
-      <x-m>3.94</x-m>
-      <y-m>2.10</y-m>
-      <z-m>-0.18</z-m>
-    </center>
-    <axis>
-      <x>1.0</x>
-      <y>-0.35</y>
-      <z>0.35</z>
-    </axis>
-  </animation>
+	<animation>
+	<type>rotate</type>
+	<object-name>UC_MainR_ArmHub</object-name>
+	<object-name>UC_MainR_Axle</object-name>
+	<object-name>UC_MainR_Tyre</object-name>
+	<object-name>UC_MainR_Strut</object-name>
+	<object-name>UC_MainR_CStUp</object-name>
+	 <object-name>UC_MainR_CStLow</object-name>
+	<object-name>UC_MainR_StUp</object-name>
+	<object-name>UC_MainR_StLow</object-name>
+	<property>/fdm/jsbsim/gear/unit[2]/pos-norm</property>
+	<interpolation>
+		<entry><ind>0.0</ind><dep>-95.0</dep></entry>
+		<entry><ind>0.5</ind><dep>-95.0</dep></entry>
+		<entry><ind>1.0</ind><dep>0.0</dep></entry>
+	</interpolation>
+	<center>
+		<x-m>3.94</x-m>
+		<y-m>2.10</y-m>
+		<z-m>-0.18</z-m>
+	</center>
+	<axis>
+		<x>1.0</x>
+		<y>-0.35</y>
+		<z>0.35</z>
+	</axis>
+	</animation>
 
-  <animation>
-    <type>rotate</type>
-    <object-name>UC_MainR_RStrutUpper</object-name>
-    <object-name>UC_MainR_RStrutLower</object-name>
-    <property>gear/gear[2]/position-norm</property>
-<!--    <property>surface-positions/rudder-pos-norm</property> -->
-    <interpolation>
-      <entry>
-        <ind>0.0</ind>
-        <dep>120.0</dep>
-      </entry>
-      <entry>
-        <ind>0.5</ind>
-        <dep>120.0</dep>
-      </entry>
-      <entry>
-        <ind>1.0</ind>
-        <dep>0.0</dep>
-      </entry>
-    </interpolation>
-    <center>
-      <x-m>3.97</x-m>
-      <y-m>2.03</y-m>
-      <z-m>-0.45</z-m>
-    </center>
-    <axis>
-      <x>1.0</x>
-      <y>-0.35</y>
-      <z>0.35</z>
-    </axis>
-  </animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>UC_MainR_StUp</object-name>
+		<object-name>UC_MainR_StLow</object-name>
+		<property>/fdm/jsbsim/gear/unit[2]/pos-norm</property>
+		<interpolation>
+			<entry><ind>0.0</ind><dep>120.0</dep></entry>
+			<entry><ind>0.5</ind><dep>120.0</dep></entry>
+			<entry><ind>1.0</ind><dep>0.0</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>3.97</x-m>
+			<y-m>2.03</y-m>
+			<z-m>-0.45</z-m>
+		</center>
+		<axis>
+			<x>1.0</x>
+			<y>-0.35</y>
+			<z>0.35</z>
+		</axis>
+	</animation>
 
 <!-- Open/Close doors -->
 <!-- Inner Door -->
-  <animation>
-    <type>rotate</type>
-    <object-name>UC_MainR_DoorIS</object-name>
-    <object-name>UC_MainR_DoorIB</object-name>
-    <property>gear/gear[2]/position-norm</property>
-<!--    <property>surface-positions/rudder-pos-norm</property> -->
-    <interpolation>
-      <entry>
-        <ind>0.0</ind>
-        <dep>0.0</dep>
-      </entry>
-      <entry>
-        <ind>0.5</ind>
-        <dep>90.0</dep>
-      </entry>
-      <entry>
-        <ind>1.0</ind>
-        <dep>90.0</dep>
-      </entry>
-    </interpolation>
-    <center>
-      <x-m>3.31</x-m>
-      <y-m>0.85</y-m>
-      <z-m>-0.13</z-m>
-    </center>
-    <axis>
-      <x>-1.0</x>
-      <y>0.0</y>
-      <z>0.0</z>
-    </axis>
-  </animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>UC_MainR_DoorIS</object-name>
+		<object-name>UC_MainR_DoorIB</object-name>
+		<property>/fdm/jsbsim/gear/unit[2]/pos-norm</property>
+		<interpolation>
+			<entry><ind>0.0</ind><dep>0.0</dep></entry>
+			<entry><ind>0.5</ind><dep>90.0</dep></entry>
+			<entry><ind>1.0</ind><dep>90.0</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>3.31</x-m>
+			<y-m>0.85</y-m>
+			<z-m>-0.13</z-m>
+		</center>
+		<axis>
+			<x>-1.0</x>
+			<y>0.0</y>
+			<z>0.0</z>
+			</axis>
+	</animation>
 
 <!-- Mid Door -->
-  <animation>
-    <type>rotate</type>
-    <object-name>UC_MainR_DoorMS</object-name>
-    <object-name>UC_MainR_DoorMB</object-name>
-    <property>gear/gear[2]/position-norm</property>
-<!--    <property>surface-positions/rudder-pos-norm</property> -->
-    <interpolation>
-      <entry>
-        <ind>0.0</ind>
-        <dep>0.0</dep>
-      </entry>
-      <entry>
-        <ind>0.5</ind>
-        <dep>0.0</dep>
-      </entry>
-      <entry>
-        <ind>1.0</ind>
-        <dep>97.0</dep>
-      </entry>
-    </interpolation>
-    <center>
-      <x-m>3.94</x-m>
-      <y-m>2.10</y-m>
-      <z-m>-0.18</z-m>
-    </center>
-    <axis>
-      <x>1.0</x>
-      <y>-0.35</y>
-      <z>0.35</z>
-    </axis>
-  </animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>UC_MainR_DoorMS</object-name>
+		<object-name>UC_MainR_DoorMB</object-name>
+		<property>/fdm/jsbsim/gear/unit[2]/pos-norm</property>
+		<interpolation>
+			<entry><ind>0.0</ind><dep>0.0</dep></entry>
+			<entry><ind>0.5</ind><dep>0.0</dep></entry>
+			<entry><ind>1.0</ind><dep>97.0</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>3.94</x-m>
+			<y-m>2.10</y-m>
+			<z-m>-0.18</z-m>
+		</center>
+		<axis>
+			<x>1.0</x>
+			<y>-0.35</y>
+			<z>0.35</z>
+		</axis>
+	</animation>
 
 
 <!-- Outer Door -->
-  <animation>
-    <type>rotate</type>
-    <object-name>UC_MainR_DoorOS</object-name>
-    <object-name>UC_MainR_DoorOB</object-name>
-    <property>gear/gear[2]/position-norm</property>
-<!--    <property>surface-positions/rudder-pos-norm</property> -->
-    <interpolation>
-      <entry>
-        <ind>0.0</ind>
-        <dep>0.0</dep>
-      </entry>
-      <entry>
-        <ind>0.5</ind>
-        <dep>0.0</dep>
-      </entry>
-      <entry>
-        <ind>1.0</ind>
-        <dep>95.0</dep>
-      </entry>
-    </interpolation>
-    <center>
-      <x-m>3.94</x-m>
-      <y-m>2.10</y-m>
-      <z-m>-0.18</z-m>
-    </center>
-    <axis>
-      <x>1.0</x>
-      <y>-0.35</y>
-      <z>0.35</z>
-    </axis>
-  </animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>UC_MainR_DoorOS</object-name>
+		<object-name>UC_MainR_DoorOB</object-name>
+		<property>/fdm/jsbsim/gear/unit[2]/pos-norm</property>
+		<interpolation>
+			<entry><ind>0.0</ind><dep>0.0</dep></entry>
+			<entry><ind>0.5</ind><dep>0.0</dep></entry>
+			<entry><ind>1.0</ind><dep>95.0</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>3.94</x-m>
+			<y-m>2.10</y-m>
+			<z-m>-0.18</z-m>
+		</center>
+		<axis>
+			<x>1.0</x>
+			<y>-0.35</y>
+			<z>0.35</z>
+		</axis>
+	</animation>
 
 <!-- Compression -->
-  <animation>
-    <type>rotate</type>
-    <object-name>UC_MainR_ArmHub</object-name>
-    <object-name>UC_MainR_Tyre</object-name>
-    <property>gear/gear[2]/compression-norm</property>
-    <factor>-100</factor>
-    <center>
-      <x-m>4.06</x-m>
-      <y-m>2.03</y-m>
-      <z-m>-0.67</z-m>
-    </center>
-    <axis>
-      <x>0.0</x>
-      <y>1.0</y>
-      <z>0.0</z>
-    </axis>
-  </animation>
+	<animation>
+	<type>rotate</type>
+	<object-name>UC_MainR_ArmHub</object-name>
+	<object-name>UC_MainR_Axle</object-name>
+	<object-name>UC_MainR_Tyre</object-name>
+	<property>gear/gear[2]/compression-norm</property>
+	<factor>-100</factor>
+	<center>
+		<x-m>4.06</x-m>
+		<y-m>2.03</y-m>
+		<z-m>-0.67</z-m>
+	</center>
+	<axis>
+		<x>0.0</x>
+		<y>1.0</y>
+		<z>0.0</z>
+	</axis>
+	</animation>
 
-  <animation>
-    <type>rotate</type>
-    <object-name>UC_MainR_DoorMS</object-name>
-    <object-name>UC_MainR_DoorMB</object-name>
-    <property>gear/gear[2]/compression-norm</property>
-    <factor>100</factor>
-    <center>
-      <x-m>3.62</x-m>
-      <y-m>1.62</y-m>
-      <z-m>-0.67</z-m>
-    </center>
-    <axis>
-      <x>0.0</x>
-      <y>0.0</y>
-      <z>1.0</z>
-    </axis>
-  </animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>UC_MainR_DoorMS</object-name>
+		<object-name>UC_MainR_DoorMB</object-name>
+		<property>gear/gear[2]/compression-norm</property>
+		<factor>100</factor>
+		<center>
+			<x-m>3.62</x-m>
+			<y-m>1.62</y-m>
+			<z-m>-0.67</z-m>
+			</center>
+		<axis>
+			<x>0.0</x>
+			<y>0.0</y>
+			<z>1.0</z>
+		</axis>
+	</animation>
+
+<!-- Wheels -->
+
+	<animation>
+		<type>spin</type>
+		<object-name>UC_Nose_Axle</object-name>
+		<object-name>UC_Nose_Tyre</object-name>
+		<property>gear/gear/rollspeed-ms</property>
+		<factor>0.694</factor>
+		<center>
+			<x-m>1.061</x-m>
+			<y-m>-0.129</y-m>
+			<z-m>-1.230</z-m>
+		</center>
+		<axis>
+			<x>0.0</x>
+			<y>1.0</y>
+			<z>0.0</z>
+		</axis>
+	</animation>
+
+	<animation>
+		<type>spin</type>
+		<object-name>UC_MainL_Axle</object-name>
+		<object-name>UC_MainL_Tyre</object-name>
+		<property>gear/gear[1]/rollspeed-ms</property>
+		<factor>0.485</factor>
+		<center>
+			<x-m>4.291</x-m>
+			<y-m>-2.011</y-m>
+			<z-m>-1.005</z-m>
+		</center>
+		<axis>
+			<x>0.0</x>
+			<y>1.0</y>
+			<z>0.0</z>
+		</axis>
+	</animation>	
+
+	<animation>
+		<type>spin</type>
+		<object-name>UC_MainR_Axle</object-name>
+		<object-name>UC_MainLR_Tyre</object-name>
+		<property>gear/gear[2]/rollspeed-ms</property>
+		<factor>0.485</factor>
+		<center>
+			<x-m>4.291</x-m>
+			<y-m>-2.011</y-m>
+			<z-m>-1.005</z-m>
+		</center>
+		<axis>
+			<x>0.0</x>
+			<y>1.0</y>
+			<z>0.0</z>
+		</axis>
+	</animation>	
+
+
+<!-- Canopy -->
   
-<!-- Panel -->
+	<model>
+		<path>Aircraft/MiG-15/Models/Instruments/Canopy/MiG-15bis-Canopy.xml</path>
+		<offsets>
+			<x-m>1.840</x-m>
+			<z-m>0.575</z-m>
+		</offsets>
+	</model>
 
-  <model>
-    <path>Aircraft/MiG-15/Models/MiG-15bis-panel.xml</path>
-  </model>
+<!-- Middle Panel -->
+
+	<model>
+		<path>Aircraft/MiG-15/Models/Panels/MiG-15bis-panel.xml</path>
+	</model>
+
+<!-- Left Panel -->
+
+	<model>
+		<path>Aircraft/MiG-15/Models/Panels/MiG-15bis-left-panel.xml</path>
+	</model>
+
+<!-- Right Panel -->
+
+	<model>
+		<path>Aircraft/MiG-15/Models/Panels/MiG-15bis-right-panel.xml</path>
+	</model>
+
+<!-- Left Drop Tank-->
+
+	<model>
+		<path>Aircraft/MiG-15/Models/Instruments/Fueltank/MiG-15bis-Fueltank-Left.xml</path>
+	</model>
+
+<!-- Right Drop Tank-->
+
+	<model>
+		<path>Aircraft/MiG-15/Models/Instruments/Fueltank/MiG-15bis-Fueltank-Right.xml</path>
+	</model>
+
+<!-- Smoke-->
+
+	<model>
+		<path>Aircraft/MiG-15/Models/Effects/MiG-15bis-smoke.xml</path>
+	</model>
 
 </PropertyList>
