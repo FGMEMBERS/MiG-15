@@ -21,14 +21,14 @@
 		<object-name>GC_Up</object-name>
 		<object-name>GC_Down22</object-name>
   		<emission>
-			<factor-prop>/systems/light/canopy-lamps-norm</factor-prop>
+			<factor-prop>systems/light/canopy-lamps-norm</factor-prop>
 			<red>0.777</red>
 			<green>0.700</green>
 			<blue>0.700</blue>
 		</emission>
 		<condition>
 			<equals>
-				<property>/systems/light/use-canopy-lamps</property>
+				<property>systems/light/use-canopy-lamps</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -40,7 +40,7 @@
   <animation>
     <type>rotate</type>
     <object-name>GC_Switch</object-name>
-    <property>/instrumentation/gear-control/switch-pos-norm</property>
+    <property>instrumentation/gear-control/switch-pos-norm</property>
     <factor>45</factor>
     <center>
       <x-m>-0.007272</x-m>
@@ -57,7 +57,7 @@
   <animation>
     <type>translate</type>
     <object-name>GC_Fix</object-name>
-    <property>/instrumentation/gear-control/fix-pos-norm</property>
+    <property>instrumentation/gear-control/fix-pos-norm</property>
     <factor>0.015</factor>
 	  <axis>
       <x>0.0</x>
@@ -75,7 +75,7 @@
 	    <interval-sec>0.1</interval-sec>
 	     <binding>
        	<command>property-adjust</command>
-	       <property>/controls/gear/gear-down</property>
+	       <property>controls/gear/gear-down</property>
 	       <step>-1</step>
 	       <min>0</min>
 	       <max>1</max>
@@ -88,7 +88,7 @@
 	    <interval-sec>0.1</interval-sec>
 	     <binding>
 	       <command>property-adjust</command>
-	       <property>/controls/gear/gear-down</property>
+	       <property>controls/gear/gear-down</property>
 	       <step>-1</step>
 	       <min>0</min>
 	       <max>1</max>
@@ -106,7 +106,7 @@
 	    <interval-sec>0.1</interval-sec>
 	     <binding>
        	<command>property-adjust</command>
-	       <property>/controls/gear/gear-down</property>
+	       <property>controls/gear/gear-down</property>
 	       <step>1</step>
 	       <min>0</min>
 	       <max>1</max>
@@ -119,7 +119,7 @@
 	    <interval-sec>0.1</interval-sec>
 	     <binding>
 	       <command>property-adjust</command>
-	       <property>/controls/gear/gear-down</property>
+	       <property>controls/gear/gear-down</property>
 	       <step>1</step>
 	       <min>0</min>
 	       <max>1</max>

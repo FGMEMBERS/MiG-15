@@ -15,14 +15,14 @@
 		<object-name>GPM_Needle</object-name>
 		<object-name>GPM_Backplate</object-name>
   		<emission>
-			<factor-prop>/systems/electrical-real/volts-norm</factor-prop>
+			<factor-prop>systems/electrical-real/volts-norm</factor-prop>
 			<red>0.222</red>
 			<green>0.212</green>
 			<blue>0.212</blue>
 		</emission>
 		<condition>
 			<not><equals>
-				<property>/systems/light/use-canopy-lamps</property>
+				<property>systems/light/use-canopy-lamps</property>
 				<value>1</value>
 			</equals></not>
 		</condition>
@@ -35,14 +35,14 @@
 		<object-name>GPM_Needle</object-name>
 		<object-name>GPM_Backplate</object-name>
   		<emission>
-			<factor-prop>/systems/light/canopy-lamps-norm</factor-prop>
+			<factor-prop>systems/light/canopy-lamps-norm</factor-prop>
 			<red>0.777</red>
 			<green>0.700</green>
 			<blue>0.700</blue>
 		</emission>
 		<condition>
 			<equals>
-				<property>/systems/light/use-canopy-lamps</property>
+				<property>systems/light/use-canopy-lamps</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -53,7 +53,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>GPM_Needle</object-name>
-		<property>/instrumentation/gear-pressure-indicator/indicated-pressure-norm</property>
+		<property>instrumentation/gear-pressure-indicator/indicated-pressure-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>60.0</dep></entry>
 			<entry><ind>1.0</ind><dep>300.0</dep></entry>

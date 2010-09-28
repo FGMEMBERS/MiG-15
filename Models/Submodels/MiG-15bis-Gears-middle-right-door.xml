@@ -10,7 +10,7 @@
 		<type>spin</type>
 		<object-name>FUS_NoseDoorRB</object-name>
 		<object-name>FUS_NoseDoorRS</object-name>
-		<property>/one</property>
+		<property>one</property>
 		<factor>120</factor>
 		<center>
 			<x-m>-0.160</x-m>

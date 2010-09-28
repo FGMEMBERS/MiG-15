@@ -22,7 +22,7 @@
 		<object-name>GT_RBCord</object-name>
 		<object-name>GT_RGayka</object-name>
   		<emission>
-			<factor-prop>/systems/electrical-real/outputs/engine_control/volts-norm</factor-prop>
+			<factor-prop>systems/electrical-real/outputs/engine_control/volts-norm</factor-prop>
 			<red>0.222</red>
 			<green>0.212</green>
 			<blue>0.212</blue>
@@ -46,14 +46,14 @@
 		<object-name>GT_Bezel</object-name>
 		<object-name>GT_Gayka</object-name>
   		<emission>
-			<factor-prop>/systems/light/canopy-lamps-norm</factor-prop>
+			<factor-prop>systems/light/canopy-lamps-norm</factor-prop>
 			<red>0.777</red>
 			<green>0.700</green>
 			<blue>0.700</blue>
 		</emission>
 		<condition>
 			<equals>
-				<property>/systems/light/use-canopy-lamps</property>
+				<property>systems/light/use-canopy-lamps</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -64,7 +64,7 @@
   <animation>
     <type>rotate</type>
     <object-name>GT_Needle</object-name>
-    <property>/instrumentation/gastermometer/egt-degc-indicated</property>
+    <property>instrumentation/gastermometer/egt-degc-indicated</property>
     <interpolation>
       <entry><ind>	0 </ind><dep>	6 </dep></entry>
       <entry><ind>	400 </ind><dep>	20 </dep></entry>

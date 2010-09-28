@@ -10,7 +10,7 @@
 		<object-name>RA_Backplate</object-name>
 		<object-name>RA_Foreplate</object-name>
   		<emission>
-			<factor-prop>/instrumentation/radioaltimeter/lamp</factor-prop>
+			<factor-prop>instrumentation/radioaltimeter/lamp</factor-prop>
 			<red>0.222</red>
 			<green>0.212</green>
 			<blue>0.212</blue>
@@ -28,14 +28,14 @@
 		<object-name>RA_VOnoff</object-name>
 		<object-name>RA_VDiapazone</object-name>
   		<emission>
-			<factor-prop>/systems/light/canopy-lamps-norm</factor-prop>
+			<factor-prop>systems/light/canopy-lamps-norm</factor-prop>
 			<red>0.777</red>
 			<green>0.700</green>
 			<blue>0.700</blue>
 		</emission>
 		<condition>
 			<equals>
-				<property>/systems/light/use-canopy-lamps</property>
+				<property>systems/light/use-canopy-lamps</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -46,7 +46,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RA_Needle</object-name>
-		<property>/instrumentation/radioaltimeter/value</property>
+		<property>instrumentation/radioaltimeter/value</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0.0</dep></entry>
 			<entry><ind>120.0</ind><dep>240.0</dep></entry>
@@ -66,7 +66,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RA_VOnoff</object-name>
-		<property>/instrumentation/radioaltimeter/switch-pos-norm</property>
+		<property>instrumentation/radioaltimeter/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0.0</dep></entry>
 			<entry><ind>1.0</ind><dep>60.0</dep></entry>
@@ -86,7 +86,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RA_VDiapazone</object-name>
-		<property>/instrumentation/radioaltimeter/diapazone/switch-pos-norm</property>
+		<property>instrumentation/radioaltimeter/diapazone/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>-45</dep></entry>
 			<entry><ind>1.0</ind><dep>45.0</dep></entry>

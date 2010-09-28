@@ -23,14 +23,14 @@
 		<object-name>TRM_Aileron</object-name>
 		<object-name>TRM_Elevator</object-name>
   		<emission>
-			<factor-prop>/systems/light/canopy-lamps-norm</factor-prop>
+			<factor-prop>systems/light/canopy-lamps-norm</factor-prop>
 			<red>0.777</red>
 			<green>0.700</green>
 			<blue>0.700</blue>
 		</emission>
 		<condition>
 			<equals>
-				<property>/systems/light/use-canopy-lamps</property>
+				<property>systems/light/use-canopy-lamps</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -42,7 +42,7 @@
 		<type>rotate</type>
 		<object-name>TRM_Aileron</object-name>
 		<object-name>TRM_ABolt</object-name>
-		<property>/controls/flight/aileron-trim</property>
+		<property>controls/flight/aileron-trim</property>
 		<interpolation>
 			<entry><ind>-1</ind><dep>-36</dep></entry>
 			<entry><ind>1</ind><dep>142</dep></entry>
@@ -63,7 +63,7 @@
 		<type>rotate</type>
 		<object-name>TRM_Elevator</object-name>
 		<object-name>TRM_EBolt</object-name>
-		<property>/controls/flight/elevator-trim</property>
+		<property>controls/flight/elevator-trim</property>
 		<interpolation>
 			<entry><ind>-1</ind><dep>-36</dep></entry>
 			<entry><ind>1</ind><dep>142</dep></entry>
@@ -89,7 +89,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/controls/flight/elevator-trim</property>
+				<property>controls/flight/elevator-trim</property>
 				<step>-0.02</step>
 				<min>-1</min>
 				<max>1</max>
@@ -102,7 +102,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/controls/flight/elevator-trim</property>
+				<property>controls/flight/elevator-trim</property>
 				<step>-0.02</step>
 				<min>-1</min>
 				<max>1</max>
@@ -120,7 +120,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/controls/flight/elevator-trim</property>
+				<property>controls/flight/elevator-trim</property>
 				<step>0.02</step>
 				<min>-1</min>
 				<max>1</max>
@@ -133,7 +133,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/controls/flight/elevator-trim</property>
+				<property>controls/flight/elevator-trim</property>
 				<step>0.02</step>
 				<min>-1</min>
 				<max>1</max>
@@ -151,7 +151,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/controls/flight/aileron-trim</property>
+				<property>controls/flight/aileron-trim</property>
 				<step>-0.02</step>
 				<min>-1</min>
 				<max>1</max>
@@ -164,7 +164,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/controls/flight/aileron-trim</property>
+				<property>controls/flight/aileron-trim</property>
 				<step>-0.02</step>
 				<min>-1</min>
 				<max>1</max>
@@ -182,7 +182,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/controls/flight/aileron-trim</property>
+				<property>controls/flight/aileron-trim</property>
 				<step>0.02</step>
 				<min>-1</min>
 				<max>1</max>
@@ -195,7 +195,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/controls/flight/aileron-trim</property>
+				<property>controls/flight/aileron-trim</property>
 				<step>0.02</step>
 				<min>-1</min>
 				<max>1</max>

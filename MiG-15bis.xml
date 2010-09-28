@@ -605,10 +605,12 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 
 		</channel>
 
-<!-- Gears is fully controlled by main Nasal script-->
+<!-- Gears is fully controlled by main Nasal script
 
 		<property value="0">gear/gear-cmd-norm</property>
 		<property value="0">gear/gear-pos-norm</property>
+
+-->
 
 		<property value="0">fcs/speedbrake-cmd-norm-real</property>
 
@@ -637,11 +639,11 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 		
 		<property value="1">tanks/fastened</property>
 
-		<property value="0">/fdm/jsbsim/gtremble/on</property>
-		<property value="1">/fdm/jsbsim/gtremble/way</property>
-		<property value="0.9">/fdm/jsbsim/gtremble/max</property>
-		<property value="0.3">/fdm/jsbsim/gtremble/step</property>
-		<property value="0">/fdm/jsbsim/gtremble/current</property>
+		<property value="0">gtremble/on</property>
+		<property value="1">gtremble/way</property>
+		<property value="0.9">gtremble/max</property>
+		<property value="0.3">gtremble/step</property>
+		<property value="0">gtremble/current</property>
 
 		<property value="8.0">accelerations/Nz-max</property>
 
@@ -1220,7 +1222,7 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 				gears gives ~1% of ARP - on extracting.
 				So, everythig is goes pus or minus in percents of 2.05.
 				So formulae looks like
-				Cy*0.3048*(2.05*(
+				Cy*1/0.3048*(2.05*(
 					0.0707*(1-Tank1norm)
 					-0.028*(1-Tank2norm)
 					0.023*(1-(Tank3norm+Tank4norm))
@@ -1236,7 +1238,7 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 
 			<function name="calculations/pitch-weights-delta/tank-one-shift-percent">
 				<product>
-					<value>0.707</value>
+					<value>0.0707</value><!-- 7.07% -->
 					<sum>
 						<value>1.0</value>
 						<product>
@@ -1251,7 +1253,7 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 
 			<function name="calculations/pitch-weights-delta/tank-two-shift-percent">
 				<product>
-					<value>-0.028</value>
+					<value>-0.028</value><!-- 2.8% -->
 					<sum>
 						<value>1.0</value>
 						<product>
@@ -1266,7 +1268,7 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 
 			<function name="calculations/pitch-weights-delta/tank-three-and-four-shift-percent">
 				<product>
-					<value>0.023</value>
+					<value>0.023</value><!-- 2.37% -->
 					<sum>
 						<value>1.0</value>
 						<product>
@@ -1284,7 +1286,7 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 
 			<function name="calculations/pitch-weights-delta/ammo-shift-percent">
 				<product>
-					<value>0.032</value>
+					<value>0.032</value><!-- 3.2% -->
 					<sum>
 						<value>1.0</value>
 						<product>
@@ -1311,7 +1313,7 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 
 			<function name="calculations/pitch-weights-delta/gears-shift-percent">
 				<product>
-					<value>0.01</value>
+					<value>0.01</value><!-- 1.0% -->
 					<sum>
 						<value>1.0</value>
 						<product>
@@ -1337,29 +1339,32 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 			</sum>
 			</function>
 
-			<function name="calculations/pitch-weights-delta/summar-arp-length">
+			<function name="calculations/pitch-weights-delta/summar-cm-shift-m">
 			<product>
-				<value>2.05</value>
+				<value>2.05</value><!--mean aerodynamical horde lenght in m -->
 				<property>calculations/pitch-weights-delta/summar-shift-percent</property>
 			</product>
 			</function>
 
-			<function name="calculations/pitch-weights-delta/summar-arp-length-ft">
+			<function name="calculations/pitch-weights-delta/summar-cm-shift-ft">
+			<product>
+				<value>3.2808</value><!--one feet-->
+				<property>calculations/pitch-weights-delta/summar-cm-shift-m</property>
+			</product>
+			</function>
+
+			<function name="calculations/pitch-weights-delta/summar-mass-center-length-inch">
 			<sum>
-				<value>0.3048</value>
-				<property>calculations/pitch-weights-delta/summar-arp-length</property>
+				<value>393.7</value><!--1/0.00254-->
+				<property>calculations/pitch-weights-delta/summar-cm-shift-m</property>
 			</sum>
 			</function>
 
 			<function name="aero/coefficient/Cmwddp">
 			<description>Pitch_moment_due_to_weight diffrence</description>
 			<product>
-<!--				<property>aero/qbar-psf</property>
-				<property>metrics/Sw-sqft</property>
-				<property>metrics/cbarw-ft</property>
-				<property>aero/coefficient/liftalphaflapnorm</property> -->
 				<property>aero/coefficient/CLalphaflaps</property>
-				<property>calculations/pitch-weights-delta/summar-arp-length-ft</property>
+				<property>calculations/pitch-weights-delta/summar-cm-shift-ft</property>
 			</product>
 			</function>
 

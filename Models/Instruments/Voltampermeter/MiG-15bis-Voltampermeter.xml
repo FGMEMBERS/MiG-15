@@ -16,7 +16,7 @@
 		<object-name>VA_Needle_1</object-name>
 		<object-name>VA_Backplate</object-name>
   		<emission>
-			<factor-prop>/systems/electrical-real/volts-norm</factor-prop>
+			<factor-prop>systems/electrical-real/volts-norm</factor-prop>
 			<red>0.222</red>
 			<green>0.212</green>
 			<blue>0.212</blue>
@@ -33,14 +33,14 @@
 		<object-name>VA_Forepalte</object-name>
 		<object-name>VA_Bezel</object-name>
   		<emission>
-			<factor-prop>/systems/light/canopy-lamps-norm</factor-prop>
+			<factor-prop>systems/light/canopy-lamps-norm</factor-prop>
 			<red>0.777</red>
 			<green>0.700</green>
 			<blue>0.700</blue>
 		</emission>
 		<condition>
 			<equals>
-				<property>/systems/light/use-canopy-lamps</property>
+				<property>systems/light/use-canopy-lamps</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -53,7 +53,7 @@
 		<type>rotate</type>
 		<object-name>VA_Needle_0</object-name>
 		<object-name>VA_Needle_1</object-name>
-		<property>/systems/electrical-real/amper-norm</property>
+		<property>systems/electrical-real/amper-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0</dep></entry>
 			<entry><ind>0.5</ind><dep>40</dep></entry>

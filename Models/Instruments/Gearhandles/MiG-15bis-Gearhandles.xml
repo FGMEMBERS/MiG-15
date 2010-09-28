@@ -29,14 +29,14 @@
 		<object-name>EG_RHHUp</object-name>
 		<object-name>EG_RHandle</object-name>
   		<emission>
-			<factor-prop>/systems/light/canopy-lamps-inter</factor-prop>
+			<factor-prop>systems/light/canopy-lamps-inter</factor-prop>
 			<red>0.777</red>
 			<green>0.700</green>
 			<blue>0.700</blue>
 		</emission>
 		<condition>
 			<equals>
-				<property>/systems/light/use-canopy-lamps</property>
+				<property>systems/light/use-canopy-lamps</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -51,7 +51,7 @@
 		<object-name>EG_LConnector</object-name>
 		<object-name>EG_LBTwo</object-name>
 		<object-name>EG_LBase</object-name>
-		<property>/instrumentation/gear-handles/left/switch-pos-inter</property>
+		<property>instrumentation/gear-handles/left/switch-pos-inter</property>
 		<interpolation>
 		      <entry><ind>0.0</ind><dep>0.0</dep></entry>
 		      <entry><ind>0.5</ind><dep>0.0</dep></entry>
@@ -72,7 +72,7 @@
 		<object-name>EG_LHandle</object-name>
 		<object-name>EG_LConnector</object-name>
 		<object-name>EG_LBOne</object-name>
-		<property>/instrumentation/gear-handles/left/switch-pos-inter</property>
+		<property>instrumentation/gear-handles/left/switch-pos-inter</property>
 		<interpolation>
 		      <entry><ind>0.0</ind><dep>0.0</dep></entry>
 		      <entry><ind>0.5</ind><dep>-45</dep></entry>
@@ -91,7 +91,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>EG_LHHUp</object-name>
-		<property>/instrumentation/gear-handles/left/switch-pos-inter</property>
+		<property>instrumentation/gear-handles/left/switch-pos-inter</property>
 		<interpolation>
 		      <entry><ind>0.0</ind><dep>0.0</dep></entry>
 		      <entry><ind>0.05</ind><dep>-14</dep></entry>
@@ -112,7 +112,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>EG_LHHDown</object-name>
-		<property>/instrumentation/gear-handles/left/switch-pos-inter</property>
+		<property>instrumentation/gear-handles/left/switch-pos-inter</property>
 		<interpolation>
 		      <entry><ind>0.0</ind><dep>0.0</dep></entry>
 		      <entry><ind>0.05</ind><dep>14</dep></entry>
@@ -139,7 +139,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-assign</command>
-				<property>/instrumentation/gear-handles/left/set-pos</property>
+				<property>instrumentation/gear-handles/left/set-pos</property>
 				<value>1</value>
 			</binding>
 		</action>
@@ -152,7 +152,7 @@
 		<object-name>EG_RConnector</object-name>
 		<object-name>EG_RBTwo</object-name>
 		<object-name>EG_RBase</object-name>
-		<property>/instrumentation/gear-handles/right/switch-pos-inter</property>
+		<property>instrumentation/gear-handles/right/switch-pos-inter</property>
 		<interpolation>
 		      <entry><ind>0.0</ind><dep>0.0</dep></entry>
 		      <entry><ind>0.5</ind><dep>0.0</dep></entry>
@@ -173,7 +173,7 @@
 		<object-name>EG_RHandle</object-name>
 		<object-name>EG_RConnector</object-name>
 		<object-name>EG_RBOne</object-name>
-		<property>/instrumentation/gear-handles/right/switch-pos-inter</property>
+		<property>instrumentation/gear-handles/right/switch-pos-inter</property>
 		<interpolation>
 		      <entry><ind>0.0</ind><dep>0.0</dep></entry>
 		      <entry><ind>0.5</ind><dep>45</dep></entry>
@@ -192,7 +192,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>EG_RHHUp</object-name>
-		<property>/instrumentation/gear-handles/right/switch-pos-inter</property>
+		<property>instrumentation/gear-handles/right/switch-pos-inter</property>
 		<interpolation>
 		      <entry><ind>0.0</ind><dep>0.0</dep></entry>
 		      <entry><ind>0.05</ind><dep>14</dep></entry>
@@ -213,7 +213,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>EG_RHHDown</object-name>
-		<property>/instrumentation/gear-handles/right/switch-pos-inter</property>
+		<property>instrumentation/gear-handles/right/switch-pos-inter</property>
 		<interpolation>
 		      <entry><ind>0.0</ind><dep>0.0</dep></entry>
 		      <entry><ind>0.05</ind><dep>-14</dep></entry>
@@ -240,7 +240,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-assign</command>
-				<property>/instrumentation/gear-handles/right/set-pos</property>
+				<property>instrumentation/gear-handles/right/set-pos</property>
 				<value>1</value>
 			</binding>
 		</action>

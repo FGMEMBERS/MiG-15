@@ -21,14 +21,14 @@
 		<object-name>GV_Message</object-name>
 		<object-name>GV_Base</object-name>
   		<emission>
-			<factor-prop>/systems/light/canopy-lamps-norm</factor-prop>
+			<factor-prop>systems/light/canopy-lamps-norm</factor-prop>
 			<red>0.777</red>
 			<green>0.700</green>
 			<blue>0.700</blue>
 		</emission>
 		<condition>
 			<equals>
-				<property>/systems/light/use-canopy-lamps</property>
+				<property>systems/light/use-canopy-lamps</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -41,7 +41,7 @@
 		<object-name>GV_Message</object-name>
 		<condition>
 			<equals>
-				<property>/sim/current-view/internal</property>
+				<property>sim/current-view/internal</property>
 				<value>true</value>	
 			</equals>
 		</condition>
@@ -54,7 +54,7 @@
 		<object-name>GV_Axle</object-name>
 		<object-name>GV_Handle</object-name>
 		<object-name>GV_Message</object-name>
-		<property>/instrumentation/gear-valve/switch-pos-norm</property>
+		<property>instrumentation/gear-valve/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-30.0</dep></entry>
 			<entry><ind>1</ind><dep>300.0</dep></entry>
@@ -76,7 +76,7 @@
 		<object-name>GV_Axle</object-name>
 		<object-name>GV_Handle</object-name>
 		<object-name>GV_Message</object-name>
-		<property>/instrumentation/gear-valve/handle/switch-pos-norm</property>
+		<property>instrumentation/gear-valve/handle/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0.0</dep></entry>
 			<entry><ind>1</ind><dep>120.0</dep></entry>

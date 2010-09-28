@@ -10,7 +10,7 @@
 		<type>spin</type>
 		<object-name>UC_MainR_DoorIB</object-name>
 		<object-name>UC_MainR_DoorIS</object-name>
-		<property>/one</property>
+		<property>one</property>
 		<factor>100</factor>
 		<center>
 			<x-m>0.677</x-m>

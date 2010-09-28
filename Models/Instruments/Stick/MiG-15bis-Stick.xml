@@ -50,14 +50,14 @@
 		<object-name>ST_RFour</object-name>
 		<object-name>ST_RFive</object-name>
   		<emission>
-			<factor-prop>/systems/light/canopy-lamps-norm</factor-prop>
+			<factor-prop>systems/light/canopy-lamps-norm</factor-prop>
 			<red>0.777</red>
 			<green>0.700</green>
 			<blue>0.700</blue>
 		</emission>
 		<condition>
 			<equals>
-				<property>/systems/light/use-canopy-lamps</property>
+				<property>systems/light/use-canopy-lamps</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -93,7 +93,7 @@
 		<object-name>ST_RThree</object-name>
 		<object-name>ST_RFour</object-name>
 		<object-name>ST_RFive</object-name>
-		<property>/instrumentation/stick/aileron_stick_deg</property>
+		<property>instrumentation/stick/aileron_stick_deg</property>
 		<factor>1</factor>
 		<center>
 			<x-m>0</x-m>
@@ -132,7 +132,7 @@
 		<object-name>ST_RThree</object-name>
 		<object-name>ST_RFour</object-name>
 		<object-name>ST_RFive</object-name>
-		<property>/instrumentation/stick/elevator_stick_deg</property>
+		<property>instrumentation/stick/elevator_stick_deg</property>
 		<factor>1</factor>
 		<center>
 			<x-m>0</x-m>
@@ -150,7 +150,7 @@
 		<type>translate</type>
 		<object-name>ST_ERod</object-name>
 		<object-name>ST_EAxleTwo</object-name>
-		<property>/instrumentation/stick/elevator_rod_shift_x</property>
+		<property>instrumentation/stick/elevator_rod_shift_x</property>
 		<factor>1</factor>
 		<axis>
 			<x>1</x>
@@ -163,7 +163,7 @@
 		<type>translate</type>
 		<object-name>ST_ERod</object-name>
 		<object-name>ST_EAxleTwo</object-name>
-		<property>/instrumentation/stick/elevator_rod_shift_y</property>
+		<property>instrumentation/stick/elevator_rod_shift_y</property>
 		<factor>1</factor>
 		<axis>
 			<x>0</x>
@@ -176,7 +176,7 @@
 		<type>translate</type>
 		<object-name>ST_ERod</object-name>
 		<object-name>ST_EAxleTwo</object-name>
-		<property>/instrumentation/stick/elevator_rod_shift_z</property>
+		<property>instrumentation/stick/elevator_rod_shift_z</property>
 		<factor>1</factor>
 		<axis>
 			<x>0</x>
@@ -190,7 +190,7 @@
 		<object-name>ST_ARodOne</object-name>
 		<object-name>ST_AAxleOne</object-name>
 		<object-name>ST_AAxleTwo</object-name>
-		<property>/instrumentation/stick/aileron_first_rod_shift_y</property>
+		<property>instrumentation/stick/aileron_first_rod_shift_y</property>
 		<factor>1</factor>
 		<axis>
 			<x>0</x>
@@ -203,7 +203,7 @@
 		<type>rotate</type>
 		<object-name>ST_ARockerOne</object-name>
 		<object-name>ST_ARockerTwo</object-name>
-		<property>//instrumentation/stick/aileron_rocker_shift_angle</property>
+		<property>/instrumentation/stick/aileron_rocker_shift_angle</property>
 		<factor>1</factor>
 		<center>
 			<x-m>-0.036</x-m>
@@ -221,7 +221,7 @@
 		<type>translate</type>
 		<object-name>ST_ARodTwo</object-name>
 		<object-name>ST_AAxleThree</object-name>
-		<property>/instrumentation/stick/aileron_second_rod_shift_x</property>
+		<property>instrumentation/stick/aileron_second_rod_shift_x</property>
 		<factor>1</factor>
 		<axis>
 			<x>-1</x>
@@ -234,7 +234,7 @@
 		<type>rotate</type>
 		<object-name>ST_BRLever</object-name>
 		<object-name>ST_BRAxleOne</object-name>
-		<property>/instrumentation/stick/brake_deg</property>
+		<property>instrumentation/stick/brake_deg</property>
 		<factor>1</factor>
 		<axis>   
 			<x1-m>-0.005</x1-m>
@@ -250,7 +250,7 @@
 		<type>rotate</type>
 		<object-name>ST_BRBlocker</object-name>
 		<object-name>ST_BRAxleThree</object-name>
-		<property>/instrumentation/stick/blocker_deg</property>
+		<property>instrumentation/stick/blocker_deg</property>
 		<factor>1</factor>
 		<axis>   
 			<x1-m>-0.038</x1-m>
@@ -266,7 +266,7 @@
 		<type>translate</type>
 		<object-name>ST_BRRod</object-name>
 		<object-name>ST_BRAxleTwo</object-name>
-		<property>/instrumentation/stick/brake_rod_shift_z</property>
+		<property>instrumentation/stick/brake_rod_shift_z</property>
 		<factor>1</factor>
 		<axis>
 			<x>0</x>
@@ -280,7 +280,7 @@
 		<type>rotate</type>
 		<object-name>ST_FAxle</object-name>
 		<object-name>ST_Fix</object-name>
-		<property>/instrumentation/stick/fix/switch-pos-norm</property>
+		<property>instrumentation/stick/fix/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-270</dep></entry>
 			<entry><ind>1</ind><dep>0.0</dep></entry>
@@ -327,7 +327,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-assign</command>
-				<property>/controls/fire-command</property>
+				<property>controls/fire-command</property>
 				<value>1</value>
 			</binding>
 		</action>
@@ -337,7 +337,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-assign</command>
-				<property>/controls/fire-command</property>
+				<property>controls/fire-command</property>
 				<value>1</value>
 			</binding>
 		</action>
@@ -346,7 +346,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>ST_MGButton</object-name>
-		<property>/instrumentation/stick/button/switch-pos-norm</property>
+		<property>instrumentation/stick/button/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0.0</dep></entry>
 			<entry><ind>1</ind><dep>0.004</dep></entry>
@@ -368,7 +368,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-assign</command>
-				<property>/controls/bomb-command</property>
+				<property>controls/bomb-command</property>
 				<value>1</value>
 			</binding>
 		</action>
@@ -378,7 +378,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-assign</command>
-				<property>/controls/bomb-command</property>
+				<property>controls/bomb-command</property>
 				<value>1</value>
 			</binding>
 		</action>
@@ -387,7 +387,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>ST_BButton</object-name>
-		<property>/instrumentation/stick/bomb-button/switch-pos-norm</property>
+		<property>instrumentation/stick/bomb-button/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0.0</dep></entry>
 			<entry><ind>1</ind><dep>0.004</dep></entry>

@@ -13,7 +13,7 @@
 		<object-name>UC_Nose_Axle</object-name>
 		<object-name>UC_Nose_Tyre</object-name>
 		<object-name>UC_Nose_MainPost</object-name>
-		<property>/one</property>
+		<property>one</property>
 		<factor>30</factor>
 		<center>
 			<x-m>0.0</x-m>

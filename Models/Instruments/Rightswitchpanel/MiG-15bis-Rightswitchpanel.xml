@@ -94,14 +94,14 @@
 
 
   		<emission>
-			<factor-prop>/systems/light/canopy-lamps-norm</factor-prop>
+			<factor-prop>systems/light/canopy-lamps-norm</factor-prop>
 			<red>0.777</red>
 			<green>0.700</green>
 			<blue>0.700</blue>
 		</emission>
 		<condition>
 			<equals>
-				<property>/systems/light/use-canopy-lamps</property>
+				<property>systems/light/use-canopy-lamps</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -112,7 +112,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>ACC_Switch</object-name>
-		<property>/instrumentation/switches/battery/switch-pos-norm</property>
+		<property>instrumentation/switches/battery/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -157,7 +157,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>GEN_Switch</object-name>
-		<property>/instrumentation/switches/generator/switch-pos-norm</property>
+		<property>instrumentation/switches/generator/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -202,7 +202,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>HL_Switch</object-name>
-		<property>/instrumentation/switches/headlight/switch-pos-norm</property>
+		<property>instrumentation/switches/headlight/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -247,7 +247,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>TRM_Switch</object-name>
-		<property>/instrumentation/switches/trimmer/switch-pos-norm</property>
+		<property>instrumentation/switches/trimmer/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -292,7 +292,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>HOR_Switch</object-name>
-		<property>/instrumentation/switches/horizon/switch-pos-norm</property>
+		<property>instrumentation/switches/horizon/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -337,7 +337,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RAD_Switch</object-name>
-		<property>/instrumentation/switches/radio/switch-pos-norm</property>
+		<property>instrumentation/switches/radio/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -382,7 +382,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>BOM_Switch</object-name>
-		<property>/instrumentation/switches/bomb/switch-pos-norm</property>
+		<property>instrumentation/switches/bomb/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -428,7 +428,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>DBK_Switch</object-name>
-		<property>/instrumentation/switches/drop-tank/switch-pos-norm</property>
+		<property>instrumentation/switches/drop-tank/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -473,7 +473,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RAC_Switch</object-name>
-		<property>/instrumentation/switches/radiocompass/switch-pos-norm</property>
+		<property>instrumentation/switches/radiocompass/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -518,7 +518,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RAL_Switch</object-name>
-		<property>/instrumentation/switches/radioaltimeter/switch-pos-norm</property>
+		<property>instrumentation/switches/radioaltimeter/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -564,7 +564,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>MG_Switch</object-name>
-		<property>/instrumentation/switches/machinegun/switch-pos-norm</property>
+		<property>instrumentation/switches/machinegun/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -609,7 +609,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>HS_Switch</object-name>
-		<property>/instrumentation/switches/headsight/switch-pos-norm</property>
+		<property>instrumentation/switches/headsight/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -654,7 +654,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>PHMG_Switch</object-name>
-		<property>/instrumentation/switches/photo-machinegun/switch-pos-norm</property>
+		<property>instrumentation/switches/photo-machinegun/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -699,7 +699,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>PH_Switch</object-name>
-		<property>/instrumentation/switches/photo/switch-pos-norm</property>
+		<property>instrumentation/switches/photo/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>

@@ -163,7 +163,7 @@
 	<submodel>
 		<name>Left drop tank</name>
 		<model>Aircraft/MiG-15/Models/Instruments/Fueltank/MiG-15bis-Fueltank-Drop.xml</model>
-		<trigger>/ai/submodels/drop-tank</trigger>
+		<trigger>ai/submodels/drop-tank</trigger>
 		<speed>15</speed>
 		<pitch-offset>-135.0</pitch-offset>
 		<repeat>false</repeat>
@@ -186,15 +186,15 @@
 		<buoyancy>0</buoyancy>
 		<wind>false</wind>
 		<aero-stabilised>true</aero-stabilised>
-<!--		<contents>/consumables/fuel/tank[2]</contents> -->
+<!--		<contents>consumables/fuel/tank[2]</contents> -->
 		<impact>true</impact>
-		<impact-reports>/ai/submodels/left-drop-tank-impact</impact-reports>
+		<impact-reports>ai/submodels/left-drop-tank-impact</impact-reports>
 	</submodel>
 
 	<submodel>
 		<name>Left bomb tank</name>
 		<model>Aircraft/MiG-15/Models/Instruments/Fueltank/MiG-15bis-Fueltank-Drop.xml</model>
-		<trigger>/ai/submodels/bomb-tank</trigger>
+		<trigger>ai/submodels/bomb-tank</trigger>
 		<speed>15</speed>
 		<pitch-offset>-135.0</pitch-offset>
 		<repeat>false</repeat>
@@ -210,15 +210,15 @@
 		<buoyancy>0</buoyancy>
 		<wind>false</wind>
 		<aero-stabilised>true</aero-stabilised>
-<!--		<contents>/consumables/fuel/tank[2]</contents> -->
+<!--		<contents>consumables/fuel/tank[2]</contents> -->
 		<impact>true</impact>
-		<impact-reports>/ai/submodels/left-bomb-tank-impact</impact-reports>
+		<impact-reports>ai/submodels/left-bomb-tank-impact</impact-reports>
 	</submodel>
 
 	<submodel>
 		<name>Right drop tank</name>
 		<model>Aircraft/MiG-15/Models/Instruments/Fueltank/MiG-15bis-Fueltank-Drop.xml</model>
-		<trigger>/ai/submodels/drop-tank</trigger>
+		<trigger>ai/submodels/drop-tank</trigger>
 		<speed>15</speed>
 		<pitch-offset>-135.0</pitch-offset>
 		<repeat>false</repeat>
@@ -234,15 +234,15 @@
 		<buoyancy>0</buoyancy>
 		<wind>false</wind>
 		<aero-stabilised>true</aero-stabilised>
-<!--		<contents>/consumables/fuel/tank[3]</contents> -->
+<!--		<contents>consumables/fuel/tank[3]</contents> -->
 		<impact>true</impact>
-		<impact-reports>/ai/submodels/right-drop-tank-impact</impact-reports>
+		<impact-reports>ai/submodels/right-drop-tank-impact</impact-reports>
 	</submodel>
 
 	<submodel>
 		<name>Right bomb tank</name>
 		<model>Aircraft/MiG-15/Models/Instruments/Fueltank/MiG-15bis-Fueltank-Drop.xml</model>
-		<trigger>/ai/submodels/bomb-tank</trigger>
+		<trigger>ai/submodels/bomb-tank</trigger>
 		<speed>15</speed>
 		<pitch-offset>-135.0</pitch-offset>
 		<repeat>false</repeat>
@@ -258,15 +258,15 @@
 		<buoyancy>0</buoyancy>
 		<wind>false</wind>
 		<aero-stabilised>true</aero-stabilised>
-<!--		<contents>/consumables/fuel/tank[3]</contents> -->
+<!--		<contents>consumables/fuel/tank[3]</contents> -->
 		<impact>true</impact>
-		<impact-reports>/ai/submodels/right-bomb-tank-impact</impact-reports>
+		<impact-reports>ai/submodels/right-bomb-tank-impact</impact-reports>
 	</submodel>
 
 	<submodel>
 		<name>Left flap drop</name>
 		<model>Aircraft/MiG-15/Models/Submodels/MiG-15bis-Flaps-left.xml</model>
-		<trigger>/ai/submodels/left-flap-drop</trigger>
+		<trigger>ai/submodels/left-flap-drop</trigger>
 		<speed>15</speed>
 		<pitch-offset>-135.0</pitch-offset>
 		<repeat>false</repeat>
@@ -286,13 +286,13 @@
 		<wind>true</wind>
 		<aero-stabilised>false</aero-stabilised>
 		<impact>true</impact>
-		<impact-reports>/ai/submodels/left-flap-impact</impact-reports>
+		<impact-reports>ai/submodels/left-flap-impact</impact-reports>
 	</submodel>
 
 	<submodel>
 		<name>Right flap drop</name>
 		<model>Aircraft/MiG-15/Models/Submodels/MiG-15bis-Flaps-right.xml</model>
-		<trigger>/ai/submodels/right-flap-drop</trigger>
+		<trigger>ai/submodels/right-flap-drop</trigger>
 		<speed>15</speed>
 		<pitch-offset>-135.0</pitch-offset>
 		<repeat>false</repeat>
@@ -312,13 +312,13 @@
 		<wind>true</wind>
 		<aero-stabilised>false</aero-stabilised>
 		<impact>true</impact>
-		<impact-reports>/ai/submodels/right-flap-impact</impact-reports>
+		<impact-reports>ai/submodels/right-flap-impact</impact-reports>
 	</submodel>
 
 	<submodel>
 		<name>Middle gear drop</name>
 		<model>Aircraft/MiG-15/Models/Submodels/MiG-15bis-Gears-middle.xml</model>
-		<trigger>/ai/submodels/gear-middle-drop</trigger>
+		<trigger>ai/submodels/gear-middle-drop</trigger>
 		<speed>15</speed>
 		<pitch-offset>-135.0</pitch-offset>
 		<repeat>false</repeat>
@@ -341,13 +341,13 @@
 		<wind>true</wind>
 		<aero-stabilised>false</aero-stabilised>
 		<impact>true</impact>
-		<impact-reports>/ai/submodels/gear-middle-impact</impact-reports>
+		<impact-reports>ai/submodels/gear-middle-impact</impact-reports>
 	</submodel>
 
 	<submodel>
 		<name>Middle gear left door drop</name>
 		<model>Aircraft/MiG-15/Models/Submodels/MiG-15bis-Gears-middle-left-door.xml</model>
-		<trigger>/ai/submodels/gear-middle-drop</trigger>
+		<trigger>ai/submodels/gear-middle-drop</trigger>
 		<speed>15</speed>
 		<pitch-offset>-135.0</pitch-offset>
 		<repeat>false</repeat>
@@ -367,13 +367,13 @@
 		<wind>true</wind>
 		<aero-stabilised>false</aero-stabilised>
 		<impact>true</impact>
-		<impact-reports>/ai/submodels/gear-middle-left-door-impact</impact-reports>
+		<impact-reports>ai/submodels/gear-middle-left-door-impact</impact-reports>
 	</submodel>
 
 	<submodel>
 		<name>Middle gear right door drop</name>
 		<model>Aircraft/MiG-15/Models/Submodels/MiG-15bis-Gears-middle-right-door.xml</model>
-		<trigger>/ai/submodels/gear-middle-drop</trigger>
+		<trigger>ai/submodels/gear-middle-drop</trigger>
 		<speed>15</speed>
 		<pitch-offset>-135.0</pitch-offset>
 		<repeat>false</repeat>
@@ -393,13 +393,13 @@
 		<wind>true</wind>
 		<aero-stabilised>false</aero-stabilised>
 		<impact>true</impact>
-		<impact-reports>/ai/submodels/gear-middle-right-door-impact</impact-reports>
+		<impact-reports>ai/submodels/gear-middle-right-door-impact</impact-reports>
 	</submodel>
 
 	<submodel>
 		<name>Left gear drop</name>
 		<model>Aircraft/MiG-15/Models/Submodels/MiG-15bis-Gears-left.xml</model>
-		<trigger>/ai/submodels/gear-left-drop</trigger>
+		<trigger>ai/submodels/gear-left-drop</trigger>
 		<speed>15</speed>
 		<pitch-offset>-135.0</pitch-offset>
 		<repeat>false</repeat>
@@ -422,13 +422,13 @@
 		<wind>true</wind>
 		<aero-stabilised>false</aero-stabilised>
 		<impact>true</impact>
-		<impact-reports>/ai/submodels/gear-left-impact</impact-reports>
+		<impact-reports>ai/submodels/gear-left-impact</impact-reports>
 	</submodel>
 
 	<submodel>
 		<name>Left gear stow drop</name>
 		<model>Aircraft/MiG-15/Models/Submodels/MiG-15bis-Gears-left-stow.xml</model>
-		<trigger>/ai/submodels/gear-left-drop</trigger>
+		<trigger>ai/submodels/gear-left-drop</trigger>
 		<speed>15</speed>
 		<pitch-offset>-135.0</pitch-offset>
 		<repeat>false</repeat>
@@ -448,13 +448,13 @@
 		<wind>true</wind>
 		<aero-stabilised>false</aero-stabilised>
 		<impact>true</impact>
-		<impact-reports>/ai/submodels/gear-left-stow-impact</impact-reports>
+		<impact-reports>ai/submodels/gear-left-stow-impact</impact-reports>
 	</submodel>
 
 	<submodel>
 		<name>Left gear inner door drop</name>
 		<model>Aircraft/MiG-15/Models/Submodels/MiG-15bis-Gears-left-door-inner.xml</model>
-		<trigger>/ai/submodels/gear-left-drop</trigger>
+		<trigger>ai/submodels/gear-left-drop</trigger>
 		<speed>15</speed>
 		<pitch-offset>-135.0</pitch-offset>
 		<repeat>false</repeat>
@@ -474,13 +474,13 @@
 		<wind>true</wind>
 		<aero-stabilised>false</aero-stabilised>
 		<impact>true</impact>
-		<impact-reports>/ai/submodels/gear-left-door-inner-impact</impact-reports>
+		<impact-reports>ai/submodels/gear-left-door-inner-impact</impact-reports>
 	</submodel>
 
 	<submodel>
 		<name>Left gear middle door drop</name>
 		<model>Aircraft/MiG-15/Models/Submodels/MiG-15bis-Gears-left-door-middle.xml</model>
-		<trigger>/ai/submodels/gear-left-drop</trigger>
+		<trigger>ai/submodels/gear-left-drop</trigger>
 		<speed>15</speed>
 		<pitch-offset>-135.0</pitch-offset>
 		<repeat>false</repeat>
@@ -500,13 +500,13 @@
 		<wind>true</wind>
 		<aero-stabilised>false</aero-stabilised>
 		<impact>true</impact>
-		<impact-reports>/ai/submodels/gear-left-door-middle-impact</impact-reports>
+		<impact-reports>ai/submodels/gear-left-door-middle-impact</impact-reports>
 	</submodel>
 
 	<submodel>
 		<name>Left gear outer door drop</name>
 		<model>Aircraft/MiG-15/Models/Submodels/MiG-15bis-Gears-left-door-outer.xml</model>
-		<trigger>/ai/submodels/gear-left-drop</trigger>
+		<trigger>ai/submodels/gear-left-drop</trigger>
 		<speed>15</speed>
 		<pitch-offset>-135.0</pitch-offset>
 		<repeat>false</repeat>
@@ -526,7 +526,7 @@
 		<wind>true</wind>
 		<aero-stabilised>false</aero-stabilised>
 		<impact>true</impact>
-		<impact-reports>/ai/submodels/gear-left-door-outer-impact</impact-reports>
+		<impact-reports>ai/submodels/gear-left-door-outer-impact</impact-reports>
 	</submodel>
 
 	<submodel>
@@ -552,13 +552,13 @@
 		<wind>true</wind>
 		<aero-stabilised>false</aero-stabilised>
 		<impact>true</impact>
-		<impact-reports>/ai/submodels/gear-right-impact</impact-reports>
+		<impact-reports>ai/submodels/gear-right-impact</impact-reports>
 	</submodel>
 
 	<submodel>
 		<name>Right gear stow drop</name>
 		<model>Aircraft/MiG-15/Models/Submodels/MiG-15bis-Gears-right-stow.xml</model>
-		<trigger>/ai/submodels/gear-right-drop</trigger>
+		<trigger>ai/submodels/gear-right-drop</trigger>
 		<speed>15</speed>
 		<pitch-offset>-135.0</pitch-offset>
 		<repeat>false</repeat>
@@ -578,13 +578,13 @@
 		<wind>true</wind>
 		<aero-stabilised>false</aero-stabilised>
 		<impact>true</impact>
-		<impact-reports>/ai/submodels/gear-right-stow-impact</impact-reports>
+		<impact-reports>ai/submodels/gear-right-stow-impact</impact-reports>
 	</submodel>
 
 	<submodel>
 		<name>Right gear inner door drop</name>
 		<model>Aircraft/MiG-15/Models/Submodels/MiG-15bis-Gears-right-door-inner.xml</model>
-		<trigger>/ai/submodels/gear-right-drop</trigger>
+		<trigger>ai/submodels/gear-right-drop</trigger>
 		<speed>15</speed>
 		<pitch-offset>-135.0</pitch-offset>
 		<repeat>false</repeat>
@@ -604,13 +604,13 @@
 		<wind>true</wind>
 		<aero-stabilised>false</aero-stabilised>
 		<impact>true</impact>
-		<impact-reports>/ai/submodels/gear-right-door-inner-impact</impact-reports>
+		<impact-reports>ai/submodels/gear-right-door-inner-impact</impact-reports>
 	</submodel>
 
 	<submodel>
 		<name>Right gear middle door drop</name>
 		<model>Aircraft/MiG-15/Models/Submodels/MiG-15bis-Gears-right-door-middle.xml</model>
-		<trigger>/ai/submodels/gear-right-drop</trigger>
+		<trigger>ai/submodels/gear-right-drop</trigger>
 		<speed>15</speed>
 		<pitch-offset>-135.0</pitch-offset>
 		<repeat>false</repeat>
@@ -630,13 +630,13 @@
 		<wind>true</wind>
 		<aero-stabilised>false</aero-stabilised>
 		<impact>true</impact>
-		<impact-reports>/ai/submodels/gear-right-door-middle-impact</impact-reports>
+		<impact-reports>ai/submodels/gear-right-door-middle-impact</impact-reports>
 	</submodel>
 
 	<submodel>
 		<name>Right gear outer door drop</name>
 		<model>Aircraft/MiG-15/Models/Submodels/MiG-15bis-Gears-right-door-outer.xml</model>
-		<trigger>/ai/submodels/gear-right-drop</trigger>
+		<trigger>ai/submodels/gear-right-drop</trigger>
 		<speed>15</speed>
 		<pitch-offset>-135.0</pitch-offset>
 		<repeat>false</repeat>
@@ -656,13 +656,13 @@
 		<wind>true</wind>
 		<aero-stabilised>false</aero-stabilised>
 		<impact>true</impact>
-		<impact-reports>/ai/submodels/gear-right-door-outer-impact</impact-reports>
+		<impact-reports>ai/submodels/gear-right-door-outer-impact</impact-reports>
 	</submodel>
 
 	<submodel>
 		<name>Canopy drop</name>
 		<model>Aircraft/MiG-15/Models/Submodels/MiG-15bis-Canopy.xml</model>
-		<trigger>/ai/submodels/canopy-drop</trigger>
+		<trigger>ai/submodels/canopy-drop</trigger>
 		<speed>50</speed>
 		<pitch-offset>135.0</pitch-offset>
 		<repeat>false</repeat>
@@ -682,7 +682,7 @@
 		<wind>true</wind>
 		<aero-stabilised>false</aero-stabilised>
 		<impact>true</impact>
-		<impact-reports>/ai/submodels/canopy-impact</impact-reports>
+		<impact-reports>ai/submodels/canopy-impact</impact-reports>
 	</submodel>
 
 </PropertyList>

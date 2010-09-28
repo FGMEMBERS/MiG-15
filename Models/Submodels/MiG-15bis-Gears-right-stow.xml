@@ -10,7 +10,7 @@
 		<type>spin</type>
 		<object-name>UC_MainR_StLow</object-name>
 		<object-name>UC_MainR_StUp</object-name>
-		<property>/one</property>
+		<property>one</property>
 		<factor>40</factor>
 		<center>
 			<x-m>-0.282</x-m>

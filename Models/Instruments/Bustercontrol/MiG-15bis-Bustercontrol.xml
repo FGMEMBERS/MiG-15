@@ -21,14 +21,14 @@
 		<object-name>BUC_Down</object-name>
 		<object-name>BUC_Up</object-name>
   		<emission>
-			<factor-prop>/systems/light/canopy-lamps-norm</factor-prop>
+			<factor-prop>systems/light/canopy-lamps-norm</factor-prop>
 			<red>0.777</red>
 			<green>0.700</green>
 			<blue>0.700</blue>
 		</emission>
 		<condition>
 			<equals>
-				<property>/systems/light/use-canopy-lamps</property>
+				<property>systems/light/use-canopy-lamps</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -38,7 +38,7 @@
   <animation>
     <type>translate</type>
     <object-name>BUC_Fix</object-name>
-    <property>/instrumentation/buster-control/fix-pos-norm</property>
+    <property>instrumentation/buster-control/fix-pos-norm</property>
     <interpolation>
       <entry><ind>1.0</ind><dep>0.0</dep></entry>
       <entry><ind>0.0</ind><dep>0.004</dep></entry>
@@ -55,7 +55,7 @@
     <object-name>BUC_Lever</object-name>
     <object-name>BUC_Handle</object-name>
     <object-name>BUC_Fix</object-name>
-    <property>/instrumentation/buster-control/switch-pos-norm</property>
+    <property>instrumentation/buster-control/switch-pos-norm</property>
     <interpolation>
       <entry><ind>0.0</ind><dep>-34</dep></entry>
       <entry><ind>2.0</ind><dep>34</dep></entry>
@@ -81,7 +81,7 @@
     <interval-sec>0.1</interval-sec>
      <binding>
        <command>property-adjust</command>
-       <property>/instrumentation/buster-control/set-pos-norm</property>
+       <property>instrumentation/buster-control/set-pos-norm</property>
        <step>-1</step>
        <min>0</min>
        <max>2</max>
@@ -94,7 +94,7 @@
     <interval-sec>0.1</interval-sec>
      <binding>
        <command>property-adjust</command>
-       <property>/instrumentation/buster-control/set-pos-norm</property>
+       <property>instrumentation/buster-control/set-pos-norm</property>
        <step>-1</step>
        <min>0</min>
        <max>2</max>
@@ -112,7 +112,7 @@
     <interval-sec>0.1</interval-sec>
      <binding>
        <command>property-adjust</command>
-       <property>/instrumentation/buster-control/set-pos-norm</property>
+       <property>instrumentation/buster-control/set-pos-norm</property>
        <step>1</step>
        <min>0</min>
        <max>2</max>
@@ -125,7 +125,7 @@
     <interval-sec>0.1</interval-sec>
      <binding>
        <command>property-adjust</command>
-       <property>/instrumentation/buster-control/set-pos-norm</property>
+       <property>instrumentation/buster-control/set-pos-norm</property>
        <step>1</step>
        <min>0</min>
        <max>2</max>

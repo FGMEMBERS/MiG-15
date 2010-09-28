@@ -16,7 +16,7 @@
 		<object-name>GC_CDisk</object-name>
 		<object-name>GC_Needle</object-name>
   		<emission>
-			<factor-prop>/systems/electrical-real/outputs/horizon/volts-norm</factor-prop>
+			<factor-prop>systems/electrical-real/outputs/horizon/volts-norm</factor-prop>
 			<red>0.222</red>
 			<green>0.212</green>
 			<blue>0.212</blue>
@@ -35,14 +35,14 @@
 		<object-name>GC_Down</object-name>
 		<object-name>GC_Vern</object-name>
   		<emission>
-			<factor-prop>/systems/electrical-real/outputs/horizon/volts-norm</factor-prop>
+			<factor-prop>systems/electrical-real/outputs/horizon/volts-norm</factor-prop>
 			<red>0.777</red>
 			<green>0.700</green>
 			<blue>0.700</blue>
 		</emission>
 		<condition>
 			<equals>
-				<property>/systems/light/use-canopy-lamps</property>
+				<property>systems/light/use-canopy-lamps</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -86,7 +86,7 @@
   <animation>
     <type>rotate</type>
     <object-name>GC_Vern</object-name>
-    <property>/instrumentation/gyrocompass/offset</property>
+    <property>instrumentation/gyrocompass/offset</property>
     <factor>10</factor>
     <center>
       <x-m>0</x-m>
@@ -178,7 +178,7 @@
     <interval-sec>0.1</interval-sec>
      <binding>
        <command>property-adjust</command>
-       <property>/instrumentation/gyrocompass/offset</property>
+       <property>instrumentation/gyrocompass/offset</property>
        <step>5</step>
 	     <min>0</min>
     	 <max>360</max>

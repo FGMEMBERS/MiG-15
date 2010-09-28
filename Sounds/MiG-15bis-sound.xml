@@ -10,11 +10,11 @@
 		<mode>looped</mode>
 		<condition>
 			<equals>
-				<property>/engines/engine/spoolup</property>
+				<property>engines/engine/spoolup</property>
 				<value>1</value>
 			</equals>
 			<pitch>
-				<property>/engines/engine/starter-time</property>
+				<property>engines/engine/starter-time</property>
 				<factor>0.1</factor>
 				<offset>0.1</offset>
 			</pitch>
@@ -40,12 +40,12 @@
 		<mode>looped</mode>
 		<condition>
 			<equals>
-				<property>/engines/engine/combustion</property>
+				<property>engines/engine/combustion</property>
 				<value>1</value>
 			</equals>
 		</condition>
 		<volume>
-			<property>/engines/engine/starter-time</property>
+			<property>engines/engine/starter-time</property>
 			<factor>0.1</factor>
 			<offset>0.1</offset>
 		</volume>
@@ -70,16 +70,16 @@
 		<mode>looped</mode>
 		<condition>
 			<equals>
-				<property>/engines/engine/running</property>
+				<property>engines/engine/running</property>
 				<value>1</value>	
 			</equals>
 		</condition>
 		<volume>
-		        <property>/engines/engine[0]/thrust_lb</property>
+		        <property>engines/engine[0]/thrust_lb</property>
 			<factor type="double">0.00016</factor>
 		</volume>
 		<pitch>
-		        <property>/engines/engine[0]/n1</property>
+		        <property>engines/engine[0]/n1</property>
 			<factor>0.2</factor>
 		</pitch>
 		<position>
@@ -104,21 +104,21 @@
 		<condition>
 			<and>
 				<equals>
-					<property>/engines/engine/running</property>
+					<property>engines/engine/running</property>
 					<value>1</value>	
 				</equals>
 				<equals>
-					<property>/sim/current-view/internal</property>
+					<property>sim/current-view/internal</property>
 					<value>true</value>	
 				</equals>
 			</and>
 		</condition>
 		<volume>
-			<property>/engines/engine/n2</property>
+			<property>engines/engine/n2</property>
 			<factor>0.007</factor>
 		</volume>
 		<pitch>
-			<property>/engines/engine/sound</property>
+			<property>engines/engine/sound</property>
 		</pitch>
 		<position>
 			<x> 5.185 </x>
@@ -142,11 +142,11 @@
 		<condition>
 			<and>
 				<equals>
-					<property>/engines/engine/running</property>
+					<property>engines/engine/running</property>
 					<value>1</value>	
 				</equals>
 				<equals>
-					<property>/sim/current-view/internal</property>
+					<property>sim/current-view/internal</property>
 					<value>false</value>	
 				</equals>
 			</and>
@@ -165,11 +165,11 @@
 			<outer-gain>0.5</outer-gain>
 		</orientation>
 		<volume>
-			<property>/engines/engine/n2</property>
+			<property>engines/engine/n2</property>
 			<factor>0.007</factor>
 		</volume>
 		<pitch>
-			<property>/engines/engine/sound</property>
+			<property>engines/engine/sound</property>
 			<factor>2</factor>
 		</pitch>
 	</engine-outdoor>
@@ -181,11 +181,11 @@
 		<condition>
 			<and>
 				<equals>
-					<property>/engines/engine/running</property>
+					<property>engines/engine/running</property>
 					<value>1</value>	
 				</equals>
 				<equals>
-					<property>/sim/current-view/internal</property>
+					<property>sim/current-view/internal</property>
 					<value>true</value>	
 				</equals>
 			</and>
@@ -204,11 +204,11 @@
 			<outer-gain>0.5</outer-gain>
 		</orientation>
 		<volume>
-			<property>/engines/engine/n2</property>
+			<property>engines/engine/n2</property>
 			<factor>0.007</factor>
 		</volume>
 		<volume>
-			<property>/instrumentation/canopy/switch-pos-inter</property>
+			<property>instrumentation/canopy/switch-pos-inter</property>
 			<interpolation>
 				<entry><ind>0.0</ind><dep>0.0</dep></entry>
 				<entry><ind>0.1</ind><dep>0.5</dep></entry>
@@ -217,7 +217,7 @@
 			</interpolation>
 		</volume>
 		<pitch>
-			<property>/engines/engine/sound</property>
+			<property>engines/engine/sound</property>
 			<factor>2</factor>
 		</pitch>
 	</engine-outdoor-inside>
@@ -228,7 +228,7 @@
 		<mode>once</mode>
 		<condition>
 			<equals>
-				<property>/engines/engine/stop</property>
+				<property>engines/engine/stop</property>
 				<value>1</value>	
 			</equals>
 		</condition>
@@ -246,7 +246,7 @@
 			<outer-gain>0.5</outer-gain>
 		</orientation>
 		<volume>
-			<property>/engines/engine/n2</property>
+			<property>engines/engine/n2</property>
 			<factor>0.007</factor>
 		</volume>
 	</engine-stop>
@@ -257,12 +257,12 @@
 		<path>Sounds/rumble.wav</path>
 		<condition>
 			<equals>
-				<property>/gear/gear[0]/wow</property>
+				<property>gear/gear[0]/wow</property>
 				<value>1</value>
 			</equals>
 		</condition>
 		<volume>
-			<property>/velocities/groundspeed-kt</property>
+			<property>velocities/groundspeed-kt</property>
 			<type>log</type>
 			<factor>0.12</factor>
 		</volume>
@@ -274,12 +274,12 @@
 		<path>Sounds/rumble.wav</path>
 		<condition>
 			<equals>
-				<property>/gear/gear[1]/wow</property>
+				<property>gear/gear[1]/wow</property>
 				<value>1</value>
 			</equals>
 		</condition>
 		<volume>
-			<property>/velocities/groundspeed-kt</property>
+			<property>velocities/groundspeed-kt</property>
 			<type>log</type>
 			<factor>0.12</factor>
 		</volume>
@@ -291,12 +291,12 @@
 		<path>Sounds/rumble.wav</path>
 		<condition>
 			<equals>
-				<property>/gear/gear[2]/wow</property>
+				<property>gear/gear[2]/wow</property>
 				<value>1</value>
 			</equals>
 		</condition>
 		<volume>
-			<property>/velocities/groundspeed-kt</property>
+			<property>velocities/groundspeed-kt</property>
 			<type>log</type>
 			<factor>0.12</factor>
 		</volume>
@@ -306,15 +306,15 @@
 		<name>gear0</name>
 		<mode>in-transit</mode>
 		<path>Aircraft/MiG-15/Sounds/gears-move.wav</path>
-		<property>/fdm/jsbsim/gear/unit[0]/pos-norm</property>
+		<property>fdm/jsbsim/gear/unit[0]/pos-norm</property>
 		<pitch>
 			<internal>dt_play</internal>
 			<offset>1.0</offset>
 			<factor>-0.001</factor>
 		</pitch>
 		<volume>
-			<property>/fdm/jsbsim/init/finally-initialized</property>
-			<property>/processes/gear-move/sound-enabled</property>
+			<property>fdm/jsbsim/init/finally-initialized</property>
+			<property>processes/gear-move/sound-enabled</property>
 			<factor>0.3</factor>
 		</volume>
 	</gear>
@@ -324,7 +324,7 @@
 		<path>Sounds/gear-lck.wav</path>
 		<condition>
 			<equals>
-				<property>/fdm/jsbsim/gear/unit[0]/pos-norm</property>
+				<property>fdm/jsbsim/gear/unit[0]/pos-norm</property>
 				<value>0</value>
 			</equals>
 		</condition>
@@ -335,7 +335,7 @@
 		<path>Sounds/gear-lck.wav</path>
 		<condition>
 			<equals>
-				<property>/fdm/jsbsim/gear/unit[0]/pos-norm</property>
+				<property>fdm/jsbsim/gear/unit[0]/pos-norm</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -345,15 +345,15 @@
 		<name>gear1</name>
 		<mode>in-transit</mode>
 		<path>Aircraft/MiG-15/Sounds/gears-move.wav</path>
-		<property>/fdm/jsbsim/gear/unit[1]/pos-norm</property>
+		<property>fdm/jsbsim/gear/unit[1]/pos-norm</property>
 		<pitch>
 			<internal>dt_play</internal>
 			<offset>1.0</offset>
 			<factor>-0.001</factor>
 		</pitch>
 		<volume>
-			<property>/fdm/jsbsim/gear/finally-initialized</property>
-			<property>/processes/gear-move/sound-enabled</property>
+			<property>fdm/jsbsim/gear/finally-initialized</property>
+			<property>processes/gear-move/sound-enabled</property>
 			<factor>0.3</factor>
 		</volume>
 	</gear>
@@ -363,7 +363,7 @@
 		<path>Sounds/gear-lck.wav</path>
 		<condition>
 			<equals>
-				<property>/fdm/jsbsim/gear/unit[1]/pos-norm</property>
+				<property>fdm/jsbsim/gear/unit[1]/pos-norm</property>
 				<value>0</value>
 			</equals>
 		</condition>
@@ -374,7 +374,7 @@
 		<path>Sounds/gear-lck.wav</path>
 		<condition>
 			<equals>
-				<property>/fdm/jsbsim/gear/unit[1]/pos-norm</property>
+				<property>fdm/jsbsim/gear/unit[1]/pos-norm</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -384,15 +384,15 @@
 		<name>gear2</name>
 		<mode>in-transit</mode>
 		<path>Aircraft/MiG-15/Sounds/gears-move.wav</path>
-		<property>/fdm/jsbsim/gear/unit[2]/pos-norm</property>
+		<property>fdm/jsbsim/gear/unit[2]/pos-norm</property>
 		<pitch>
 			<internal>dt_play</internal>
 			<offset>1.0</offset>
 			<factor>-0.001</factor>
 		</pitch>
 		<volume>
-			<property>/fdm/jsbsim/init/finally-initialized</property>
-			<property>/processes/gear-move/sound-enabled</property>
+			<property>fdm/jsbsim/init/finally-initialized</property>
+			<property>processes/gear-move/sound-enabled</property>
 			<factor>0.3</factor>
 		</volume>
 	</gear>
@@ -402,7 +402,7 @@
 		<path>Sounds/gear-lck.wav</path>
 		<condition>
 			<equals>
-				<property>/fdm/jsbsim/gear/unit[2]/pos-norm</property>
+				<property>fdm/jsbsim/gear/unit[2]/pos-norm</property>
 				<value>0</value>
 			</equals>
 		</condition>
@@ -413,7 +413,7 @@
 		<path>Sounds/gear-lck.wav</path>
 		<condition>
 			<equals>
-				<property>/fdm/jsbsim/gear/unit[2]/pos-norm</property>
+				<property>fdm/jsbsim/gear/unit[2]/pos-norm</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -424,16 +424,16 @@
       <path>Sounds/squeal.wav</path>
       <condition>
 		<equals>
-			<property>/gear/gear[0]/wow</property>
+			<property>gear/gear[0]/wow</property>
 			<value>1</value>
 		</equals>
       </condition>
       <volume>
-        <property>/velocities/speed-down-fps</property>
+        <property>velocities/speed-down-fps</property>
         <factor>0.05</factor>
       </volume>
       <volume>
-        <property>/velocities/airspeed-kt</property>
+        <property>velocities/airspeed-kt</property>
         <factor>0.01</factor>
       </volume>
       <volume>
@@ -442,7 +442,7 @@
         <max>1.0</max>
       </volume>
       <pitch>
-        <property>/velocities/airspeed-kt</property>
+        <property>velocities/airspeed-kt</property>
         <factor>0.0025</factor>
         <offset>1.2</offset>
       </pitch>
@@ -453,16 +453,16 @@
       <path>Sounds/squeal.wav</path>
       <condition>
 		<equals>
-			<property>/gear/gear[1]/wow</property>
+			<property>gear/gear[1]/wow</property>
 			<value>1</value>
 		</equals>
       </condition>
       <volume>
-        <property>/velocities/speed-down-fps</property>
+        <property>velocities/speed-down-fps</property>
         <factor>0.05</factor>
       </volume>
       <volume>
-        <property>/velocities/airspeed-kt</property>
+        <property>velocities/airspeed-kt</property>
         <factor>0.01</factor>
       </volume>
       <volume>
@@ -471,7 +471,7 @@
         <max>1.0</max>
       </volume>
       <pitch>
-        <property>/velocities/airspeed-kt</property>
+        <property>velocities/airspeed-kt</property>
         <factor>0.0025</factor>
         <offset>1.2</offset>
       </pitch>
@@ -482,16 +482,16 @@
       <path>Sounds/squeal.wav</path>
       <condition>
 		<equals>
-			<property>/gear/gear[2]/wow</property>
+			<property>gear/gear[2]/wow</property>
 			<value>1</value>
 		</equals>
       </condition>
       <volume>
-        <property>/velocities/speed-down-fps</property>
+        <property>velocities/speed-down-fps</property>
         <factor>0.05</factor>
       </volume>
       <volume>
-        <property>/velocities/airspeed-kt</property>
+        <property>velocities/airspeed-kt</property>
         <factor>0.01</factor>
       </volume>
       <volume>
@@ -500,7 +500,7 @@
         <max>1.0</max>
       </volume>
       <pitch>
-        <property>/velocities/airspeed-kt</property>
+        <property>velocities/airspeed-kt</property>
         <factor>0.0025</factor>
         <offset>1.2</offset>
       </pitch>
@@ -512,7 +512,7 @@
 		<mode>once</mode>
 		<condition>
 			<equals>
-				<property>/sounds/gears-tored/on</property>
+				<property>sounds/gears-tored/on</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -527,7 +527,7 @@
 		<mode>once</mode>
 		<condition>
 			<equals>
-				<property>/sounds/gears-stuck/on</property>
+				<property>sounds/gears-stuck/on</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -540,7 +540,7 @@
       <name>flaps</name>
       <mode>in-transit</mode>
       <path>Sounds/flaps.wav</path>
-      <property>/fdm/jsbsim/fcs/flap-pos-norm</property>
+      <property>fdm/jsbsim/fcs/flap-pos-norm</property>
       <volume>
         <factor>0.15</factor>
       </volume>
@@ -550,7 +550,7 @@
       <name>spoilers</name>
       <mode>in-transit</mode>
       <path>Sounds/flaps.wav</path>
-      <property>/surface-positions/left-spoiler-pos-norm</property>
+      <property>surface-positions/left-spoiler-pos-norm</property>
       <volume>
         <factor>0.15</factor>
       </volume>
@@ -560,7 +560,7 @@
       <name>spoilers</name>
       <mode>in-transit</mode>
       <path>Sounds/flaps.wav</path>
-      <property>/surface-positions/right-spoiler-pos-norm</property>
+      <property>surface-positions/right-spoiler-pos-norm</property>
       <volume>
         <factor>0.25</factor>
       </volume>
@@ -570,7 +570,7 @@
       <name>air-brakes</name>
       <mode>in-transit</mode>
       <path>Sounds/flaps.wav</path>
-      <property>/surface-positions/speedbrake-pos-norm</property>
+      <property>surface-positions/speedbrake-pos-norm</property>
       <volume>
         <factor>0.25</factor>
       </volume>
@@ -582,18 +582,18 @@
 		<mode>looped</mode>
 		<condition>
 			<equals>
-				<property>/sim/current-view/internal</property>
+				<property>sim/current-view/internal</property>
 				<value>false</value>
 			</equals>
 		</condition>
 		<volume>
-			<property>/sounds/wind/volume</property>
+			<property>sounds/wind/volume</property>
 			<factor>1</factor>
 			<min>0.01</min>
 			<max>0.30</max>
 		</volume>
 		<pitch>
-			<property>/velocities/airspeed-kt</property>
+			<property>velocities/airspeed-kt</property>
 			<factor>0.01</factor>
 			<offset>1.25</offset>
 		</pitch>
@@ -605,7 +605,7 @@
 		<mode>looped</mode>
 		<condition>
 			<equals>
-				<property>/sim/current-view/internal</property>
+				<property>sim/current-view/internal</property>
 				<value>true</value>	
 			</equals>
 		</condition>
@@ -623,13 +623,13 @@
 			<outer-gain>0.5</outer-gain>
 		</orientation>
 		<volume>
-			<property>/sounds/wind/volume-internal</property>
+			<property>sounds/wind/volume-internal</property>
 			<factor>1</factor>
 			<min>0.01</min>
 			<max>1.0</max>
 		</volume>
 		<pitch>
-			<property>/velocities/airspeed-kt</property>
+			<property>velocities/airspeed-kt</property>
 			<factor>0.01</factor>
 			<offset>1.25</offset>
 		</pitch>
@@ -639,10 +639,10 @@
 			<name>canopy</name>
 			<mode>in-transit</mode>
 			<path>Aircraft/MiG-15/Sounds/canopy-move.wav</path>
-			<property>/instrumentation/canopy/switch-pos-inter</property>
+			<property>instrumentation/canopy/switch-pos-inter</property>
 			<volume>
 				<factor>0.5</factor>
-				<property>/sim/current-view/internal</property>
+				<property>sim/current-view/internal</property>
 			</volume>
 		</canopy>
 
@@ -652,13 +652,13 @@
 			<path>Aircraft/MiG-15/Sounds/canopy-close-left.wav</path>
 			<condition>
 				<less-than-equals>
-					<property>/instrumentation/canopy/switch-pos-inter</property>
+					<property>instrumentation/canopy/switch-pos-inter</property>
 					<value>0</value>
 				</less-than-equals>
 			</condition>
 			<volume>
 				<factor>0.3</factor>
-				<property>/sim/current-view/internal</property>
+				<property>sim/current-view/internal</property>
 			</volume>
 		</canopy-close-left>
 
@@ -668,13 +668,13 @@
 			<path>Aircraft/MiG-15/Sounds/canopy-close-right.wav</path>
 			<condition>
 				<less-than-equals>
-					<property>/instrumentation/canopy/switch-pos-inter</property>
+					<property>instrumentation/canopy/switch-pos-inter</property>
 					<value>0</value>
 				</less-than-equals>
 			</condition>
 			<volume>
 				<factor>0.3</factor>
-				<property>/sim/current-view/internal</property>
+				<property>sim/current-view/internal</property>
 			</volume>
 		</canopy-close-right>
 
@@ -685,11 +685,11 @@
 		<condition>
 			<and>
 				<equals>
-					<property>/sounds/click/on</property>
+					<property>sounds/click/on</property>
 					<value>1</value>
 				</equals>
 				<equals>
-					<property>/sim/current-view/internal</property>
+					<property>sim/current-view/internal</property>
 					<value>true</value>	
 				</equals>
 			</and>
@@ -703,7 +703,7 @@
 		<mode>looped</mode>
 		<condition>
 			<equals>
-				<property>/sounds/cannon/small-on</property>
+				<property>sounds/cannon/small-on</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -716,7 +716,7 @@
 		<mode>looped</mode>
 		<condition>
 			<equals>
-				<property>/sounds/cannon/big-on</property>
+				<property>sounds/cannon/big-on</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -730,17 +730,17 @@
 		<condition>
 			<and>
 				<equals>
-					<property>/sounds/radio-tune/on</property>
+					<property>sounds/radio-tune/on</property>
 					<value>1</value>
 				</equals>
 				<equals>
-					<property>/sim/current-view/internal</property>
+					<property>sim/current-view/internal</property>
 					<value>true</value>	
 				</equals>
 			</and>
 		</condition>
 		<volume>
-			<property>/instrumentation/radiocompass/telephone-loudness</property>
+			<property>instrumentation/radiocompass/telephone-loudness</property>
 		</volume>
 	</radio-tune>
 
@@ -751,17 +751,17 @@
 		<condition>
 			<and>
 				<equals>
-					<property>/sounds/radio-morse/on</property>
+					<property>sounds/radio-morse/on</property>
 					<value>1</value>
 				</equals>
 				<equals>
-					<property>/sim/current-view/internal</property>
+					<property>sim/current-view/internal</property>
 					<value>true</value>	
 				</equals>
 			</and>
 		</condition>
 		<volume>
-			<property>/instrumentation/radiocompass/telegraph-loudness</property>
+			<property>instrumentation/radiocompass/telegraph-loudness</property>
 		</volume>
 	</radio-morse>
 
@@ -772,17 +772,17 @@
 		<condition>
 			<and>
 				<equals>
-					<property>/sounds/radio-noise/on</property>
+					<property>sounds/radio-noise/on</property>
 					<value>1</value>
 				</equals>
 				<equals>
-					<property>/sim/current-view/internal</property>
+					<property>sim/current-view/internal</property>
 					<value>true</value>	
 				</equals>
 			</and>
 		</condition>
 		<volume>
-			<property>/instrumentation/radiocompass/noise-loudness</property>
+			<property>instrumentation/radiocompass/noise-loudness</property>
 		</volume>
 	</radio-noise>
 
@@ -793,17 +793,17 @@
 		<condition>
 			<and>
 				<equals>
-					<property>/sounds/radio-search-left/on</property>
+					<property>sounds/radio-search-left/on</property>
 					<value>1</value>
 				</equals>
 				<equals>
-					<property>/sim/current-view/internal</property>
+					<property>sim/current-view/internal</property>
 					<value>true</value>	
 				</equals>
 			</and>
 		</condition>
 		<volume>
-			<property>/sounds/radio-search-left/volume-norm</property>
+			<property>sounds/radio-search-left/volume-norm</property>
 		</volume>
 	</radio-search-left>
 
@@ -814,17 +814,17 @@
 		<condition>
 			<and>
 				<equals>
-					<property>/sounds/radio-search-right/on</property>
+					<property>sounds/radio-search-right/on</property>
 					<value>1</value>
 				</equals>
 				<equals>
-					<property>/sim/current-view/internal</property>
+					<property>sim/current-view/internal</property>
 					<value>true</value>	
 				</equals>
 			</and>
 		</condition>
 		<volume>
-			<property>/sounds/radio-search-right/volume-norm</property>
+			<property>sounds/radio-search-right/volume-norm</property>
 		</volume>
 	</radio-search-right>
 
@@ -834,7 +834,7 @@
 		<mode>looped</mode>
 		<condition>
 			<equals>
-				<property>/sounds/photo/on</property>
+				<property>sounds/photo/on</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -849,7 +849,7 @@
 		<mode>once</mode>
 		<condition>
 			<equals>
-				<property>/sounds/bomb-explode/on</property>
+				<property>sounds/bomb-explode/on</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -864,7 +864,7 @@
 		<mode>once</mode>
 		<condition>
 			<equals>
-				<property>/sounds/tank-down/on</property>
+				<property>sounds/tank-down/on</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -879,7 +879,7 @@
 		<mode>once</mode>
 		<condition>
 			<equals>
-				<property>/sounds/flaps-tored/on</property>
+				<property>sounds/flaps-tored/on</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -894,7 +894,7 @@
 		<mode>once</mode>
 		<condition>
 			<equals>
-				<property>/sounds/flaps-down/on</property>
+				<property>sounds/flaps-down/on</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -909,7 +909,7 @@
 		<mode>once</mode>
 		<condition>
 			<equals>
-				<property>/sounds/gears-down/on</property>
+				<property>sounds/gears-down/on</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -924,7 +924,7 @@
 		<mode>once</mode>
 		<condition>
 			<equals>
-				<property>/sounds/aircraft-explode/on</property>
+				<property>sounds/aircraft-explode/on</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -939,7 +939,7 @@
 		<mode>once</mode>
 		<condition>
 			<equals>
-				<property>/sounds/aircraft-crash/on</property>
+				<property>sounds/aircraft-crash/on</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -954,7 +954,7 @@
 		<mode>once</mode>
 		<condition>
 			<equals>
-				<property>/sounds/aircraft-water-crash/on</property>
+				<property>sounds/aircraft-water-crash/on</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -969,12 +969,12 @@
 		<mode>once</mode>
 		<condition>
 			<equals>
-				<property>/sounds/canopy-crash/on</property>
+				<property>sounds/canopy-crash/on</property>
 				<value>1</value>
 			</equals>
 		</condition>
 		<volume>
-			<property>/sounds/canopy-crash/volume</property>
+			<property>sounds/canopy-crash/volume</property>
 		</volume>
 	</canopy-crash>
 
@@ -984,12 +984,12 @@
 		<mode>once</mode>
 		<condition>
 			<equals>
-				<property>/sounds/aircraft-crack/on</property>
+				<property>sounds/aircraft-crack/on</property>
 				<value>1</value>
 			</equals>
 		</condition>
 		<volume>
-			<property>/sounds/aircraft-crack/volume</property>
+			<property>sounds/aircraft-crack/volume</property>
 			<factor>1</factor>
 		</volume>
 	</aircraft-crack>
@@ -1000,12 +1000,12 @@
 		<mode>looped</mode>
 		<condition>
 			<equals>
-				<property>/sounds/aircraft-creaking/on</property>
+				<property>sounds/aircraft-creaking/on</property>
 				<value>1</value>
 			</equals>
 		</condition>
 		<volume>
-			<property>/sounds/aircraft-creaking/volume</property>
+			<property>sounds/aircraft-creaking/volume</property>
 			<factor>1</factor>
 		</volume>
 	</aircraft-creaking>

@@ -10,7 +10,7 @@
 		<type>spin</type>
 		<object-name>WNG_FlapRUp</object-name>
 		<object-name>WNG_FlapRDown</object-name>
-		<property>/one</property>
+		<property>one</property>
 		<factor>100</factor>
 		<center>
 			<x-m>0.0</x-m>

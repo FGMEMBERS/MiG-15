@@ -20,14 +20,14 @@
 		<object-name>PBC_Up</object-name>
 		<object-name>PBC_Down</object-name>
   		<emission>
-			<factor-prop>/systems/light/canopy-lamps-norm</factor-prop>
+			<factor-prop>systems/light/canopy-lamps-norm</factor-prop>
 			<red>0.777</red>
 			<green>0.700</green>
 			<blue>0.700</blue>
 		</emission>
 		<condition>
 			<equals>
-				<property>/systems/light/use-canopy-lamps</property>
+				<property>systems/light/use-canopy-lamps</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -40,7 +40,7 @@
 		<object-name>PBC_Lever</object-name>
 		<object-name>PBC_LBase</object-name>
 		<object-name>PBC_LRing</object-name>
-		<property>/instrumentation/stop-control/switch-pos-norm</property>
+		<property>instrumentation/stop-control/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0.0</dep></entry>
 			<entry><ind>1.0</ind><dep>36.96</dep></entry>

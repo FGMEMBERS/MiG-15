@@ -19,7 +19,7 @@
 		<object-name>HO_Tube</object-name>
 		<object-name>HO_Ring</object-name>
   		<emission>
-			<factor-prop>/systems/electrical-real/outputs/horizon/volts-norm</factor-prop>
+			<factor-prop>systems/electrical-real/outputs/horizon/volts-norm</factor-prop>
 			<red>0.222</red>
 			<green>0.212</green>
 			<blue>0.212</blue>
@@ -39,14 +39,14 @@
 		<object-name>HO_Vern</object-name>
 		<object-name>HO_Button</object-name>
   		<emission>
-			<factor-prop>/systems/electrical-real/outputs/horizon/volts-norm</factor-prop>
+			<factor-prop>systems/electrical-real/outputs/horizon/volts-norm</factor-prop>
 			<red>0.777</red>
 			<green>0.700</green>
 			<blue>0.700</blue>
 		</emission>
 		<condition>
 			<equals>
-				<property>/systems/light/use-canopy-lamps</property>
+				<property>systems/light/use-canopy-lamps</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -58,7 +58,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>HO_Ball</object-name>
-		<property>/instrumentation/slip-skid-ball/indicated-slip-skid</property>
+		<property>instrumentation/slip-skid-ball/indicated-slip-skid</property>
 	  <min>-1</min>
 	  <max>1</max>
   	<interpolation>
@@ -80,7 +80,7 @@
   <animation>
     <type>rotate</type>
     <object-name>HO_Sphere</object-name>
-    <property>/instrumentation/artifical-horizon/indicated-roll-deg</property>
+    <property>instrumentation/artifical-horizon/indicated-roll-deg</property>
     <center>
       <x-m>-0.054</x-m>
       <y-m>0</y-m>
@@ -96,7 +96,7 @@
   <animation>
     <type>rotate</type>
     <object-name>HO_Sphere</object-name>
-    <property>/instrumentation/artifical-horizon/indicated-pitch-deg</property>
+    <property>instrumentation/artifical-horizon/indicated-pitch-deg</property>
     <center>
       <x-m>-0.054</x-m>
       <y-m>0</y-m>
@@ -112,7 +112,7 @@
   <animation>
     <type>translate</type>
     <object-name>HO_Button</object-name>
-    <property>/instrumentation/artifical-horizon/status</property>
+    <property>instrumentation/artifical-horizon/status</property>
     <factor>0.008</factor>
 	  <axis>
       <x>-1</x>
@@ -124,7 +124,7 @@
   <animation>
     <type>translate</type>
     <object-name>HO_Ring</object-name>
-    <property>/instrumentation/artifical-horizon/offset</property>
+    <property>instrumentation/artifical-horizon/offset</property>
     <factor>0.015</factor>
 	  <axis>
       <x>0</x>
@@ -136,7 +136,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>HO_Vern</object-name>
-		<property>/instrumentation/artifical-horizon/offset</property>
+		<property>instrumentation/artifical-horizon/offset</property>
 		<factor>360</factor>
 		<center>
 			<x-m>0</x-m>
@@ -159,7 +159,7 @@
 	    <interval-sec>0.1</interval-sec>
 	     <binding>
        	<command>property-adjust</command>
-	       <property>/instrumentation/artifical-horizon/offset</property>
+	       <property>instrumentation/artifical-horizon/offset</property>
 	       <step>-0.02</step>
 	       <min>-1</min>
 	       <max>1</max>
@@ -172,7 +172,7 @@
 	    <interval-sec>0.1</interval-sec>
 	     <binding>
 	       <command>property-adjust</command>
-	       <property>/instrumentation/artifical-horizon/offset</property>
+	       <property>instrumentation/artifical-horizon/offset</property>
 	       <step>-0.1</step>
 	       <min>-1</min>
 	       <max>1</max>
@@ -190,7 +190,7 @@
 	    <interval-sec>0.1</interval-sec>
 	     <binding>
        	<command>property-adjust</command>
-	       <property>/instrumentation/artifical-horizon/offset</property>
+	       <property>instrumentation/artifical-horizon/offset</property>
 	       <step>0.02</step>
 	       <min>-1</min>
 	       <max>1</max>
@@ -203,7 +203,7 @@
 	    <interval-sec>0.1</interval-sec>
 	     <binding>
 	       <command>property-adjust</command>
-	       <property>/instrumentation/artifical-horizon/offset</property>
+	       <property>instrumentation/artifical-horizon/offset</property>
 	       <step>0.1</step>
 	       <min>-1</min>
 	       <max>1</max>

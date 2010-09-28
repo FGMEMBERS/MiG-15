@@ -21,14 +21,14 @@
 		<object-name>GI_BCheck</object-name>
 		<object-name>GI_Message</object-name>
   		<emission>
-			<factor-prop>/systems/light/canopy-lamps-norm</factor-prop>
+			<factor-prop>systems/light/canopy-lamps-norm</factor-prop>
 			<red>0.777</red>
 			<green>0.700</green>
 			<blue>0.700</blue>
 		</emission>
 		<condition>
 			<equals>
-				<property>/systems/light/use-canopy-lamps</property>
+				<property>systems/light/use-canopy-lamps</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -41,7 +41,7 @@
 		<type>material</type>
 		<object-name>GI_MUBackplate</object-name>
 		<emission>
-			<factor-prop>/instrumentation/gear-indicator/middle-up</factor-prop>
+			<factor-prop>instrumentation/gear-indicator/middle-up</factor-prop>
 			<red>0.9</red>
 			<green>0.1</green>
 			<blue>0.1</blue>
@@ -52,7 +52,7 @@
 		<type>material</type>
 		<object-name>GI_LUBackplate</object-name>
 		<emission>
-			<factor-prop>/instrumentation/gear-indicator/left-up</factor-prop>
+			<factor-prop>instrumentation/gear-indicator/left-up</factor-prop>
 			<red>0.9</red>
 			<green>0.1</green>
 			<blue>0.1</blue>
@@ -63,7 +63,7 @@
 		<type>material</type>
 		<object-name>GI_RUBackplate</object-name>
 		<emission>
-			<factor-prop>/instrumentation/gear-indicator/right-up</factor-prop>
+			<factor-prop>instrumentation/gear-indicator/right-up</factor-prop>
 			<red>0.9</red>
 			<green>0.1</green>
 			<blue>0.1</blue>
@@ -74,7 +74,7 @@
 		<type>material</type>
 		<object-name>GI_MDBackplate</object-name>
 		<emission>
-			<factor-prop>/instrumentation/gear-indicator/middle-down</factor-prop>
+			<factor-prop>instrumentation/gear-indicator/middle-down</factor-prop>
 			<red>0.1</red>
 			<green>0.9</green>
 			<blue>0.1</blue>
@@ -85,7 +85,7 @@
 		<type>material</type>
 		<object-name>GI_LDBackplate</object-name>
 		<emission>
-			<factor-prop>/instrumentation/gear-indicator/left-down</factor-prop>
+			<factor-prop>instrumentation/gear-indicator/left-down</factor-prop>
 			<red>0.1</red>
 			<green>0.9</green>
 			<blue>0.1</blue>
@@ -96,7 +96,7 @@
 		<type>material</type>
 		<object-name>GI_RDBackplate</object-name>
 		<emission>
-			<factor-prop>/instrumentation/gear-indicator/right-down</factor-prop>
+			<factor-prop>instrumentation/gear-indicator/right-down</factor-prop>
 			<red>0.1</red>
 			<green>0.9</green>
 			<blue>0.1</blue>
@@ -106,7 +106,7 @@
   <animation>
     <type>rotate</type>
     <object-name>GI_RVern</object-name>
-    <property>/instrumentation/gear-indicator/red-pos-norm</property>
+    <property>instrumentation/gear-indicator/red-pos-norm</property>
     <interpolation>
       <entry><ind>0.0</ind><dep>0.0</dep></entry>
       <entry><ind>1.0</ind><dep>600</dep></entry>
@@ -126,7 +126,7 @@
   <animation>
     <type>rotate</type>
     <object-name>GI_GVern</object-name>
-    <property>/instrumentation/gear-indicator/green-pos-norm</property>
+    <property>instrumentation/gear-indicator/green-pos-norm</property>
     <interpolation>
       <entry><ind>0.0</ind><dep>0.0</dep></entry>
       <entry><ind>1.0</ind><dep>600</dep></entry>
@@ -146,7 +146,7 @@
   <animation>
     <type>translate</type>
     <object-name>GI_Switch</object-name>
-    <property>/instrumentation/gear-indicator/switch-pos-norm</property>
+    <property>instrumentation/gear-indicator/switch-pos-norm</property>
     <factor>0.009</factor>
 	  <axis>
       <x>0.0</x>
@@ -176,7 +176,7 @@
 	    <interval-sec>0.1</interval-sec>
 	     <binding>
        	<command>property-adjust</command>
-	       <property>/instrumentation/gear-indicator/red-pos-norm</property>
+	       <property>instrumentation/gear-indicator/red-pos-norm</property>
 	       <step>0.1</step>
 	       <min>0</min>
 	       <max>1</max>
@@ -189,7 +189,7 @@
 	    <interval-sec>0.1</interval-sec>
 	     <binding>
 	       <command>property-adjust</command>
-	       <property>/instrumentation/gear-indicator/red-pos-norm</property>
+	       <property>instrumentation/gear-indicator/red-pos-norm</property>
 	       <step>0.1</step>
 	       <min>0</min>
 	       <max>1</max>
@@ -207,7 +207,7 @@
 	    <interval-sec>0.1</interval-sec>
 	     <binding>
        	<command>property-adjust</command>
-	       <property>/instrumentation/gear-indicator/red-pos-norm</property>
+	       <property>instrumentation/gear-indicator/red-pos-norm</property>
 	       <step>-0.1</step>
 	       <min>0</min>
 	       <max>1</max>
@@ -220,7 +220,7 @@
 	    <interval-sec>0.1</interval-sec>
 	     <binding>
 	       <command>property-adjust</command>
-	       <property>/instrumentation/gear-indicator/red-pos-norm</property>
+	       <property>instrumentation/gear-indicator/red-pos-norm</property>
 	       <step>-0.1</step>
 	       <min>0</min>
 	       <max>1</max>
@@ -238,7 +238,7 @@
 	    <interval-sec>0.1</interval-sec>
 	     <binding>
        	<command>property-adjust</command>
-	       <property>/instrumentation/gear-indicator/green-pos-norm</property>
+	       <property>instrumentation/gear-indicator/green-pos-norm</property>
 	       <step>0.1</step>
 	       <min>0</min>
 	       <max>1</max>
@@ -251,7 +251,7 @@
 	    <interval-sec>0.1</interval-sec>
 	     <binding>
 	       <command>property-adjust</command>
-	       <property>/instrumentation/gear-indicator/green-pos-norm</property>
+	       <property>instrumentation/gear-indicator/green-pos-norm</property>
 	       <step>0.1</step>
 	       <min>0</min>
 	       <max>1</max>
@@ -269,7 +269,7 @@
 	    <interval-sec>0.1</interval-sec>
 	     <binding>
        	<command>property-adjust</command>
-	       <property>/instrumentation/gear-indicator/green-pos-norm</property>
+	       <property>instrumentation/gear-indicator/green-pos-norm</property>
 	       <step>-0.1</step>
 	       <min>0</min>
 	       <max>1</max>
@@ -282,7 +282,7 @@
 	    <interval-sec>0.1</interval-sec>
 	     <binding>
 	       <command>property-adjust</command>
-	       <property>/instrumentation/gear-indicator/green-pos-norm</property>
+	       <property>instrumentation/gear-indicator/green-pos-norm</property>
 	       <step>-0.1</step>
 	       <min>0</min>
 	       <max>1</max>

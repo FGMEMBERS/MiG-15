@@ -17,11 +17,11 @@
 		<condition>
 			<and>
 				<equals>
-					<property>/fdm/jsbsim/simulation/exploded</property>
+					<property>fdm/jsbsim/simulation/exploded</property>
 					<value>1</value>
 				</equals>
 				<greater-than>
-					<property>/velocities/airspeed-kt</property>
+					<property>velocities/airspeed-kt</property>
 					<value>10</value>
 				</greater-than>
 			</and>

@@ -41,14 +41,14 @@
 		<object-name>EBC_LBase</object-name>
 		<object-name>EBC_LMessage</object-name>
   		<emission>
-			<factor-prop>/systems/light/canopy-lamps-norm</factor-prop>
+			<factor-prop>systems/light/canopy-lamps-norm</factor-prop>
 			<red>0.777</red>
 			<green>0.700</green>
 			<blue>0.700</blue>
 		</emission>
 		<condition>
 			<equals>
-				<property>/systems/light/use-canopy-lamps</property>
+				<property>systems/light/use-canopy-lamps</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -61,7 +61,7 @@
 		<object-name>EBC_Lamp</object-name>
 		<object-name>EBC_Glass</object-name>
 	  	<emission>
-			<factor-prop>/systems/electrical-real/outputs/isolation-lamp/volts-norm</factor-prop>
+			<factor-prop>systems/electrical-real/outputs/isolation-lamp/volts-norm</factor-prop>
 			<red>0.9</red>
 			<green>0.1</green>
 			<blue>0.1</blue>
@@ -72,7 +72,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>IGNT_Switch</object-name>
-		<property>/instrumentation/switches/ignition-type/switch-pos-norm</property>
+		<property>instrumentation/switches/ignition-type/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -92,7 +92,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>PUC_Switch</object-name>
-		<property>/instrumentation/switches/pump/switch-pos-norm</property>
+		<property>instrumentation/switches/pump/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -112,7 +112,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>EBC_Switch</object-name>
-		<property>/instrumentation/switches/isolation-valve/switch-pos-norm</property>
+		<property>instrumentation/switches/isolation-valve/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -132,7 +132,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>IGN_Switch</object-name>
-		<property>/instrumentation/switches/ignition/switch-pos-norm</property>
+		<property>instrumentation/switches/ignition/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -152,7 +152,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>PUTT_Switch</object-name>
-		<property>/instrumentation/switches/third-tank-pump/switch-pos-norm</property>
+		<property>instrumentation/switches/third-tank-pump/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -172,7 +172,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>EC_Switch</object-name>
-		<property>/instrumentation/switches/engine-control/switch-pos-norm</property>
+		<property>instrumentation/switches/engine-control/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>

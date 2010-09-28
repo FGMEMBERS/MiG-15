@@ -25,14 +25,14 @@
 		<object-name>SBC_Switch</object-name>
 		<object-name>SBC_SBase</object-name>
   		<emission>
-			<factor-prop>/systems/light/canopy-lamps-norm</factor-prop>
+			<factor-prop>systems/light/canopy-lamps-norm</factor-prop>
 			<red>0.777</red>
 			<green>0.700</green>
 			<blue>0.700</blue>
 		</emission>
 		<condition>
 			<equals>
-				<property>/systems/light/use-canopy-lamps</property>
+				<property>systems/light/use-canopy-lamps</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -45,7 +45,7 @@
 		<object-name>SBC_Lamp</object-name>
 		<object-name>SBC_Glass</object-name>
 	  	<emission>
-			<factor-prop>/instrumentation/speed-brake-control/light-pos-norm</factor-prop>
+			<factor-prop>instrumentation/speed-brake-control/light-pos-norm</factor-prop>
 			<red>0.9</red>
 			<green>0.1</green>
 			<blue>0.1</blue>
@@ -55,7 +55,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>SBC_Switch</object-name>
-		<property>/instrumentation/speed-brake-control/switch-pos-norm</property>
+		<property>instrumentation/speed-brake-control/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>

@@ -52,14 +52,14 @@
 		<object-name>PD_RBTOne</object-name>
 		<object-name>PD_RBTTwo</object-name>
   		<emission>
-			<factor-prop>/systems/light/canopy-lamps-norm</factor-prop>
+			<factor-prop>systems/light/canopy-lamps-norm</factor-prop>
 			<red>0.777</red>
 			<green>0.700</green>
 			<blue>0.700</blue>
 		</emission>
 		<condition>
 			<equals>
-				<property>/systems/light/use-canopy-lamps</property>
+				<property>systems/light/use-canopy-lamps</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -84,7 +84,7 @@
 		<object-name>PD_LTube</object-name>
 		<object-name>PD_LBTOne</object-name>
 		<object-name>PD_LBTTwo</object-name>
-		<property>/instrumentation/pedals/shift_x</property>
+		<property>instrumentation/pedals/shift_x</property>
 		<factor>1</factor>
 		<axis>
 			<x>1</x>
@@ -97,7 +97,7 @@
 		<object-name>PD_LBTBolt</object-name>
 		<object-name>PD_LBTWasher</object-name>
 		<object-name>PD_LBTTube</object-name>
-		<property>/instrumentation/pedals/shift_rod_x</property>
+		<property>instrumentation/pedals/shift_rod_x</property>
 		<factor>1</factor>
 		<axis>
 			<x>1</x>
@@ -121,7 +121,7 @@
 		<object-name>PD_RTube</object-name>
 		<object-name>PD_RBTOne</object-name>
 		<object-name>PD_RBTTwo</object-name>
-		<property>/instrumentation/pedals/shift_x</property>
+		<property>instrumentation/pedals/shift_x</property>
 		<factor>1</factor>
 		<axis>
 			<x>-1</x>
@@ -131,7 +131,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>PD_TubeOne</object-name>
-		<property>/instrumentation/pedals/shift_tubes_angle</property>
+		<property>instrumentation/pedals/shift_tubes_angle</property>
 		<factor>1</factor>
 		<center>
 			<x-m>0.136</x-m>
@@ -148,7 +148,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>PD_TubeTwo</object-name>
-		<property>/instrumentation/pedals/shift_tubes_angle</property>
+		<property>instrumentation/pedals/shift_tubes_angle</property>
 		<factor>1</factor>
 		<center>
 			<x-m>0.111</x-m>
@@ -165,7 +165,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>PD_LBTOne</object-name>
-		<property>/instrumentation/pedals/shift_tubes_angle</property>
+		<property>instrumentation/pedals/shift_tubes_angle</property>
 		<factor>1</factor>
 		<center>
 			<x-m>0.136</x-m>
@@ -182,7 +182,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>PD_LBTTwo</object-name>
-		<property>/instrumentation/pedals/shift_tubes_angle</property>
+		<property>instrumentation/pedals/shift_tubes_angle</property>
 		<factor>1</factor>
 		<center>
 			<x-m>0.111</x-m>
@@ -199,7 +199,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>PD_RBTOne</object-name>
-		<property>/instrumentation/pedals/shift_tubes_angle</property>
+		<property>instrumentation/pedals/shift_tubes_angle</property>
 		<factor>1</factor>
 		<center>
 			<x-m>0.136</x-m>
@@ -216,7 +216,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>PD_RBTTwo</object-name>
-		<property>/instrumentation/pedals/shift_tubes_angle</property>
+		<property>instrumentation/pedals/shift_tubes_angle</property>
 		<factor>1</factor>
 		<center>
 			<x-m>0.111</x-m>

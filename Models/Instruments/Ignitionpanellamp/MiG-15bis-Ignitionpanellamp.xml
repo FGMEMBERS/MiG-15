@@ -17,14 +17,14 @@
 		<object-name>IPL_Base</object-name>
 		<object-name>IPL_Message</object-name>
   		<emission>
-			<factor-prop>/systems/light/canopy-lamps-norm</factor-prop>
+			<factor-prop>systems/light/canopy-lamps-norm</factor-prop>
 			<red>0.777</red>
 			<green>0.700</green>
 			<blue>0.700</blue>
 		</emission>
 		<condition>
 			<equals>
-				<property>/systems/light/use-canopy-lamps</property>
+				<property>systems/light/use-canopy-lamps</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -37,7 +37,7 @@
 		<object-name>IPL_Lamp</object-name>
 		<object-name>IPL_Glass</object-name>
   	<emission>
-	    <factor-prop>/systems/electrical-real/outputs/ignition-panel-lamp/volts-norm</factor-prop>
+	    <factor-prop>systems/electrical-real/outputs/ignition-panel-lamp/volts-norm</factor-prop>
     	<red>0.9</red>
 	    <green>0.1</green>
 	    <blue>0.1</blue>

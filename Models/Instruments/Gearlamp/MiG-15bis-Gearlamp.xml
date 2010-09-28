@@ -17,14 +17,14 @@
 		<type>material</type>
 		<object-name>GE_Base</object-name>
   		<emission>
-			<factor-prop>/systems/light/canopy-lamps-norm</factor-prop>
+			<factor-prop>systems/light/canopy-lamps-norm</factor-prop>
 			<red>0.777</red>
 			<green>0.700</green>
 			<blue>0.700</blue>
 		</emission>
 		<condition>
 			<equals>
-				<property>/systems/light/use-canopy-lamps</property>
+				<property>systems/light/use-canopy-lamps</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -36,7 +36,7 @@
 		<type>material</type>
 		<object-name>GE_Lamp</object-name>
   	<emission>
--	    <factor-prop>/instrumentation/gear-lamp/lamp-ligth-norm</factor-prop>
+-	    <factor-prop>instrumentation/gear-lamp/lamp-ligth-norm</factor-prop>
     	<red>0.9</red>
 	    <green>0.1</green>
 	    <blue>0.1</blue>

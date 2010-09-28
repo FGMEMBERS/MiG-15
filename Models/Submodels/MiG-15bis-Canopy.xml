@@ -10,7 +10,7 @@
 		<type>spin</type>
 		<object-name>CP_RCFrame</object-name>
 		<object-name>CP_RCGlass</object-name>
-		<property>/one</property>
+		<property>one</property>
 		<factor>30</factor>
 		<center>
 			<x-m>0.38</x-m>

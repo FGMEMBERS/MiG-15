@@ -14,7 +14,7 @@
 		<object-name>UC_MainL_CStLow</object-name>
 		<object-name>UC_MainL_Axle</object-name>
 		<object-name>UC_MainL_Tyre</object-name>
-		<property>/one</property>
+		<property>one</property>
 		<factor>20</factor>
 		<center>
 			<x-m>0.0</x-m>

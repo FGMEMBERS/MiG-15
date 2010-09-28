@@ -27,14 +27,14 @@
 		<object-name>FLC_Middle</object-name>
 		<object-name>FLC_Down</object-name>
   		<emission>
-			<factor-prop>/systems/light/canopy-lamps-norm</factor-prop>
+			<factor-prop>systems/light/canopy-lamps-norm</factor-prop>
 			<red>0.777</red>
 			<green>0.700</green>
 			<blue>0.700</blue>
 		</emission>
 		<condition>
 			<equals>
-				<property>/systems/light/use-canopy-lamps</property>
+				<property>systems/light/use-canopy-lamps</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -45,7 +45,7 @@
   <animation>
     <type>translate</type>
     <object-name>FLC_Fix</object-name>
-    <property>/instrumentation/flaps-control/fix-pos-norm</property>
+    <property>instrumentation/flaps-control/fix-pos-norm</property>
     <interpolation>
       <entry><ind>0.0</ind><dep>-0.005</dep></entry>
       <entry><ind>1.0</ind><dep>0.005</dep></entry>
@@ -63,7 +63,7 @@
     <object-name>FLC_LBase</object-name>
     <object-name>FLC_LRing</object-name>
     <object-name>FLC_Fix</object-name>
-    <property>/instrumentation/flaps-control/switch-pos-norm</property>
+    <property>instrumentation/flaps-control/switch-pos-norm</property>
     <interpolation>
       <entry><ind>-1.0</ind><dep>-36.96</dep></entry>
       <entry><ind>0.0</ind><dep>-12.25</dep></entry>
@@ -91,7 +91,7 @@
 	    <interval-sec>0.1</interval-sec>
 	    <binding>
        	<command>property-assign</command>
-	      <property>/controls/flight/flaps</property>
+	      <property>controls/flight/flaps</property>
 	      <value>0</value>
 	    </binding>
 	  </action>
@@ -101,7 +101,7 @@
 	    <interval-sec>0.1</interval-sec>
 	    <binding>
        	<command>property-assign</command>
-	      <property>/controls/flight/flaps</property>
+	      <property>controls/flight/flaps</property>
 	      <value>0</value>
 	    </binding>
 	  </action>
@@ -116,7 +116,7 @@
 	    <interval-sec>0.1</interval-sec>
 	    <binding>
        	<command>property-assign</command>
-	      <property>/controls/flight/flaps</property>
+	      <property>controls/flight/flaps</property>
 	      <value>0.36</value>
 	    </binding>
 	  </action>
@@ -126,7 +126,7 @@
 	    <interval-sec>0.1</interval-sec>
 	    <binding>
        	<command>property-assign</command>
-	      <property>/controls/flight/flaps</property>
+	      <property>controls/flight/flaps</property>
 	      <value>0.36</value>
 	    </binding>
 	  </action>
@@ -141,7 +141,7 @@
 	    <interval-sec>0.1</interval-sec>
 	    <binding>
        	<command>property-assign</command>
-	      <property>/controls/flight/flaps</property>
+	      <property>controls/flight/flaps</property>
 	      <value>1</value>
 	    </binding>
 	  </action>
@@ -151,7 +151,7 @@
 	    <interval-sec>0.1</interval-sec>
 	    <binding>
        	<command>property-assign</command>
-	      <property>/controls/flight/flaps</property>
+	      <property>controls/flight/flaps</property>
 	      <value>1</value>
 	    </binding>
 	  </action>

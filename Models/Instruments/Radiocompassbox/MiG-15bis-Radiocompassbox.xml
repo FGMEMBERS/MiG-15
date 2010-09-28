@@ -20,7 +20,7 @@
 		<object-name>RC_FP640x1300</object-name>
 		<object-name>RC_FBackplate</object-name>
   		<emission>
-			<factor-prop>/instrumentation/radiocompass/lamp</factor-prop>
+			<factor-prop>instrumentation/radiocompass/lamp</factor-prop>
 			<red>0.222</red>
 			<green>0.212</green>
 			<blue>0.212</blue>
@@ -32,7 +32,7 @@
 		<object-name>RC_OGlass</object-name>
 		<object-name>RC_OLamp</object-name>
   		<emission>
-			<factor-prop>/instrumentation/radiocompass/lamp</factor-prop>
+			<factor-prop>instrumentation/radiocompass/lamp</factor-prop>
 			<red>0.005</red>
 			<green>0.222</green>
 			<blue>0.005</blue>
@@ -44,7 +44,7 @@
 		<object-name>RC_RGlass</object-name>
 		<object-name>RC_RLamp</object-name>
   		<emission>
-			<factor-prop>/instrumentation/radiocompass/recieve-lamp</factor-prop>
+			<factor-prop>instrumentation/radiocompass/recieve-lamp</factor-prop>
 			<red>0.005</red>
 			<green>0.222</green>
 			<blue>0.005</blue>
@@ -110,14 +110,14 @@
 		<object-name>RC_TSUp</object-name>
 		<object-name>RC_TSelector</object-name>
   		<emission>
-			<factor-prop>/systems/light/canopy-lamps-norm</factor-prop>
+			<factor-prop>systems/light/canopy-lamps-norm</factor-prop>
 			<red>0.777</red>
 			<green>0.700</green>
 			<blue>0.700</blue>
 		</emission>
 		<condition>
 			<equals>
-				<property>/systems/light/use-canopy-lamps</property>
+				<property>systems/light/use-canopy-lamps</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -128,7 +128,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RC_TSelector</object-name>
-		<property>/instrumentation/radiocompass/type/switch-pos-norm</property>
+		<property>instrumentation/radiocompass/type/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-45</dep></entry>
 			<entry><ind>1</ind><dep>-15</dep></entry>
@@ -156,7 +156,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/type/set-pos</property>
+				<property>instrumentation/radiocompass/type/set-pos</property>
 				<step>-1</step>
 				<min>0</min>
 				<max>3</max>
@@ -169,7 +169,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/type/set-pos</property>
+				<property>instrumentation/radiocompass/type/set-pos</property>
 				<step>-1</step>
 				<min>0</min>
 				<max>3</max>
@@ -187,7 +187,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/type/set-pos</property>
+				<property>instrumentation/radiocompass/type/set-pos</property>
 				<step>1</step>
 				<min>0</min>
 				<max>3</max>
@@ -200,7 +200,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/type/set-pos</property>
+				<property>instrumentation/radiocompass/type/set-pos</property>
 				<step>1</step>
 				<min>0</min>
 				<max>3</max>
@@ -212,7 +212,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RC_FSelector</object-name>
-		<property>/instrumentation/radiocompass/band/switch-pos-norm</property>
+		<property>instrumentation/radiocompass/band/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-90</dep></entry>
 			<entry><ind>1</ind><dep>0</dep></entry>
@@ -233,7 +233,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RC_FICPlate</object-name>
-		<property>/instrumentation/radiocompass/band/switch-pos-norm</property>
+		<property>instrumentation/radiocompass/band/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-90</dep></entry>
 			<entry><ind>1</ind><dep>0</dep></entry>
@@ -260,7 +260,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/band/set-pos</property>
+				<property>instrumentation/radiocompass/band/set-pos</property>
 				<step>-1</step>
 				<min>0</min>
 				<max>2</max>
@@ -273,7 +273,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/band/set-pos</property>
+				<property>instrumentation/radiocompass/band/set-pos</property>
 				<step>-1</step>
 				<min>0</min>
 				<max>2</max>
@@ -291,7 +291,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/band/set-pos</property>
+				<property>instrumentation/radiocompass/band/set-pos</property>
 				<step>1</step>
 				<min>0</min>
 				<max>2</max>
@@ -304,7 +304,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/band/set-pos</property>
+				<property>instrumentation/radiocompass/band/set-pos</property>
 				<step>1</step>
 				<min>0</min>
 				<max>2</max>
@@ -316,7 +316,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>RC_FP150x310</object-name>
-		<property>/instrumentation/radiocompass/band[0]/active/switch-pos-norm</property>
+		<property>instrumentation/radiocompass/band[0]/active/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>1.0</ind><dep>0.0</dep></entry>
 			<entry><ind>0.0</ind><dep>0.015</dep></entry>
@@ -331,7 +331,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RC_FP150x310</object-name>
-		<property>/instrumentation/radiocompass/band[0]/frequency</property>
+		<property>instrumentation/radiocompass/band[0]/frequency</property>
 		<interpolation>
 			<entry><ind>150</ind><dep>0</dep></entry>
 			<entry><ind>200</ind><dep>50</dep></entry>
@@ -354,7 +354,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>RC_FP310x640</object-name>
-		<property>/instrumentation/radiocompass/band[1]/active/switch-pos-norm</property>
+		<property>instrumentation/radiocompass/band[1]/active/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>1.0</ind><dep>0.0</dep></entry>
 			<entry><ind>0.0</ind><dep>0.015</dep></entry>
@@ -369,7 +369,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RC_FP310x640</object-name>
-		<property>/instrumentation/radiocompass/band[1]/frequency</property>
+		<property>instrumentation/radiocompass/band[1]/frequency</property>
 		<interpolation>
 			<entry><ind>300</ind><dep>0</dep></entry>
 			<entry><ind>400</ind><dep>50</dep></entry>
@@ -392,7 +392,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>RC_FP640x1300</object-name>
-		<property>/instrumentation/radiocompass/band[2]/active/switch-pos-norm</property>
+		<property>instrumentation/radiocompass/band[2]/active/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>1.0</ind><dep>0.0</dep></entry>
 			<entry><ind>0.0</ind><dep>0.015</dep></entry>
@@ -407,7 +407,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RC_FP640x1300</object-name>
-		<property>/instrumentation/radiocompass/band[2]/frequency</property>
+		<property>instrumentation/radiocompass/band[2]/frequency</property>
 		<interpolation>
 			<entry><ind>650</ind><dep>-50</dep></entry>
 			<entry><ind>700</ind><dep>0</dep></entry>
@@ -436,7 +436,7 @@
 		<object-name>RC_FIVBDown</object-name>
 		<object-name>RC_FIVRod</object-name>
 		<object-name>RC_FIVern</object-name>
-		<property>/instrumentation/radiocompass/frequency-vern</property>
+		<property>instrumentation/radiocompass/frequency-vern</property>
 		<factor>1</factor>
 		<center>
 			<x-m>0.148</x-m>
@@ -453,7 +453,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RC_FIVern</object-name>
-		<property>/instrumentation/radiocompass/frequency-vern</property>
+		<property>instrumentation/radiocompass/frequency-vern</property>
 		<factor>1</factor>
 		<center>
 			<x-m>0.118</x-m>
@@ -476,7 +476,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/frequency-vern</property>
+				<property>instrumentation/radiocompass/frequency-vern</property>
 				<step>1</step>
 				<wrap>false</wrap>
 			</binding>
@@ -487,7 +487,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/frequency-vern</property>
+				<property>instrumentation/radiocompass/frequency-vern</property>
 				<step>1</step>
 				<wrap>false</wrap>
 			</binding>
@@ -503,7 +503,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/frequency-vern</property>
+				<property>instrumentation/radiocompass/frequency-vern</property>
 				<step>-1</step>
 				<wrap>false</wrap>
 			</binding>
@@ -514,7 +514,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/frequency-vern</property>
+				<property>instrumentation/radiocompass/frequency-vern</property>
 				<step>-1</step>
 				<wrap>false</wrap>
 			</binding>
@@ -524,7 +524,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RC_RINeedle</object-name>
-		<property>/instrumentation/radiocompass/recieve-quality</property>
+		<property>instrumentation/radiocompass/recieve-quality</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>1</ind><dep>83.3</dep></entry>
@@ -544,7 +544,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RC_TLTGSwitch</object-name>
-		<property>/instrumentation/radiocompass/tl-or-tg/switch-pos-norm</property>
+		<property>instrumentation/radiocompass/tl-or-tg/switch-pos-norm</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-45</dep></entry>
 			<entry><ind>1</ind><dep>45</dep></entry>
@@ -570,7 +570,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-assign</command>
-				<property>/instrumentation/radiocompass/tl-or-tg/set-pos</property>
+				<property>instrumentation/radiocompass/tl-or-tg/set-pos</property>
 				<value>0</value>
 			</binding>
 		</action>
@@ -580,7 +580,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-assign</command>
-				<property>/instrumentation/radiocompass/tl-or-tg/set-pos</property>
+				<property>instrumentation/radiocompass/tl-or-tg/set-pos</property>
 				<value>0</value>
 			</binding>
 		</action>
@@ -595,7 +595,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-assign</command>
-				<property>/instrumentation/radiocompass/tl-or-tg/set-pos</property>
+				<property>instrumentation/radiocompass/tl-or-tg/set-pos</property>
 				<value>1</value>
 			</binding>
 		</action>
@@ -605,7 +605,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-assign</command>
-				<property>/instrumentation/radiocompass/tl-or-tg/set-pos</property>
+				<property>instrumentation/radiocompass/tl-or-tg/set-pos</property>
 				<value>1</value>
 			</binding>
 		</action>
@@ -614,7 +614,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RC_FVern</object-name>
-		<property>/instrumentation/radiocompass/frame-speed</property>
+		<property>instrumentation/radiocompass/frame-speed</property>
 		<interpolation>
 			<entry><ind>-1</ind><dep>-45</dep></entry>
 			<entry><ind>1</ind><dep>45</dep></entry>
@@ -640,7 +640,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/frame-speed</property>
+				<property>instrumentation/radiocompass/frame-speed</property>
 				<step>-0.02</step>
 				<min>-1</min>
 				<max>1</max>
@@ -653,7 +653,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/frame-speed</property>
+				<property>instrumentation/radiocompass/frame-speed</property>
 				<step>-0.02</step>
 				<min>-1</min>
 				<max>1</max>
@@ -671,7 +671,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/frame-speed</property>
+				<property>instrumentation/radiocompass/frame-speed</property>
 				<step>0.02</step>
 				<min>-1</min>
 				<max>1</max>
@@ -684,7 +684,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/frame-speed</property>
+				<property>instrumentation/radiocompass/frame-speed</property>
 				<step>0.02</step>
 				<min>-1</min>
 				<max>1</max>
@@ -696,7 +696,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RC_BVern</object-name>
-		<property>/instrumentation/radiocompass/brightness</property>
+		<property>instrumentation/radiocompass/brightness</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>1</ind><dep>360</dep></entry>
@@ -722,7 +722,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/brightness</property>
+				<property>instrumentation/radiocompass/brightness</property>
 				<step>-0.02</step>
 				<min>0</min>
 				<max>1</max>
@@ -735,7 +735,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/brightness</property>
+				<property>instrumentation/radiocompass/brightness</property>
 				<step>-0.02</step>
 				<min>0</min>
 				<max>1</max>
@@ -753,7 +753,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/brightness</property>
+				<property>instrumentation/radiocompass/brightness</property>
 				<step>0.02</step>
 				<min>0</min>
 				<max>1</max>
@@ -766,7 +766,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/brightness</property>
+				<property>instrumentation/radiocompass/brightness</property>
 				<step>0.02</step>
 				<min>0</min>
 				<max>1</max>
@@ -779,7 +779,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RC_LVern</object-name>
-		<property>/instrumentation/radiocompass/loudness</property>
+		<property>instrumentation/radiocompass/loudness</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>1</ind><dep>360</dep></entry>
@@ -805,7 +805,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/loudness</property>
+				<property>instrumentation/radiocompass/loudness</property>
 				<step>-0.02</step>
 				<min>0</min>
 				<max>1</max>
@@ -818,7 +818,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/loudness</property>
+				<property>instrumentation/radiocompass/loudness</property>
 				<step>-0.02</step>
 				<min>0</min>
 				<max>1</max>
@@ -836,7 +836,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/loudness</property>
+				<property>instrumentation/radiocompass/loudness</property>
 				<step>0.02</step>
 				<min>0</min>
 				<max>1</max>
@@ -849,7 +849,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/loudness</property>
+				<property>instrumentation/radiocompass/loudness</property>
 				<step>0.02</step>
 				<min>0</min>
 				<max>1</max>
@@ -861,7 +861,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RC_TGVern</object-name>
-		<property>/instrumentation/radiocompass/telegraph-loudness</property>
+		<property>instrumentation/radiocompass/telegraph-loudness</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>1</ind><dep>360</dep></entry>
@@ -887,7 +887,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/telegraph-loudness</property>
+				<property>instrumentation/radiocompass/telegraph-loudness</property>
 				<step>-0.02</step>
 				<min>0</min>
 				<max>1</max>
@@ -900,7 +900,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/telegraph-loudness</property>
+				<property>instrumentation/radiocompass/telegraph-loudness</property>
 				<step>-0.02</step>
 				<min>0</min>
 				<max>1</max>
@@ -918,7 +918,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/telegraph-loudness</property>
+				<property>instrumentation/radiocompass/telegraph-loudness</property>
 				<step>0.02</step>
 				<min>0</min>
 				<max>1</max>
@@ -931,7 +931,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/telegraph-loudness</property>
+				<property>instrumentation/radiocompass/telegraph-loudness</property>
 				<step>0.02</step>
 				<min>0</min>
 				<max>1</max>
@@ -943,7 +943,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RC_TLVern</object-name>
-		<property>/instrumentation/radiocompass/telephone-loudness</property>
+		<property>instrumentation/radiocompass/telephone-loudness</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0</dep></entry>
 			<entry><ind>1</ind><dep>360</dep></entry>
@@ -969,7 +969,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/telephone-loudness</property>
+				<property>instrumentation/radiocompass/telephone-loudness</property>
 				<step>-0.02</step>
 				<min>0</min>
 				<max>1</max>
@@ -982,7 +982,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/telephone-loudness</property>
+				<property>instrumentation/radiocompass/telephone-loudness</property>
 				<step>-0.02</step>
 				<min>0</min>
 				<max>1</max>
@@ -1001,7 +1001,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/telephone-loudness</property>
+				<property>instrumentation/radiocompass/telephone-loudness</property>
 				<step>0.02</step>
 				<min>0</min>
 				<max>1</max>
@@ -1014,7 +1014,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>/instrumentation/radiocompass/telephone-loudness</property>
+				<property>instrumentation/radiocompass/telephone-loudness</property>
 				<step>0.02</step>
 				<min>0</min>
 				<max>1</max>
