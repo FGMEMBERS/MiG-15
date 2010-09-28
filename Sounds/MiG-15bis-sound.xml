@@ -102,14 +102,16 @@
 		<path>Aircraft/MiG-15/Sounds/engine-running.wav</path>
 		<mode>looped</mode>
 		<condition>
-			<equals>
-				<property>/engines/engine/running</property>
-				<value>1</value>	
-			</equals>
-			<equals>
-				<property>/sim/current-view/internal</property>
-				<value>true</value>	
-			</equals>
+			<and>
+				<equals>
+					<property>/engines/engine/running</property>
+					<value>1</value>	
+				</equals>
+				<equals>
+					<property>/sim/current-view/internal</property>
+					<value>true</value>	
+				</equals>
+			</and>
 		</condition>
 		<volume>
 			<property>/engines/engine/n2</property>
@@ -138,14 +140,16 @@
 		<path>Aircraft/MiG-15/Sounds/engine-outdoor.wav</path>
 		<mode>looped</mode>
 		<condition>
-			<equals>
-				<property>/engines/engine/running</property>
-				<value>1</value>	
-			</equals>
-			<equals>
-				<property>/sim/current-view/internal</property>
-				<value>false</value>	
-			</equals>
+			<and>
+				<equals>
+					<property>/engines/engine/running</property>
+					<value>1</value>	
+				</equals>
+				<equals>
+					<property>/sim/current-view/internal</property>
+					<value>false</value>	
+				</equals>
+			</and>
 		</condition>
 		<position>
 			<x> 5.185 </x>
@@ -175,14 +179,16 @@
 		<path>Aircraft/MiG-15/Sounds/engine-outdoor.wav</path>
 		<mode>looped</mode>
 		<condition>
-			<equals>
-				<property>/engines/engine/running</property>
-				<value>1</value>	
-			</equals>
-			<equals>
-				<property>/sim/current-view/internal</property>
-				<value>true</value>	
-			</equals>
+			<and>
+				<equals>
+					<property>/engines/engine/running</property>
+					<value>1</value>	
+				</equals>
+				<equals>
+					<property>/sim/current-view/internal</property>
+					<value>true</value>	
+				</equals>
+			</and>
 		</condition>
 		<position>
 			<x> 5.185 </x>
@@ -250,7 +256,10 @@
 		<mode>looped</mode>
 		<path>Sounds/rumble.wav</path>
 		<condition>
-			<property>/gear/gear[0]/wow</property>
+			<equals>
+				<property>/gear/gear[0]/wow</property>
+				<value>1</value>
+			</equals>
 		</condition>
 		<volume>
 			<property>/velocities/groundspeed-kt</property>
@@ -264,7 +273,10 @@
 		<mode>looped</mode>
 		<path>Sounds/rumble.wav</path>
 		<condition>
-			<property>/gear/gear[1]/wow</property>
+			<equals>
+				<property>/gear/gear[1]/wow</property>
+				<value>1</value>
+			</equals>
 		</condition>
 		<volume>
 			<property>/velocities/groundspeed-kt</property>
@@ -278,7 +290,10 @@
 		<mode>looped</mode>
 		<path>Sounds/rumble.wav</path>
 		<condition>
-			<property>/gear/gear[2]/wow</property>
+			<equals>
+				<property>/gear/gear[2]/wow</property>
+				<value>1</value>
+			</equals>
 		</condition>
 		<volume>
 			<property>/velocities/groundspeed-kt</property>
@@ -319,12 +334,10 @@
 		<name>gear-lock0a</name>
 		<path>Sounds/gear-lck.wav</path>
 		<condition>
-		<condition>
 			<equals>
 				<property>/fdm/jsbsim/gear/unit[0]/pos-norm</property>
 				<value>1</value>
 			</equals>
-		</condition>
 		</condition>
 	</gear>
 
@@ -333,13 +346,6 @@
 		<mode>in-transit</mode>
 		<path>Aircraft/MiG-15/Sounds/gears-move.wav</path>
 		<property>/fdm/jsbsim/gear/unit[1]/pos-norm</property>
-		<condition>
-			<equals>
-				<property>/fdm/jsbsim/init/finally-initialized</property>
-				<property>/processes/gear-move/sound-enabled</property>
-				<value>1</value>
-			</equals>
-		</condition>
 		<pitch>
 			<internal>dt_play</internal>
 			<offset>1.0</offset>
@@ -347,6 +353,7 @@
 		</pitch>
 		<volume>
 			<property>/fdm/jsbsim/gear/finally-initialized</property>
+			<property>/processes/gear-move/sound-enabled</property>
 			<factor>0.3</factor>
 		</volume>
 	</gear>
@@ -355,12 +362,10 @@
 		<name>gear-lock1</name>
 		<path>Sounds/gear-lck.wav</path>
 		<condition>
-		<condition>
 			<equals>
 				<property>/fdm/jsbsim/gear/unit[1]/pos-norm</property>
 				<value>0</value>
 			</equals>
-		</condition>
 		</condition>
 	</gear>
 
@@ -368,12 +373,10 @@
 		<name>gear-lock1a</name>
 		<path>Sounds/gear-lck.wav</path>
 		<condition>
-		<condition>
 			<equals>
 				<property>/fdm/jsbsim/gear/unit[1]/pos-norm</property>
 				<value>1</value>
 			</equals>
-		</condition>
 		</condition>
 	</gear>
 
@@ -420,7 +423,10 @@
       <name>squeal0</name>
       <path>Sounds/squeal.wav</path>
       <condition>
-        <property>/gear/gear[0]/wow</property>
+		<equals>
+			<property>/gear/gear[0]/wow</property>
+			<value>1</value>
+		</equals>
       </condition>
       <volume>
         <property>/velocities/speed-down-fps</property>
@@ -446,7 +452,10 @@
       <name>squeal1</name>
       <path>Sounds/squeal.wav</path>
       <condition>
-        <property>/gear/gear[1]/wow</property>
+		<equals>
+			<property>/gear/gear[1]/wow</property>
+			<value>1</value>
+		</equals>
       </condition>
       <volume>
         <property>/velocities/speed-down-fps</property>
@@ -472,7 +481,10 @@
       <name>squeal2</name>
       <path>Sounds/squeal.wav</path>
       <condition>
-        <property>/gear/gear[2]/wow</property>
+		<equals>
+			<property>/gear/gear[2]/wow</property>
+			<value>1</value>
+		</equals>
       </condition>
       <volume>
         <property>/velocities/speed-down-fps</property>
@@ -671,14 +683,16 @@
 		<path>Sounds/click.wav</path>
 		<mode>once</mode>
 		<condition>
-			<equals>
-				<property>/sounds/click/on</property>
-				<value>1</value>
-			</equals>
-			<equals>
-				<property>/sim/current-view/internal</property>
-				<value>true</value>	
-			</equals>
+			<and>
+				<equals>
+					<property>/sounds/click/on</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>/sim/current-view/internal</property>
+					<value>true</value>	
+				</equals>
+			</and>
 		</condition>
 		<volume><factor>0.7</factor></volume>
 	</click>
@@ -714,14 +728,16 @@
 		<path>Aircraft/MiG-15/Sounds/radio-tune.wav</path>
 		<mode>looped</mode>
 		<condition>
-			<equals>
-				<property>/sounds/radio-tune/on</property>
-				<value>1</value>
-			</equals>
-			<equals>
-				<property>/sim/current-view/internal</property>
-				<value>true</value>	
-			</equals>
+			<and>
+				<equals>
+					<property>/sounds/radio-tune/on</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>/sim/current-view/internal</property>
+					<value>true</value>	
+				</equals>
+			</and>
 		</condition>
 		<volume>
 			<property>/instrumentation/radiocompass/telephone-loudness</property>
@@ -733,14 +749,16 @@
 		<path>Aircraft/MiG-15/Sounds/radio-morse.wav</path>
 		<mode>looped</mode>
 		<condition>
-			<equals>
-				<property>/sounds/radio-morse/on</property>
-				<value>1</value>
-			</equals>
-			<equals>
-				<property>/sim/current-view/internal</property>
-				<value>true</value>	
-			</equals>
+			<and>
+				<equals>
+					<property>/sounds/radio-morse/on</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>/sim/current-view/internal</property>
+					<value>true</value>	
+				</equals>
+			</and>
 		</condition>
 		<volume>
 			<property>/instrumentation/radiocompass/telegraph-loudness</property>
@@ -752,14 +770,16 @@
 		<path>Aircraft/MiG-15/Sounds/radio-noise.wav</path>
 		<mode>looped</mode>
 		<condition>
-			<equals>
-				<property>/sounds/radio-noise/on</property>
-				<value>1</value>
-			</equals>
-			<equals>
-				<property>/sim/current-view/internal</property>
-				<value>true</value>	
-			</equals>
+			<and>
+				<equals>
+					<property>/sounds/radio-noise/on</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>/sim/current-view/internal</property>
+					<value>true</value>	
+				</equals>
+			</and>
 		</condition>
 		<volume>
 			<property>/instrumentation/radiocompass/noise-loudness</property>
@@ -771,14 +791,16 @@
 		<path>Aircraft/MiG-15/Sounds/radio-search-left.wav</path>
 		<mode>looped</mode>
 		<condition>
-			<equals>
-				<property>/sounds/radio-search-left/on</property>
-				<value>1</value>
-			</equals>
-			<equals>
-				<property>/sim/current-view/internal</property>
-				<value>true</value>	
-			</equals>
+			<and>
+				<equals>
+					<property>/sounds/radio-search-left/on</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>/sim/current-view/internal</property>
+					<value>true</value>	
+				</equals>
+			</and>
 		</condition>
 		<volume>
 			<property>/sounds/radio-search-left/volume-norm</property>
@@ -790,14 +812,16 @@
 		<path>Aircraft/MiG-15/Sounds/radio-search-right.wav</path>
 		<mode>looped</mode>
 		<condition>
-			<equals>
-				<property>/sounds/radio-search-right/on</property>
-				<value>1</value>
-			</equals>
-			<equals>
-				<property>/sim/current-view/internal</property>
-				<value>true</value>	
-			</equals>
+			<and>
+				<equals>
+					<property>/sounds/radio-search-right/on</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>/sim/current-view/internal</property>
+					<value>true</value>	
+				</equals>
+			</and>
 		</condition>
 		<volume>
 			<property>/sounds/radio-search-right/volume-norm</property>
@@ -959,18 +983,10 @@
 		<path>Aircraft/MiG-15/Sounds/aircraft-crack.wav</path>
 		<mode>once</mode>
 		<condition>
-			<and>
-				<equals>
-					<property>/sounds/aircraft-crack/on</property>
-					<value>1</value>
-				</equals>
-<!--
-				<equals>
-					<property>/sim/current-view/internal</property>
-					<value>true</value>	
-				</equals>
--->
-			</and>
+			<equals>
+				<property>/sounds/aircraft-crack/on</property>
+				<value>1</value>
+			</equals>
 		</condition>
 		<volume>
 			<property>/sounds/aircraft-crack/volume</property>
@@ -983,18 +999,10 @@
 		<path>Aircraft/MiG-15/Sounds/aircraft-creaking.wav</path>
 		<mode>looped</mode>
 		<condition>
-			<and>
-				<equals>
-					<property>/sounds/aircraft-creaking/on</property>
-					<value>1</value>
-				</equals>
-<!--
-				<equals>
-					<property>/sim/current-view/internal</property>
-					<value>true</value>	
-				</equals>
--->
-			</and>
+			<equals>
+				<property>/sounds/aircraft-creaking/on</property>
+				<value>1</value>
+			</equals>
 		</condition>
 		<volume>
 			<property>/sounds/aircraft-creaking/volume</property>
