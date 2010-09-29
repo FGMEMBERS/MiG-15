@@ -82,7 +82,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.bitswap("/controls/flight/speedbrake")</script>
+				<script>MIG15BIS.bitswap("controls/flight/speedbrake")</script>
 			</binding>
 		</action>
 		<action>
@@ -91,7 +91,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.bitswap("/controls/flight/speedbrake")</script>
+				<script>MIG15BIS.bitswap("controls/flight/speedbrake")</script>
 			</binding>
 		</action>
 	</animation>

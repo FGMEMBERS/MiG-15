@@ -386,7 +386,7 @@ MiG-15bis simulation config.
 				<desc>Swap cannon switch saFer</desc>
 				<binding>
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("/instrumentation/stick/fix")</script>
+					<script>MIG15BIS.switchswap("instrumentation/stick/fix")</script>
 				</binding>
 			</key>
 <!-- Fire the cannons -->
@@ -427,7 +427,7 @@ MiG-15bis simulation config.
 				<desc>Toggle Canopy</desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("/instrumentation/canopy")</script>
+					<script>MIG15BIS.switchswap("instrumentation/canopy")</script>
 				</binding>
 			</key>
 
@@ -477,7 +477,7 @@ MiG-15bis simulation config.
 				<desc>Swap main pump power</desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("/instrumentation/switches/pump")</script>
+					<script>MIG15BIS.switchswap("instrumentation/switches/pump")</script>
 				</binding>
 			</key>
             
@@ -487,7 +487,7 @@ MiG-15bis simulation config.
 				<desc>Lock/Unlock thRottle handle</desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("/instrumentation/gas-control/lock")</script>
+					<script>MIG15BIS.switchswap("instrumentation/gas-control/lock")</script>
 				</binding>
 			</key>
 
@@ -497,7 +497,7 @@ MiG-15bis simulation config.
 				<desc>On/Off low throttle holder</desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("/instrumentation/gas-control/fix")</script>
+					<script>MIG15BIS.switchswap("instrumentation/gas-control/fix")</script>
 				</binding>
 			</key>
 
@@ -507,7 +507,7 @@ MiG-15bis simulation config.
 				<desc>Swap egine emeRgency brake</desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("/instrumentation/stop-control")</script>
+					<script>MIG15BIS.switchswap("instrumentation/stop-control")</script>
 				</binding>
 			</key>
 
@@ -518,7 +518,7 @@ MiG-15bis simulation config.
 				<desc>Earth/Air Starter ignition type</desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("/instrumentation/switches/ignition-type")</script>
+					<script>MIG15BIS.switchswap("instrumentation/switches/ignition-type")</script>
 				</binding>
 			</key>
 
@@ -528,7 +528,7 @@ MiG-15bis simulation config.
 				<desc>Swap ignition Starter panel power</desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("/instrumentation/switches/ignition")</script>
+					<script>MIG15BIS.switchswap("instrumentation/switches/ignition")</script>
 				</binding>
 			</key>
 
@@ -558,7 +558,7 @@ MiG-15bis simulation config.
 				<desc>Up/Down heaDsight</desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("/instrumentation/headsight/up")</script>
+					<script>MIG15BIS.switchswap("instrumentation/headsight/up")</script>
 				</binding>
 			</key>
 
@@ -568,7 +568,7 @@ MiG-15bis simulation config.
 				<desc>Swap battEry powEr switch</desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("/instrumentation/switches/battery")</script>
+					<script>MIG15BIS.switchswap("instrumentation/switches/battery")</script>
 				</binding>
 			</key>
 
@@ -578,7 +578,7 @@ MiG-15bis simulation config.
 				<desc>Swap APU gEnerator powEr switch</desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("/instrumentation/switches/generator")</script>
+					<script>MIG15BIS.switchswap("instrumentation/switches/generator")</script>
 				</binding>
 			</key>
 
@@ -588,7 +588,7 @@ MiG-15bis simulation config.
 				<desc>Swap Egine control instrumEntattion powEr</desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("/instrumentation/switches/engine-control")</script>
+					<script>MIG15BIS.switchswap("instrumentation/switches/engine-control")</script>
 				</binding>
 			</key>
 
@@ -598,7 +598,7 @@ MiG-15bis simulation config.
 				<desc>Close speedbrakes</desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>setprop("/controls/flight/speedbrake", 0)</script>
+					<script>setprop("controls/flight/speedbrake", 0)</script>
 				</binding>
 			</key>
 
@@ -607,7 +607,7 @@ MiG-15bis simulation config.
 				<desc>Open speedbrakes</desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>setprop("/controls/flight/speedbrake", 1)</script>
+					<script>setprop("controls/flight/speedbrake", 1)</script>
 				</binding>
 			</key>
 
@@ -617,12 +617,12 @@ MiG-15bis simulation config.
 				<desc>Start engine</desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>setprop("/controls/engines/engine/starter-key", 1)</script>
+					<script>setprop("controls/engines/engine/starter-key", 1)</script>
 				</binding>
 				<mod-up>
 					<binding>
 						<command>nasal</command>
-						<script>setprop("/controls/engines/engine/starter-key", 0)</script>
+						<script>setprop("controls/engines/engine/starter-key", 0)</script>
 					</binding>
 				</mod-up>
 			</key>
@@ -632,7 +632,7 @@ MiG-15bis simulation config.
 				<desc>Swap engine isolation valve</desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("/instrumentation/switches/isolation-valve")</script>
+					<script>MIG15BIS.switchswap("instrumentation/switches/isolation-valve")</script>
 				</binding>
 			</key>
 
@@ -641,7 +641,7 @@ MiG-15bis simulation config.
 				<desc>Swap fUel source, standart tanks or balance tank </desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("/instrumentation/switches/fuel-control")</script>
+					<script>MIG15BIS.switchswap("instrumentation/switches/fuel-control")</script>
 				</binding>
 			</key>
 
@@ -650,7 +650,7 @@ MiG-15bis simulation config.
 				<desc>Swap fUel source, inrernal or external tanks </desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("/instrumentation/switches/third-tank-pump")</script>
+					<script>MIG15BIS.switchswap("instrumentation/switches/third-tank-pump")</script>
 				</binding>
 			</key>
 

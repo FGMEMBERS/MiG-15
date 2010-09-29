@@ -140,7 +140,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/battery")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/battery")</script>
 			</binding>
 		</action>
 		<action>
@@ -149,7 +149,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/battery")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/battery")</script>
 			</binding>
 		</action>
 	</animation>
@@ -185,7 +185,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/generator")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/generator")</script>
 			</binding>
 		</action>
 		<action>
@@ -194,7 +194,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/generator")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/generator")</script>
 			</binding>
 		</action>
 	</animation>
@@ -230,7 +230,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/headlight")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/headlight")</script>
 			</binding>
 		</action>
 		<action>
@@ -239,7 +239,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/headlight")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/headlight")</script>
 			</binding>
 		</action>
 	</animation>
@@ -275,7 +275,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/trimmer")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/trimmer")</script>
 			</binding>
 		</action>
 		<action>
@@ -284,7 +284,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/trimmer")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/trimmer")</script>
 			</binding>
 		</action>
 	</animation>
@@ -320,7 +320,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/horizon")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/horizon")</script>
 			</binding>
 		</action>
 		<action>
@@ -329,7 +329,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/horizon")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/horizon")</script>
 			</binding>
 		</action>
 	</animation>
@@ -365,7 +365,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/radio")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/radio")</script>
 			</binding>
 		</action>
 		<action>
@@ -374,7 +374,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/radio")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/radio")</script>
 			</binding>
 		</action>
 	</animation>
@@ -410,7 +410,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/bomb")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/bomb")</script>
 			</binding>
 		</action>
 		<action>
@@ -419,7 +419,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/bomb")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/bomb")</script>
 			</binding>
 		</action>
 	</animation>
@@ -456,7 +456,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/drop-tank")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/drop-tank")</script>
 			</binding>
 		</action>
 		<action>
@@ -465,7 +465,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/drop-tank")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/drop-tank")</script>
 			</binding>
 		</action>
 	</animation>
@@ -501,7 +501,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/radiocompass")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/radiocompass")</script>
 			</binding>
 		</action>
 		<action>
@@ -510,7 +510,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/radiocompass")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/radiocompass")</script>
 			</binding>
 		</action>
 	</animation>
@@ -546,7 +546,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/radioaltimeter")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/radioaltimeter")</script>
 			</binding>
 		</action>
 		<action>
@@ -555,7 +555,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/radioaltimeter")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/radioaltimeter")</script>
 			</binding>
 		</action>
 	</animation>
@@ -592,7 +592,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/machinegun")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/machinegun")</script>
 			</binding>
 		</action>
 		<action>
@@ -601,7 +601,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/machinegun")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/machinegun")</script>
 			</binding>
 		</action>
 	</animation>
@@ -637,7 +637,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/headsight")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/headsight")</script>
 			</binding>
 		</action>
 		<action>
@@ -646,7 +646,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/headsight")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/headsight")</script>
 			</binding>
 		</action>
 	</animation>
@@ -682,7 +682,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/photo-machinegun")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/photo-machinegun")</script>
 			</binding>
 		</action>
 		<action>
@@ -691,7 +691,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/photo-machinegun")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/photo-machinegun")</script>
 			</binding>
 		</action>
 	</animation>
@@ -727,7 +727,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/photo")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/photo")</script>
 			</binding>
 		</action>
 		<action>
@@ -736,7 +736,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/photo")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/photo")</script>
 			</binding>
 		</action>
 	</animation>

@@ -112,7 +112,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/radioaltimeter")</script>
+				<script>MIG15BIS.switchswap("instrumentation/radioaltimeter")</script>
 			</binding>
 		</action>
 		<action>
@@ -121,7 +121,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/radioaltimeter")</script>
+				<script>MIG15BIS.switchswap("instrumentation/radioaltimeter")</script>
 			</binding>
 		</action>
 	</animation>
@@ -135,7 +135,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/radioaltimeter/diapazone")</script>
+				<script>MIG15BIS.switchswap("instrumentation/radioaltimeter/diapazone")</script>
 			</binding>
 		</action>
 		<action>
@@ -144,7 +144,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/radioaltimeter/diapazone")</script>
+				<script>MIG15BIS.switchswap("instrumentation/radioaltimeter/diapazone")</script>
 			</binding>
 		</action>
 	</animation>

@@ -221,7 +221,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/artifical-horizon")</script>
+				<script>MIG15BIS.switchswap("instrumentation/artifical-horizon")</script>
 			</binding>
 		</action>
 		<action>
@@ -230,7 +230,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/artifical-horizon")</script>
+				<script>MIG15BIS.switchswap("instrumentation/artifical-horizon")</script>
 			</binding>
 		</action>
 	</animation>

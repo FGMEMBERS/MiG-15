@@ -67,7 +67,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/stop-control")</script>
+				<script>MIG15BIS.switchswap("instrumentation/stop-control")</script>
 			</binding>
 		</action>
 	</animation>

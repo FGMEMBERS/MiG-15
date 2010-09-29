@@ -304,7 +304,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/stick/fix")</script>
+				<script>MIG15BIS.switchswap("instrumentation/stick/fix")</script>
 			</binding>
 		</action>
 		<action>
@@ -313,7 +313,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/stick/fix")</script>
+				<script>MIG15BIS.switchswap("instrumentation/stick/fix")</script>
 			</binding>
 		</action>
 	</animation>
@@ -410,7 +410,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.bitswap("/controls/gear/brake-parking")</script>
+				<script>MIG15BIS.bitswap("controls/gear/brake-parking")</script>
 			</binding>
 		</action>
 		<action>
@@ -419,7 +419,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.bitswap("/controls/gear/brake-parking")</script>
+				<script>MIG15BIS.bitswap("controls/gear/brake-parking")</script>
 			</binding>
 		</action>
 	</animation>

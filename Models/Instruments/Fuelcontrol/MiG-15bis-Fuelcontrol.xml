@@ -70,7 +70,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/fuel-control")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/fuel-control")</script>
 			</binding>
 		</action>
 		<action>
@@ -79,7 +79,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/switches/fuel-control")</script>
+				<script>MIG15BIS.switchswap("instrumentation/switches/fuel-control")</script>
 			</binding>
 		</action>
 	</animation>

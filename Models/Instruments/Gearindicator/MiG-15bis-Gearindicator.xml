@@ -300,7 +300,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/gear-indicator")</script>
+				<script>MIG15BIS.switchswap("instrumentation/gear-indicator")</script>
 			</binding>
 		</action>
 		<type>pick</type>
@@ -311,7 +311,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/gear-indicator")</script>
+				<script>MIG15BIS.switchswap("instrumentation/gear-indicator")</script>
 			</binding>
 		</action>
 	</animation>
@@ -326,7 +326,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/gear-indicator/button-check")</script>
+				<script>MIG15BIS.switchswap("instrumentation/gear-indicator/button-check")</script>
 			</binding>
 		</action>
 		<type>pick</type>
@@ -338,7 +338,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/gear-indicator/button-check")</script>
+				<script>MIG15BIS.switchswap("instrumentation/gear-indicator/button-check")</script>
 			</binding>
 		</action>
 	</animation>

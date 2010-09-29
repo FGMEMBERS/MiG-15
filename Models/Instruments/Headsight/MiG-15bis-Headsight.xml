@@ -204,7 +204,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/headsight/up")</script>
+				<script>MIG15BIS.switchswap("instrumentation/headsight/up")</script>
 			</binding>
 		</action>
 		<action>
@@ -213,7 +213,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/headsight/up")</script>
+				<script>MIG15BIS.switchswap("instrumentation/headsight/up")</script>
 			</binding>
 		</action>
 	</animation>
@@ -247,7 +247,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/headsight/frame")</script>
+				<script>MIG15BIS.switchswap("instrumentation/headsight/frame")</script>
 			</binding>
 		</action>
 		<action>
@@ -256,7 +256,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/headsight/frame")</script>
+				<script>MIG15BIS.switchswap("instrumentation/headsight/frame")</script>
 			</binding>
 		</action>
 	</animation>
@@ -290,7 +290,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/headsight/gyro")</script>
+				<script>MIG15BIS.switchswap("instrumentation/headsight/gyro")</script>
 			</binding>
 		</action>
 		<action>
@@ -299,7 +299,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/headsight/gyro")</script>
+				<script>MIG15BIS.switchswap("instrumentation/headsight/gyro")</script>
 			</binding>
 		</action>
 	</animation>

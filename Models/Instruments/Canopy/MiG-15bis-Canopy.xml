@@ -157,7 +157,7 @@ but that animation makes bug in currnet FG state, so it's off
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/canopy")</script>
+				<script>MIG15BIS.switchswap("instrumentation/canopy")</script>
 			</binding>
 		</action>
 		<action>
@@ -166,7 +166,7 @@ but that animation makes bug in currnet FG state, so it's off
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/canopy")</script>
+				<script>MIG15BIS.switchswap("instrumentation/canopy")</script>
 			</binding>
 		</action>
 	</animation>

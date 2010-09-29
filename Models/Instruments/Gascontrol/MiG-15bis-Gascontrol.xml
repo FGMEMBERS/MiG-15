@@ -103,7 +103,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/gas-control/brakes-button")</script>
+				<script>MIG15BIS.switchswap("instrumentation/gas-control/brakes-button")</script>
 			</binding>
 		</action>
 		<action>
@@ -112,7 +112,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/gas-control/brakes-button")</script>
+				<script>MIG15BIS.switchswap("instrumentation/gas-control/brakes-button")</script>
 			</binding>
 		</action>
 	</animation>
@@ -230,7 +230,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/gas-control/lock")</script>
+				<script>MIG15BIS.switchswap("instrumentation/gas-control/lock")</script>
 			</binding>
 
 		</action>
@@ -240,7 +240,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/gas-control/lock")</script>
+				<script>MIG15BIS.switchswap("instrumentation/gas-control/lock")</script>
 			</binding>
 		</action>
 	</animation>
@@ -254,7 +254,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/gas-control/fix")</script>
+				<script>MIG15BIS.switchswap("instrumentation/gas-control/fix")</script>
 			</binding>
 		</action>
 		<action>
@@ -263,7 +263,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/gas-control/fix")</script>
+				<script>MIG15BIS.switchswap("instrumentation/gas-control/fix")</script>
 			</binding>
 		</action>
 	</animation>

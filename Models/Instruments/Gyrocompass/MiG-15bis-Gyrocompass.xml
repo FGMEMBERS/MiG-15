@@ -110,7 +110,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/gyrocompass")</script>
+				<script>MIG15BIS.switchswap("instrumentation/gyrocompass")</script>
 			</binding>
 		</action>
 		<action>
@@ -119,7 +119,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>nasal</command>
-				<script>MIG15BIS.switchswap("/instrumentation/gyrocompass")</script>
+				<script>MIG15BIS.switchswap("instrumentation/gyrocompass")</script>
 			</binding>
 		</action>
 	</animation>

@@ -39,6 +39,11 @@
 
 -->
 
+	<!-- 	ARP is 25% of mean aerodynamical chord, 
+		4.139-0.647+2.120*0.25=4.022
+		by Fig. 117
+	-->
+
 	<metrics>
 		<wingarea  unit="FT2">		221.74 </wingarea>
 		<wingspan  unit="FT" >		33.07 </wingspan>
@@ -49,8 +54,7 @@
 		<vtailarea unit="FT2">		43.06 </vtailarea>
 		<vtailarm  unit="FT" >		14.485 </vtailarm>
 		<location name="AERORP" unit="M">
-			<x>	4.331 </x>
-<!--			<x> 4.863 </x> -->
+			<x>	4.022 </x>
 			<y>   0.00 </y>
 			<z>   0.00 </z>
 		</location>
@@ -66,13 +70,18 @@
 		</location>
 	</metrics>
 
+	<!-- 	Center of mass of empty aircraft is 30.1% of mean aerodynamical chord by Tab. 25
+		4.139-0.647+2.120*0.301=4.13012 by Fig. 117
+		~Same poit as K 4.139-0.55 on Fig. 117
+	-->
+
 	<mass_balance>
 		<ixx unit="SLUG*FT2">      5000 </ixx>
 		<iyy unit="SLUG*FT2">      8452 </iyy>
 		<izz unit="SLUG*FT2">     11007 </izz>
 		<emptywt unit="KG" >      3680 </emptywt>
 		<location name="CG" unit="M">
-			<x>	4.331 </x>
+			<x>	4.13012 </x>
 			<y>	0.00 </y>
 			<z>	0.00 </z>
 		</location>
@@ -106,9 +115,14 @@
 			</thruster>
 		</engine>
 
+
+		<!--	Places of tanks is by model and some MiG internal scheme -->
+
+		<!--	Tank 0 is fuel system imitation actually -->
+
 		<tank type="FUEL" number="0">
 			<location unit="M">
-				<x>	3.294 </x>
+				<x>	3.293 </x>
 				<y>	0.00 </y>
 				<z>	0.00 </z>
 			</location>1
@@ -116,32 +130,46 @@
 			<contents unit="LBS"> 10.00 </contents>
 		</tank>
 
+		<!--	Tank 1 is main tank -->
+
+		<!--	1 kg is 1/2.76 US gallons, 1/0.453 lbs
+			Normal 1 tank load is 1035l, that is 828kg, 1827lbs, 300 gal
+			maximum load is 1200l, that is 2119lbs, 347gal
+		-->
+
 		<tank type="FUEL" number="1">
 			<location unit="M">
-<!--				<x>	3.294 </x> -->
-				<x>	3.325 </x> 
+				<x>	3.293 </x>
 				<y>	0.00 </y>
 				<z>	0.00 </z>
 			</location>1
-			<capacity unit="LBS"> 2648.00 </capacity>
-			<contents unit="LBS"> 2000.00 </contents>
+			<capacity unit="LBS"> 2120.00 </capacity>
+			<contents unit="LBS"> 1827.00 </contents>
 		</tank>
+
+		<!--	Tank 2 is back balance tank
+
+			Normal 1 tank load is 138l, that is 243lbs, 40 gal
+			maximum load is 200l, that is 1120kg, 353lbs, 57gal
+ -->
 
 		<tank type="FUEL" number="2">
 			<location unit="M">
-				<x>	6.448 </x>
+				<x>	6.285 </x>
 				<y>	0.00 </y>
 				<z>	-0.406 </z>
 			</location>
-			<capacity unit="LBS"> 353.00 </capacity>
-			<contents unit="LBS"> 0.00 </contents>
+			<capacity unit="LBS"> 355.00 </capacity>
+			<contents unit="LBS"> 243.00 </contents>
 		</tank>
+
+		<!--	Tanks 3 and 4 is external drop tanks -->
 
 		<tank type="FUEL" number="3">
 			<location unit="M">
 				<x>	4.0 </x>
 				<y>	-2.644 </y>
-				<z>	0.468 </z>
+				<z>	-0.468 </z>
 			</location>
 			<capacity unit="LBS"> 441.00 </capacity>
 			<contents unit="LBS"> 400.00 </contents>
@@ -151,10 +179,31 @@
 			<location unit="M">
 				<x>	4.0 </x>
 				<y>	2.644 </y>
-				<z>	0.468 </z>
+				<z>	-0.468 </z>
 			</location>
 			<capacity unit="LBS"> 441.00 </capacity>
 			<contents unit="LBS"> 400.00 </contents>
+		</tank>
+
+	<!--	Tank 5 used to count gunshell weight influence
+		Weights:
+			1 kg is 1/2.76 US gallons, 1/0.453 lbs
+			1 N-37 shell is 0.735 kg, overall 40
+			1 NS-23 shell is 0.2 kg, overall 80x2 
+			So, whole weight is 
+			(40*0.735+160*0.2)/0.453=135.54 lbs
+			or
+			(40*0.735+160*0.2)/2.76=22.24 gal_us
+	-->
+
+		<tank type="FUEL" number="5">
+			<location unit="M">
+				<x>	1.8</x>
+				<y>	0.0 </y>
+				<z>	-0.45 </z>
+			</location>
+			<capacity unit="LBS"> 150.00 </capacity>
+			<contents unit="LBS"> 136.0 </contents>
 		</tank>
 
 	</propulsion>
@@ -1207,164 +1256,41 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 
 -->
 
-			<!-- Delta pitch due to weight diffrence.
-				Page 26, Tab. 25,
+			<!-- 
+				Delta pitch due to weight diffrence, page 26
 				Common formulae is Mz=Mznorm+(CMw-CMnorm)*Cynorm,
 				so delta is Cynorm*(CMw-CMnorm),
-				Begin of ARP is 3.874, end 5.924, length is 2.05m.
+				Length of mean aoerodynamical horde is is 2.120 m
+				Center of mass of empty aircraft is 4.13012 m
 				Need to convert it to feets, though.
-				Source data, norm, given for full load and 25% of ARP, 4.836m.
-				CM of empty with ammo is 26.9%
-				First tank gives (26.9-21.6)/775*1035=7.07% of ARP -,
-				second balance tank gives 2.8% of ARP +, Fig. 118, 119,
-				then external tanks give 25-(26.9-7.07+2.8)=2.37% of ARP -,
-				ammo gives (30.1-26.9)=3.2% of ARP -,
-				gears gives ~1% of ARP - on extracting.
-				So, everythig is goes pus or minus in percents of 2.05.
-				So formulae looks like
-				Cy*1/0.3048*(2.05*(
-					0.0707*(1-Tank1norm)
-					-0.028*(1-Tank2norm)
-					0.023*(1-(Tank3norm+Tank4norm))
-					0.032*(1-(Ammo1morm+Ammo2norm+Ammo3norm)/3)
-					0.01*(1(Gear1morm+Gear2norm+Gear3norm)/3)
-				))
-				Tank1norm is Tank 1 weight in kg to 1035 kg
-				Tank2norm is Tank 2 weight in kg to 138 kg
-				Tank3norm is Tank 3 weight in kg to 500 kg
-				~
-				Ammo is 2*n37/40+n_1_23/80++n_2_23/80
 			-->
 
-			<function name="calculations/pitch-weights-delta/tank-one-shift-percent">
-				<product>
-					<value>0.0707</value><!-- 7.07% -->
-					<sum>
-						<value>1.0</value>
-						<product>
-							<value>-1.0</value>
-							<property>propulsion/tank[1]/contents-lbs</property>
-							<value>0.453</value><!--lbs to kg -->
-							<value>0.000766</value><!--1/1035 -->
-						</product>
-					</sum>
-				</product>
-			</function>
-
-			<function name="calculations/pitch-weights-delta/tank-two-shift-percent">
-				<product>
-					<value>-0.028</value><!-- 2.8% -->
-					<sum>
-						<value>1.0</value>
-						<product>
-							<value>-1.0</value>
-							<property>propulsion/tank[2]/contents-lbs</property>
-							<value>0.453</value><!--lbs to kg -->
-							<value>0.00724</value><!--1/1035 -->
-						</product>
-					</sum>
-				</product>
-			</function>
-
-			<function name="calculations/pitch-weights-delta/tank-three-and-four-shift-percent">
-				<product>
-					<value>0.023</value><!-- 2.37% -->
-					<sum>
-						<value>1.0</value>
-						<product>
-							<value>-1.0</value>
-							<sum>
-								<property>propulsion/tank[3]/contents-lbs</property>
-								<property>propulsion/tank[4]/contents-lbs</property>
-							</sum>
-							<value>0.453</value><!--lbs to kg -->
-							<value>0.002</value><!--1/500 -->
-						</product>
-					</sum>
-				</product>
-			</function>
-
-			<function name="calculations/pitch-weights-delta/ammo-shift-percent">
-				<product>
-					<value>0.032</value><!-- 3.2% -->
-					<sum>
-						<value>1.0</value>
-						<product>
-							<value>-1.0</value>
-							<sum>
-							<product>
-								<property>weights/shells/n37</property>
-								<value>0.025</value><!--1/40 -->
-							</product>
-							<product>
-								<property>weights/shells/n23-inner</property>
-								<value>0.0125</value><!--1/80 -->
-							</product>
-							<product>
-								<property>weights/shells/n23-outer</property>
-								<value>0.0125</value><!--1/80 -->
-							</product>
-							</sum>
-							<value>0.33333</value><!--1/3 -->
-						</product>
-					</sum>
-				</product>
-			</function>
-
-			<function name="calculations/pitch-weights-delta/gears-shift-percent">
-				<product>
-					<value>0.01</value><!-- 1.0% -->
-					<sum>
-						<value>1.0</value>
-						<product>
-							<value>-1.0</value>
-							<sum>
-								<property>gear/unit[0]/pos-norm</property>
-								<property>gear/unit[1]/pos-norm</property>
-								<property>gear/unit[2]/pos-norm</property>
-							</sum>
-							<value>0.33333</value><!--1/3 -->
-						</product>
-					</sum>
-				</product>
-			</function>
-
-			<function name="calculations/pitch-weights-delta/summar-shift-percent">
-			<sum>
-				<property>calculations/pitch-weights-delta/tank-one-shift-percent</property>
-				<property>calculations/pitch-weights-delta/tank-two-shift-percent</property>
-				<property>calculations/pitch-weights-delta/tank-three-and-four-shift-percent</property>
-				<property>calculations/pitch-weights-delta/ammo-shift-percent</property>
-				<property>calculations/pitch-weights-delta/gears-shift-percent</property>
-			</sum>
-			</function>
-
-			<function name="calculations/pitch-weights-delta/summar-cm-shift-m">
+			<function name="calculations/pitch-weights-delta/mass-center-m">
 			<product>
-				<value>2.05</value><!--mean aerodynamical horde lenght in m -->
-				<property>calculations/pitch-weights-delta/summar-shift-percent</property>
+				<value>0.0254</value><!--To convert from inches to meters -->
+				<property>inertia/cg-x-in</property>
 			</product>
 			</function>
 
-			<function name="calculations/pitch-weights-delta/summar-cm-shift-ft">
-			<product>
-				<value>3.2808</value><!--one feet-->
-				<property>calculations/pitch-weights-delta/summar-cm-shift-m</property>
-			</product>
+			<function name="calculations/pitch-weights-delta/mass-center-shift-m">
+			<sum>
+				<value>-4.13012</value>
+				<property>calculations/pitch-weights-delta/mass-center-m</property>
+			</sum>
 			</function>
 
-			<function name="calculations/pitch-weights-delta/summar-mass-center-length-inch">
-			<sum>
-				<value>393.7</value><!--1/0.00254-->
-				<property>calculations/pitch-weights-delta/summar-cm-shift-m</property>
-			</sum>
+			<function name="calculations/pitch-weights-delta/mass-center-shift-ft">
+			<product>
+				<value>3.2808</value><!--1/0.3048 to convert from meters to feets-->
+				<property>calculations/pitch-weights-delta/mass-center-shift-m</property>
+			</product>
 			</function>
 
 			<function name="aero/coefficient/Cmwddp">
 			<description>Pitch_moment_due_to_weight diffrence</description>
 			<product>
 				<property>aero/coefficient/CLalphaflaps</property>
-				<property>calculations/pitch-weights-delta/summar-cm-shift-ft</property>
+				<property>calculations/pitch-weights-delta/mass-center-shift-ft</property>
 			</product>
 			</function>
 
@@ -1398,7 +1324,7 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 				</product>
 			</function>
 
-			<!-- Fig 66 -->
+			<!-- Fig 66 
 			<function name="aero/coefficient/dCmmach">
 				<description>Delta_pitch_moment_due_to_mach</description>
 				<product>
@@ -1425,6 +1351,45 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 				</table>
 				</product>
 			</function>
+
+			-->
+
+			<!-- Fig 65 -->
+
+			<function name="aero/coefficient/dCmmach">
+				<description>Delta_pitch_moment_due_to_mach</description>
+				<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<property>metrics/cbarw-ft</property>
+				<table>
+					<independentVar lookup="column">aero/coefficient/liftalphaflapnorm</independentVar>
+					<independentVar lookup="row">velocities/mach</independentVar>
+				<tableData>
+						0	0.1	0.2	0.3	0.4	0.5	0.6	0.7
+					0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+					0.2	0.0	0.0	0.0	0.0	0.0	0.0	0.0	0.0
+					0.4	0.004	0.004	0.005	0.005	0.005	0.005	0.005	0.005
+					0.6	0.004	0.005	0.005	0.006	0.007	0.01	0.015	0.022
+					0.7	0.005	0.006	0.01	0.012	0.012	0.015	0.022	0.03
+					0.74	0.005	0.007	0.01	0.012	0.016	0.02	0.028	0.035
+					0.8	0.006	0.008	0.01	0.012	0.014	0.019	0.025	0.03
+					0.82	0.007	0.009	0.012	0.014	0.012	0.018	0.02	0.022
+					0.84	0.008	0.009	0.01	0.009	0.008	0.007	0.005	0.003
+					0.86	0.012	0.011	0.007	0.005	0.003	0.0	-0.005	-0.01
+					0.88	0.018	0.015	0.012	0.006	0.002	-0.008	-0.016	-0.02
+					0.9	0.023	0.018	0.016	0.005	-0.004	-0.012	-0.026	-0.04
+					0.92	0.03	0.025	0.018	0.008	-0.005	-0.012	-0.028	-0.045
+					0.94	0.042	0.036	0.025	0.016	0.005	-0.012	-0.026	-0.042
+					0.96	0.05	0.045	0.032	0.025	0.01	-0.015	-0.035	-0.055
+					0.98	0.06	0.05	0.038	0.03	0.008	-0.025	-0.055	-0.075
+					1.0	0.065	0.05	0.04	0.028	0.0	-0.04	-0.08	-0.115
+					1.02	0.065	0.045	0.035	0.02	-0.01	-0.045	-0.09	-0.13
+				</tableData>
+				</table>
+				</product>
+			</function>
+
 
 			<!-- Aeromatic stuff, data not included in MiG documentation -->
 			<function name="aero/coefficient/Cmq">

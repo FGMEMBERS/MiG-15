@@ -245,72 +245,86 @@ update_drop_view_pos = func {
 }
 #--------------------------------------------------------------------
 fire_cannon = func 
-{
-	n37_count = getprop("ai/submodels/submodel[1]/count");
-	ns23_inner_count = getprop("ai/submodels/submodel[3]/count");
-	ns23_outer_count = getprop("ai/submodels/submodel[5]/count");
-	if (
-		(n37_count==nil) 
-		or (ns23_inner_count==nil)
-		or (ns23_outer_count==nil)
-	)
 	{
-		return (0);
+		n37_count = getprop("ai/submodels/submodel[1]/count");
+		ns23_inner_count = getprop("ai/submodels/submodel[3]/count");
+		ns23_outer_count = getprop("ai/submodels/submodel[5]/count");
+		if (
+			(n37_count==nil) 
+			or (ns23_inner_count==nil)
+			or (ns23_outer_count==nil)
+		)
+		{
+			return (0);
+		}
+		if (n37_count>0) 
+		{
+			setprop("sounds/cannon/big-on", 1);
+		}
+		if (
+			(ns23_inner_count>0) 
+			or (ns23_outer_count>0)
+		)
+		{
+			setprop("sounds/cannon/small-on", 1);
+		}
+		if (n37_count>0) 
+		{
+			n37_count=n37_count-1;
+			setprop("ai/submodels/N-37", 1);
+		}
+		if (ns23_inner_count>0) 
+		{
+			ns23_inner_count=ns23_inner_count-1;
+			setprop("ai/submodels/NS-23-I", 1);
+		}
+		if (ns23_outer_count>0) 
+		{
+			ns23_outer_count=ns23_outer_count-1;
+			setprop("ai/submodels/NS-23-O", 1);
+		}
+		setprop("fdm/jsbsim/shells/n37", n37_count);
+		setprop("fdm/jsbsim/shells/n23-inner", ns23_inner_count);
+		setprop("fdm/jsbsim/shells/n23-outer", ns23_outer_count);
+		return (1);
 	}
-	setprop("fdm/jsbsim/weights/shells/n37", n37_count);
-	setprop("fdm/jsbsim/weights/shells/n23-inner", ns23_inner_count);
-	setprop("fdm/jsbsim/weights/shells/n23-outer", ns23_outer_count);
-	if (n37_count>0) 
-	{
-		setprop("sounds/cannon/big-on", 1);
-	}
-	if (
-		(ns23_inner_count>0) 
-		or (ns23_outer_count>0)
-	)
-	{
-		setprop("sounds/cannon/small-on", 1);
-	}
-	if (n37_count>0) 
-	{
-		n37_count=n37_count-1;
-		setprop("ai/submodels/N-37", 1);
-		n37_weight = n37_count*2;
-	}
-	else
-	{
-		n37_weight = 0;
-	}
-	if (ns23_inner_count>0) 
-	{
-		ns23_inner_count=ns23_inner_count-1;
-		setprop("ai/submodels/NS-23-I", 1);
-		ns23_inner_weight = ns23_inner_count*2;
-	}
-	else
-	{
-		ns23_inner_weight = 0;
-	}
-	if (ns23_outer_count>0) 
-	{
-		ns23_outer_count=ns23_outer_count-1;
-		setprop("ai/submodels/NS-23-O", 1);
-		ns23_outer_weight = ns23_outer_count*2;
-	}
-	else
-	{
-		ns23_outer_weight = 0;
-	}
-	return (1);
-}
 
-cfire_cannon = func {
-	setprop("ai/submodels/N-37", 0);
-	setprop("ai/submodels/NS-23-I", 0);
-	setprop("ai/submodels/NS-23-O", 0);
-	setprop("sounds/cannon/big-on", 0);
-	setprop("sounds/cannon/small-on", 0);
-}
+cfire_cannon = func 
+	{
+		setprop("ai/submodels/N-37", 0);
+		setprop("ai/submodels/NS-23-I", 0);
+		setprop("ai/submodels/NS-23-O", 0);
+		setprop("sounds/cannon/big-on", 0);
+		setprop("sounds/cannon/small-on", 0);
+	}
+
+cannon_shells_weght=func
+	{
+
+		n37_count = getprop("ai/submodels/submodel[1]/count");
+		ns23_inner_count = getprop("ai/submodels/submodel[3]/count");
+		ns23_outer_count = getprop("ai/submodels/submodel[5]/count");
+		if (
+			(n37_count==nil) 
+			or (ns23_inner_count==nil)
+			or (ns23_outer_count==nil)
+		)
+		{
+			return (settimer (cannon_shells_weght, 0.1));
+		}
+		shell_weight_as_fuel=(n37_count*0.735+(ns23_inner_count+ns23_outer_count)*0.2)/2.76;
+		setprop("consumables/fuel/tank[5]/level-gal_us", shell_weight_as_fuel);
+		settimer (cannon_shells_weght, 0.1);
+	}
+
+init_cannon_shells_weght=func
+	{
+		setprop("consumables/fuel/tank[5]/selected", 0);
+	}
+
+init_cannon_shells_weght();
+
+cannon_shells_weght();
 
 #--------------------------------------------------------------------
 controls.trigger = func(b) { b ? fire_cannon() : cfire_cannon() }
@@ -750,7 +764,6 @@ final_init=func
 		{
 			if (time_elapsed>0)
 			{
-				setprop("consumables/fuel/tank[2]/level-gal_us", 30);
 				setprop("fdm/jsbsim/init/on", 0);
 				setprop("fdm/jsbsim/init/finally-initialized", 1);
 			}
@@ -3706,7 +3719,7 @@ engineprocess=func
 			if (engine_temperature_degc>825)
 			{
 				#Engine switch off if it goes on high temperature too long
-				high_temperature_time=high_temperature_time+0.1;
+				high_temperature_time=high_temperature_time+0.1*(engine_temperature_degc-825)/25;
 				setprop("engines/engine/high-temperature-time", high_temperature_time);
 				if (high_temperature_time>30)
 				{
@@ -6918,7 +6931,7 @@ droptank = func
 			}
 		}
 		settimer(droptank, 0.1);
-	  }
+	}
 
 # set startup configuration
 init_droptank=func
@@ -6960,6 +6973,15 @@ tank_down = func
 end_tank_down = func
 	{
 		setprop("sounds/tank-down/on", 0);
+	}
+
+crash_tank_drop = func
+	{
+		setprop("consumables/fuel/tank[3]/level-gal_us", 0);
+		setprop("consumables/fuel/tank[3]/selected", 0);
+		setprop("consumables/fuel/tank[4]/level-gal_us", 0);
+		setprop("consumables/fuel/tank[4]/selected", 0);
+		setprop("instrumentation/drop-tank/dropped", 1);
 	}
 
 #start
@@ -7223,6 +7245,8 @@ aircraft_crash=func(crashtype, crashg, solid)
 			aircraft_water_crash_sound();
 		}
 
+		crash_tank_drop();
+
 		setprop("sim/replay/disable", 1);
 		setprop("sim/menubar/default/menu[1]/item[8]/enabled", 0);
 		return (1);
@@ -7363,7 +7387,7 @@ aircraftbreakprocess=func
 				crashed=aircraft_crash("tree hit", pilot_g, info[1].solid);
 			}
 		}
-		if (pilot_g>(maximum_g/2))
+		if (pilot_g>(maximum_g*0.5))
 		{
 			if (pilot_g>maximum_g)
 			{
@@ -7373,16 +7397,24 @@ aircraftbreakprocess=func
 			}
 			else
 			{
-				tremble_max=math.sqrt((pilot_g-(maximum_g/2))/(maximum_g/2));
+				tremble_max=math.sqrt((pilot_g-(maximum_g*0.5))/(maximum_g*0.5));
 				setprop("sounds/aircraft-crack/volume", tremble_max);
-				setprop("sounds/aircraft-creaking/volume", tremble_max);
 				setprop("fdm/jsbsim/gtremble/max", 1);
+				if (pilot_g>(maximum_g*0.75))
+				{
+					tremble_max=math.sqrt((pilot_g-(maximum_g*0.5))/(maximum_g*0.5));
+					setprop("sounds/aircraft-creaking/volume", tremble_max);
+					setprop("sounds/aircraft-creaking/on", 1);
+				}
+				else
+				{
+					setprop("sounds/aircraft-creaking/on", 0);
+				}
 			}
 			if (pilot_g>(maximum_g*0.75))
 			{
 				setprop("fdm/jsbsim/accelerations/crack", 1);
 			}
-			setprop("sounds/aircraft-creaking/on", 1);
 			setprop("fdm/jsbsim/accelerations/crack", 1);
 			setprop("fdm/jsbsim/gtremble/on", 1);
 		}
@@ -7734,10 +7766,6 @@ aircraft_unlock=func
 aircraft_repair=func
 	{
 		#Repair gears
-		setprop("fdm/jsbsim/gear/unit[0]/pos-norm", 1);
-		setprop("fdm/jsbsim/gear/unit[1]/pos-norm", 1);
-		setprop("fdm/jsbsim/gear/unit[2]/pos-norm", 1);
-
 		setprop("fdm/jsbsim/gear/unit[0]/tored", 0);
 		setprop("fdm/jsbsim/gear/unit[1]/tored", 0);
 		setprop("fdm/jsbsim/gear/unit[2]/tored", 0);
@@ -7839,21 +7867,22 @@ aircraft_start_refuel=func
 		wow_three=getprop("gear/gear[2]/wow");
 		setprop("consumables/fuel/tank[0]/level-gal_us", 1.5);
 		setprop("consumables/fuel/tank[1]/level-gal_us", 300);
-		setprop("consumables/fuel/tank[2]/level-gal_us", 0);
+		setprop("consumables/fuel/tank[2]/level-gal_us", 40);
 		setprop("consumables/fuel/tank[3]/level-gal_us", 60);
 		setprop("consumables/fuel/tank[4]/level-gal_us", 60);
+		setprop("consumables/fuel/tank[5]/level-gal_us", 22.5);
+		setprop("consumables/fuel/tank[5]/selected", 0);
 	}
 
 aircraft_end_refuel=func
 	{
-		setprop("consumables/fuel/tank[2]/level-gal_us", 30);
 		setprop("processes/engine/on", 1);
 		setprop("ai/submodels/submodel[1]/count", 40);
 		setprop("ai/submodels/submodel[3]/count", 80);
 		setprop("ai/submodels/submodel[4]/count", 80);
-		setprop("fdm/jsbsim/weights/shells/n37", 40);
-		setprop("fdm/jsbsim/weights/shells/n23-inner", 80);
-		setprop("fdm/jsbsim/weights/shells/n23-outer", 80);
+		setprop("fdm/jsbsim/shells/n37", 40);
+		setprop("fdm/jsbsim/shells/n23-inner", 80);
+		setprop("fdm/jsbsim/shells/n23-outer", 80);
 		setprop("consumables/oxygen/pressure-norm", 0.75);
 	}
 
