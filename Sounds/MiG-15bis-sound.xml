@@ -306,7 +306,7 @@
 		<name>gear0</name>
 		<mode>in-transit</mode>
 		<path>Aircraft/MiG-15/Sounds/gears-move.wav</path>
-		<property>fdm/jsbsim/gear/unit[0]/pos-norm</property>
+		<property>fdm/jsbsim/gear/unit[0]/pos-norm-real</property>
 		<pitch>
 			<internal>dt_play</internal>
 			<offset>1.0</offset>
@@ -324,7 +324,7 @@
 		<path>Sounds/gear-lck.wav</path>
 		<condition>
 			<equals>
-				<property>fdm/jsbsim/gear/unit[0]/pos-norm</property>
+				<property>fdm/jsbsim/gear/unit[0]/pos-norm-real</property>
 				<value>0</value>
 			</equals>
 		</condition>
@@ -335,7 +335,7 @@
 		<path>Sounds/gear-lck.wav</path>
 		<condition>
 			<equals>
-				<property>fdm/jsbsim/gear/unit[0]/pos-norm</property>
+				<property>fdm/jsbsim/gear/unit[0]/pos-norm-real</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -345,7 +345,7 @@
 		<name>gear1</name>
 		<mode>in-transit</mode>
 		<path>Aircraft/MiG-15/Sounds/gears-move.wav</path>
-		<property>fdm/jsbsim/gear/unit[1]/pos-norm</property>
+		<property>fdm/jsbsim/gear/unit[1]/pos-norm-real</property>
 		<pitch>
 			<internal>dt_play</internal>
 			<offset>1.0</offset>
@@ -363,7 +363,7 @@
 		<path>Sounds/gear-lck.wav</path>
 		<condition>
 			<equals>
-				<property>fdm/jsbsim/gear/unit[1]/pos-norm</property>
+				<property>fdm/jsbsim/gear/unit[1]/pos-norm-real</property>
 				<value>0</value>
 			</equals>
 		</condition>
@@ -374,7 +374,7 @@
 		<path>Sounds/gear-lck.wav</path>
 		<condition>
 			<equals>
-				<property>fdm/jsbsim/gear/unit[1]/pos-norm</property>
+				<property>fdm/jsbsim/gear/unit[1]/pos-norm-real</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -384,7 +384,7 @@
 		<name>gear2</name>
 		<mode>in-transit</mode>
 		<path>Aircraft/MiG-15/Sounds/gears-move.wav</path>
-		<property>fdm/jsbsim/gear/unit[2]/pos-norm</property>
+		<property>fdm/jsbsim/gear/unit[2]/pos-norm-real</property>
 		<pitch>
 			<internal>dt_play</internal>
 			<offset>1.0</offset>
@@ -402,7 +402,7 @@
 		<path>Sounds/gear-lck.wav</path>
 		<condition>
 			<equals>
-				<property>fdm/jsbsim/gear/unit[2]/pos-norm</property>
+				<property>fdm/jsbsim/gear/unit[2]/pos-norm-real</property>
 				<value>0</value>
 			</equals>
 		</condition>
@@ -413,7 +413,7 @@
 		<path>Sounds/gear-lck.wav</path>
 		<condition>
 			<equals>
-				<property>fdm/jsbsim/gear/unit[2]/pos-norm</property>
+				<property>fdm/jsbsim/gear/unit[2]/pos-norm-real</property>
 				<value>1</value>
 			</equals>
 		</condition>

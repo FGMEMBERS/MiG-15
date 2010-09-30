@@ -233,7 +233,7 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 
 		<contact type="BOGEY" name="LEFT_MAIN">
 			<location unit="M">
-				<x>	4.279 </x>
+				<x>	4.297 </x>
 				<y>	-1.918 </y>
 				<z>	-1.333 </z>
 			</location>
@@ -249,7 +249,7 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 
 		<contact type="BOGEY" name="RIGHT_MAIN">
 			<location unit="M">
-				<x>	4.279 </x>
+				<x>	4.297 </x>
 				<y>	1.918 </y>
 				<z>	-1.333 </z>
 			</location>
@@ -696,6 +696,10 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 
 		<property value="8.0">accelerations/Nz-max</property>
 
+		<property value="1.0">gear/unit[0]/pos-norm-real</property>
+		<property value="1.0">gear/unit[1]/pos-norm-real</property>
+		<property value="1.0">gear/unit[2]/pos-norm-real</property>
+
 		<axis name="LIFT">
 
 			<!-- Fig 51, 52-->
@@ -801,12 +805,58 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 			</function>
 
 			<!-- Fig 51 -->
-			<function name="aero/coefficient/dCLgear">
-				<description>Delta_Lift_due_to_gear</description>
+
+			<function name="aero/coefficient/dCLgearOne">
+				<description>Delta_Lift_due_to_gear_one</description>
 				<product>
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
-				<property>gear/gear-pos-norm</property>
+				<property>gear/unit[0]/pos-norm-real</property>
+				<value>0.2</value>
+				<table>
+				<independentVar lookup="row">aero/alpha-wing-rad</independentVar>
+				<tableData>
+					0.0	-0.02
+					0.174	-0.03
+					0.209	-0.04
+					0.244    -0.05
+					0.279    -0.07
+					0.314    -0.1
+					0.383    -0.1
+				</tableData>
+				</table>
+				</product>
+			</function>
+
+			<function name="aero/coefficient/dCLgearTwo">
+				<description>Delta_Lift_due_to_gear_two</description>
+				<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<property>gear/unit[1]/pos-norm-real</property>
+				<value>0.4</value>
+				<table>
+				<independentVar lookup="row">aero/alpha-wing-rad</independentVar>
+				<tableData>
+					0.0	-0.02
+					0.174	-0.03
+					0.209	-0.04
+					0.244    -0.05
+					0.279    -0.07
+					0.314    -0.1
+					0.383    -0.1
+				</tableData>
+				</table>
+				</product>
+			</function>
+
+			<function name="aero/coefficient/dCLgearThree">
+				<description>Delta_Lift_due_to_gear_three</description>
+				<product>
+				<property>aero/qbar-psf</property>
+				<property>metrics/Sw-sqft</property>
+				<property>gear/unit[2]/pos-norm-real</property>
+				<value>0.4</value>
 				<table>
 				<independentVar lookup="row">aero/alpha-wing-rad</independentVar>
 				<tableData>

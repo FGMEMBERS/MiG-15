@@ -555,7 +555,7 @@
 		<condition>
 			<or>
 				<greater-than>
-					<property>fdm/jsbsim/gear/unit[0]/pos-norm</property>
+					<property>fdm/jsbsim/gear/unit[0]/pos-norm-real</property>
 					<value>0.0</value>
 				</greater-than>
 				<greater-than>
@@ -576,7 +576,7 @@
 		<object-name>UC_Nose_Tyre</object-name>
 		<condition>
 			<greater-than>
-				<property>fdm/jsbsim/gear/unit[0]/pos-norm</property>
+				<property>fdm/jsbsim/gear/unit[0]/pos-norm-real</property>
 				<value>0.0</value>
 			</greater-than>
 		</condition>
@@ -601,7 +601,7 @@
 		<object-name>UC_Nose_ArmHub</object-name>
 		<object-name>UC_Nose_Axle</object-name>
 		<object-name>UC_Nose_Tyre</object-name>
-		<property>fdm/jsbsim/gear/unit[0]/pos-norm</property>
+		<property>fdm/jsbsim/gear/unit[0]/pos-norm-real</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>-105.0</dep></entry>
 			<entry><ind>0.5</ind><dep>-105.0</dep></entry>
@@ -625,7 +625,7 @@
 		<type>rotate</type>
 		<object-name>FUS_NoseDoorLS</object-name>
 		<object-name>FUS_NoseDoorLB</object-name>
-		<property>fdm/jsbsim/gear/unit[0]/pos-norm</property>
+		<property>fdm/jsbsim/gear/unit[0]/pos-norm-real</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0.0</dep></entry>
 			<entry><ind>0.5</ind><dep>-95.0</dep></entry>
@@ -648,7 +648,7 @@
 		<type>rotate</type>
 		<object-name>FUS_NoseDoorRS</object-name>
 		<object-name>FUS_NoseDoorRB</object-name>
-		<property>fdm/jsbsim/gear/unit[0]/pos-norm</property>
+		<property>fdm/jsbsim/gear/unit[0]/pos-norm-real</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0.0</dep></entry>
 			<entry><ind>0.5</ind><dep>95.0</dep></entry>
@@ -719,7 +719,7 @@
 		<condition>
 			<or>
 				<greater-than>
-					<property>fdm/jsbsim/gear/unit[1]/pos-norm</property>
+					<property>fdm/jsbsim/gear/unit[1]/pos-norm-real</property>
 					<value>0.0</value>
 				</greater-than>
 				<greater-than>
@@ -745,7 +745,7 @@
 		<object-name>UC_MainL_DoorOB</object-name>
 		<condition>
 			<greater-than>
-				<property>fdm/jsbsim/gear/unit[1]/pos-norm</property>
+				<property>fdm/jsbsim/gear/unit[1]/pos-norm-real</property>
 				<value>0.0</value>
 			</greater-than>
 		</condition>
@@ -776,7 +776,7 @@
 	<object-name>UC_MainL_CStLow</object-name>
 	<object-name>UC_MainL_StUp</object-name>
 	<object-name>UC_MainL_StLow</object-name>
-	<property>fdm/jsbsim/gear/unit[1]/pos-norm</property>
+	<property>fdm/jsbsim/gear/unit[1]/pos-norm-real</property>
 	<interpolation>
 		<entry><ind>0.0</ind><dep>95.0</dep></entry>
 		<entry><ind>0.5</ind><dep>95.0</dep></entry>
@@ -798,7 +798,7 @@
 	<type>rotate</type>
 	<object-name>UC_MainL_StUp</object-name>
 	<object-name>UC_MainL_StLow</object-name>
-	<property>fdm/jsbsim/gear/unit[1]/pos-norm</property>
+	<property>fdm/jsbsim/gear/unit[1]/pos-norm-real</property>
 	<interpolation>
 		<entry><ind>0.0</ind><dep>-120.0</dep></entry>
 		<entry><ind>0.5</ind><dep>-120.0</dep></entry>
@@ -822,7 +822,7 @@
 		<type>rotate</type> 
 		<object-name>UC_MainL_DoorIS</object-name>
 		<object-name>UC_MainL_DoorIB</object-name>
-		<property>fdm/jsbsim/gear/unit[1]/pos-norm</property>
+		<property>fdm/jsbsim/gear/unit[1]/pos-norm-real</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0.0</dep></entry>
 			<entry><ind>0.5</ind><dep>90.0</dep></entry>
@@ -845,7 +845,7 @@
 		<type>rotate</type>
 		<object-name>UC_MainL_DoorMS</object-name>
 		<object-name>UC_MainL_DoorMB</object-name>
-		<property>fdm/jsbsim/gear/unit[1]/pos-norm</property>
+		<property>fdm/jsbsim/gear/unit[1]/pos-norm-real</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0.0</dep></entry>
 			<entry><ind>0.5</ind><dep>0.0</dep></entry>
@@ -869,7 +869,7 @@
 		<type>rotate</type>
 		<object-name>UC_MainL_DoorOS</object-name>
 		<object-name>UC_MainL_DoorOB</object-name>
-		<property>fdm/jsbsim/gear/unit[1]/pos-norm</property>
+		<property>fdm/jsbsim/gear/unit[1]/pos-norm-real</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0.0</dep></entry>
 			<entry><ind>0.5</ind><dep>0.0</dep></entry>
@@ -935,7 +935,7 @@
 		<condition>
 			<or>
 				<greater-than>
-					<property>fdm/jsbsim/gear/unit[2]/pos-norm</property>
+					<property>fdm/jsbsim/gear/unit[2]/pos-norm-real</property>
 					<value>0.0</value>
 				</greater-than>
 				<greater-than>
@@ -961,7 +961,7 @@
 		<object-name>UC_MainR_DoorOB</object-name>
 		<condition>
 			<greater-than>
-				<property>fdm/jsbsim/gear/unit[2]/pos-norm</property>
+				<property>fdm/jsbsim/gear/unit[2]/pos-norm-real</property>
 				<value>0.0</value>
 			</greater-than>
 		</condition>
@@ -991,7 +991,7 @@
 	 <object-name>UC_MainR_CStLow</object-name>
 	<object-name>UC_MainR_StUp</object-name>
 	<object-name>UC_MainR_StLow</object-name>
-	<property>fdm/jsbsim/gear/unit[2]/pos-norm</property>
+	<property>fdm/jsbsim/gear/unit[2]/pos-norm-real</property>
 	<interpolation>
 		<entry><ind>0.0</ind><dep>-95.0</dep></entry>
 		<entry><ind>0.5</ind><dep>-95.0</dep></entry>
@@ -1013,7 +1013,7 @@
 		<type>rotate</type>
 		<object-name>UC_MainR_StUp</object-name>
 		<object-name>UC_MainR_StLow</object-name>
-		<property>fdm/jsbsim/gear/unit[2]/pos-norm</property>
+		<property>fdm/jsbsim/gear/unit[2]/pos-norm-real</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>120.0</dep></entry>
 			<entry><ind>0.5</ind><dep>120.0</dep></entry>
@@ -1037,7 +1037,7 @@
 		<type>rotate</type>
 		<object-name>UC_MainR_DoorIS</object-name>
 		<object-name>UC_MainR_DoorIB</object-name>
-		<property>fdm/jsbsim/gear/unit[2]/pos-norm</property>
+		<property>fdm/jsbsim/gear/unit[2]/pos-norm-real</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0.0</dep></entry>
 			<entry><ind>0.5</ind><dep>90.0</dep></entry>
@@ -1060,7 +1060,7 @@
 		<type>rotate</type>
 		<object-name>UC_MainR_DoorMS</object-name>
 		<object-name>UC_MainR_DoorMB</object-name>
-		<property>fdm/jsbsim/gear/unit[2]/pos-norm</property>
+		<property>fdm/jsbsim/gear/unit[2]/pos-norm-real</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0.0</dep></entry>
 			<entry><ind>0.5</ind><dep>0.0</dep></entry>
@@ -1084,7 +1084,7 @@
 		<type>rotate</type>
 		<object-name>UC_MainR_DoorOS</object-name>
 		<object-name>UC_MainR_DoorOB</object-name>
-		<property>fdm/jsbsim/gear/unit[2]/pos-norm</property>
+		<property>fdm/jsbsim/gear/unit[2]/pos-norm-real</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0.0</dep></entry>
 			<entry><ind>0.5</ind><dep>0.0</dep></entry>

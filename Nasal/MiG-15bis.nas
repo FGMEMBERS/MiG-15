@@ -1,4 +1,4 @@
-autotakeoff = func {
+fautotakeoff = func {
 
 # The ato_start function is only executed once but the ato_mode and
 # ato_spddep functions will re-schedule themselves until
@@ -686,12 +686,20 @@ init_fdm  = func
 	setprop("fdm/jsbsim/fcs/flap-cmd-norm-real", 0);
 	setprop("fdm/jsbsim/fcs/flap-pos-norm", 0);
 
-	setprop("fdm/jsbsim/gear/gear-cmd-norm", 0);
+	setprop("fdm/jsbsim/gear/gear-cmd-norm", 1);
 	setprop("fdm/jsbsim/gear/gear-cmd-norm-real", 1);
 
 	setprop("fdm/jsbsim/gear/unit[0]/pos-norm", 1);
 	setprop("fdm/jsbsim/gear/unit[1]/pos-norm", 1);
 	setprop("fdm/jsbsim/gear/unit[2]/pos-norm", 1);
+
+	setprop("fdm/jsbsim/gear/unit[0]/pos-norm-real", 1);
+	setprop("fdm/jsbsim/gear/unit[1]/pos-norm-real", 1);
+	setprop("fdm/jsbsim/gear/unit[2]/pos-norm-real", 1);
+
+	setprop("fdm/jsbsim/gear/unit[0]/z-position", -1.459/0.0254);
+	setprop("fdm/jsbsim/gear/unit[1]/z-position", -1.332/0.0254);
+	setprop("fdm/jsbsim/gear/unit[2]/z-position", -1.332/0.0254);
 
 	setprop("fdm/jsbsim/gear/unit[0]/tored", 0);
 	setprop("fdm/jsbsim/gear/unit[1]/tored", 0);
@@ -749,6 +757,9 @@ start_init=func
 	{
 		setprop("fdm/jsbsim/init/on", 1);
 		setprop("fdm/jsbsim/init/finally-initialized", 0);
+		setprop("gear/gear[0]/position-norm", 1);
+		setprop("gear/gear[1]/position-norm", 1);
+		setprop("gear/gear[2]/position-norm", 1);
 		final_init();
 	}
 
@@ -1166,8 +1177,9 @@ teargear = func (gear_number, breaktype)
 		wow=getprop("gear/gear["~gear_number~"]/wow");
 		setprop("fdm/jsbsim/gear/unit["~gear_number~"]/break-type", breaktype);
 		setprop("fdm/jsbsim/gear/unit["~gear_number~"]/tored", 1);
-		setprop("fdm/jsbsim/gear/unit["~gear_number~"]/pos-norm", 0);
-		setprop("gear/gear["~gear_number~"]/position-norm", 0);
+		setprop("fdm/jsbsim/gear/unit["~gear_number~"]/pos-norm-real", 0);
+		setprop("fdm/jsbsim/gear/unit["~gear_number~"]/z-position", 0);
+#		setprop("gear/gear["~gear_number~"]/position-norm", 0);
 		gears_tored_sound=getprop("sounds/gears-tored/on");
 		if (gears_tored_sound!=nil)
 		{
@@ -1338,9 +1350,9 @@ gearbreaksprocess = func
 	 		return ( settimer(gearbreaksprocess, 0.1) ); 
 		}
 		# get gear values
-		gear_one_pos=getprop("fdm/jsbsim/gear/unit[0]/pos-norm");
-		gear_two_pos=getprop("fdm/jsbsim/gear/unit[1]/pos-norm");
-		gear_three_pos=getprop("fdm/jsbsim/gear/unit[2]/pos-norm");
+		gear_one_pos=getprop("fdm/jsbsim/gear/unit[0]/pos-norm-real");
+		gear_two_pos=getprop("fdm/jsbsim/gear/unit[1]/pos-norm-real");
+		gear_three_pos=getprop("fdm/jsbsim/gear/unit[2]/pos-norm-real");
 		gear_one_tored=getprop("fdm/jsbsim/gear/unit[0]/tored");
 		gear_two_tored=getprop("fdm/jsbsim/gear/unit[1]/tored");
 		gear_three_tored=getprop("fdm/jsbsim/gear/unit[2]/tored");
@@ -1705,9 +1717,9 @@ gearcontrol = func
 		# get gear values
 		gear_down = getprop("controls/gear/gear-down");
 		gear_down_real = getprop("fdm/jsbsim/gear/gear-cmd-norm-real");
-		gear_one_pos=getprop("fdm/jsbsim/gear/unit[0]/pos-norm");
-		gear_two_pos=getprop("fdm/jsbsim/gear/unit[1]/pos-norm");
-		gear_three_pos=getprop("fdm/jsbsim/gear/unit[2]/pos-norm");
+		gear_one_pos=getprop("fdm/jsbsim/gear/unit[0]/pos-norm-real");
+		gear_two_pos=getprop("fdm/jsbsim/gear/unit[1]/pos-norm-real");
+		gear_three_pos=getprop("fdm/jsbsim/gear/unit[2]/pos-norm-real");
 		gear_one_stuck=getprop("fdm/jsbsim/gear/unit[0]/stuck");
 		gear_two_stuck=getprop("fdm/jsbsim/gear/unit[1]/stuck");
 		gear_three_stuck=getprop("fdm/jsbsim/gear/unit[2]/stuck");
@@ -1971,13 +1983,54 @@ timedhmove = func (property_name, control_name, move_time)
 				interpolate(property_name~"-inter", pos, 0.1);
 			}
 		}
- 		return (1); 
+		return (1); 
 	}
-
 
 # helper 
 stop_gearmove = func 
 	{
+	}
+
+one_gear_move=func(gear_num, gear_pos, gear_command, gear_stuck, move_time, z_max, max_angle, speed_km, speed_limit)
+	{
+		if (
+			(gear_stuck==0)
+			or
+			(gear_command>gear_pos)
+		)
+		{
+			timedhmove("fdm/jsbsim/gear/unit["~gear_num~"]/pos-norm-real", "fdm/jsbsim/gear/gear-cmd-norm-real", move_time);
+			gear_pos=getprop("fdm/jsbsim/gear/unit["~gear_num~"]/pos-norm-real");
+			if (gear_pos==nil)
+			{
+				return (0);
+			}
+			if  (gear_pos>=0.5)
+			{
+				gear_angle=(1-(gear_pos-0.5)/0.5)*max_angle/180*math.pi;
+				z_poz=z_max*(-1/0.0254)*math.cos(gear_angle);
+				setprop("fdm/jsbsim/gear/unit["~gear_num~"]/z-position", z_poz);
+			}
+			if (
+				(speed_km>speed_limit) 
+				and (gear_pos>0)
+				and (gear_command<gear_pos)
+			)
+			{
+				if (gear_command<gear_pos)
+				{
+					gearstuck(gear_num, 1);
+				}
+				else
+				{
+					gearstuck(gear_num, 0);
+				}
+			}
+			if (gear_pos==1)
+			{
+				setprop("fdm/jsbsim/gear/unit["~gear_num~"]/stuck", 0);
+			}
+		}
 	}
 
 gearmove = func 
@@ -1995,20 +2048,16 @@ gearmove = func
 			return ( settimer(gearmove, 0.1) ); 
 		}
 		# get gear values
-		gear_one_pos=getprop("fdm/jsbsim/gear/unit[0]/pos-norm");
-		gear_two_pos=getprop("fdm/jsbsim/gear/unit[1]/pos-norm");
-		gear_three_pos=getprop("fdm/jsbsim/gear/unit[2]/pos-norm");
+		gear_one_pos=getprop("fdm/jsbsim/gear/unit[0]/pos-norm-real");
+		gear_two_pos=getprop("fdm/jsbsim/gear/unit[1]/pos-norm-real");
+		gear_three_pos=getprop("fdm/jsbsim/gear/unit[2]/pos-norm-real");
 		gear_one_tored=getprop("fdm/jsbsim/gear/unit[0]/tored");
 		gear_two_tored=getprop("fdm/jsbsim/gear/unit[1]/tored");
 		gear_three_tored=getprop("fdm/jsbsim/gear/unit[2]/tored");
 		gear_one_stuck=getprop("fdm/jsbsim/gear/unit[0]/stuck");
 		gear_two_stuck=getprop("fdm/jsbsim/gear/unit[1]/stuck");
 		gear_three_stuck=getprop("fdm/jsbsim/gear/unit[2]/stuck");
-		gear_one_pos=getprop("fdm/jsbsim/gear/unit[0]/pos-norm");
-		gear_two_pos=getprop("fdm/jsbsim/gear/unit[1]/pos-norm");
-		gear_three_pos=getprop("fdm/jsbsim/gear/unit[2]/pos-norm");
 		gear_command_real=getprop("fdm/jsbsim/gear/gear-cmd-norm-real");
-		gear_common_pos=getprop("fdm/jsbsim/gear/gear-pos-norm");
 		speed=getprop("velocities/airspeed-kt");
 		if (
 			(gear_one_pos==nil)
@@ -2024,7 +2073,6 @@ gearmove = func
 			or (gear_two_pos==nil)
 			or (gear_three_pos==nil)
 			or (gear_command_real==nil)
-			or (gear_common_pos==nil)
 			or (speed==nil)
 		)
 		{
@@ -2044,111 +2092,17 @@ gearmove = func
 			setprop("processes/gear-move/sound-enabled", 0);
 		}
 		speed_km=speed*1.852;
-		timedhmove("fdm/jsbsim/gear/gear-pos-norm", "fdm/jsbsim/gear/gear-cmd-norm-real", 5);
 		if (gear_one_tored==0)
 		{
-			if (gear_one_stuck==0)
-			{
-				timedhmove("fdm/jsbsim/gear/unit[0]/pos-norm", "fdm/jsbsim/gear/gear-cmd-norm-real", 4.2);
-				timedhmove("gear/gear[0]/position-norm", "fdm/jsbsim/gear/gear-cmd-norm-real", 4.2);
-				if (
-					(speed_km>375) 
-					and (gear_one_pos>0)
-					and (gear_command_real<gear_one_pos)
-				)
-				{
-					if (gear_command_real<gear_one_pos)
-					{
-						gearstuck(0, 1);
-					}
-					else
-					{
-						gearstuck(0, 0);
-					}
-				}
-			}
-			else
-			{
-				if (gear_command_real>gear_one_pos)
-				{
-					timedhmove("fdm/jsbsim/gear/unit[0]/pos-norm", "fdm/jsbsim/gear/gear-cmd-norm-real", 5.2);
-					timedhmove("gear/gear[0]/position-norm", "fdm/jsbsim/gear/gear-cmd-norm-real", 5.2);
-				}
-				if (gear_one_pos==1)
-				{
-					setprop("fdm/jsbsim/gear/unit[0]/stuck", 0);
-				}
-			}
+			one_gear_move(0, gear_one_pos, gear_command_real, gear_one_stuck, 4.2, 1.459, 105, speed_km, 375);
 		}
 		if (gear_two_tored==0)
 		{
-			if (gear_two_stuck==0)
-			{
-				timedhmove("fdm/jsbsim/gear/unit[1]/pos-norm", "fdm/jsbsim/gear/gear-cmd-norm-real", 4.8);
-				timedhmove("gear/gear[1]/position-norm", "fdm/jsbsim/gear/gear-cmd-norm-real", 4.8);
-				if (
-					(speed_km>355) 
-					and (gear_two_pos>0)
-					and (gear_command_real<gear_two_pos)
-				)
-				{
-					if (gear_command_real<gear_two_pos)
-					{
-						gearstuck(1, 1);
-					}
-					else
-					{
-						gearstuck(2, 0);
-					}
-				}
-			}
-			else
-			{
-				if (gear_command_real>gear_two_pos)
-				{
-					timedhmove("fdm/jsbsim/gear/unit[1]/pos-norm", "fdm/jsbsim/gear/gear-cmd-norm-real", 5);
-					timedhmove("gear/gear[1]/position-norm", "fdm/jsbsim/gear/gear-cmd-norm-real", 5);
-				}
-				if (gear_two_pos==1)
-				{
-					setprop("fdm/jsbsim/gear/unit[1]/stuck", 0);
-				}
-			}
+			one_gear_move(1, gear_two_pos, gear_command_real, gear_two_stuck, 4.8, 1.332, 95, speed_km, 355);
 		}
 		if (gear_three_tored==0)
 		{
-			if (gear_three_stuck==0)
-			{
-				timedhmove("fdm/jsbsim/gear/unit[2]/pos-norm", "fdm/jsbsim/gear/gear-cmd-norm-real", 5);
-				timedhmove("gear/gear[2]/position-norm", "fdm/jsbsim/gear/gear-cmd-norm-real", 5);
-				if (
-					(speed_km>350) 
-					and (gear_three_pos>0)
-					and (gear_command_real<gear_three_pos)
-				)
-				{
-					if (gear_command_real<gear_three_pos)
-					{
-						gearstuck(2, 1);
-					}
-					else
-					{
-						gearstuck(2, 0);
-					}
-				}
-			}
-			else
-			{
-				if (gear_command_real>gear_three_pos)
-				{
-					timedhmove("fdm/jsbsim/gear/unit[2]/pos-norm", "fdm/jsbsim/gear/gear-cmd-norm-real", 5);
-					timedhmove("gear/gear[2]/position-norm", "fdm/jsbsim/gear/gear-cmd-norm-real", 5);
-				}
-				if (gear_three_pos==1)
-				{
-					setprop("fdm/jsbsim/gear/unit[2]/stuck", 0);
-				}
-			}
+			one_gear_move(2, gear_three_pos, gear_command_real, gear_three_stuck, 5, 1.332, 95, speed_km, 350);
 		}
 		settimer(gearmove, 0.1);
 	}
@@ -2205,9 +2159,9 @@ gearindicator = func
 		 	return ( settimer(gearindicator, 0.1) ); 
 		}
 		#get gear value
-		gear_one_pos=getprop("fdm/jsbsim/gear/unit[0]/pos-norm");
-		gear_two_pos=getprop("fdm/jsbsim/gear/unit[1]/pos-norm");
-		gear_three_pos=getprop("fdm/jsbsim/gear/unit[2]/pos-norm");
+		gear_one_pos=getprop("fdm/jsbsim/gear/unit[0]/pos-norm-real");
+		gear_two_pos=getprop("fdm/jsbsim/gear/unit[1]/pos-norm-real");
+		gear_three_pos=getprop("fdm/jsbsim/gear/unit[2]/pos-norm-real");
 		gear_one_tored=getprop("fdm/jsbsim/gear/unit[0]/tored");
 		gear_two_tored=getprop("fdm/jsbsim/gear/unit[1]/tored");
 		gear_three_tored=getprop("fdm/jsbsim/gear/unit[2]/tored");
@@ -2513,9 +2467,9 @@ gearlamp = func
 		 	return ( settimer(gearlamp, 0.1) ); 
 		}
 		# get altitude values
-		gear_one_pos=getprop("fdm/jsbsim/gear/unit[0]/pos-norm");
-		gear_two_pos=getprop("fdm/jsbsim/gear/unit[1]/pos-norm");
-		gear_three_pos=getprop("fdm/jsbsim/gear/unit[2]/pos-norm");
+		gear_one_pos=getprop("fdm/jsbsim/gear/unit[0]/pos-norm-real");
+		gear_two_pos=getprop("fdm/jsbsim/gear/unit[1]/pos-norm-real");
+		gear_three_pos=getprop("fdm/jsbsim/gear/unit[2]/pos-norm-real");
 		flaps_pos=getprop("fdm/jsbsim/fcs/flap-pos-norm");
 		#get bus value
 		bus=getprop("systems/electrical-real/bus");
@@ -5613,9 +5567,9 @@ stop_windprocess=func
 windprocess=func
 	{
 		flaps=getprop("fdm/jsbsim/fcs/flap-pos-norm");
-		gear_one_pos=getprop("fdm/jsbsim/gear/unit[0]/pos-norm");
-		gear_two_pos=getprop("fdm/jsbsim/gear/unit[1]/pos-norm");
-		gear_three_pos=getprop("fdm/jsbsim/gear/unit[1]/pos-norm");
+		gear_one_pos=getprop("fdm/jsbsim/gear/unit[0]/pos-norm-real");
+		gear_two_pos=getprop("fdm/jsbsim/gear/unit[1]/pos-norm-real");
+		gear_three_pos=getprop("fdm/jsbsim/gear/unit[2]/pos-norm-real");
 		speed_brake=getprop("surface-positions/speedbrake-pos-norm");
 		speed=getprop("velocities/airspeed-kt");
 		canopy_pos=getprop("instrumentation/canopy/switch-pos-inter");
@@ -5679,9 +5633,9 @@ gearvalve=func
 		 	return ( settimer(gearvalve, 0.1) ); 
 		}
 		switchmove("instrumentation/gear-valve/handle", "dummy/dummy");
-		gear_one_pos=getprop("fdm/jsbsim/gear/unit[0]/pos-norm");
-		gear_two_pos=getprop("fdm/jsbsim/gear/unit[1]/pos-norm");
-		gear_three_pos=getprop("fdm/jsbsim/gear/unit[2]/pos-norm");
+		gear_one_pos=getprop("fdm/jsbsim/gear/unit[0]/pos-norm-real");
+		gear_two_pos=getprop("fdm/jsbsim/gear/unit[1]/pos-norm-real");
+		gear_three_pos=getprop("fdm/jsbsim/gear/unit[2]/pos-norm-real");
 		gear_one_tored=getprop("fdm/jsbsim/gear/unit[0]/tored");
 		gear_two_tored=getprop("fdm/jsbsim/gear/unit[1]/tored");
 		gear_three_tored=getprop("fdm/jsbsim/gear/unit[2]/tored");
@@ -5840,9 +5794,9 @@ gearpressure = func
 		bus=getprop("systems/electrical-real/bus");
 		indicated_error=getprop("instrumentation/gear-pressure-indicator/indicated-pressure-error");	
 		gear_down_real = getprop("fdm/jsbsim/gear/gear-cmd-norm-real");
-		gear_one_pos=getprop("fdm/jsbsim/gear/unit[0]/pos-norm");
-		gear_two_pos=getprop("fdm/jsbsim/gear/unit[1]/pos-norm");
-		gear_three_pos=getprop("fdm/jsbsim/gear/unit[2]/pos-norm");
+		gear_one_pos=getprop("fdm/jsbsim/gear/unit[0]/pos-norm-real");
+		gear_two_pos=getprop("fdm/jsbsim/gear/unit[1]/pos-norm-real");
+		gear_three_pos=getprop("fdm/jsbsim/gear/unit[2]/pos-norm-real");
 		if (
 			(bus==nil)
 			or (indicated_error==nil)
@@ -7209,7 +7163,7 @@ aircraft_crash=func(crashtype, crashg, solid)
 			aircraft_lock();
 		}
 
-		gear_pos=getprop("fdm/jsbsim/gear/unit[0]/pos-norm");
+		gear_pos=getprop("fdm/jsbsim/gear/unit[0]/pos-norm-real");
 		if (gear_pos!=nil)
 		{
 			if (gear_pos>0)
@@ -7218,7 +7172,7 @@ aircraft_crash=func(crashtype, crashg, solid)
 			}
 		}
 
-		gear_pos=getprop("fdm/jsbsim/gear/unit[1]/pos-norm");
+		gear_pos=getprop("fdm/jsbsim/gear/unit[1]/pos-norm-real");
 		if (gear_pos!=nil)
 		{
 			if (gear_pos>0)
@@ -7227,7 +7181,7 @@ aircraft_crash=func(crashtype, crashg, solid)
 			}
 		}
 
-		gear_pos=getprop("fdm/jsbsim/gear/unit[2]/pos-norm");
+		gear_pos=getprop("fdm/jsbsim/gear/unit[2]/pos-norm-real");
 		if (gear_pos!=nil)
 		{
 			if (gear_pos>0)
@@ -7933,7 +7887,6 @@ aircraft_restart=func
 			setprop("sim/menubar/default/menu[1]/item[8]/enabled", 0);
 			#Additional gears restart
 			setprop("fdm/jsbsim/gear/gear-pos-norm", 1);
-			setprop("fdm/jsbsim/gear/gear-pos-norm-inter", 1);
 			setprop("gear/gear[0]/position-norm", 1);
 			setprop("gear/gear[1]/position-norm", 1);
 			setprop("gear/gear[2]/position-norm", 1);
