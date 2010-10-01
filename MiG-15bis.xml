@@ -696,9 +696,13 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 
 		<property value="8.0">accelerations/Nz-max</property>
 
+<!-- Gears is fully controlled by main Nasal script
+
 		<property value="1.0">gear/unit[0]/pos-norm-real</property>
 		<property value="1.0">gear/unit[1]/pos-norm-real</property>
 		<property value="1.0">gear/unit[2]/pos-norm-real</property>
+
+-->
 
 		<axis name="LIFT">
 
@@ -935,7 +939,7 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 					0.4	0.026	0.038	0.088
 					0.5	0.034	0.043	0.09
 					0.6	0.043	0.05	0.096
-					0.7	0.053	0,06	0.106
+					0.7	0.053	0.06	0.106
 					0.8	0.066	0.07	0.112
 					0.9	0.082	0.082	0.124
 					1.0	0.092	0.098	0.138

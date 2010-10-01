@@ -1243,4 +1243,66 @@
 		<path>Aircraft/MiG-15/Models/Effects/MiG-15bis-smoke.xml</path>
 	</model>
 
+ <!-- LOD for the model as a whole =========================================-->
+	<animation>
+		<type>range</type>
+		<min-m>0</min-m>
+		<max-m>15000</max-m>
+	</animation>
+
+
+ <!-- Multiplayer events =========================================-->
+	<nasal>
+		<load>
+			##############################################################################
+			# The on-load Nasal is not executed when this file is loaded as the user
+			# aircraft.
+			##############################################################################
+			var rplayer = cmdarg();
+			print("LOAD MiG-1bis ", rplayer.getPath());
+
+			# Set up property aliases for animations.
+			rplayer.getNode("fdm/jsbsim/gear/unit[0]/pos-norm-real", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[0]"));
+			rplayer.getNode("fdm/jsbsim/gear/unit[0]/tored", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[1]"));
+
+			rplayer.getNode("fdm/jsbsim/gear/unit[1]/pos-norm-real", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[2]"));
+			rplayer.getNode("fdm/jsbsim/gear/unit[1]/tored", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[3]"));
+
+			rplayer.getNode("fdm/jsbsim/gear/unit[2]/pos-norm-real", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[4]"));
+			rplayer.getNode("fdm/jsbsim/gear/unit[2]/tored", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[5]"));
+
+			rplayer.getNode("fdm/jsbsim/fcs/flap-pos-norm", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[6]"));
+
+			rplayer.getNode("fdm/jsbsim/fcs/flap-tored", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[7]"));
+
+			rplayer.getNode("instrumentation/canopy/switch-pos-inter", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[8]"));
+			rplayer.getNode("instrumentation/canopy/tored", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[9]"));
+
+			rplayer.getNode("fdm/jsbsim/simulation/exploded", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[10]"));
+			rplayer.getNode("velocities/airspeed-kt", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[11"));
+
+			rplayer.getNode("instrumentation/drop-tank/dropped", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[12"));
+
+		</load>
+		<unload>
+##############################################################################
+			var rplayer = cmdarg();
+				print("UNLOAD MiG-1bis ", rplayer.getPath());
+##############################################################################
+		</unload>
+	</nasal>
+
 </PropertyList>

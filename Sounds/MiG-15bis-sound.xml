@@ -257,7 +257,7 @@
 		<path>Sounds/rumble.wav</path>
 		<condition>
 			<equals>
-				<property>gear/gear[0]/wow</property>
+				<property>fdm/jsbsim/gear/unit[0]/WOW</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -269,12 +269,12 @@
 	</rumble>
 
 	<rumble>
-		<name>rumble0</name>
+		<name>rumble1</name>
 		<mode>looped</mode>
 		<path>Sounds/rumble.wav</path>
 		<condition>
 			<equals>
-				<property>gear/gear[1]/wow</property>
+				<property>fdm/jsbsim/gear/unit[1]/WOW</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -286,12 +286,12 @@
 	</rumble>
 
 	<rumble>
-		<name>rumble0</name>
+		<name>rumble2</name>
 		<mode>looped</mode>
 		<path>Sounds/rumble.wav</path>
 		<condition>
 			<equals>
-				<property>gear/gear[2]/wow</property>
+				<property>fdm/jsbsim/gear/unit[2]/WOW</property>
 				<value>1</value>
 			</equals>
 		</condition>

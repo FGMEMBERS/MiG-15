@@ -375,6 +375,31 @@ MiG-15bis simulation config.
 		</default>
 	</menubar>
 
+	<multiplay>
+		<generic>
+			<float n="0" alias="/fdm/jsbsim/gear/unit[0]/pos-norm-real"/>
+			<float n="1" alias="/fdm/jsbsim/gear/unit[0]/tored"/>
+
+			<float n="2" alias="/fdm/jsbsim/gear/unit[1]/pos-norm-real"/>
+			<float n="3" alias="/fdm/jsbsim/gear/unit[1]/tored"/>
+
+			<float n="4" alias="/fdm/jsbsim/gear/unit[2]/pos-norm-real"/>
+			<float n="5" alias="/fdm/jsbsim/gear/unit[2]/tored"/>
+
+			<float n="6" alias="/fdm/jsbsim/fcs/flap-pos-norm"/>
+			<float n="7" alias="/fdm/jsbsim/fcs/flap-tored"/>
+
+			<float n="8" alias="/instrumentation/canopy/switch-pos-inter"/>
+			<float n="9" alias="/instrumentation/canopy/tored"/>
+
+			<float n="10" alias="/fdm/jsbsim/simulation/exploded"/>
+			<float n="11" alias="/velocities/airspeed-kt"/>
+
+			<float n="12" alias="/instrumentation/drop-tank/dropped"/>
+
+		</generic>
+	</multiplay>
+
   </sim>
 
 <!-- Key mappings -->
