@@ -1291,10 +1291,10 @@
 			rplayer.getNode("fdm/jsbsim/simulation/exploded", 1).
 				alias(rplayer.getNode("sim/multiplay/generic/float[10]"));
 			rplayer.getNode("velocities/airspeed-kt", 1).
-				alias(rplayer.getNode("sim/multiplay/generic/float[11"));
+				alias(rplayer.getNode("sim/multiplay/generic/float[11]"));
 
 			rplayer.getNode("instrumentation/drop-tank/dropped", 1).
-				alias(rplayer.getNode("sim/multiplay/generic/float[12"));
+				alias(rplayer.getNode("sim/multiplay/generic/float[12]"));
 
 		</load>
 		<unload>
