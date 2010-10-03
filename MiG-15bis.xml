@@ -685,7 +685,7 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 	</flight_control>
 
 	<aerodynamics>
-		
+
 		<property value="1">tanks/fastened</property>
 
 		<property value="0">gtremble/on</property>
@@ -1586,5 +1586,11 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 		</axis>
 
 	</aerodynamics>
+
+	<system file="Airspeedometer">
+	</system>
+
+	<system file="Arthorizon">
+	</system>
 
 </fdm_config>

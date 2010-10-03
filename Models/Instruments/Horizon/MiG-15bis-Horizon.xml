@@ -77,66 +77,66 @@
 		</axis>
 	</animation>
 
-  <animation>
-    <type>rotate</type>
-    <object-name>HO_Sphere</object-name>
-    <property>instrumentation/artifical-horizon/indicated-roll-deg</property>
-    <center>
-      <x-m>-0.054</x-m>
-      <y-m>0</y-m>
-      <z-m>0.009</z-m>
-    </center>  
-    <axis>
-      <x>1</x>
-      <y>0</y>
-      <z>0</z>
-    </axis>
-  </animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>HO_Sphere</object-name>
+		<property>fdm/jsbsim/systems/arthorizon/roll-indicated-deg</property>
+		<center>
+			<x-m>-0.054</x-m>
+			<y-m>0</y-m>
+			<z-m>0.009</z-m>
+		</center>
+		<axis>
+			<x>1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
 
-  <animation>
-    <type>rotate</type>
-    <object-name>HO_Sphere</object-name>
-    <property>instrumentation/artifical-horizon/indicated-pitch-deg</property>
-    <center>
-      <x-m>-0.054</x-m>
-      <y-m>0</y-m>
-      <z-m>0.009</z-m>
-    </center>  
-    <axis>
-      <x>0</x>
-      <y>-1</y>
-      <z>0</z>
-    </axis>
-  </animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>HO_Sphere</object-name>
+		<property>fdm/jsbsim/systems/arthorizon/pitch-indicated-deg</property>
+		<center>
+			<x-m>-0.054</x-m>
+			<y-m>0</y-m>
+			<z-m>0.009</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
 
-  <animation>
-    <type>translate</type>
-    <object-name>HO_Button</object-name>
-    <property>instrumentation/artifical-horizon/status</property>
-    <factor>0.008</factor>
-	  <axis>
-      <x>-1</x>
-      <y>0</y>
-      <z>0</z>
-    </axis>
-  </animation>
+	<animation>
+		<type>translate</type>
+		<object-name>HO_Button</object-name>
+		<property>fdm/jsbsim/systems/arthorizon/button-pos</property>
+		<factor>0.008</factor>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
 
-  <animation>
-    <type>translate</type>
-    <object-name>HO_Ring</object-name>
-    <property>instrumentation/artifical-horizon/offset</property>
-    <factor>0.015</factor>
-	  <axis>
-      <x>0</x>
-      <y>0</y>
-      <z>1</z>
-    </axis>
-  </animation>
+	<animation>
+		<type>translate</type>
+		<object-name>HO_Ring</object-name>
+		<property>fdm/jsbsim/systems/arthorizon/offset</property>
+		<factor>0.015</factor>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>1</z>
+		</axis>
+	</animation>
 
 	<animation>
 		<type>rotate</type>
 		<object-name>HO_Vern</object-name>
-		<property>instrumentation/artifical-horizon/offset</property>
+		<property>fdm/jsbsim/systems/arthorizon/offset</property>
 		<factor>360</factor>
 		<center>
 			<x-m>0</x-m>
@@ -150,66 +150,66 @@
 		</axis>
 	</animation>
 
-  <animation>
-	  <type>pick</type>
-	  <object-name>HO_Down</object-name>
-	  <action>
-	    <button>0</button>
-	    <repeatable>true</repeatable>
-	    <interval-sec>0.1</interval-sec>
-	     <binding>
-       	<command>property-adjust</command>
-	       <property>instrumentation/artifical-horizon/offset</property>
-	       <step>-0.02</step>
-	       <min>-1</min>
-	       <max>1</max>
-	       <wrap>false</wrap>
-	     </binding>
-	  </action>
-  	<action>
-	    <button>1</button>
-	    <repeatable>true</repeatable>
-	    <interval-sec>0.1</interval-sec>
-	     <binding>
-	       <command>property-adjust</command>
-	       <property>instrumentation/artifical-horizon/offset</property>
-	       <step>-0.1</step>
-	       <min>-1</min>
-	       <max>1</max>
-	       <wrap>false</wrap>
-	     </binding>
-	  </action>
-	</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>HO_Down</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>true</repeatable>
+			<interval-sec>0.1</interval-sec>
+			<binding>
+				<command>property-adjust</command>
+				<property>fdm/jsbsim/systems/arthorizon/offset</property>
+				<step>-0.02</step>
+				<min>-1</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+			</action>
+			<action>
+				<button>1</button>
+				<repeatable>true</repeatable>
+				<interval-sec>0.1</interval-sec>
+				<binding>
+					<command>property-adjust</command>
+					<property>fdm/jsbsim/systems/arthorizon/offset</property>
+					<step>-0.1</step>
+					<min>-1</min>
+					<max>1</max>
+					<wrap>false</wrap>
+					</binding>
+				</action>
+		</animation>
 
-  <animation>
-	  <type>pick</type>
-	  <object-name>HO_Up</object-name>
-	  <action>
-	    <button>0</button>
-	    <repeatable>true</repeatable>
-	    <interval-sec>0.1</interval-sec>
-	     <binding>
-       	<command>property-adjust</command>
-	       <property>instrumentation/artifical-horizon/offset</property>
-	       <step>0.02</step>
-	       <min>-1</min>
-	       <max>1</max>
-	       <wrap>false</wrap>
-	     </binding>
-	  </action>
-  	<action>
-	    <button>1</button>
-	    <repeatable>true</repeatable>
-	    <interval-sec>0.1</interval-sec>
-	     <binding>
-	       <command>property-adjust</command>
-	       <property>instrumentation/artifical-horizon/offset</property>
-	       <step>0.1</step>
-	       <min>-1</min>
-	       <max>1</max>
-	       <wrap>false</wrap>
-	     </binding>
-	  </action>
+	<animation>
+		<type>pick</type>
+		<object-name>HO_Up</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>true</repeatable>
+			<interval-sec>0.1</interval-sec>
+			<binding>
+				<command>property-adjust</command>
+				<property>fdm/jsbsim/systems/arthorizon/offset</property>
+				<step>0.02</step>
+				<min>-1</min>
+				<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+			</action>
+			<action>
+				<button>1</button>
+				<repeatable>true</repeatable>
+				<interval-sec>0.1</interval-sec>
+				<binding>
+					<command>property-adjust</command>
+					<property>fdm/jsbsim/systems/arthorizon/offset</property>
+					<step>0.1</step>
+					<min>-1</min>
+					<max>1</max>
+					<wrap>false</wrap>
+				</binding>
+			</action>
 	</animation>
 
 	<animation>
@@ -221,7 +221,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/artifical-horizon")</script>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/arthorizon/button-command")</script>
 			</binding>
 		</action>
 		<action>
@@ -230,7 +230,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/artifical-horizon")</script>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/arthorizon/button-command")</script>
 			</binding>
 		</action>
 	</animation>

@@ -806,8 +806,6 @@ MiG-15bis simulation config.
 	</instrumentation>
 -->
 
-<!-- Start up -->
-
 	<nasal>
 		<MIG15BIS>
 			<file>Aircraft/MiG-15/Nasal/MiG-15bis.nas</file>

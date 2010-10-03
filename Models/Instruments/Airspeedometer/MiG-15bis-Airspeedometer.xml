@@ -50,7 +50,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>IAS_NeedleX1</object-name>
-		<property>instrumentation/airspeedometer/indicated-speed-kt</property>
+		<property>fdm/jsbsim/systems/airspeedometer/indicated-kt</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0.0</dep></entry>
 			<entry><ind>107.9916036</ind><dep>-360.0</dep></entry>
@@ -68,12 +68,12 @@
 			<y>0</y>
 			<z>0</z>
 		</axis>
-	 </animation>
+	</animation>
 
 	<animation>
 		<type>rotate</type>
 		<object-name>IAS_NeedleX10</object-name>
-		<property>instrumentation/airspeedometer/indicated-speed-kt</property>
+		<property>fdm/jsbsim/systems/airspeedometer/indicated-kt</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0.0</dep></entry>
 			<entry><ind>107.9916036</ind><dep>-36.0</dep></entry>
@@ -92,4 +92,5 @@
 			<z>0</z>
 		</axis>
 	</animation>
+
 </PropertyList> 

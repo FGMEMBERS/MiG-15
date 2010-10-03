@@ -2624,7 +2624,7 @@ arthorizon = func
 			stop_arthorizon();
 	 		return ( settimer(arthorizon, 0.1) ); 
 		}
-		switchmove("instrumentation/artifical-horizon", "dummy/dummy");
+		switchmove("instrumentation/artifical-horizon", "fdm/jsbsym/systems/arthorizon/button");
 		if (power==1)
 		{
 			if (switch_pos==1)
@@ -2649,6 +2649,9 @@ arthorizon = func
 			ind_pitch_deg=-zero_pitch_deg+pitch_deg;
 			setprop("instrumentation/artifical-horizon/indicated-roll-deg", ind_roll_deg);
 			setprop("instrumentation/artifical-horizon/indicated-pitch-deg", ind_pitch_deg);
+			interpolate("instrumentation/artifical-horizon/indicated-roll-deg-inter", ind_roll_deg, 0.1);
+			interpolate("instrumentation/artifical-horizon/indicated-pitch-deg-inter", ind_pitch_deg, 0.1);
+
 			setprop("instrumentation/artifical-horizon/zero-roll-deg", zero_roll_deg);
 			setprop("instrumentation/artifical-horizon/zero-pitch-deg", zero_pitch_deg);
 		}
@@ -4378,6 +4381,7 @@ realelectric=func
 			setprop("systems/electrical-real/outputs/engine_control/on", set_engine_control);
 			setprop("systems/electrical-real/outputs/engine_control/volts-norm", set_engine_control);
 			setprop("systems/electrical-real/outputs/horizon/on", set_horizon);
+			setprop("fdm/jsbsim/systems/arthorizon/on", set_horizon);
 			setprop("systems/electrical-real/outputs/horizon/volts-norm", set_horizon);
 			setprop("systems/electrical-real/outputs/radioaltimeter/on", set_radioaltimeter);
 			setprop("systems/electrical-real/outputs/radioaltimeter/volts-norm", set_radioaltimeter);
@@ -4404,6 +4408,8 @@ realelectric=func
 			setprop("systems/electrical-real/outputs/drop-tank/volts-norm", set_drop_tank);
 			setprop("systems/electrical-real/outputs/bomb/on", set_bomb);
 			setprop("systems/electrical-real/outputs/bomb/volts-norm", set_bomb);
+			#JSBsim handmaded instruments
+			setprop("fdm/jsbsim/systems/airspeedometer/on", 1);
 		}
 		else
 		{
@@ -4418,6 +4424,7 @@ realelectric=func
 			setprop("systems/electrical-real/outputs/engine_control/volts-norm", 0);
 			setprop("systems/electrical-real/outputs/horizon/on", 0);
 			setprop("systems/electrical-real/outputs/horizon/volts-norm", 0);
+			setprop("fdm/jsbsim/systems/arthorizon/on", 0);
 			setprop("systems/electrical-real/outputs/radioaltimeter/on", 0);
 			setprop("systems/electrical-real/outputs/radioaltimeter/volts-norm", 0);
 			setprop("systems/electrical-real/outputs/radiocompass/on", 0);
@@ -4443,7 +4450,8 @@ realelectric=func
 			setprop("systems/electrical-real/outputs/drop-tank/volts-norm", 0);
 			setprop("systems/electrical-real/outputs/bomb/on", 0);
 			setprop("systems/electrical-real/outputs/bomb/volts-norm", 0);
-
+			#JSBsim handmaded instruments
+			setprop("fdm/jsbsim/systems/airspeedometer/on", 0);
 		}
 		settimer(realelectric, 0.1);
 	}
@@ -4512,51 +4520,6 @@ init_lightning=func
 }
 
 init_lightning();
-
-#-----------------------------------------------------------------------
-#Airspeedometer
-stop_airspeedometer=func
-	{
-	}
-
-airspeedometer=func
-	{
-		# check power
-		in_service = getprop("instrumentation/airspeedometer/serviceable");
-		if (in_service == nil)
-		{
-			stop_airspeedometer();
-	 		return ( settimer(airspeedometer, 0.1) ); 
-		}
-		if ( in_service != 1 )
-		{
-			stop_airspeedometer();
-		 	return ( settimer(airspeedometer, 0.1) ); 
-		}
-		#Get values
-		speed=getprop("velocities/airspeed-kt");
-		bus=getprop("systems/electrical-real/bus");
-		if ((speed==nil) or (bus==nil))
-		{
-			stop_airspeedometer();
-	 		return ( settimer(airspeedometer, 0.1) ); 
-		}
-		if (bus==1)
-		{
-			setprop("instrumentation/airspeedometer/indicated-speed-kt", speed);
-		}
-		settimer(airspeedometer, 0.1);
-	}
-
-init_airspeedometer=func
-{
-	setprop("instrumentation/airspeedometer/serviceable", 1);
-	setprop("instrumentation/airspeedometer/indicated-speed-kt", 0);
-}
-
-init_airspeedometer();
-
-airspeedometer();
 
 #-----------------------------------------------------------------------
 #Gas termometer
@@ -5493,6 +5456,24 @@ cannon=func
 	 		return ( settimer(cannon, 0.1) ); 
 		}
 		setprop("controls/cannon/error", 0);
+		bullet_collision=getprop("sim/ai/aircraft/collision/N-37");
+		if (bullet_collision!=nil)
+		{
+			if (bullet_collision!="")
+			{
+				setprop("sim/ai/aircraft/collision/N-37", "");
+				bulletricochetsound();
+			}
+		}
+		bullet_impact=getprop("sim/ai/aircraft/impact/N-37");
+		if (bullet_impact!=nil)
+		{
+			if (bullet_impact!="")
+			{
+				setprop("sim/ai/aircraft/impact/N-37", "");
+				bulletricochetsound();
+			}
+		}
 		if (power==0) 
 		{
 			if (button_pos==1)
@@ -5551,9 +5532,29 @@ init_cannon=func
 	setprop("instrumentation/cannon/serviceable", 1);
 	setprop("sounds/cannon/big-on", 0);
 	setprop("sounds/cannon/small-on", 0);
+	setprop("sounds/bullet-ricochet/on", 0);
 }
 
 init_cannon();
+
+bulletricochetsound = func
+	{
+		setprop("a/a", 1);
+		sound_on=getprop("sounds/bullet-ricochet/on");
+		if (sound_on!=nil)
+		{
+			if (sound_on!=1)
+			{
+				setprop("sounds/bullet-ricochet/on", 1);
+				settimer(bulletricochetsoundoff, 1.0);
+			}
+		}
+	}
+
+bulletricochetsoundoff = func
+	{
+		setprop("sounds/bullet-ricochet/on", 0);
+	}
 
 cannon();
 
@@ -6866,12 +6867,12 @@ droptank = func
 				bomb_explode();
 			}
 		}
-		left_drop_tank_impact=getprop("ai/submodels/left-drop-tank-impact");
+		left_drop_tank_impact=getprop("sim/ai/aircraft/impact/left-drop-tank-impact");
 		if (left_drop_tank_impact!=nil)
 		{
 			if (left_drop_tank_impact!="")
 			{
-				setprop("ai/submodels/left-drop-tank-impact", "");
+				setprop("sim/ai/aircraft/impact/left-drop-tank-impact", "");
 				tank_down();
 			}
 		}
@@ -7111,7 +7112,8 @@ aircraft_lock = func
 		setprop("instrumentation/gyrocompass/serviceable", 0);
 		setprop("instrumentation/brake-pressure-meter/serviceable", 0);
 		setprop("instrumentation/ignition-lamp/serviceable", 0);
-		setprop("instrumentation/airspeedometer/serviceable", 0);
+		setprop("fdm/jsbsim/systems/airspeedometer/serviceable", 0);
+		setprop("fdm/jsbsim/systems/arthorizon/serviceable", 0);
 		setprop("instrumentation/gastermometer/serviceable", 0);
 		setprop("instrumentation/motormeter/serviceable", 0);
 		setprop("instrumentation/tachometer/serviceable", 0);
@@ -7684,7 +7686,8 @@ aircraft_unlock=func
 		setprop("instrumentation/gyrocompass/serviceable", 1);
 		setprop("instrumentation/brake-pressure-meter/serviceable", 1);
 		setprop("instrumentation/ignition-lamp/serviceable", 1);
-		setprop("instrumentation/airspeedometer/serviceable", 1);
+		setprop("fdm/jsbsim/systems/airspeedometer/serviceable", 1);
+		setprop("fdm/jsbsim/systems/arthorizon/serviceable", 1);
 		setprop("instrumentation/gastermometer/serviceable", 1);
 		setprop("instrumentation/motormeter/serviceable", 1);
 		setprop("instrumentation/tachometer/serviceable", 1);
@@ -7767,7 +7770,6 @@ aircraft_init=func
 		init_gyrocompass();
 		init_brakepressmeter();
 		init_ignitionlamp();
-		init_airspeedometer();
 		init_gastermometer();
 		init_motormeter();
 		init_tachometer();

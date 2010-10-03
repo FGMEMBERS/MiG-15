@@ -978,6 +978,21 @@
 		</volume>
 	</canopy-crash>
 
+	<bullet-ricochet>
+		<name>bullet-ricochet</name>
+		<path>Aircraft/MiG-15/Sounds/cannon-37-ricochet.wav</path>
+		<mode>once</mode>
+		<condition>
+			<equals>
+				<property>sounds/bullet-ricochet/on</property>
+				<value>1</value>
+			</equals>
+		</condition>
+		<volume>
+			<value>0.3</value>
+		</volume>
+	</bullet-ricochet>
+
 	<aircraft-crack>
 		<name>aircraft-crack</name>
 		<path>Aircraft/MiG-15/Sounds/aircraft-crack.wav</path>
