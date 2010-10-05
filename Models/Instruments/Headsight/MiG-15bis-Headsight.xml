@@ -13,9 +13,13 @@
 				<value>1</value>
 			</equals>
 			<equals>
-				<property>fdm/jsbsim/systems/headsight/lamp</property>
+				<property>fdm/jsbsim/systems/headsight/on</property>
 				<value>1</value>
 			</equals>
+			<greater-than>
+				<property>fdm/jsbsim/systems/headsight/up-pos</property>
+				<value>0.9</value>
+			</greater-than>
 			<equals>
 				<property>sim/current-view/internal</property>
 				<value>true</value>	

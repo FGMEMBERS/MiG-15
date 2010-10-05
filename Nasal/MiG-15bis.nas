@@ -5208,6 +5208,7 @@ headsight_view_returner=func
 		current_view_number=getprop("sim/current-view/view-number");
 		photo_machinegun=getprop("systems/electrical-real/outputs/photo-machinegun/volts-norm");
 		distance_from_eye_to_sight=getprop("fdm/jsbsim/systems/headsight/from-eye-to-sight");
+		on=getprop("fdm/jsbsim/systems/headsight/on");
 		if (
 			(view_offset_x==nil)
 			or (view_offset_y==nil)
@@ -5219,6 +5220,7 @@ headsight_view_returner=func
 			or (current_view_number==nil)
 			or (photo_machinegun==nil)
 			or (distance_from_eye_to_sight==nil)
+			or (on==nil)
 		)
 		{
 			stop_headsight();
@@ -5234,11 +5236,12 @@ headsight_view_returner=func
 			setprop("sim/current-view/pitch-offset-deg", view_pitch_offset_deg);
 			setprop("sim/current-view/roll-offset-deg", view_roll_offset_deg);
 			setprop("sim/current-view/field-of-view", view_field_offset);
+
 		}
-		if (power==0)
+		if (on==0)
 		{
-			stop_headsight();
-	 		return ( settimer(headsight, 0.1) ); 
+			stop_headsight_view_returner();
+	 		return ( settimer(headsight_view_returner, 0.1) ); 
 		}
 		if ((current_view_number==1) and (photo_machinegun==1))
 		{
