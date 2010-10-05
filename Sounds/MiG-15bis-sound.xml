@@ -1025,6 +1025,25 @@
 		</volume>
 	</aircraft-creaking>
 
+	<jsb-click>
+		<name>jsb-click</name>
+		<path>Sounds/click.wav</path>
+		<mode>once</mode>
+		<condition>
+			<and>
+				<equals>
+					<property>fdm/jsbsim/systems/sounds/click/on</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>sim/current-view/internal</property>
+					<value>true</value>	
+				</equals>
+			</and>
+		</condition>
+		<volume><factor>0.7</factor></volume>
+	</jsb-click>
+
 	</fx>
 
 </PropertyList>

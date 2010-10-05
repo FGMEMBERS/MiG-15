@@ -14,13 +14,14 @@
 		<description> Artifical horizon </description>
 	</fileheader>
 
+<!--	That must be aded to set file
+
 	<property value="0">systems/arthorizon/on</property>
 	<property value="1">systems/arthorizon/serviceable</property>
 	<property value="0">systems/arthorizon/button-command</property>
 	<property value="0">systems/arthorizon/button-pos</property>
 	<property value="0">systems/arthorizon/offset</property>
 
-	<!-- Set it here to avoid "no delared" problem-->
 	<property value="0">systems/arthorizon/roll-indicated-rad</property>
 	<property value="0">systems/arthorizon/roll-zero-rad</property>
 	<property value="0">systems/arthorizon/roll-stored-rad</property>
@@ -28,6 +29,7 @@
 	<property value="0">systems/arthorizon/pitch-zero-rad</property>
 	<property value="0">systems/arthorizon/pitch-stored-rad</property>
 
+-->
 	<channel name="Arthorizon">
 
 		<!-- Button-->
@@ -46,6 +48,16 @@
 			</traverse>
 			<output>systems/arthorizon/button-pos</output>
 		</kinematic>
+
+		<switch name="calculations/arthorizon/click">
+			<default value="systems/sounds/click/on"/>
+			<test logic="AND" value="1">
+				systems/arthorizon/button-pos ge 0.25
+				systems/arthorizon/button-pos le 0.75
+				systems/sounds/click/on == 0
+			</test>
+			<output>systems/sounds/click/on</output>
+		</switch>
 
 		<!-- Roll of arthorizon-->
 
@@ -80,11 +92,11 @@
 			<output>systems/arthorizon/roll-zero-return-rad</output>
 		</fcs_function>
 
-		<!-- If not then drift with 1/10 of current angle speed, -1 because zero plused -->
+		<!-- If not then drift with 1/40 of current angle speed, -1 because zero plused -->
 
 		<pure_gain name="calculations/arthorizon/roll-zero-drift-rad">
 			<input>velocities/p-rad_sec</input>
-			<gain>-0.1</gain>
+			<gain>-0.025</gain>
 			<output>systems/arthorizon/roll-zero-drift-rad</output>
 		</pure_gain>
 
@@ -223,11 +235,11 @@
 			<output>systems/arthorizon/pitch-zero-return-rad</output>
 		</fcs_function>
 
-		<!-- If not then drift with 1/10 of current angle speed, -1 because zero plused -->
+		<!-- If not then drift with 1/40 of current angle speed, -1 because zero plused -->
 
 		<pure_gain name="calculations/arthorizon/pitch-zero-drift-rad">
 			<input>velocities/q-rad_sec</input>
-			<gain>-0.1</gain>
+			<gain>-0.025</gain>
 			<output>systems/arthorizon/pitch-zero-drift-rad</output>
 		</pure_gain>
 
@@ -332,10 +344,6 @@
 		</function>
 			<output>systems/arthorizon/pitch-indicated-deg</output>
 		</fcs_function>
-
-		<!-- Pitch of arthorizon-->
-
-
 
 	</channel>
 

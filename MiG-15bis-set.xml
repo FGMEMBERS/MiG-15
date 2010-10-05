@@ -37,12 +37,11 @@ MiG-15bis simulation config.
 
 	<one>1</one>
 
+	<sim>
 
-  <sim>
-
-    <startup>
-      <splash-texture>Aircraft/MiG-15/MiG-15bis-splash.rgb</splash-texture>
-    </startup>
+	<startup>
+		<splash-texture>Aircraft/MiG-15/MiG-15bis-splash.rgb</splash-texture>
+	</startup>
 
 	<help>
 		<title>MiG-15 bis</title>
@@ -145,17 +144,15 @@ MiG-15bis simulation config.
 		</key>
 	</help>
 
-    <flight-model>jsb</flight-model>
-    <status>beta</status>
-    <author>Lee Elliott, Victor Slavutinskiy, with great help from Yurik V. Nikiforoff</author>
-    <aero>MiG-15bis</aero>
-    <fuel-fraction>1.0</fuel-fraction>
+	<flight-model>jsb</flight-model>
+	<status>beta</status>
+	<author>Lee Elliott, Victor Slavutinskiy, with great help from Yurik V. Nikiforoff</author>
+	<aero>MiG-15bis</aero>
+	<fuel-fraction>1.0</fuel-fraction>
+	<description>MiG-15bis (JDBSim FDM)</description>
+	<virtual-cockpit archive="y">true</virtual-cockpit>
 
-    <description>MiG-15bis (JDBSim FDM)</description>
-
-    <virtual-cockpit archive="y">true</virtual-cockpit>
-
-    <chase-distance-m type="double" archive="y">-20.0</chase-distance-m>
+	<chase-distance-m type="double" archive="y">-20.0</chase-distance-m>
 
 	<view n="0">
 		<name>Pilot View</name>
@@ -193,19 +190,19 @@ MiG-15bis simulation config.
     </view>
 -->
 
-    <view n="2">
-      <config>
-        <y-offset-m archive="y" type="double">3.4</y-offset-m>
-        <z-offset-m archive="y" type="double">-19.7</z-offset-m>
-        <target-z-offset-m archive="y" type="double">3.75</target-z-offset-m>
-      </config>
-    </view>
+	<view n="2">
+		<config>
+			<y-offset-m archive="y" type="double">3.4</y-offset-m>
+			<z-offset-m archive="y" type="double">-19.7</z-offset-m>
+			<target-z-offset-m archive="y" type="double">3.75</target-z-offset-m>
+		</config>
+	</view>
 
-    <view n="3">
-      <config>
-        <target-z-offset-m archive="y" type="double">3.75</target-z-offset-m>
-      </config>
-    </view>
+	<view n="3">
+		<config>
+			<target-z-offset-m archive="y" type="double">3.75</target-z-offset-m>
+		</config>
+	</view>
 
     <view n="4">
       <config>
@@ -299,25 +296,27 @@ MiG-15bis simulation config.
 		</MiG-15bis-model>
 	</model>
 
-    <systems>
-      <autopilot>
-        <path>Aircraft/MiG-15/Systems/MiG-15bis-autopilot.xml</path>
-      </autopilot>
-      <electrical>
-        <path>Aircraft/MiG-15/Systems/MiG-15bis-electrical.xml</path>
-      </electrical>
-    </systems>
+	<systems>
+		<electrical>
+			<path>Aircraft/MiG-15/Systems/MiG-15bis-electrical.xml</path>
+		</electrical>
+		<autopilot>
+			<path>Aircraft/MiG-15/Systems/MiG-15bis-autopilot.xml</path>
+		</autopilot>
+	</systems>
+
+
 
 	<submodels>
 		<serviceable type="bool">1</serviceable>
 		<path>Aircraft/MiG-15/Models/Submodels/MiG-15bis-submodels.xml</path>
 	</submodels>
-    
-    <flaps>
-      <setting>0.00</setting>
-      <setting>0.36</setting>
-      <setting>1.00</setting>
-    </flaps>
+
+	<flaps>
+		<setting>0.00</setting>
+		<setting>0.36</setting>
+		<setting>1.00</setting>
+	</flaps>
 
     <aoa-indexer>
       <too-slow-deg>6.5</too-slow-deg>  <!-- target +1.5 deg -->
@@ -400,7 +399,7 @@ MiG-15bis simulation config.
 		</generic>
 	</multiplay>
 
-  </sim>
+	</sim>
 
 <!-- Key mappings -->
 	<input>
@@ -583,7 +582,7 @@ MiG-15bis simulation config.
 				<desc>Up/Down heaDsight</desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("instrumentation/headsight/up")</script>
+					<script>MIG15BIS.bitswap("fdm/jsbsim/systems/headsight/up-command")</script>
 				</binding>
 			</key>
 
@@ -750,7 +749,7 @@ MiG-15bis simulation config.
 
 	</controls>
 
-<!-- FDM gear fast initialization -->
+<!-- FDM initialization -->
 
 	<fdm>
 		<jsbsim>
@@ -769,9 +768,57 @@ MiG-15bis simulation config.
 					<pos-norm type="float">1</pos-norm>
 				</unit>
 			</gear>
+			<systems>
+				<click>
+					<on type="bool">0</on>
+					<time-pos type="float">0</time-pos>
+				</click>
+				<airspeedometer>
+					<on type="bool">0</on>
+					<serviceable type="bool">1</serviceable>
+				</airspeedometer>
+				<arthorizon>
+					<on type="bool">0</on>
+					<serviceable type="bool">1</serviceable>
+					<button-command type="bool">0</button-command>
+					<button-pos type="float">0</button-pos>
+					<offset type="float">0</offset>
+					<roll-indicated-rad type="float">0</roll-indicated-rad>
+					<roll-zero-rad type="float">0</roll-zero-rad>
+					<roll-stored-rad type="float">0</roll-stored-rad>
+					<pitch-indicated-rad type="float">0</pitch-indicated-rad>
+					<pitch-zero-rad type="float">0</pitch-zero-rad>
+					<pitch-stored-rad type="float">0</pitch-stored-rad>
+				</arthorizon>
+				<headsight>
+					<on type="bool">0</on>
+					<serviceable type="bool">1</serviceable>
+					<up-command type="bool">1</up-command>
+					<up-pos type="float">1</up-pos>
+					<gyro-command type="bool">1</gyro-command>
+					<gyro-pos type="float">1</gyro-pos>
+					<frame-command type="bool">0</frame-command>
+					<frame-pos type="float">0</frame-pos>
+					<brightness type="float">1</brightness>
+					<target-size type="float">15</target-size>
+					<target-distance type="float">400</target-distance>
+					<from-eye-to-sight type="float">0.4</from-eye-to-sight>
+					<lamp type="float">0</lamp>
+					<sign type="bool">0</sign>
+					<ring-lamp type="float">0</ring-lamp>
+					<cross-lamp type="float">0</cross-lamp>
+					<pitch-shift type="float">0</pitch-shift>
+					<yaw-shift type="float">0</yaw-shift>
+					<sight-scale-factor type="float">1</sight-scale-factor>
+					<sight-source-size type="float">0.02</sight-source-size>
+					<bullet-speed type="float">680</bullet-speed>
+					<pitch-shift-edge type="float">0.027</pitch-shift-edge>
+					<yaw-shift-edge type="float">0.035</yaw-shift-edge>
+					<sight-dot-size type="float">0.001</sight-dot-size>
+				</headsight>
+			</systems>
 		</jsbsim>
 	</fdm>
-
 
 	<gear>
 		<gear n="0">

@@ -14,8 +14,12 @@
 		<description> Airspeedometer </description>
 	</fileheader>
 
+<!--	That must be aded to set file
+
 	<property value="0">systems/airspeedometer/on</property>
 	<property value="1">systems/airspeedometer/serviceable</property>
+
+-->
 
 	<channel name="Airspeedometer">
 

@@ -2670,10 +2670,12 @@ init_arthorizon = func
 	setprop("instrumentation/artifical-horizon/serviceable", 1);
 }
 
-init_arthorizon();
+#init_arthorizon();
 
 # start artifical horizon process first time
-arthorizon ();
+#arthorizon ();
+
+#Unused since smoother JSBSim only version
 
 #----------------------------------------------------------------------
 #Gyrocompass
@@ -4392,6 +4394,7 @@ realelectric=func
 			setprop("engines/engine/isolation-valve", set_isolation);
 			setprop("systems/electrical-real/outputs/headsight/on", set_headsight);
 			setprop("systems/electrical-real/outputs/headsight/volts-norm", set_headsight);
+			setprop("fdm/jsbsim/systems/headsight/on", set_headsight);
 			setprop("systems/electrical-real/outputs/generatorlamp/on", (abs(1-set_generator)));
 			setprop("systems/electrical-real/outputs/generatorlamp/volts-norm", (abs(1-set_generator)));
 			setprop("systems/electrical-real/outputs/ignition-panel-lamp/on", set_ignition);
@@ -4434,6 +4437,7 @@ realelectric=func
 			setprop("engines/engine/isolation-valve", 0);
 			setprop("systems/electrical-real/outputs/headsight/on", 0);
 			setprop("systems/electrical-real/outputs/headsight/volts-norm", 0);
+			setprop("fdm/jsbsim/systems/headsight/on", 0);
 			setprop("systems/electrical-real/outputs/generatorlamp/on", 0);
 			setprop("systems/electrical-real/outputs/generatorlamp/volts-norm", 0);
 			setprop("systems/electrical-real/outputs/ignition-panel-lamp/on", 0);
@@ -4485,6 +4489,7 @@ init_realelectric = func
 	setprop("systems/electrical-real/outputs/isolation-lamp/volts-norm", 0);
 	setprop("engines/engine/isolation-valve", 0);
 	setprop("systems/electrical-real/outputs/headsight/on", 0);
+	setprop("fdm/jsbsim/systems/headsight/on", 0);
 	setprop("systems/electrical-real/outputs/headsight/volts-norm", 0);
 	setprop("systems/electrical-real/outputs/generatorlamp/on", 0);
 	setprop("systems/electrical-real/outputs/generatorlamp/volts-norm", 0);
@@ -4976,7 +4981,7 @@ headsight=func
 				else
 				{
 					setprop("instrumentation/headsight/gyro-sight-visible", 0);
-				}
+				}	
 
 				if (((pitch_shift+sight_side_size+sight_dot_size)<pitch_shift_edge)
 					and ((pitch_shift+sight_side_size-sight_dot_size)>-pitch_shift_edge)
@@ -4988,7 +4993,7 @@ headsight=func
 				else
 				{
 					setprop("instrumentation/headsight/gyro-sight-up", 0);
-				}
+				}	
 
 				if (((pitch_shift-sight_side_size+sight_dot_size)<pitch_shift_edge)
 					and ((pitch_shift-sight_side_size-sight_dot_size)>-pitch_shift_edge)
@@ -5000,7 +5005,7 @@ headsight=func
 				else
 				{
 					setprop("instrumentation/headsight/gyro-sight-down", 0);	
-				}
+				}	
 
 				if (((pitch_shift+sight_dot_size)<pitch_shift_edge)
 					and ((pitch_shift-sight_dot_size)>-pitch_shift_edge)
@@ -5137,37 +5142,122 @@ init_headsight=func
 	setprop("instrumentation/headsight/one", 1);
 }
 
-init_headsight();
+#init_headsight();
+
+#Switched off due move to better JSBSim only version
 
 #keyboard functions
 
 less_sight_distance = func 
 	{
-		set_pos=getprop("instrumentation/headsight/target-distance");
+		set_pos=getprop("fdm/jsbsim/systems/headsight/target-distance");
 		if (!(set_pos==nil))
 		{
 			if (set_pos>180)
 			{
 				set_pos=set_pos-10;
-				setprop("instrumentation/headsight/target-distance", set_pos);
+				setprop("fdm/jsbsim/systems/headsight/target-distance", set_pos);
 			}
 		}
 	}
 
 more_sight_distance = func 
 	{
-		set_pos=getprop("instrumentation/headsight/target-distance");
+		set_pos=getprop("fdm/jsbsim/systems/headsight/target-distance");
 		if (!(set_pos==nil))
 		{
 			if (set_pos<800)
 			{
 				set_pos=set_pos+10;
-				setprop("instrumentation/headsight/target-distance", set_pos);
+				setprop("fdm/jsbsim/systems/headsight/target-distance", set_pos);
 			}
 		}
 	}
 
-headsight();
+#headsight();
+#Switched off due move to better JSBSim only version
+
+#-----------------------------------------------------------------------
+#Headsight view returner
+stop_headsight_view_returner=func
+	{
+	}
+
+headsight_view_returner=func
+	{
+		# check power
+		in_service = getprop("fdm/jsbsim/systems/headsight/serviceable");
+		if (in_service == nil)
+		{
+			stop_headsight_view_returner();
+	 		return ( settimer(headsight_view_returner, 0.1) ); 
+		}
+		if ( in_service != 1 )
+		{
+			stop_headsight_view_returner();
+		 	return ( settimer(headsight_view_returner, 0.1) ); 
+		}
+		#Get values
+		view_offset_x=getprop("sim/view[1]/config/x-offset-m");
+		view_offset_y=getprop("sim/view[1]/config/y-offset-m");
+		view_offset_z=getprop("sim/view[1]/config/z-offset-m");
+		view_heading_offset_deg=getprop("sim/view[1]/config/heading-offset-deg");
+		view_pitch_offset_deg=getprop("sim/view[1]/config/pitch-offset-deg");
+		view_roll_offset_deg=getprop("sim/view[1]/config/roll-offset-deg");
+		view_field_offset=getprop("sim/view[1]/config/default-field-of-view-deg");
+		current_view_number=getprop("sim/current-view/view-number");
+		photo_machinegun=getprop("systems/electrical-real/outputs/photo-machinegun/volts-norm");
+		distance_from_eye_to_sight=getprop("fdm/jsbsim/systems/headsight/from-eye-to-sight");
+		if (
+			(view_offset_x==nil)
+			or (view_offset_y==nil)
+			or (view_offset_z==nil)
+			or (view_heading_offset_deg==nil)
+			or (view_pitch_offset_deg==nil)
+			or (view_roll_offset_deg==nil)
+			or (view_field_offset==nil)
+			or (current_view_number==nil)
+			or (photo_machinegun==nil)
+			or (distance_from_eye_to_sight==nil)
+		)
+		{
+			stop_headsight();
+	 		return ( settimer(headsight, 0.1) ); 
+		}
+		setprop("sim/view[1]/config/z-offset-m", 1.545+0.184+distance_from_eye_to_sight);
+		if (current_view_number==1)
+		{
+			setprop("sim/current-view/x-offset-m", view_offset_x);
+			setprop("sim/current-view/y-offset-m", view_offset_y);
+			setprop("sim/current-view/z-offset-m", view_offset_z);
+			setprop("sim/current-view/heading-offset-deg", view_heading_offset_deg);
+			setprop("sim/current-view/pitch-offset-deg", view_pitch_offset_deg);
+			setprop("sim/current-view/roll-offset-deg", view_roll_offset_deg);
+			setprop("sim/current-view/field-of-view", view_field_offset);
+		}
+		if (power==0)
+		{
+			stop_headsight();
+	 		return ( settimer(headsight, 0.1) ); 
+		}
+		if ((current_view_number==1) and (photo_machinegun==1))
+		{
+			setprop("fdm/jsbsim/systems/headsight/sign", 1);
+		}
+		else
+		{
+			setprop("fdm/jsbsim/systems/headsight/sign", 0);
+		}
+		settimer(headsight_view_returner, 0.1);
+	}
+
+init_headsight_view_returner=func
+{
+}
+
+init_headsight_view_returner();
+
+headsight_view_returner();
 
 #-----------------------------------------------------------------------
 #Stick
@@ -7131,7 +7221,7 @@ aircraft_lock = func
 		setprop("instrumentation/gas-control/serviceable", 0);
 		setprop("instrumentation/ignition-button/serviceable", 0);
 		setprop("instrumentation/buster-control/serviceable", 0);
-		setprop("instrumentation/headsight/serviceable", 0);
+		setprop("fdm/jsbsim/systems/headsight/serviceable", 0);
 		setprop("instrumentation/stick/serviceable", 0);
 		setprop("instrumentation/cannon/serviceable", 0);
 		setprop("instrumentation/gear-valve/serviceable", 0);
@@ -7705,7 +7795,7 @@ aircraft_unlock=func
 		setprop("instrumentation/gas-control/serviceable", 1);
 		setprop("instrumentation/ignition-button/serviceable", 1);
 		setprop("instrumentation/buster-control/serviceable", 1);
-		setprop("instrumentation/headsight/serviceable", 1);
+		setprop("fdm/jsbsim/systems/headsight/serviceable", 1);
 		setprop("instrumentation/stick/serviceable", 1);
 		setprop("instrumentation/cannon/serviceable", 1);
 		setprop("instrumentation/gear-valve/serviceable", 1);
@@ -7766,7 +7856,6 @@ aircraft_init=func
 		init_altlamp();
 		init_gearlamp();
 		init_oxypressmeter();
-		init_arthorizon();
 		init_gyrocompass();
 		init_brakepressmeter();
 		init_ignitionlamp();
@@ -7776,7 +7865,6 @@ aircraft_init=func
 		init_machometer();
 		init_turnometer();
 		init_vertspeedometer();
-		init_headsight();
 		init_gearpressure();
 		init_flapspressure();
 		init_radiocompass();

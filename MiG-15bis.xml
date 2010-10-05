@@ -1587,10 +1587,16 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 
 	</aerodynamics>
 
+	<system file="Click">
+	</system>
+
 	<system file="Airspeedometer">
 	</system>
 
 	<system file="Arthorizon">
+	</system>
+
+	<system file="Headsight">
 	</system>
 
 </fdm_config>
