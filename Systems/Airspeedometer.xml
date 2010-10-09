@@ -37,8 +37,8 @@
 		</switch>
 
 		<switch name="calculations/airspeedometer/indicated-kt">
-			<default logic="OR" value="0"/>
-			<test value="systems/airspeedometer/stored-kt">
+			<default value="0"/>
+			<test logic="OR" value="systems/airspeedometer/stored-kt">
 				systems/airspeedometer/on == 0
 				systems/airspeedometer/serviceable == 0
 			</test>

@@ -43,21 +43,6 @@
 -->
 
   <animation>
-    <type>translate</type>
-    <object-name>FLC_Fix</object-name>
-    <property>instrumentation/flaps-control/fix-pos-norm</property>
-    <interpolation>
-      <entry><ind>0.0</ind><dep>-0.005</dep></entry>
-      <entry><ind>1.0</ind><dep>0.005</dep></entry>
-    </interpolation>
-		<axis>
-      <x>1.0</x>
-      <y>0</y>
-      <z>0.0</z>
-    </axis>
-  </animation>
-
-  <animation>
     <type>rotate</type>
     <object-name>FLC_Lever</object-name>
     <object-name>FLC_LBase</object-name>
@@ -81,6 +66,22 @@
       <z>0</z>
     </axis>
   </animation>
+
+  <animation>
+    <type>translate</type>
+    <object-name>FLC_Fix</object-name>
+    <property>instrumentation/flaps-control/fix-pos-norm</property>
+    <interpolation>
+      <entry><ind>0.0</ind><dep>-0.004</dep></entry>
+      <entry><ind>1.0</ind><dep>0.004</dep></entry>
+    </interpolation>
+		<axis>
+      <x>1.0</x>
+      <y>0</y>
+      <z>0.0</z>
+    </axis>
+  </animation>
+
 
   <animation>
 	  <type>pick</type>

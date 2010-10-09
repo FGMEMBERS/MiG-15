@@ -224,7 +224,7 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 			<static_friction>  0.80 </static_friction>
 			<dynamic_friction> 0.50 </dynamic_friction>
 			<rolling_friction> 0.02 </rolling_friction>
-			<spring_coeff unit="LBS/FT">       4038.46 </spring_coeff>
+			<spring_coeff unit="LBS/FT">       8000.00 </spring_coeff>
 			<damping_coeff unit="LBS/FT/SEC">  1346.15 </damping_coeff>
 			<max_steer unit="DEG"> 5.00 </max_steer>
 			<brake_group>NONE</brake_group>
@@ -1598,5 +1598,12 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 
 	<system file="Headsight">
 	</system>
+
+	<system file="Tachometer">
+	</system>
+
+	<system file="Gascontrol">
+	</system>
+
 
 </fdm_config>

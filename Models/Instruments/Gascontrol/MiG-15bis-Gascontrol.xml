@@ -53,33 +53,33 @@
 
 -->
 
-  <animation>
-    <type>rotate</type>
-    <object-name>GAC_Lever</object-name>
-    <object-name>GAC_Fix</object-name>
-    <object-name>GAC_Handle</object-name>
-    <object-name>GB_Base</object-name>
-    <object-name>GB_Fix</object-name>
-    <object-name>GB_Bezel</object-name>
-    <object-name>GB_Button</object-name>
-    <object-name>RB_Bezel</object-name>
-    <object-name>RB_Button</object-name>
-    <property>instrumentation/gas-control/switch-pos-norm</property>
-    <interpolation>
-      <entry><ind>0.0</ind><dep>-24.75</dep></entry>
-      <entry><ind>1.0</ind><dep>24.75</dep></entry>
-    </interpolation>
-    <center>
-      <x-m>0</x-m>
-      <y-m>0</y-m>
-      <z-m>-0.085</z-m>
-    </center>  
-    <axis>
-      <x>0</x>
-      <y>-1</y>
-      <z>0</z>
-    </axis>
-  </animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>GAC_Lever</object-name>
+		<object-name>GAC_Fix</object-name>
+		<object-name>GAC_Handle</object-name>
+		<object-name>GB_Base</object-name>
+		<object-name>GB_Fix</object-name>
+		<object-name>GB_Bezel</object-name>
+		<object-name>GB_Button</object-name>
+		<object-name>RB_Bezel</object-name>
+		<object-name>RB_Button</object-name>
+		<property>fdm/jsbsim/systems/gascontrol/lever-pos</property>
+		<interpolation>
+			<entry><ind>0.0</ind><dep>-24.75</dep></entry>
+			<entry><ind>1.0</ind><dep>24.75</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>-0.085</z-m>
+		</center>  
+		<axis>
+			<x>0</x>
+			<y>-1</y>
+			<z>0</z>
+		</axis>
+	</animation>
 
 	<animation>
 		<type>translate</type>
@@ -102,7 +102,7 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
+				<command>nasal</command>
 				<script>MIG15BIS.switchswap("instrumentation/gas-control/brakes-button")</script>
 			</binding>
 		</action>
@@ -118,45 +118,45 @@
 	</animation>
 
 
-  <animation>
-    <type>rotate</type>
-    <object-name>GAC_Fix</object-name>
-    <property>instrumentation/gas-control/fix/switch-pos-norm</property>
-    <interpolation>
-      <entry><ind>0.0</ind><dep>0.0</dep></entry>
-      <entry><ind>1.0</ind><dep>90</dep></entry>
-    </interpolation>
-    <center>
-      <x-m>0.009</x-m>
-      <y-m>-0.005</y-m>
-      <z-m>0.070</z-m>
-    </center>  
-    <axis>
-      <x>0</x>
-      <y>1</y>
-      <z>0</z>
-    </axis>
-  </animation>
+	<animation>
+	<type>rotate</type>
+	<object-name>GAC_Fix</object-name>
+		<property>fdm/jsbsim/systems/gascontrol/fix-pos</property>
+	<interpolation>
+		<entry><ind>0.0</ind><dep>0.0</dep></entry>
+		<entry><ind>1.0</ind><dep>90</dep></entry>
+	</interpolation>
+	<center>
+		<x-m>0.009</x-m>
+		<y-m>-0.005</y-m>
+		<z-m>0.070</z-m>
+	</center>
+	<axis>
+		<x>0</x>
+		<y>1</y>
+		<z>0</z>
+	</axis>
+	</animation>
 
-  <animation>
-    <type>rotate</type>
-    <object-name>GAC_Lock</object-name>
-    <property>instrumentation/gas-control/lock/switch-pos-norm</property>
-    <interpolation>
-      <entry><ind>1.0</ind><dep>45</dep></entry>
-      <entry><ind>0.0</ind><dep>0</dep></entry>
-    </interpolation>
-    <center>
-      <x-m>0</x-m>
-      <y-m>0</y-m>
-      <z-m>-0.085</z-m>
-    </center>  
-    <axis>
-      <x>0</x>
-      <y>-1</y>
-      <z>0</z>
-    </axis>
-  </animation>
+	<animation>
+	<type>rotate</type>
+	<object-name>GAC_Lock</object-name>
+		<property>fdm/jsbsim/systems/gascontrol/lock-pos</property>
+	<interpolation>
+		<entry><ind>1.0</ind><dep>45</dep></entry>
+		<entry><ind>0.0</ind><dep>0</dep></entry>
+	</interpolation>
+	<center>
+		<x-m>0</x-m>
+		<y-m>0</y-m>
+		<z-m>-0.085</z-m>
+	</center>
+		<axis>
+		<x>0</x>
+		<y>-1</y>
+		<z>0</z>
+	</axis>
+	</animation>
 
   <animation>
   <type>pick</type>
@@ -230,7 +230,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/gas-control/lock")</script>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/gascontrol/lock-command")</script>
 			</binding>
 
 		</action>
@@ -240,7 +240,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/gas-control/lock")</script>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/gascontrol/lock-command")</script>
 			</binding>
 		</action>
 	</animation>
@@ -254,7 +254,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/gas-control/fix")</script>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/gascontrol/fix-command")</script>
 			</binding>
 		</action>
 		<action>
@@ -263,7 +263,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/gas-control/fix")</script>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/gascontrol/fix-command")</script>
 			</binding>
 		</action>
 	</animation>

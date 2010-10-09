@@ -511,7 +511,7 @@ MiG-15bis simulation config.
 				<desc>Lock/Unlock thRottle handle</desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("instrumentation/gas-control/lock")</script>
+					<script>MIG15BIS.bitswap("fdm/jsbsim/systems/gascontrol/lock-command")</script>
 				</binding>
 			</key>
 
@@ -521,7 +521,7 @@ MiG-15bis simulation config.
 				<desc>On/Off low throttle holder</desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("instrumentation/gas-control/fix")</script>
+					<script>MIG15BIS.bitswap("fdm/jsbsim/systems/gascontrol/fix-command")</script>
 				</binding>
 			</key>
 
@@ -769,6 +769,11 @@ MiG-15bis simulation config.
 				</unit>
 			</gear>
 			<systems>
+				<propulsion>
+					<engine>
+						<rpm type="float">0</rpm>
+					</engine>
+				</propulsion>
 				<click>
 					<on type="bool">0</on>
 					<time-pos type="float">0</time-pos>
@@ -816,6 +821,23 @@ MiG-15bis simulation config.
 					<yaw-shift-edge type="float">0.035</yaw-shift-edge>
 					<sight-dot-size type="float">0.001</sight-dot-size>
 				</headsight>
+				<tachometer>
+					<on type="bool">0</on>
+					<serviceable type="bool">1</serviceable>
+					<input-rpm type="float">0</input-rpm>
+				</tachometer>
+				<gascontrol>
+					<serviceable type="bool">1</serviceable>
+					<lock-command type="float">1</lock-command>
+					<lock-pos type="float">1</lock-pos>
+					<fix-command type="float">0</fix-command>
+					<fix-pos type="float">0</fix-pos>
+					<lever-command type="float">0</lever-command>
+					<lever-pos type="float">0</lever-pos>
+					<pilot-oscillator-pos>0</pilot-oscillator-pos>
+					<shift-oscillator-command>0</shift-oscillator-command>
+					<shift-oscillator-pos>0</shift-oscillator-pos>
+				</gascontrol>
 			</systems>
 		</jsbsim>
 	</fdm>

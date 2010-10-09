@@ -45,15 +45,13 @@
 
 -->
 
-<!--Power on, moves smoothly -->
-
 	<animation>
 		<type>rotate</type>
 		<object-name>TC_Needle</object-name>
-		<property>engines/engine/rpm</property>
+		<property>fdm/jsbsim/systems/tachometer/indicated-rpm</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0.0</dep></entry>
-			<entry><ind>15000</ind><dep>540.0</dep></entry>
+			<entry><ind>15000.0</ind><dep>540.0</dep></entry>
 		</interpolation>
 		<center>
 			<x-m>0</x-m>
@@ -65,40 +63,6 @@
 			<y>0</y>
 			<z>0</z>
 		</axis>
-		<condition>
-			<equals>
-				<property>systems/electrical-real/outputs/engine_control/on</property>
-				<value>1</value>
-			</equals>
-		</condition>
-	</animation>
-
-<!--Power off, stay in position -->
-
-	<animation>
-		<type>rotate</type>
-		<object-name>TC_Needle</object-name>
-		<property>instrumentation/tachometer/rpm</property>
-		<interpolation>
-			<entry><ind>0.0</ind><dep>0.0</dep></entry>
-			<entry><ind>15000</ind><dep>540.0</dep></entry>
-		</interpolation>
-		<center>
-			<x-m>0</x-m>
-			<y-m>0</y-m>
-			<z-m>0</z-m>
-		</center>  
-		<axis>
-			<x>-1</x>
-			<y>0</y>
-			<z>0</z>
-		</axis>
-		<condition>
-			<equals>
-				<property>systems/electrical-real/outputs/engine_control/on</property>
-				<value>0</value>
-			</equals>
-		</condition>
 	</animation>
 
 </PropertyList> 

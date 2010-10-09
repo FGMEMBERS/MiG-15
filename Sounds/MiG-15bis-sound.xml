@@ -678,6 +678,25 @@
 			</volume>
 		</canopy-close-right>
 
+	<throttle-crack>
+		<name>throttle-crack</name>
+		<path>Aircraft/MiG-15/Sounds/throttle-crack.wav</path>
+		<mode>once</mode>
+		<condition>
+			<and>
+				<equals>
+					<property>sounds/throttle-crack/on</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>sim/current-view/internal</property>
+					<value>true</value>	
+				</equals>
+			</and>
+		</condition>
+		<volume><factor>0.5</factor></volume>
+	</throttle-crack>
+
 	<click>
 		<name>click</name>
 		<path>Sounds/click.wav</path>
@@ -1037,12 +1056,31 @@
 				</equals>
 				<equals>
 					<property>sim/current-view/internal</property>
-					<value>true</value>	
+					<value>true</value>
 				</equals>
 			</and>
 		</condition>
 		<volume><factor>0.7</factor></volume>
 	</jsb-click>
+
+	<jsb-throttle-crack>
+		<name>jsb-throttle-crack</name>
+		<path>Aircraft/MiG-15/Sounds/throttle-crack.wav</path>
+		<mode>once</mode>
+		<condition>
+			<and>
+				<equals>
+					<property>fdm/jsbsim/systems/sounds/throttle-crack/on</property>
+					<value>1</value>
+				</equals>
+				<equals>
+					<property>sim/current-view/internal</property>
+					<value>true</value>
+				</equals>
+			</and>
+		</condition>
+		<volume><factor>0.3</factor></volume>
+	</jsb-throttle-crack>
 
 	</fx>
 
