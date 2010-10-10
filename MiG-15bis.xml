@@ -1605,5 +1605,13 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 	<system file="Gascontrol">
 	</system>
 
+	<system file="Flapscontrol">
+	</system>
+
+	<system file="Canopy">
+	</system>
+
+	<system file="Accchecker">
+	</system>
 
 </fdm_config>

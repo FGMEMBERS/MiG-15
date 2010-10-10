@@ -305,8 +305,6 @@ MiG-15bis simulation config.
 		</autopilot>
 	</systems>
 
-
-
 	<submodels>
 		<serviceable type="bool">1</serviceable>
 		<path>Aircraft/MiG-15/Models/Submodels/MiG-15bis-submodels.xml</path>
@@ -451,7 +449,7 @@ MiG-15bis simulation config.
 				<desc>Toggle Canopy</desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("instrumentation/canopy")</script>
+					<script>MIG15BIS.bitswap("fdm/jsbsim/systems/canopy/command")</script>
 				</binding>
 			</key>
 
@@ -774,10 +772,15 @@ MiG-15bis simulation config.
 						<rpm type="float">0</rpm>
 					</engine>
 				</propulsion>
-				<click>
-					<on type="bool">0</on>
-					<time-pos type="float">0</time-pos>
-				</click>
+				<sounds>
+					<canopy-lock-click>
+						<on type="float">0</on>
+					</canopy-lock-click>
+					<click>
+						<on type="bool">0</on>
+						<time-pos type="float">0</time-pos>
+					</click>
+				</sounds>
 				<airspeedometer>
 					<on type="bool">0</on>
 					<serviceable type="bool">1</serviceable>
@@ -838,6 +841,27 @@ MiG-15bis simulation config.
 					<shift-oscillator-command>0</shift-oscillator-command>
 					<shift-oscillator-pos>0</shift-oscillator-pos>
 				</gascontrol>
+				<flapscontrol>
+					<serviceable type="bool">1</serviceable>
+					<lever-command type="float">0</lever-command>
+					<lever-pos type="float">0</lever-pos>
+					<fix-pos type="float">0</fix-pos>
+				</flapscontrol>
+				<accchecker>
+					<max-n-x type="float">0</max-n-x>
+					<max-n-y type="float">0</max-n-y>
+					<max-n-z type="float">0</max-n-z>
+					<max-n-p type="float">0</max-n-p>
+					<max-n-q type="float">0</max-n-q>
+					<max-n-r type="float">0</max-n-r>
+				</accchecker>
+				<canopy>
+					<serviceable type="bool">1</serviceable>
+					<command type="float">1</command>
+					<pos type="float">1</pos>
+					<lock-pos type="float">0</lock-pos>
+					<tored type="float">0</tored>
+				</canopy>
 			</systems>
 		</jsbsim>
 	</fdm>

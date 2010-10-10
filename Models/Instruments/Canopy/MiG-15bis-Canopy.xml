@@ -36,7 +36,7 @@ but that animation makes bug in currnet FG state, so it's off
 		<object-name>CP_RLock</object-name>
 		<condition>
 			<equals>
-				<property>instrumentation/canopy/tored</property>
+				<property>fdm/jsbsim/systems/canopy/tored</property>
 				<value>0</value>
 			</equals>
 		</condition>
@@ -59,7 +59,7 @@ but that animation makes bug in currnet FG state, so it's off
 		<object-name>CP_RLHBase</object-name>
 		<object-name>CP_RLHandle</object-name>
 		<object-name>CP_RLock</object-name>
-		<property>instrumentation/canopy/switch-pos-inter</property>
+		<property>fdm/jsbsim/systems/canopy/pos</property>
 		<factor>0.74</factor>
 		<axis>
 			<x>1</x>
@@ -85,7 +85,7 @@ but that animation makes bug in currnet FG state, so it's off
 		<object-name>CP_RLHBase</object-name>
 		<object-name>CP_RLHandle</object-name>
 		<object-name>CP_RLock</object-name>
-		<property>instrumentation/canopy/switch-pos-inter</property>
+		<property>fdm/jsbsim/systems/canopy/pos</property>
 		<factor>0.05</factor>
 		<axis>
 			<x>0</x>
@@ -111,7 +111,7 @@ but that animation makes bug in currnet FG state, so it's off
 		<object-name>CP_RLHBase</object-name>
 		<object-name>CP_RLHandle</object-name>
 		<object-name>CP_RLock</object-name>
-		<property>instrumentation/canopy/switch-pos-inter</property>
+		<property>fdm/jsbsim/systems/canopy/pos</property>
 		<factor>-2</factor>
 		<center>
 			<x-m>0.013</x-m>
@@ -133,7 +133,7 @@ but that animation makes bug in currnet FG state, so it's off
 		<object-name>CP_RLHBase</object-name>
 		<object-name>CP_RLHandle</object-name>
 		<object-name>CP_RLock</object-name>
-		<property>instrumentation/canopy/lock/switch-pos-inter</property>
+		<property>fdm/jsbsim/systems/canopy/lock-pos</property>
 		<factor>30</factor>
 		<center>
 			<x-m>0.012</x-m>
@@ -157,7 +157,7 @@ but that animation makes bug in currnet FG state, so it's off
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/canopy")</script>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/canopy/command")</script>
 			</binding>
 		</action>
 		<action>
@@ -166,7 +166,7 @@ but that animation makes bug in currnet FG state, so it's off
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/canopy")</script>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/canopy/command")</script>
 			</binding>
 		</action>
 	</animation>

@@ -158,36 +158,36 @@
 	</axis>
 	</animation>
 
-  <animation>
-  <type>pick</type>
-  <object-name>GAC_Down</object-name>
-  <action>
-    <button>0</button>
-    <repeatable>true</repeatable>
-    <interval-sec>0.1</interval-sec>
-     <binding>
-       <command>property-adjust</command>
-       <property>controls/engines/engine/throttle</property>
-       <step>-0.01</step>
-       <min>0</min>
-       <max>1</max>
-       <wrap>false</wrap>
-     </binding>
-  </action>
-  <action>
-    <button>1</button>
-    <repeatable>true</repeatable>
-    <interval-sec>0.05</interval-sec>
-     <binding>
-       <command>property-adjust</command>
-       <property>controls/engines/engine/throttle</property>
-       <step>-0.1</step>
-       <min>0</min>
-       <max>1</max>
-       <wrap>false</wrap>
-     </binding>
-  </action>
-</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>GAC_Down</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>true</repeatable>
+			<interval-sec>0.1</interval-sec>
+			<binding>
+				<command>property-adjust</command>
+				<property>controls/engines/engine/throttle</property>
+				<step>-0.01</step>
+				<min>0</min>
+	 			<max>1</max>
+				<wrap>false</wrap>
+			</binding>
+			</action>
+			<action>
+				<button>1</button>
+				<repeatable>true</repeatable>
+				<interval-sec>0.05</interval-sec>
+				<binding>
+					<command>property-adjust</command>
+					<property>controls/engines/engine/throttle</property>
+					<step>-0.1</step>
+					<min>0</min>
+					<max>1</max>
+					<wrap>false</wrap>
+				</binding>
+			</action>
+		</animation>
 
   <animation>
   <type>pick</type>
@@ -229,7 +229,7 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
+				<command>nasal</command>
 				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/gascontrol/lock-command")</script>
 			</binding>
 
@@ -239,7 +239,7 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
+				<command>nasal</command>
 				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/gascontrol/lock-command")</script>
 			</binding>
 		</action>

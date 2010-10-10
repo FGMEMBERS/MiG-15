@@ -115,7 +115,7 @@
 		</condition>
 		<volume>
 			<property>engines/engine/n2</property>
-			<factor>0.007</factor>
+			<factor>0.005</factor>
 		</volume>
 		<pitch>
 			<property>engines/engine/sound</property>
@@ -208,7 +208,7 @@
 			<factor>0.007</factor>
 		</volume>
 		<volume>
-			<property>instrumentation/canopy/switch-pos-inter</property>
+			<property>fdm/jsbsim/systems/canopy/pos</property>
 			<interpolation>
 				<entry><ind>0.0</ind><dep>0.0</dep></entry>
 				<entry><ind>0.1</ind><dep>0.5</dep></entry>
@@ -639,7 +639,7 @@
 			<name>canopy</name>
 			<mode>in-transit</mode>
 			<path>Aircraft/MiG-15/Sounds/canopy-move.wav</path>
-			<property>instrumentation/canopy/switch-pos-inter</property>
+			<property>fdm/jsbsim/systems/canopy/pos</property>
 			<volume>
 				<factor>0.5</factor>
 				<property>sim/current-view/internal</property>
@@ -652,7 +652,7 @@
 			<path>Aircraft/MiG-15/Sounds/canopy-close-left.wav</path>
 			<condition>
 				<less-than-equals>
-					<property>instrumentation/canopy/switch-pos-inter</property>
+					<property>fdm/jsbsim/systems/sounds/canopy-lock-click/on</property>
 					<value>0</value>
 				</less-than-equals>
 			</condition>
@@ -668,7 +668,7 @@
 			<path>Aircraft/MiG-15/Sounds/canopy-close-right.wav</path>
 			<condition>
 				<less-than-equals>
-					<property>instrumentation/canopy/switch-pos-inter</property>
+					<property>fdm/jsbsim/systems/sounds/canopy-lock-click/on</property>
 					<value>0</value>
 				</less-than-equals>
 			</condition>

@@ -224,9 +224,17 @@
 			<output>systems/gascontrol/shift-abs</output>
 		</fcs_function>
 
-		<switch name="calculations/gascontrol/shift-locked">
+		<switch name="calculations/gascontrol/shift-serviceabled">
 			<default value="0"/>
 			<test logic="AND" value="systems/gascontrol/shift">
+				systems/gascontrol/serviceable eq 1.0
+			</test>
+			<output>systems/gascontrol/shift-serviceabled</output>
+		</switch>
+
+		<switch name="calculations/gascontrol/shift-locked">
+			<default value="0"/>
+			<test logic="AND" value="systems/gascontrol/shift-serviceabled">
 				systems/gascontrol/lock-pos lt 0.1
 			</test>
 			<output>systems/gascontrol/shift-locked</output>

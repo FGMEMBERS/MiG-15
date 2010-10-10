@@ -1039,7 +1039,7 @@ manometer = func
 		sea_pressure = getprop("environment/pressure-sea-level-inhg");
 		cabin_pressure = getprop("instrumentation/manometer/cabin-pressure");
 		# get canopy value, 0 is closed
-		canopy = getprop("instrumentation/canopy/switch-pos-norm");
+		canopy = getprop("fdm/jsbsim/systems/canopy/pos");
 		if ((pressure == nil) or (sea_pressure == nil) or (cabin_pressure == nil) or (canopy == nil))
 		{
 			stop_manometer();
@@ -2764,142 +2764,70 @@ flapsbreaksprocess();
 # Flaps control
 
 # helper 
-stop_flapscontrol = func 
+stop_flapsprocess = func 
 	{
 	}
 
-flapscontrol = func 
+flapsprocess = func 
 	{
 		# check power
-		in_service = getprop("instrumentation/flaps-control/serviceable" );
+		var in_service = getprop("fdm/jsbsim/systems/flapscontrol/serviceable" );
 		if (in_service == nil)
 		{
-			stop_flapscontrol();
-	 		return ( settimer(flapscontrol, 0.1) ); 
+			stop_flapsprocess();
+	 		return ( settimer(flapsprocess, 0.1) ); 
 		}
 		if ( in_service != 1 )
 		{
-			stop_flapscontrol();
-		 	return ( settimer(flapscontrol, 0.1) ); 
+			stop_flapsprocess();
+		 	return ( settimer(flapsprocess, 0.1) ); 
 		}
 		# get flaps values
-		flaps_pos = getprop("fdm/jsbsim/fcs/flap-pos-norm");
-		tored = getprop("fdm/jsbsim/fcs/flap-tored");
-		flaps_control_pos = getprop("controls/flight/flaps");
-		# get instrumentation values	
-		switch_pos=getprop("instrumentation/flaps-control/switch-pos-norm");
-		fix_pos=getprop("instrumentation/flaps-control/fix-pos-norm");
-		valve_press=getprop("instrumentation/flaps-valve/pressure-norm");
+		var tored = getprop("fdm/jsbsim/fcs/flap-tored");
+		var flaps_command_pos = getprop("fdm/jsbsim/fcs/flap-cmd-norm");
+		# get instrumentation values
+		var flaps_go=getprop("fdm/jsbsim/systems/flapscontrol/flaps-go");
+		var valve_press=getprop("instrumentation/flaps-valve/pressure-norm");
 		#get pump value
-		pump=getprop("systems/electrical-real/outputs/pump/volts-norm");
-		engine_running=getprop("engines/engine/running");
-		set_generator=getprop("controls/switches/generator");
+		var pump=getprop("systems/electrical-real/outputs/pump/volts-norm");
+		var engine_running=getprop("engines/engine/running");
+		var set_generator=getprop("controls/switches/generator");
 		if (
-			(flaps_pos == nil)
-			or (tored==nil)
-			or (flaps_control_pos == nil)
-			or (switch_pos == nil)
-			or (fix_pos == nil)
+			(tored==nil)
+			or (flaps_command_pos == nil)
+			or (flaps_go==nil)
 			or (valve_press==nil)
 			or (pump==nil)
 			or (engine_running==nil)
 			or (set_generator==nil)
 		)
 		{
-			stop_flapscontrol();
-	 		return ( settimer(flapscontrol, 0.1) ); 
+			stop_flapsprocess();
+			return ( settimer(flapsprocess, 0.1) ); 
 		}
-		if ((abs(flaps_pos-flaps_control_pos))>0.0001)
+		if ((pump==1) and (valve_press==0.8) and (tored==0) and (flaps_go==1))
 		{
-			if (flaps_control_pos<flaps_pos)
+			if ((engine_running==1) and (set_generator==1))
 			{
-				set_switch_pos=-1;
+				setprop("fdm/jsbsim/fcs/flap-cmd-norm-real", flaps_command_pos);
 			}
 			else
 			{
-				set_switch_pos=flaps_control_pos;
-			}
-			if (!(switch_pos==set_switch_pos))
-			{
-				way_to=abs(set_switch_pos-switch_pos)/(set_switch_pos-switch_pos);
-				switch_pos=switch_pos+0.05*way_to;
-				if (
-					((way_to>0) and (switch_pos>set_switch_pos)) 
-					or ((way_to<0) and (switch_pos<set_switch_pos))
-				)
-				{
-					switch_pos=set_switch_pos;
-					setprop("instrumentation/flaps-control/switch-pos-norm", set_switch_pos);
-				}
-				else
-				{
-					setprop("instrumentation/flaps-control/switch-pos-norm", switch_pos);
-				}
-			}
-			else
-			{
-				if ((pump==1) and (valve_press==0.8) and (tored==0))
-				{
-					if ((engine_running==1) and (set_generator==1))
-					{
-						setprop("fdm/jsbsim/fcs/flap-cmd-norm-real", switch_pos);
-					}
-					else
-					{
-						setprop("instrumentation/switches/pump/set-pos", 0);
-					}
-				}
+				setprop("instrumentation/switches/pump/set-pos", 0);
 			}
 		}
-		else
-		{
-			if ((abs(switch_pos))>0)
-			{
-				set_switch_pos=0;
-				way_to=abs(set_switch_pos-switch_pos)/(set_switch_pos-switch_pos);
-				switch_pos=switch_pos+0.075*way_to;
-				if (((way_to>0) and (switch_pos>set_switch_pos)) or ((way_to<0) and (switch_pos<set_switch_pos)))
-				{
-					switch_pos=set_switch_pos;
-					setprop("instrumentation/flaps-control/switch-pos-norm", set_switch_pos);
-				}
-				else
-				{
-					setprop("instrumentation/flaps-control/switch-pos-norm", switch_pos);
-				}
-			}
-		}
-		if (((abs(switch_pos+1))<0.02) or ((abs(switch_pos))<0.02) or ((abs(switch_pos-0.36))<0.02) or ((abs(switch_pos-1))<0.02))
-		{
-			if (fix_pos==0)
-			{
-				setprop("instrumentation/flaps-control/fix-pos-norm", 1);
-				clicksound();
-			}
-		}
-		else
-		{
-			if (fix_pos==1)
-			{
-				setprop("instrumentation/flaps-control/fix-pos-norm", 0);
-			}
-		}
-		settimer(flapscontrol, 0.1);
+		settimer(flapsprocess, 0.1);
 	}
 
 # set startup configuration
-init_flapscontrol = func 
+init_flapsprocess = func 
 {
-	setprop("instrumentation/flaps-control/serviceable", 1);
-	setprop("instrumentation/flaps-control/switch-pos-norm", 0);
-	setprop("instrumentation/flaps-control/fix-pos-norm", 1);
-	setprop("instrumentation/flaps-control/one", 1);
 }
 
-init_flapscontrol();
+init_flapsprocess();
 
 # start flaps control process first time
-flapscontrol ();
+flapsprocess ();
 
 #--------------------------------------------------------------------
 # Stop engine control
@@ -3114,6 +3042,7 @@ engineprocess=func
 			engine_temperature=getprop("engines/engine/egt_degf");
 		}
 		var pilot_g=getprop("fdm/jsbsim/accelerations/Nz");
+		var bus=getprop("systems/electrical-real/bus");
 		var gen_on=getprop("controls/switches/generator");
 		var pump=getprop("systems/electrical-real/outputs/pump/volts-norm");
 		var third_tank_pump=getprop("systems/electrical-real/outputs/third-tank-pump/volts-norm");
@@ -3144,6 +3073,7 @@ engineprocess=func
 			or (engine_thrust==nil)
 			or (engine_temperature==nil)
 			or (pilot_g==nil)
+			or (bus==nil)
 			or (gen_on==nil)
 			or (pump==nil)
 			or (third_tank_pump==nil)
@@ -3303,6 +3233,7 @@ engineprocess=func
 				and (brake_pos==0)
 				and (valve_pos==0)
 				and (gen_on==0)
+				and (bus>0)
 			)
 			{
 				if (
@@ -3371,7 +3302,8 @@ engineprocess=func
 					}
 					else
 					{
-						setprop("engines/engine/starter-begin-time", 0);
+						starter_begin_time=0;
+						setprop("engines/engine/starter-begin-time", starter_begin_time);
 						setprop("engines/engine/starter-time", 0);
 						setprop("controls/engines/engine/starter-command", 0);
 					}
@@ -3384,11 +3316,6 @@ engineprocess=func
 				setprop("controls/engines/engine/starter-command", 0);
 			}	
 		}
-		else
-		{
-			setprop("engines/engine/starter-begin-time", 0);
-			setprop("engines/engine/starter-time", 0);
-		}
 		#In flight ignition
 		if (
 			(running==0)
@@ -3400,6 +3327,7 @@ engineprocess=func
 			and (speed>100)
 			and (speed<300)
 			and (gen_on==0)
+			and (bus>0)
 		)
 		{	
 			if (abs(switch_pos*500-speed)<20)
@@ -3421,6 +3349,7 @@ engineprocess=func
 						setprop("engines/engine/starter-begin-time", simulation_time);
 					}
 					var starter_time=simulation_time-starter_begin_time;
+					setprop("engines/engine/starter-time", starter_time);
 					rpm=(1+starter_time/20)*1000;
 					setprop("engines/engine/rpm", rpm);
 					setprop("fdm/jsbsim/propulsion/engine/rpm", rpm);
@@ -3442,7 +3371,8 @@ engineprocess=func
 					}
 					else
 					{
-						setprop("controls/engines/engine/starter", 0);
+						starter_begin_time=0;
+						setprop("controls/engines/engine/starter", starter_begin_time);
 						setprop("engines/engine/starter-begin-time", 0);
 						setprop("engines/engine/starter-time", 0);
 						setprop("controls/engines/engine/starter-command", 0);
@@ -3459,10 +3389,20 @@ engineprocess=func
 				setprop("controls/engines/engine/starter-command", 0);
 			}
 		}
-		if (starter_begin_time==0)
+		if (
+			(running==1)
+			or (brake_pos==1)
+			or (valve_pos==1)
+			or (out_of_fuel==1)
+			or (ignition_power==0)
+			or (bus==0)
+			or (starter_begin_time==0) 
+		)
 		{
 			setprop("engines/engine/spoolup", 0);
 			setprop("engines/engine/combustion", 0);
+			setprop("engines/engine/starter-begin-time", 0);
+			setprop("engines/engine/starter-time", 0);
 		}
 		if (running==1) 
 		{		
@@ -5151,7 +5091,7 @@ windprocess=func
 		gear_three_pos=getprop("fdm/jsbsim/gear/unit[2]/pos-norm-real");
 		speed_brake=getprop("surface-positions/speedbrake-pos-norm");
 		speed=getprop("velocities/airspeed-kt");
-		canopy_pos=getprop("instrumentation/canopy/switch-pos-inter");
+		canopy_pos=getprop("fdm/jsbsim/systems/canopy/pos");
 		if (
 			(flaps==nil)
 			or (gear_one_pos==nil)
@@ -6049,97 +5989,46 @@ init_marklamp();
 marklamp();
 
 #----------------------------------------------------------------------
+#Tear canopy process, would be shifted on JSB in time
 # helper 
-stop_canopy = func 
+stop_canopyprocess = func 
 	{
 	}
 
-canopymove = func 
+canopyprocess = func 
 	{
-		in_service = getprop("instrumentation/canopy/serviceable" );
+		var in_service = getprop("fdm/jsbsim/systems/canopy/serviceable" );
 		if (in_service == nil)
 		{
-			stop_canopy();
-	 		return ( settimer(canopymove, 0.1) ); 
+			stop_canopyprocess();
+	 		return ( settimer(canopyprocess, 0.1) ); 
 		}
 		if ( in_service != 1 )
 		{
 			stop_canopy();
-		 	return ( settimer(canopymove, 0.1) ); 
+			return ( settimer(canopyprocess, 0.1) ); 
 		}
-		pos=getprop("instrumentation/canopy/switch-pos-norm");
-		set_pos=getprop("instrumentation/canopy/set-pos");
-		speed=getprop("velocities/airspeed-kt");
-		tored=getprop("instrumentation/canopy/tored");
+		var pos=getprop("fdm/jsbsim/systems/canopy/pos");
+		var tored=getprop("fdm/jsbsim/systems/canopy/tored");
+		var mach=getprop("fdm/jsbsim/velocities/mach");
 		if (
-			(pos==nil)
-			or (set_pos==nil)
-			or (speed==nil)
-			or (tored==nil)
+			(tored==nil)
+			or (mach==nil)
 		)
 		{
-			stop_canopy();
-			setprop("instrumentation/canopy/error", 1);
-			return ( settimer(canopymove, 0.1) ); 
+			stop_canopyprocess();
+			return ( settimer(canopyprocess, 0.1) ); 
 		}
-		if (tored==1)
-		{
-			stop_canopy();
-			return ( settimer(canopymove, 0.1) ); 
-		}
-		speed_km=speed*1.852;
 		if (
-			(pos!=0)
-			and (speed_km>300)
+			(pos>0.01)
+			and (tored==0)
+			and (mach>0.3)
 		)
 		{
+			tored=1;
 			tear_canopy();
-			stop_canopy();
-			return ( settimer(canopymove, 0.1) ); 
-		}
-		if (
-			(pos!=0)
-			and (speed_km>200)
-		)
-		{
-			if (set_pos==0)
-			{
-				set_pos=1;
-				setprop("instrumentation/canopy/set-pos", 1);
-			}
-		}
-		if (
-			(set_pos==1) 
-			and (pos!=set_pos)
-		)
-		{
-			setprop("instrumentation/canopy/lock/set-pos", 1);
-			timedswitchmove("instrumentation/canopy/lock", 0.3, "dummy/dummy", 0);
-			lock_pos=getprop("instrumentation/canopy/lock/switch-pos-norm");
-			if (lock_pos==nil)
-			{
-				stop_canopy();
-				setprop("instrumentation/canopy/error", 1);
-		 		return ( settimer(canopymove, 0.1) ); 
-			}
-			if (lock_pos==1)
-			{
-				timedswitchmove("instrumentation/canopy", 2.8, "dummy/dummy", 0);
-			}
-		}
-		else
-		{
-			if ((pos>0) and (pos<0.02))
-			{
-				setprop("instrumentation/canopy/lock/set-pos", 1);
-
-			}
-			else
-			{
-				setprop("instrumentation/canopy/lock/set-pos", 0);
-			}
-			timedswitchmove("instrumentation/canopy/lock", 0.3, "dummy/dummy", 0);
-			timedswitchmove("instrumentation/canopy", 2.8, "dummy/dummy", 0);
+			stop_canopyprocess();
+			return ( settimer(canopyprocess, 0.1) ); 
 		}
 		canopy_impact=getprop("ai/submodels/canopy-impact");
 		if (canopy_impact!=nil)
@@ -6161,24 +6050,18 @@ canopymove = func
 				setprop("ai/submodels/canopy-drop", 0);
 			}
 		}
-		settimer(canopymove, 0.1);
+		settimer(canopyprocess, 0.1);
 	}
 
 # set startup configuration
-init_canopymove=func
+init_canopyprocess=func
 {
-	setprop("instrumentation/canopy/serviceable", 1);
-	setprop("instrumentation/canopy/tored", 0);
-	switchinit("instrumentation/canopy", 1, "dummy/dummy");
-	switchinit("instrumentation/canopy/lock", 0, "dummy/dummy");
 }
 
 tear_canopy=func
 {
 	setprop("ai/submodels/canopy-drop", 1);
-	setprop("instrumentation/canopy/tored", 1);
-	switchinit("instrumentation/canopy", 1, "dummy/dummy");
-	switchinit("instrumentation/canopy/lock", 0, "dummy/dummy");
+	setprop("fdm/jsbsim/systems/canopy/tored", 1);
 	canopytoredsound();
 }
 
@@ -6206,10 +6089,10 @@ end_canopy_touch_down = func
 		setprop("sounds/canopy-crash/on", 0);
 	}
 
-init_canopymove();
+init_canopyprocess();
 
 #start
-canopymove();
+canopyprocess();
 
 #----------------------------------------------------------------------
 # helper 
@@ -6704,8 +6587,8 @@ aircraft_lock = func
 		setprop("fdm/jsbsim/systems/arthorizon/serviceable", 0);
 		setprop("fdm/jsbsim/systems/tachometer/serviceable", 0);
 		setprop("fdm/jsbsim/systems/headsignt/serviceable", 0);
-
 		setprop("fdm/jsbsim/systems/gascontrol/serviceable", 0);
+		setprop("fdm/jsbsim/systems/flapscontrol/serviceable", 0);
 
 		#Lock controls
 		setprop("instrumentation/gear-control/serviceable", 0);
@@ -7283,6 +7166,7 @@ aircraft_unlock=func
 		setprop("fdm/jsbsim/systems/tachometer/serviceable", 1);
 		setprop("fdm/jsbsim/systems/headsignt/serviceable", 1);
 		setprop("fdm/jsbsim/systems/gascontrol/serviceable", 1);
+		setprop("fdm/jsbsim/systems/flapscontrol/serviceable", 1);
 
 		#Repair controls
 		setprop("instrumentation/gear-control/serviceable", 1);
@@ -7329,7 +7213,7 @@ aircraft_repair=func
 		init_flapsvalve();
 
 		#Repair canopy
-		setprop("instrumentation/canopy/tored", 0);
+		setprop("fdm/jsbsim/systems/canopy/tored", 0);
 
 		#Unlock aircraft
 		aircraft_unlock();
@@ -7380,7 +7264,6 @@ aircraft_init=func
 
 		#Init control instrumentattion
 		init_gear_control();
-		init_flapscontrol();
 		init_stopcontrol();
 		init_speedbrakecontrol();
 		init_ignitionbutton();
@@ -7393,7 +7276,7 @@ aircraft_init=func
 		init_gearhandles();
 		init_flapsvalve();
 		init_trimmer();
-		init_canopymove();
+		init_canopyprocess();
 		init_pedals();
 	}
 
@@ -7548,6 +7431,7 @@ autostart_process = func
 		var throttle_fix_pos=getprop("fdm/jsbsim/systems/gascontrol/fix-pos");
 		var throttle_set_pos=getprop("controls/engines/engine/throttle");
 		var main_tank_lbs=getprop("consumables/fuel/tank[1]/level-lbs");
+		var canopy_pos=getprop("fdm/jsbsim/systems/canopy/pos");
 		if (
 			(pos==nil)
 			or (elapsed_time==nil)
@@ -7563,6 +7447,7 @@ autostart_process = func
 			or (throttle_fix_pos==nil)
 			or (throttle_set_pos==nil)
 			or (main_tank_lbs==nil)
+			or (canopy_pos==nil)
 		)
 		{
 			stop_autostart_process();
@@ -7758,7 +7643,15 @@ autostart_process = func
 		pos=aurostart_switch_move(34, "instrumentation/switches/headsight", 1, pos);
 		pos=aurostart_switch_move(35, "instrumentation/switches/machinegun", 1, pos);
 
-		pos=aurostart_switch_move(36, "instrumentation/canopy", 0, pos);
+		if (pos==36)
+		{
+			setprop("fdm/jsbsim/systems/canopy/command", 0);
+			if (canopy_pos > 0.1)
+			{
+				pos=pos+1;
+				setprop("processes/autostart/pos", pos);
+			}
+		}
 
 		if (pos==37)
 		{
