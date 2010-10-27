@@ -344,7 +344,7 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 			<static_friction>  0.80 </static_friction>
 			<dynamic_friction> 0.50 </dynamic_friction>
 			<spring_coeff unit="LBS/FT">      13461.52 </spring_coeff>
-			<damping_coeff unit="LBS/FT/SEC">  2692.31 </damping_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 2692.31 </damping_coeff>
 		</contact>
 
 		<contact type="STRUCTURE" name="BACK_FUS">
@@ -356,7 +356,7 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 			<static_friction>  0.80 </static_friction>
 			<dynamic_friction> 0.50 </dynamic_friction>
 			<spring_coeff unit="LBS/FT">      13461.52 </spring_coeff>
-			<damping_coeff unit="LBS/FT/SEC">  2692.31 </damping_coeff>
+			<damping_coeff unit="LBS/FT/SEC"> 2692.31 </damping_coeff>
 		</contact>
 
 	</ground_reactions>
@@ -601,7 +601,7 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 				<output>fcs/rudder-pos-rad</output>
 			</aerosurface_scale>
 
-			<aerosurface_scale name="rudder normalization">
+			<aerosurface_scale name="Rudder Normalization">
 				<input>fcs/rudder-pos-rad</input>
 				<domain>
 					<min> -0.35 </min>
@@ -639,7 +639,7 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 				<output>fcs/flap-pos-deg</output>
 			</kinematic>
 
-			<aerosurface_scale name="flap normalization">
+			<aerosurface_scale name="Flap Normalization">
 				<input>fcs/flap-pos-deg</input>
 				<domain>
 					<min>  0 </min>
@@ -704,28 +704,28 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 
 -->
 
-		<axis name="LIFT">
+		<!-- Fig 51, 52-->
+		<function name="calculations/aero/coefficient/liftalphaflapnorm">
+			<description>Lift_due_to_alpha_and_flaps_normalised</description>
+			<table>
+			<independentVar lookup="row">aero/alpha-wing-rad</independentVar>
+			<independentVar lookup="column">fcs/flap-pos-deg</independentVar>
+			<tableData>
+					0.0	20	55
+				-0.104	-0.53	-0.33	-0.08
+				0.0	-0.05	0.1	0.037
+				0.174	0.67	0.87	0.113
+				0.209	0.82	1.02	0.125
+				0.244	0.96	1.14	0.137
+				0.279	1.09	1.26	0.146
+				0.314	1.12	1.22	0.135
+				0.349	1.11	1.19	0.129
+				0.383	1.12	1.16	0.127
+			</tableData>
+			</table>
+		</function>
 
-			<!-- Fig 51, 52-->
-			<function name="aero/coefficient/liftalphaflapnorm">
-				<description>Lift_due_to_alpha_and_flaps_normalised</description>
-				<table>
-				<independentVar lookup="row">aero/alpha-wing-rad</independentVar>
-				<independentVar lookup="column">fcs/flap-pos-deg</independentVar>
-				<tableData>
-						0.0	20	55
-					-0.104	-0.53	-0.33	-0.08
-					0.0	-0.05	0.1	0.037
-					0.174	0.67	0.87	0.113
-					0.209	0.82	1.02	0.125
-					0.244	0.96	1.14	0.137
-					0.279	1.09	1.26	0.146
-					0.314	1.12	1.22	0.135
-					0.349	1.11	1.19	0.129
-					0.383	1.12	1.16	0.127
-				</tableData>
-				</table>
-			</function>
+		<axis name="LIFT">
 
 			<!-- Fig 51, 52-->
 			<function name="aero/coefficient/CLalphaflaps">
@@ -899,7 +899,6 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 				</product>
 			</function>
 
-
 			<!-- Commented out aeromatic stuff. No more needed tweak  -->
 
 <!--
@@ -928,7 +927,7 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 				<property>aero/qbar-psf</property>
 				<property>metrics/Sw-sqft</property>
 				<table>
-					<independentVar lookup="row">aero/coefficient/liftalphaflapnorm</independentVar>
+					<independentVar lookup="row">calculations/aero/coefficient/liftalphaflapnorm</independentVar>
 					<independentVar lookup="column">fcs/flap-pos-deg</independentVar>
 				<tableData>
 						0.0	20.0	55.0
@@ -1115,6 +1114,28 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 
 		</axis>
 
+		<!-- Adition by the book, page 72, text -->
+		<function name="fcs/left-aileron-pos-deg-mod">
+			<description>Aileron_modified_due_mach_and_altitude_and_high_g_tremble</description>
+			<sum>
+				<property>fcs/left-aileron-pos-deg</property>
+				<property>gtremble/current</property>
+				<table>
+					<independentVar lookup="column">position/h-agl-ft</independentVar>
+					<independentVar lookup="row">velocities/mach</independentVar>
+				<tableData>
+						6561.67	9842.51	32808.3	36089.23
+					0.86	0.0	0.0	0.0	0.0
+					0.88	6.0	0.0	0.0	0.0
+					0.9	12.0	0.0	0.0	0.0
+					0.92	18.0	0.0	0.0	6.0
+					0.94	18.0	0.0	0.0	12.0
+					0.96	18.0	0.0	0.0	18.0
+				</tableData>
+				</table>
+			</sum>
+		</function>
+
 		<axis name="ROLL">
 
 			<!-- Fig 68 -->
@@ -1161,28 +1182,6 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 				<property>velocities/r-aero-rad_sec</property>
 					<value>0.15</value>
 				</product>
-			</function>
-
-			<!-- Adition by the book, page 72, text -->
-			<function name="fcs/left-aileron-pos-deg-mod">
-				<description>Aileron_modified_due_mach_and_altitude_and_high_g_tremble</description>
-				<sum>
-					<property>fcs/left-aileron-pos-deg</property>
-					<property>gtremble/current</property>
-					<table>
-						<independentVar lookup="column">position/h-agl-ft</independentVar>
-						<independentVar lookup="row">velocities/mach</independentVar>
-					<tableData>
-							6561.67	9842.51	32808.3	36089.23
-						0.86	0.0	0.0	0.0	0.0
-						0.88	6.0	0.0	0.0	0.0
-						0.9	12.0	0.0	0.0	0.0
-						0.92	18.0	0.0	0.0	6.0
-						0.94	18.0	0.0	0.0	12.0
-						0.96	18.0	0.0	0.0	18.0
-					</tableData>
-					</table>
-				</sum>
 			</function>
 
 			<!-- Fig 72, 179 -->
@@ -1271,6 +1270,27 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 		<property value="80">weights/shells/n23-inner</property>
 		<property value="80">weights/shells/n23-outer</property>
 
+		<function name="calculations/pitch-weights-delta/mass-center-m">
+		<product>
+			<value>0.0254</value><!--To convert from inches to meters -->
+			<property>inertia/cg-x-in</property>
+		</product>
+		</function>
+
+		<function name="calculations/pitch-weights-delta/mass-center-shift-m">
+		<sum>
+			<value>-4.13012</value>
+			<property>calculations/pitch-weights-delta/mass-center-m</property>
+		</sum>
+		</function>
+
+		<function name="calculations/pitch-weights-delta/mass-center-shift-ft">
+		<product>
+			<value>3.2808</value><!--1/0.3048 to convert from meters to feets-->
+			<property>calculations/pitch-weights-delta/mass-center-shift-m</property>
+		</product>
+		</function>
+
 		<axis name="PITCH">
 
 			<!-- Fig 169 
@@ -1318,27 +1338,6 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 				Center of mass of empty aircraft is 4.13012 m
 				Need to convert it to feets, though.
 			-->
-
-			<function name="calculations/pitch-weights-delta/mass-center-m">
-			<product>
-				<value>0.0254</value><!--To convert from inches to meters -->
-				<property>inertia/cg-x-in</property>
-			</product>
-			</function>
-
-			<function name="calculations/pitch-weights-delta/mass-center-shift-m">
-			<sum>
-				<value>-4.13012</value>
-				<property>calculations/pitch-weights-delta/mass-center-m</property>
-			</sum>
-			</function>
-
-			<function name="calculations/pitch-weights-delta/mass-center-shift-ft">
-			<product>
-				<value>3.2808</value><!--1/0.3048 to convert from meters to feets-->
-				<property>calculations/pitch-weights-delta/mass-center-shift-m</property>
-			</product>
-			</function>
 
 			<function name="aero/coefficient/Cmwddp">
 			<description>Pitch_moment_due_to_weight diffrence</description>
@@ -1417,7 +1416,7 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 				<property>metrics/Sw-sqft</property>
 				<property>metrics/cbarw-ft</property>
 				<table>
-					<independentVar lookup="column">aero/coefficient/liftalphaflapnorm</independentVar>
+					<independentVar lookup="column">calculations/aero/coefficient/liftalphaflapnorm</independentVar>
 					<independentVar lookup="row">velocities/mach</independentVar>
 				<tableData>
 						0	0.1	0.2	0.3	0.4	0.5	0.6	0.7
@@ -1492,6 +1491,15 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 
 		</axis>
 
+		<!-- High g tremble yaw modification, page 73 -->
+		<function name="fcs/rudder-pos-deg-mod">
+			<description>Rudder_angle_modified_due_to_high_g_tremble</description>
+			<sum>
+				<property>fcs/rudder-pos-deg</property>
+				<property>gtremble/current</property>
+			</sum>
+		</function>
+
 		<axis name="YAW">
 
 			<!-- Fig 73 -->
@@ -1539,15 +1547,6 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 				<property>velocities/r-aero-rad_sec</property>
 					<value>-0.15</value>
 				</product>
-			</function>
-
-			<!-- High g tremble yaw modification, page 73 -->
-			<function name="fcs/rudder-pos-deg-mod">
-				<description>Rudder_angle_modified_due_to_high_g_tremble</description>
-				<sum>
-					<property>fcs/rudder-pos-deg</property>
-					<property>gtremble/current</property>
-				</sum>
 			</function>
 
 			<!-- Fig 75 -->

@@ -3246,7 +3246,7 @@ engineprocess=func
 					if ((speed<108) and (ignition_type==0) and (ignition_power==1))
 					{
 						setprop("controls/engines/engine/cutoff", 1);
-						setprop("controls/engines/engine/cutoff-reason", "on Earth time<10 starter");
+						setprop("engines/engine/cutoff-reason", "on Earth time<10 starter");
 						setprop("controls/engines/engine/starter", 1);
 						setprop("engines/engine/spoolup", 1);
 						setprop("engines/engine/combustion", 0);
@@ -3264,7 +3264,7 @@ engineprocess=func
 					else
 					{
 						setprop("controls/engines/engine/cutoff", 1);
-						setprop("controls/engines/engine/cutoff-reason", "on Earth time<10 no start");
+						setprop("engines/engine/cutoff-reason", "on Earth time<10 no start");
 						setprop("controls/engines/engine/starter", 0);
 						setprop("controls/engines/engine/starter-command", 0);
 						setprop("controls/engines/engine/starter-indicate", 0);
@@ -3279,7 +3279,7 @@ engineprocess=func
 						if ((out_of_fuel==1) or (ignition_power==0))
 						{
 							setprop("controls/engines/engine/cutoff", 1);
-							setprop("controls/engines/engine/cutoff-reason", "on Earth, time<30 out_of_fuel=1 or ignition_power=0");
+							setprop("engines/engine/cutoff-reason", "on Earth, time<30 out_of_fuel=1 or ignition_power=0");
 							setprop("controls/engines/engine/starter", 0);
 							setprop("controls/engines/engine/starter-command", 0);
 							setprop("controls/engines/engine/starter-indicate", 0);
@@ -3340,7 +3340,7 @@ engineprocess=func
 				{
 					#one type of ingnition on earth and another in flight
 					setprop("controls/engines/engine/cutoff", 1);
-					setprop("controls/engines/engine/cutoff-reason", "in flight starter_time<10");
+					setprop("engines/engine/cutoff-reason", "in flight starter_time<10");
 					setprop("controls/engines/engine/starter", 1);
 					setprop("engines/engine/combustion", 1);
 					if (starter_begin_time==0)
@@ -3382,7 +3382,7 @@ engineprocess=func
 			else
 			{
 				setprop("controls/engines/engine/cutoff", 1);
-				setprop("controls/engines/engine/cutoff-reason", "in flight throttle shift");
+				setprop("engines/engine/cutoff-reason", "in flight throttle shift");
 				setprop("controls/engines/engine/starter", 0);
 				setprop("engines/engine/starter-begin-time", 0);
 				setprop("engines/engine/starter-time", 0);
@@ -3559,7 +3559,7 @@ engine_stop = func(stop_reason)
 		setprop("engines/engine/high-temperature-time", 0);
 		setprop("engines/engine/ignition-power-begin-time", 0);
 		setprop("controls/engines/engine/cutoff", 1);
-		setprop("controls/engines/engine/cutoff-reason", "engine stop");
+		setprop("engines/engine/cutoff-reason", "engine stop");
 		setprop("engines/engine/stop", 1);
 		settimer(end_engine_stop, 5);
 		return (0);
@@ -6612,7 +6612,7 @@ aircraft_lock = func
 		setprop("instrumentation/switches/generator/set-pos", 0);
 		#Switch off engine
 		setprop("controls/engines/engine/cutoff", 1);
-		setprop("controls/engines/engine/cutoff-reason", "aircraft break");
+		setprop("engines/engine/cutoff-reason", "aircraft break");
 	}
 
 aircraft_crash=func(crashtype, crashg, solid)
