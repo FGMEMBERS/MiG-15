@@ -10,7 +10,7 @@ OBJECT poly
 name "Mach_Backplate"
 data 8
 Mesh.007
-texture "MiG-15bis-Machometer.rgb"
+texture "MiG-15bis-Machometer.png"
 texrep 1 1
 crease 30.000000
 numvert 17
@@ -133,7 +133,7 @@ OBJECT poly
 name "Mach_Bezel"
 data 8
 Mesh.006
-texture "MiG-15bis-Machometer.rgb"
+texture "MiG-15bis-Machometer.png"
 texrep 1 1
 crease 30.000000
 numvert 224
@@ -1752,7 +1752,7 @@ OBJECT poly
 name "Mach_Needle"
 data 8
 Mesh.001
-texture "MiG-15bis-Machometer.rgb"
+texture "MiG-15bis-Machometer.png"
 texrep 1 1
 crease 30.000000
 numvert 31

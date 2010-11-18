@@ -11,7 +11,7 @@ OBJECT poly
 name "BUC_Base"
 data 6
 Circle
-texture "MiG-15bis-Bustercontrol-Shadows.rgb"
+texture "MiG-15bis-Bustercontrol-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 133
@@ -1154,7 +1154,7 @@ OBJECT poly
 name "BUC_Bolts"
 data 8
 Mesh.002
-texture "MiG-15bis-Bustercontrol-Shadows.rgb"
+texture "MiG-15bis-Bustercontrol-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 48
@@ -1488,7 +1488,7 @@ OBJECT poly
 name "BUC_Down"
 data 8
 Cube.005
-texture "MiG-15bis-Bustercontrol.rgb"
+texture "MiG-15bis-Bustercontrol.png"
 texrep 1 1
 crease 30.000000
 numvert 42
@@ -1802,7 +1802,7 @@ OBJECT poly
 name "BUC_Fix"
 data 12
 Cylinder.009
-texture "MiG-15bis-Bustercontrol-Shadows.rgb"
+texture "MiG-15bis-Bustercontrol-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 98
@@ -2810,7 +2810,7 @@ OBJECT poly
 name "BUC_Handle"
 data 12
 Cylinder.004
-texture "MiG-15bis-Bustercontrol-Shadows.rgb"
+texture "MiG-15bis-Bustercontrol-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 122
@@ -3915,7 +3915,7 @@ OBJECT poly
 name "BUC_Lever_1"
 data 8
 Cube.003
-texture "MiG-15bis-Bustercontrol-Shadows.rgb"
+texture "MiG-15bis-Bustercontrol-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 54
@@ -4437,7 +4437,7 @@ OBJECT poly
 name "BUC_Up"
 data 8
 Cube.012
-texture "MiG-15bis-Bustercontrol.rgb"
+texture "MiG-15bis-Bustercontrol.png"
 texrep 1 1
 crease 30.000000
 numvert 42

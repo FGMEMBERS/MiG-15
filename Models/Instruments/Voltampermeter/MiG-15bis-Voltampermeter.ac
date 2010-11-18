@@ -10,7 +10,7 @@ OBJECT poly
 name "VA_Backplate"
 data 8
 Mesh.020
-texture "MiG-15bis-Voltampermeter.rgb"
+texture "MiG-15bis-Voltampermeter.png"
 texrep 1 1
 crease 30.000000
 numvert 17
@@ -133,7 +133,7 @@ OBJECT poly
 name "VA_Bezel"
 data 8
 Mesh.006
-texture "MiG-15bis-Voltampermeter.rgb"
+texture "MiG-15bis-Voltampermeter.png"
 texrep 1 1
 crease 30.000000
 numvert 224
@@ -1631,7 +1631,7 @@ OBJECT poly
 name "VA_Foreplate"
 data 12
 Cylinder.006
-texture "MiG-15bis-Voltampermeter.rgb"
+texture "MiG-15bis-Voltampermeter.png"
 texrep 1 1
 crease 30.000000
 numvert 146
@@ -3896,7 +3896,7 @@ OBJECT poly
 name "VA_Needle_0"
 data 8
 Mesh.019
-texture "MiG-15bis-Voltampermeter.rgb"
+texture "MiG-15bis-Voltampermeter.png"
 texrep 1 1
 crease 30.000000
 numvert 20
@@ -4036,7 +4036,7 @@ OBJECT poly
 name "VA_Needle_1"
 data 8
 Mesh.007
-texture "MiG-15bis-Voltampermeter.rgb"
+texture "MiG-15bis-Voltampermeter.png"
 texrep 1 1
 crease 30.000000
 numvert 9

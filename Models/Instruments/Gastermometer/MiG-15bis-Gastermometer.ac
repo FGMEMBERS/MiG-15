@@ -12,7 +12,7 @@ OBJECT poly
 name "GT_Backplate"
 data 8
 Mesh.014
-texture "MiG-15bis-Gastermometer.rgb"
+texture "MiG-15bis-Gastermometer.png"
 texrep 1 1
 crease 30.000000
 numvert 17
@@ -135,7 +135,7 @@ OBJECT poly
 name "GT_Bezel"
 data 8
 Mesh.006
-texture "MiG-15bis-Gastermometer.rgb"
+texture "MiG-15bis-Gastermometer.png"
 texrep 1 1
 crease 30.000000
 numvert 224
@@ -1636,7 +1636,7 @@ OBJECT poly
 name "GT_Foreplate_0"
 data 4
 Mesh
-texture "MiG-15bis-Gastermometer.rgb"
+texture "MiG-15bis-Gastermometer.png"
 texrep 1 1
 crease 30.000000
 numvert 3
@@ -1655,7 +1655,7 @@ OBJECT poly
 name "GT_Foreplate_1"
 data 4
 Mesh
-texture "MiG-15bis-Gastermometer.rgb"
+texture "MiG-15bis-Gastermometer.png"
 texrep 1 1
 crease 30.000000
 numvert 20
@@ -3031,7 +3031,7 @@ OBJECT poly
 name "GT_LGayka"
 data 12
 Cylinder.001
-texture "MiG-15bis-Gastermometer.rgb"
+texture "MiG-15bis-Gastermometer.png"
 texrep 1 1
 crease 30.000000
 numvert 22
@@ -3394,7 +3394,7 @@ OBJECT poly
 name "GT_Needle_1"
 data 8
 Mesh.001
-texture "MiG-15bis-Gastermometer.rgb"
+texture "MiG-15bis-Gastermometer.png"
 texrep 1 1
 crease 30.000000
 numvert 9
@@ -3461,7 +3461,7 @@ OBJECT poly
 name "GT_Protplate"
 data 8
 Mesh.002
-texture "MiG-15bis-Gastermometer.rgb"
+texture "MiG-15bis-Gastermometer.png"
 texrep 1 1
 crease 30.000000
 numvert 65
@@ -4038,7 +4038,7 @@ OBJECT poly
 name "GT_RGayka"
 data 12
 Cylinder.002
-texture "MiG-15bis-Gastermometer.rgb"
+texture "MiG-15bis-Gastermometer.png"
 texrep 1 1
 crease 30.000000
 numvert 22

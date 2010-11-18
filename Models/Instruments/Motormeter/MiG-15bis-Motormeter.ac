@@ -10,7 +10,7 @@ OBJECT poly
 name "Mot_Backplate"
 data 8
 Mesh.012
-texture "MiG-15bis-Motormeter.rgb"
+texture "MiG-15bis-Motormeter.png"
 texrep 1 1
 crease 30.000000
 numvert 33
@@ -245,7 +245,7 @@ OBJECT poly
 name "Mot_Bezel"
 data 8
 Mesh.013
-texture "MiG-15bis-Motormeter.rgb"
+texture "MiG-15bis-Motormeter.png"
 texrep 1 1
 crease 30.000000
 numvert 224
@@ -1743,7 +1743,7 @@ OBJECT poly
 name "Mot_Foreplate"
 data 8
 Mesh.014
-texture "MiG-15bis-Motormeter.rgb"
+texture "MiG-15bis-Motormeter.png"
 texrep 1 1
 crease 30.000000
 numvert 144
@@ -2812,7 +2812,7 @@ OBJECT poly
 name "Mot_LNeedle"
 data 8
 Mesh.015
-texture "MiG-15bis-Motormeter.rgb"
+texture "MiG-15bis-Motormeter.png"
 texrep 1 1
 crease 30.000000
 numvert 63
@@ -3293,7 +3293,7 @@ OBJECT poly
 name "Mot_LPlate"
 data 8
 Mesh.016
-texture "MiG-15bis-MLeft.rgb"
+texture "MiG-15bis-MLeft.png"
 texrep 1 1
 crease 30.000000
 numvert 33
@@ -3528,7 +3528,7 @@ OBJECT poly
 name "Mot_Needle"
 data 8
 Mesh.017
-texture "MiG-15bis-Motormeter.rgb"
+texture "MiG-15bis-Motormeter.png"
 texrep 1 1
 crease 30.000000
 numvert 63
@@ -4009,7 +4009,7 @@ OBJECT poly
 name "Mot_RNeedle"
 data 8
 Mesh.018
-texture "MiG-15bis-Motormeter.rgb"
+texture "MiG-15bis-Motormeter.png"
 texrep 1 1
 crease 30.000000
 numvert 63
@@ -4490,7 +4490,7 @@ OBJECT poly
 name "Mot_RPlate"
 data 8
 Mesh.019
-texture "MiG-15bis-MRight.rgb"
+texture "MiG-15bis-MRight.png"
 texrep 1 1
 crease 30.000000
 numvert 33

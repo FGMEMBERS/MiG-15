@@ -2702,7 +2702,7 @@ OBJECT poly
 name "TRM_ADown"
 data 12
 Cylinder.016
-texture "MiG-15bis-Trimmer.rgb"
+texture "MiG-15bis-Trimmer.png"
 texrep 1 1
 crease 30.000000
 numvert 18
@@ -2826,7 +2826,7 @@ OBJECT poly
 name "TRM_AMessage"
 data 12
 Cylinder.002
-texture "MiG-15bis-Trimmer.rgb"
+texture "MiG-15bis-Trimmer.png"
 texrep 1 1
 crease 30.000000
 numvert 66
@@ -3510,7 +3510,7 @@ OBJECT poly
 name "TRM_AUp"
 data 12
 Cylinder.025
-texture "MiG-15bis-Trimmer.rgb"
+texture "MiG-15bis-Trimmer.png"
 texrep 1 1
 crease 30.000000
 numvert 18
@@ -3974,7 +3974,7 @@ OBJECT poly
 name "TRM_Aileron_1"
 data 8
 Mesh.002
-texture "MiG-15bis-Trimmer.rgb"
+texture "MiG-15bis-Trimmer.png"
 texrep 1 1
 crease 30.000000
 numvert 520
@@ -14718,7 +14718,7 @@ OBJECT poly
 name "TRM_EDown"
 data 12
 Cylinder.026
-texture "MiG-15bis-Trimmer.rgb"
+texture "MiG-15bis-Trimmer.png"
 texrep 1 1
 crease 30.000000
 numvert 18
@@ -14842,7 +14842,7 @@ OBJECT poly
 name "TRM_EMessage"
 data 12
 Cylinder.008
-texture "MiG-15bis-Trimmer.rgb"
+texture "MiG-15bis-Trimmer.png"
 texrep 1 1
 crease 30.000000
 numvert 66
@@ -15526,7 +15526,7 @@ OBJECT poly
 name "TRM_EUp"
 data 12
 Cylinder.028
-texture "MiG-15bis-Trimmer.rgb"
+texture "MiG-15bis-Trimmer.png"
 texrep 1 1
 crease 30.000000
 numvert 18
@@ -15990,7 +15990,7 @@ OBJECT poly
 name "TRM_Elevator_1"
 data 8
 Mesh.004
-texture "MiG-15bis-Trimmer.rgb"
+texture "MiG-15bis-Trimmer.png"
 texrep 1 1
 crease 30.000000
 numvert 520

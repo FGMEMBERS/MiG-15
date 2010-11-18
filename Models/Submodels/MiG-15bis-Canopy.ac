@@ -5486,7 +5486,7 @@ OBJECT poly
 name "CP_RCFrame_1"
 data 8
 Mesh.014
-texture "MiG-15bis-Canopy.rgb"
+texture "MiG-15bis-Canopy.png"
 texrep 1 1
 crease 30.000000
 numvert 381

@@ -10,7 +10,7 @@ OBJECT poly
 name "MC_Bezel"
 data 8
 Mesh.005
-texture "MiG-15bis-Magcompass.rgb"
+texture "MiG-15bis-Magcompass.png"
 texrep 1 1
 crease 30.000000
 numvert 272
@@ -2062,7 +2062,7 @@ OBJECT poly
 name "MC_Blackpanel"
 data 12
 Cylinder.015
-texture "MiG-15bis-Magcompass.rgb"
+texture "MiG-15bis-Magcompass.png"
 texrep 1 1
 crease 30.000000
 numvert 25
@@ -3947,7 +3947,7 @@ OBJECT poly
 name "MC_Cylinder"
 data 12
 Cylinder.006
-texture "MiG-15bis-Magcompass.rgb"
+texture "MiG-15bis-Magcompass.png"
 texrep 1 1
 crease 30.000000
 numvert 96
@@ -5111,7 +5111,7 @@ OBJECT poly
 name "MC_Line"
 data 4
 Cube
-texture "MiG-15bis-Magcompass.rgb"
+texture "MiG-15bis-Magcompass.png"
 texrep 1 1
 crease 30.000000
 numvert 8
@@ -5866,7 +5866,7 @@ OBJECT poly
 name "MC_Vernbase"
 data 12
 Cylinder.007
-texture "MiG-15bis-Magcompass.rgb"
+texture "MiG-15bis-Magcompass.png"
 texrep 1 1
 crease 30.000000
 numvert 65

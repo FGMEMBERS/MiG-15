@@ -4,7 +4,7 @@
 
 	<particlesystem>
 		<name>smoke</name>
-		<texture>MiG-15bis-smoke.rgb</texture>
+		<texture>MiG-15bis-smoke.png</texture>
 		<emissive type="bool">false</emissive>
 		<lighting type="bool">false</lighting>
 

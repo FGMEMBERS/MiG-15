@@ -40,7 +40,7 @@
 		<object-name>PBC_Lever</object-name>
 		<object-name>PBC_LBase</object-name>
 		<object-name>PBC_LRing</object-name>
-		<property>instrumentation/stop-control/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/stopcontrol/lever-pos</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0.0</dep></entry>
 			<entry><ind>1.0</ind><dep>36.96</dep></entry>
@@ -66,8 +66,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/stop-control")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/stopcontrol/lever-input")</script>
 			</binding>
 		</action>
 	</animation>

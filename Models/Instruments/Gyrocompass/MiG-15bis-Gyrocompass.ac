@@ -616,7 +616,7 @@ OBJECT poly
 name "GC_Bezel"
 data 8
 Mesh.005
-texture "MiG-15bis-GC-CDisk.rgb"
+texture "MiG-15bis-GC-CDisk.png"
 texrep 1 1
 crease 30.000000
 numvert 224
@@ -2114,7 +2114,7 @@ OBJECT poly
 name "GC_CDisk"
 data 8
 Mesh.007
-texture "MiG-15bis-GC-CDisk.rgb"
+texture "MiG-15bis-GC-CDisk.png"
 texrep 1 1
 crease 30.000000
 numvert 17
@@ -2237,7 +2237,7 @@ OBJECT poly
 name "GC_Down"
 data 5
 MC_Up
-texture "MiG-15bis-GC-CDisk.rgb"
+texture "MiG-15bis-GC-CDisk.png"
 texrep 1 1
 crease 30.000000
 numvert 36
@@ -2722,7 +2722,7 @@ OBJECT poly
 name "GC_MDisk"
 data 4
 Mesh
-texture "MiG-15bis-GC-MDisk.rgb"
+texture "MiG-15bis-GC-MDisk.png"
 texrep 1 1
 crease 30.000000
 numvert 65
@@ -3213,7 +3213,7 @@ OBJECT poly
 name "GC_Needle"
 data 5
 Plane
-texture "MiG-15bis-GC-CDisk.rgb"
+texture "MiG-15bis-GC-CDisk.png"
 texrep 1 1
 crease 30.000000
 numvert 5
@@ -3246,7 +3246,7 @@ OBJECT poly
 name "GC_Up"
 data 7
 MC_Down
-texture "MiG-15bis-GC-CDisk.rgb"
+texture "MiG-15bis-GC-CDisk.png"
 texrep 1 1
 crease 30.000000
 numvert 36

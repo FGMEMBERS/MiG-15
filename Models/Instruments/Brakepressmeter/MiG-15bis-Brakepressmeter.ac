@@ -10,7 +10,7 @@ OBJECT poly
 name "BPM_Backplate"
 data 8
 Mesh.014
-texture "MiG-15bis-Brakepressmeter.rgb"
+texture "MiG-15bis-Brakepressmeter.png"
 texrep 1 1
 crease 30.000000
 numvert 17
@@ -133,7 +133,7 @@ OBJECT poly
 name "BPM_Bezel"
 data 8
 Mesh.027
-texture "MiG-15bis-Brakepressmeter.rgb"
+texture "MiG-15bis-Brakepressmeter.png"
 texrep 1 1
 crease 30.000000
 numvert 224
@@ -1770,7 +1770,7 @@ OBJECT poly
 name "BPM_NeedleOne"
 data 8
 Mesh.003
-texture "MiG-15bis-Brakepressmeter.rgb"
+texture "MiG-15bis-Brakepressmeter.png"
 texrep 1 1
 crease 30.000000
 numvert 63
@@ -2251,7 +2251,7 @@ OBJECT poly
 name "BPM_NeedleTwo"
 data 4
 Mesh
-texture "MiG-15bis-Brakepressmeter.rgb"
+texture "MiG-15bis-Brakepressmeter.png"
 texrep 1 1
 crease 30.000000
 numvert 63

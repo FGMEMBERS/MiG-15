@@ -19,7 +19,7 @@ OBJECT poly
 name "HO_Backpanel"
 data 8
 Mesh.008
-texture "MiG-15bis-HFPlate.rgb"
+texture "MiG-15bis-HFPlate.png"
 texrep 1 1
 crease 30.000000
 numvert 128
@@ -849,7 +849,7 @@ OBJECT poly
 name "HO_Bezel"
 data 8
 Mesh.001
-texture "MiG-15bis-HFPlate.rgb"
+texture "MiG-15bis-HFPlate.png"
 texrep 1 1
 crease 30.000000
 numvert 274
@@ -2867,7 +2867,7 @@ OBJECT poly
 name "HO_Ball"
 data 6
 Sphere
-texture "MiG-15bis-HFPlate.rgb"
+texture "MiG-15bis-HFPlate.png"
 texrep 1 1
 crease 30.000000
 numvert 26
@@ -3143,7 +3143,7 @@ OBJECT poly
 name "HO_Button"
 data 12
 Cylinder.003
-texture "MiG-15bis-HFPlate.rgb"
+texture "MiG-15bis-HFPlate.png"
 texrep 1 1
 crease 30.000000
 numvert 81
@@ -4147,7 +4147,7 @@ OBJECT poly
 name "HO_Ring"
 data 12
 Cylinder.004
-texture "MiG-15bis-HFPlate.rgb"
+texture "MiG-15bis-HFPlate.png"
 texrep 1 1
 crease 30.000000
 numvert 18
@@ -4234,7 +4234,7 @@ OBJECT poly
 name "HO_Sphere_0"
 data 10
 Sphere.001
-texture "MiG-15bis-Horizon.rgb"
+texture "MiG-15bis-Horizon.png"
 texrep 1 1
 crease 30.000000
 numvert 15
@@ -4315,7 +4315,7 @@ OBJECT poly
 name "HO_Sphere_1"
 data 10
 Sphere.001
-texture "MiG-15bis-Horizon.rgb"
+texture "MiG-15bis-Horizon.png"
 texrep 1 1
 crease 30.000000
 numvert 611
@@ -10973,7 +10973,7 @@ OBJECT poly
 name "HO_Vern"
 data 12
 Cylinder.002
-texture "MiG-15bis-HFPlate.rgb"
+texture "MiG-15bis-HFPlate.png"
 texrep 1 1
 crease 30.000000
 numvert 101

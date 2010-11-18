@@ -14,7 +14,7 @@ OBJECT poly
 name "FM_Needle"
 data 8
 Mesh.001
-texture "MiG-15bis-Fuelometer.rgb"
+texture "MiG-15bis-Fuelometer.png"
 texrep 1 1
 crease 30.000000
 numvert 23
@@ -176,7 +176,7 @@ OBJECT poly
 name "FM_Backplate"
 data 8
 Mesh.005
-texture "MiG-15bis-Fuelometer.rgb"
+texture "MiG-15bis-Fuelometer.png"
 texrep 1 1
 crease 30.000000
 numvert 17
@@ -299,7 +299,7 @@ OBJECT poly
 name "FM_Bezel"
 data 8
 Mesh.006
-texture "MiG-15bis-Fuelometer.rgb"
+texture "MiG-15bis-Fuelometer.png"
 texrep 1 1
 crease 30.000000
 numvert 224
@@ -1797,7 +1797,7 @@ OBJECT poly
 name "FM_Foreplate"
 data 4
 Mesh
-texture "MiG-15bis-Fuelometer.rgb"
+texture "MiG-15bis-Fuelometer.png"
 texrep 1 1
 crease 30.000000
 numvert 33

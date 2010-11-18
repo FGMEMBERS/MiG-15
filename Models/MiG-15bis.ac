@@ -29,7 +29,7 @@ OBJECT poly
 name "CP_CockpitWell"
 data 8
 Mesh.272
-texture "CockpitWell.rgb"
+texture "CockpitWell.png"
 texrep 1 1
 crease 30.000000
 numvert 123
@@ -7977,7 +7977,7 @@ OBJECT poly
 name "FUS_ElDown"
 data 8
 Mesh.016
-texture "HullBackDown.rgb"
+texture "HullBackDown.png"
 texrep 1 1
 crease 30.000000
 numvert 91
@@ -8691,7 +8691,7 @@ OBJECT poly
 name "FUS_ElUp_1"
 data 8
 Mesh.017
-texture "HullBackUp.rgb"
+texture "HullBackUp.png"
 texrep 1 1
 crease 30.000000
 numvert 88
@@ -14887,7 +14887,7 @@ OBJECT poly
 name "FUS_Hull_1"
 data 9
 Mesh.1810
-texture "WingUp.rgb"
+texture "WingUp.png"
 texrep 1 1
 crease 30.000000
 numvert 429
@@ -18282,7 +18282,7 @@ OBJECT poly
 name "FUS_Hull_2"
 data 9
 Mesh.1810
-texture "HullBackDown.rgb"
+texture "HullBackDown.png"
 texrep 1 1
 crease 30.000000
 numvert 56
@@ -18642,7 +18642,7 @@ OBJECT poly
 name "FUS_Hull_3"
 data 9
 Mesh.1810
-texture "LeftFore.rgb"
+texture "LeftFore.png"
 texrep 1 1
 crease 30.000000
 numvert 171
@@ -19800,7 +19800,7 @@ OBJECT poly
 name "FUS_Hull_4"
 data 9
 Mesh.1810
-texture "RightBack.rgb"
+texture "RightBack.png"
 texrep 1 1
 crease 30.000000
 numvert 677
@@ -24984,7 +24984,7 @@ OBJECT poly
 name "FUS_Hull_5"
 data 9
 Mesh.1810
-texture "WingDown.rgb"
+texture "WingDown.png"
 texrep 1 1
 crease 30.000000
 numvert 275
@@ -27079,7 +27079,7 @@ OBJECT poly
 name "FUS_Hull_6"
 data 9
 Mesh.1810
-texture "HullForeUp.rgb"
+texture "HullForeUp.png"
 texrep 1 1
 crease 30.000000
 numvert 424
@@ -30338,7 +30338,7 @@ OBJECT poly
 name "FUS_Hull_7"
 data 9
 Mesh.1810
-texture "RightFore.rgb"
+texture "RightFore.png"
 texrep 1 1
 crease 30.000000
 numvert 156
@@ -31402,7 +31402,7 @@ OBJECT poly
 name "FUS_Hull_8"
 data 9
 Mesh.1810
-texture "HullCenterUp.rgb"
+texture "HullCenterUp.png"
 texrep 1 1
 crease 30.000000
 numvert 148
@@ -32678,7 +32678,7 @@ OBJECT poly
 name "FUS_Hull_9"
 data 9
 Mesh.1810
-texture "HullForeDown.rgb"
+texture "HullForeDown.png"
 texrep 1 1
 crease 30.000000
 numvert 999
@@ -40359,7 +40359,7 @@ OBJECT poly
 name "FUS_Hull_10"
 data 9
 Mesh.1810
-texture "RightCenter.rgb"
+texture "RightCenter.png"
 texrep 1 1
 crease 30.000000
 numvert 534
@@ -44376,7 +44376,7 @@ OBJECT poly
 name "FUS_Hull_11"
 data 9
 Mesh.1810
-texture "HullBackUp.rgb"
+texture "HullBackUp.png"
 texrep 1 1
 crease 30.000000
 numvert 29
@@ -44537,7 +44537,7 @@ OBJECT poly
 name "FUS_Hull_12"
 data 9
 Mesh.1810
-texture "HullCenterDown.rgb"
+texture "HullCenterDown.png"
 texrep 1 1
 crease 30.000000
 numvert 66
@@ -51279,7 +51279,7 @@ OBJECT poly
 name "FUS_NoseDoorLS"
 data 8
 Mesh.288
-texture "HullForeDown.rgb"
+texture "HullForeDown.png"
 texrep 1 1
 crease 30.000000
 numvert 18
@@ -51600,7 +51600,7 @@ OBJECT poly
 name "FUS_NoseDoorRS"
 data 8
 Mesh.290
-texture "HullForeDown.rgb"
+texture "HullForeDown.png"
 texrep 1 1
 crease 30.000000
 numvert 19
@@ -52267,7 +52267,7 @@ OBJECT poly
 name "FUS_SBDoorLB"
 data 8
 Mesh.294
-texture "SBDoor.rgb"
+texture "SBDoor.png"
 texrep 1 1
 crease 30.000000
 numvert 82
@@ -52859,7 +52859,7 @@ OBJECT poly
 name "FUS_SBDoorLS"
 data 8
 Mesh.295
-texture "RightBack.rgb"
+texture "RightBack.png"
 texrep 1 1
 crease 30.000000
 numvert 45
@@ -53155,7 +53155,7 @@ OBJECT poly
 name "FUS_SBDoorRB"
 data 8
 Mesh.296
-texture "SBDoor.rgb"
+texture "SBDoor.png"
 texrep 1 1
 crease 30.000000
 numvert 82
@@ -53747,7 +53747,7 @@ OBJECT poly
 name "FUS_SBDoorRS"
 data 8
 Mesh.297
-texture "RightBack.rgb"
+texture "RightBack.png"
 texrep 1 1
 crease 30.000000
 numvert 45
@@ -54043,7 +54043,7 @@ OBJECT poly
 name "FUS_SBWelR"
 data 8
 Mesh.299
-texture "SBDoor.rgb"
+texture "SBDoor.png"
 texrep 1 1
 crease 30.000000
 numvert 82
@@ -54635,7 +54635,7 @@ OBJECT poly
 name "FUS_SBWellL"
 data 8
 Mesh.298
-texture "SBDoor.rgb"
+texture "SBDoor.png"
 texrep 1 1
 crease 30.000000
 numvert 82
@@ -64793,7 +64793,7 @@ OBJECT poly
 name "TF_Rudder"
 data 8
 Mesh.310
-texture "RightBack.rgb"
+texture "RightBack.png"
 texrep 1 1
 crease 30.000000
 numvert 58
@@ -65310,7 +65310,7 @@ OBJECT poly
 name "TP_ElevatorL_0"
 data 8
 Mesh.311
-texture "HullBackDown.rgb"
+texture "HullBackDown.png"
 texrep 1 1
 crease 30.000000
 numvert 8
@@ -65355,7 +65355,7 @@ OBJECT poly
 name "TP_ElevatorL_1"
 data 8
 Mesh.311
-texture "HullBackUp.rgb"
+texture "HullBackUp.png"
 texrep 1 1
 crease 30.000000
 numvert 22
@@ -65540,7 +65540,7 @@ OBJECT poly
 name "TP_ElevatorR_0"
 data 8
 Mesh.023
-texture "HullBackDown.rgb"
+texture "HullBackDown.png"
 texrep 1 1
 crease 30.000000
 numvert 14
@@ -65611,7 +65611,7 @@ OBJECT poly
 name "TP_ElevatorR_1"
 data 8
 Mesh.023
-texture "HullBackUp.rgb"
+texture "HullBackUp.png"
 texrep 1 1
 crease 30.000000
 numvert 18
@@ -65741,7 +65741,7 @@ OBJECT poly
 name "TP_Trimmer_0"
 data 8
 Mesh.024
-texture "HullBackDown.rgb"
+texture "HullBackDown.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -65762,7 +65762,7 @@ OBJECT poly
 name "TP_Trimmer_1"
 data 8
 Mesh.024
-texture "HullBackUp.rgb"
+texture "HullBackUp.png"
 texrep 1 1
 crease 30.000000
 numvert 6
@@ -68624,7 +68624,7 @@ OBJECT poly
 name "UC_MainL_DoorIS"
 data 8
 Mesh.317
-texture "WingDown.rgb"
+texture "WingDown.png"
 texrep 1 1
 crease 30.000000
 numvert 16
@@ -69001,7 +69001,7 @@ OBJECT poly
 name "UC_MainL_DoorMS"
 data 8
 Mesh.319
-texture "WingDown.rgb"
+texture "WingDown.png"
 texrep 1 1
 crease 30.000000
 numvert 19
@@ -69228,7 +69228,7 @@ OBJECT poly
 name "UC_MainL_DoorOS"
 data 8
 Mesh.321
-texture "WingDown.rgb"
+texture "WingDown.png"
 texrep 1 1
 crease 30.000000
 numvert 8
@@ -78476,7 +78476,7 @@ OBJECT poly
 name "UC_MainR_DoorIS"
 data 8
 Mesh.330
-texture "WingDown.rgb"
+texture "WingDown.png"
 texrep 1 1
 crease 30.000000
 numvert 16
@@ -78853,7 +78853,7 @@ OBJECT poly
 name "UC_MainR_DoorMS"
 data 8
 Mesh.332
-texture "WingDown.rgb"
+texture "WingDown.png"
 texrep 1 1
 crease 30.000000
 numvert 19
@@ -79080,7 +79080,7 @@ OBJECT poly
 name "UC_MainR_DoorOS"
 data 8
 Mesh.334
-texture "WingDown.rgb"
+texture "WingDown.png"
 texrep 1 1
 crease 30.000000
 numvert 8
@@ -96589,7 +96589,7 @@ OBJECT poly
 name "WNG_AileronL"
 data 8
 Mesh.014
-texture "WingDown.rgb"
+texture "WingDown.png"
 texrep 1 1
 crease 30.000000
 numvert 17
@@ -96741,7 +96741,7 @@ OBJECT poly
 name "WNG_AileronR"
 data 8
 Mesh.015
-texture "WingUp.rgb"
+texture "WingUp.png"
 texrep 1 1
 crease 30.000000
 numvert 10
@@ -96822,7 +96822,7 @@ OBJECT poly
 name "WNG_FlapLDown"
 data 8
 Mesh.344
-texture "WingDown.rgb"
+texture "WingDown.png"
 texrep 1 1
 crease 30.000000
 numvert 12
@@ -96897,7 +96897,7 @@ OBJECT poly
 name "WNG_FlapLUp"
 data 8
 Mesh.013
-texture "WingDown.rgb"
+texture "WingDown.png"
 texrep 1 1
 crease 30.000000
 numvert 13
@@ -96985,7 +96985,7 @@ OBJECT poly
 name "WNG_FlapRDown"
 data 8
 Mesh.345
-texture "WingDown.rgb"
+texture "WingDown.png"
 texrep 1 1
 crease 30.000000
 numvert 10
@@ -97039,7 +97039,7 @@ OBJECT poly
 name "WNG_FlapRUp"
 data 8
 Mesh.011
-texture "WingDown.rgb"
+texture "WingDown.png"
 texrep 1 1
 crease 30.000000
 numvert 13
@@ -97279,7 +97279,7 @@ OBJECT poly
 name "WNG_Trimmer"
 data 9
 Mesh.1719
-texture "WingDown.rgb"
+texture "WingDown.png"
 texrep 1 1
 crease 30.000000
 numvert 9

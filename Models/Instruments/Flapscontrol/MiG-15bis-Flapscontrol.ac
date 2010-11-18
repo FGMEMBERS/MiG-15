@@ -46,7 +46,7 @@ OBJECT poly
 name "FLC_Lever_1_1"
 data 12
 Cylinder.001
-texture "MiG-15bis-Flapscontrol-Shadows.rgb"
+texture "MiG-15bis-Flapscontrol-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 352
@@ -3121,7 +3121,7 @@ OBJECT poly
 name "FLC_Base"
 data 8
 Cylinder
-texture "MiG-15bis-Flapscontrol-Shadows.rgb"
+texture "MiG-15bis-Flapscontrol-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 287
@@ -5669,7 +5669,7 @@ OBJECT poly
 name "FLC_Bolts"
 data 12
 Cylinder.006
-texture "MiG-15bis-Flapscontrol-Shadows.rgb"
+texture "MiG-15bis-Flapscontrol-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 568
@@ -10567,7 +10567,7 @@ OBJECT poly
 name "FLC_Down"
 data 8
 Cube.005
-texture "MiG-15bis-Flapscontrol.rgb"
+texture "MiG-15bis-Flapscontrol.png"
 texrep 1 1
 crease 30.000000
 numvert 57
@@ -10980,7 +10980,7 @@ OBJECT poly
 name "FLC_Fix"
 data 12
 Cylinder.022
-texture "MiG-15bis-Flapscontrol-Shadows.rgb"
+texture "MiG-15bis-Flapscontrol-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 101
@@ -12028,7 +12028,7 @@ OBJECT poly
 name "FLC_HBase"
 data 12
 Cylinder.016
-texture "MiG-15bis-Flapscontrol-Shadows.rgb"
+texture "MiG-15bis-Flapscontrol-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 36
@@ -12296,7 +12296,7 @@ OBJECT poly
 name "FLC_Holder"
 data 4
 Mesh
-texture "MiG-15bis-Flapscontrol-Shadows.rgb"
+texture "MiG-15bis-Flapscontrol-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 440
@@ -15546,7 +15546,7 @@ OBJECT poly
 name "FLC_LBase"
 data 12
 Cylinder.009
-texture "MiG-15bis-Flapscontrol-Shadows.rgb"
+texture "MiG-15bis-Flapscontrol-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 43
@@ -15996,7 +15996,7 @@ OBJECT poly
 name "FLC_LRing"
 data 12
 Cylinder.010
-texture "MiG-15bis-Flapscontrol-Shadows.rgb"
+texture "MiG-15bis-Flapscontrol-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 42
@@ -16428,7 +16428,7 @@ OBJECT poly
 name "FLC_Mesage"
 data 8
 Cube.008
-texture "MiG-15bis-Flapscontrol.rgb"
+texture "MiG-15bis-Flapscontrol.png"
 texrep 1 1
 crease 30.000000
 numvert 42
@@ -16742,7 +16742,7 @@ OBJECT poly
 name "FLC_Middle"
 data 8
 Cube.009
-texture "MiG-15bis-Flapscontrol.rgb"
+texture "MiG-15bis-Flapscontrol.png"
 texrep 1 1
 crease 30.000000
 numvert 57
@@ -17155,7 +17155,7 @@ OBJECT poly
 name "FLC_Neutral"
 data 8
 Cube.006
-texture "MiG-15bis-Flapscontrol.rgb"
+texture "MiG-15bis-Flapscontrol.png"
 texrep 1 1
 crease 30.000000
 numvert 57
@@ -17568,7 +17568,7 @@ OBJECT poly
 name "FLC_Up"
 data 8
 Cube.001
-texture "MiG-15bis-Flapscontrol.rgb"
+texture "MiG-15bis-Flapscontrol.png"
 texrep 1 1
 crease 30.000000
 numvert 57

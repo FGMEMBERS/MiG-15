@@ -13,7 +13,7 @@ OBJECT poly
 name "VSI_bezel"
 data 8
 Mesh.009
-texture "MiG-15bis-VertSpeedometer.rgb"
+texture "MiG-15bis-VertSpeedometer.png"
 texrep 1 1
 crease 30.000000
 numvert 224
@@ -1511,7 +1511,7 @@ OBJECT poly
 name "VSI_Backplate"
 data 8
 Mesh.007
-texture "MiG-15bis-VertSpeedometer.rgb"
+texture "MiG-15bis-VertSpeedometer.png"
 texrep 1 1
 crease 30.000000
 numvert 17
@@ -1755,7 +1755,7 @@ OBJECT poly
 name "VSI_Needle"
 data 8
 Mesh.001
-texture "MiG-15bis-VertSpeedometer.rgb"
+texture "MiG-15bis-VertSpeedometer.png"
 texrep 1 1
 crease 30.000000
 numvert 63

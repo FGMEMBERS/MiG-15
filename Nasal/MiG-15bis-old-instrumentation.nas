@@ -586,3 +586,664 @@ init_gascontrol = func
 # start gas control process first time
 #gascontrol ();
 
+#--------------------------------------------------------------------
+# Right panel
+
+# helper 
+stop_rightpanel = func 
+	{
+	}
+
+rightpanel = func 
+	{
+		# check power
+		in_service = getprop("instrumentation/panels/right/serviceable");
+		if (in_service == nil)
+		{
+			stop_rightpanel();
+	 		return ( settimer(rightpanel, 0.1) ); 
+		}
+		if ( in_service != 1 )
+		{
+			stop_rightpanel();
+		 	return ( settimer(rightpanel, 0.1) ); 
+		}
+		error=0;
+		error=error+switchmove("instrumentation/switches/battery", "controls/switches/battery");
+		error=error+switchmove("instrumentation/switches/generator", "controls/switches/generator");
+		error=error+switchmove("instrumentation/switches/headlight", "dummy/dummy");
+		error=error+switchmove("instrumentation/switches/trimmer", "controls/switches/trimmer");
+		error=error+switchmove("instrumentation/switches/horizon", "controls/switches/horizon");
+		error=error+switchmove("instrumentation/switches/radio", "dummy/dummy");
+		error=error+switchmove("instrumentation/switches/radioaltimeter", "controls/switches/radioaltimeter");
+		error=error+switchmove("instrumentation/switches/radiocompass", "controls/switches/radiocompass");
+		error=error+switchmove("instrumentation/switches/drop-tank", "controls/switches/drop-tank");
+		error=error+switchmove("instrumentation/switches/bomb", "controls/switches/bomb");
+		error=error+switchmove("instrumentation/switches/photo", "controls/switches/photo");
+		error=error+switchmove("instrumentation/switches/photo-machinegun", "controls/switches/photo-machinegun");
+		error=error+switchmove("instrumentation/switches/headsight", "controls/switches/headsight");
+		error=error+switchmove("instrumentation/switches/machinegun", "controls/switches/machinegun");
+		setprop("instrumentation/panels/right/error", error);
+  		settimer(rightpanel, 0.1);
+  }
+
+# set startup configuration
+init_rightpanel = func 
+{
+	setprop("instrumentation/panels/right/serviceable", 1);
+	switchinit("instrumentation/switches/battery", 0, "controls/switches/battery");
+	switchinit("instrumentation/switches/generator", 0, "controls/switches/generator");
+	switchinit("instrumentation/switches/headlight", 0, "dummy/dummy");
+	switchinit("instrumentation/switches/trimmer", 0, "controls/switches/trimmer");
+	switchinit("instrumentation/switches/horizon", 0, "controls/switches/horizon");
+	switchinit("instrumentation/switches/radio", 0, "dummy/dummy");
+	switchinit("instrumentation/switches/radioaltimeter", 0, "controls/switches/radioaltimeter");
+	switchinit("instrumentation/switches/radiocompass", 0, "controls/switches/radiocompass");
+	switchinit("instrumentation/switches/drop-tank", 0, "controls/switches/drop-tank");
+	switchinit("instrumentation/switches/bomb", 0, "controls/switches/bomb");
+	switchinit("instrumentation/switches/photo", 0, "controls/switches/photo");
+
+	switchinit("instrumentation/switches/photo-machinegun", 0, "controls/switches/photo-machinegun");
+	switchinit("instrumentation/switches/headsight", 0, "controls/switches/headsight");
+	switchinit("instrumentation/switches/machinegun", 0, "controls/switches/machinegun");
+}
+
+#init_rightpanel();
+
+# start ignition lamp process first time
+#rightpanel ();
+
+#--------------------------------------------------------------------
+# Stop engine control
+
+# helper 
+stop_stopcontrol = func 
+	{
+	}
+
+stopcontrol = func 
+	{
+		# check power
+		in_service = getprop("instrumentation/stop-control/serviceable" );
+		if (in_service == nil)
+		{
+			stop_stopcontrol();
+	 		return ( settimer(stopcontrol, 0.1) ); 
+		}
+		if ( in_service != 1 )
+		{
+			stop_stopcontrol();
+		 	return ( settimer(stopcontrol, 0.1) ); 
+		}
+		switchmove("instrumentation/stop-control", "dummy/dummy");
+  		settimer(stopcontrol, 0.1);
+	}
+
+# set startup configuration
+init_stopcontrol = func 
+{
+	setprop("instrumentation/stop-control/serviceable", 1);
+	switchinit("instrumentation/stop-control", 1, "dummy/dummy");
+}
+
+init_stopcontrol();
+
+# start stop control process first time
+stopcontrol ();
+
+#--------------------------------------------------------------------
+# Left panel
+
+# helper 
+stop_leftpanel = func 
+	{
+	}
+
+leftpanel = func 
+	{
+		in_service = getprop("instrumentation/panels/left/serviceable");
+		if (in_service == nil)
+		{
+			stop_leftpanel();
+	 		return ( settimer(leftpanel, 0.1) ); 
+		}
+		if ( in_service != 1 )
+		{
+			stop_leftpanel();
+		 	return ( settimer(leftpanel, 0.1) ); 
+		}
+		error=0;
+		error=error+switchmove("instrumentation/switches/pump", "controls/switches/pump");
+		error=error+switchmove("instrumentation/switches/isolation-valve", "controls/switches/isolation-valve");
+		error=error+switchmove("instrumentation/switches/ignition-type", "controls/switches/ignition-type");
+		error=error+switchmove("instrumentation/switches/ignition", "controls/switches/ignition");
+		error=error+switchmove("instrumentation/switches/engine-control", "controls/switches/engine-control");
+		error=error+switchmove("instrumentation/switches/third-tank-pump", "controls/switches/third-tank-pump");
+		setprop("instrumentation/panels/left/error", error);
+  		settimer(leftpanel, 0.1);
+  }
+
+# set startup configuration
+init_leftpanel = func 
+{
+	setprop("instrumentation/panels/left/serviceable", 1);
+	switchinit("instrumentation/switches/pump", 0, "controls/switches/pump");
+	switchinit("instrumentation/switches/isolation-valve", 0, "controls/switches/isolation-valve");
+	switchinit("instrumentation/switches/ignition-type", 0, "controls/switches/ignition-type");
+	switchinit("instrumentation/switches/ignition", 0, "controls/switches/ignition");
+	switchinit("instrumentation/switches/engine-control", 0, "controls/switches/engine-control");
+	switchinit("instrumentation/switches/third-tank-pump", 0, "controls/switches/third-tank-pump");
+}
+
+init_leftpanel();
+
+# start ignition lamp process first time
+leftpanel ();
+
+#--------------------------------------------------------------------
+# Ignition button
+
+# helper 
+stop_ignitionbutton = func 
+	{
+	}
+
+ignitionbutton = func 
+	{
+		in_service = getprop("instrumentation/ignition-button/serviceable");
+		if (in_service == nil)
+		{
+			stop_ignitionbutton();
+	 		return ( settimer(ignitionbutton, 0.1) ); 
+		}
+		if ( in_service != 1 )
+		{
+			stop_ignitionbutton();
+		 	return ( settimer(ignitionbutton, 0.1) ); 
+		}
+		safer_set_pos=getprop("instrumentation/ignition-button/safer/set-pos");
+		safer_pos=getprop("instrumentation/ignition-button/safer/switch-pos-norm");
+		button_pos=getprop("instrumentation/ignition-button/switch-pos-norm");
+		starter_key=getprop("controls/engines/engine/starter-key");
+		starter_command=getprop("controls/engines/engine/starter-command");
+		if (
+			(safer_set_pos==nil) 
+			or (safer_pos==nil)
+			or (button_pos==nil)
+			or (starter_key==nil)
+			or (starter_command==nil)
+		)
+		{
+			stop_ignitionbutton();
+	 		return ( settimer(ignitionbutton, 0.1) ); 
+		}
+		if (
+			(starter_key==1) 
+			or (starter_command==1)
+		)
+		{
+			if (safer_pos==0)
+			{
+				starter_press=1;
+			}
+			else
+			{
+				starter_press=0;
+				setprop("instrumentation/ignition-button/safer/set-pos", 0);
+			}
+		}
+		else
+		{
+			starter_press=0;
+			setprop("instrumentation/ignition-button/safer/set-pos", 1);
+		}
+		switchmove("instrumentation/ignition-button/safer", "dummy/dummy");
+		setprop("instrumentation/ignition-button/set-pos", starter_press);
+		switchmove("instrumentation/ignition-button", "controls/engines/engine/starter-pressed");
+		settimer(ignitionbutton, 0.1);
+	  }
+
+# set startup configuration
+init_ignitionbutton = func 
+{
+	setprop("instrumentation/ignition-button/serviceable", 1);
+	switchinit("instrumentation/ignition-button", 0, "dummy/dummy");
+	switchinit("instrumentation/ignition-button/safer", 1, "dummy/dummy");
+	setprop("controls/engines/engine/starter-command", 0);
+	setprop("controls/engines/engine/starter-key", 0);
+	setprop("controls/engines/engine/starter-pressed", 0);
+}
+
+init_ignitionbutton();
+
+# start gas control process first time
+ignitionbutton ();
+#-----------------------------------------------------------------------
+#Vertspeedometer
+stop_vertspeedometer=func
+	{
+	}
+
+vertspeedometer=func
+	{
+		# check power
+		in_service = getprop("instrumentation/vertspeedometer/serviceable");
+		if (in_service == nil)
+		{
+			stop_vertspeedometer();
+	 		return ( settimer(vertspeedometer, 0.1) ); 
+		}
+		if ( in_service != 1 )
+		{
+			stop_vertspeedometer();
+		 	return ( settimer(vertspeedometer, 0.1) ); 
+		}
+		#Get values
+		vertspeed=getprop("fdm/jsbsim/velocities/v-down-fps");
+		bus=getprop("systems/electrical-real/bus");
+		if ((bus==nil) or (vertspeed==nil))
+		{
+			stop_vertspeedometer();
+	 		return ( settimer(vertspeedometer, 0.1) ); 
+		}
+		if (bus==0)
+		{
+			stop_vertspeedometer();
+	 		return ( settimer(vertspeedometer, 0.3) ); 
+		}
+		vertspeed=vertspeed*0.30480;
+		setprop("instrumentation/vertspeedometer/indicated-speed-m", vertspeed);
+		settimer(vertspeedometer, 0.1);
+	}
+
+init_vertspeedometer=func
+{
+	setprop("instrumentation/vertspeedometer/serviceable", 1);
+	setprop("instrumentation/vertspeedometer/indicated-speed-fpm", 0);
+}
+
+init_vertspeedometer();
+
+vertspeedometer();
+
+#--------------------------------------------------------------------
+# Gear control
+
+# helper 
+stop_gearcontrol = func 
+	{
+	}
+
+gearcontrol = func 
+	{
+		# check state
+		in_service = getprop("instrumentation/gear-control/serviceable" );
+		if (in_service == nil)
+		{
+			stop_gearcontrol();
+	 		return ( settimer(gearcontrol, 0.1) ); 
+		}
+		if ( in_service != 1 )
+		{
+			stop_gearcontrol();
+		 	return ( settimer(gearcontrol, 0.1) ); 
+		}
+		# get gear values
+		gear_down = getprop("controls/gear/gear-down");
+		gear_down_real = getprop("fdm/jsbsim/gear/gear-cmd-norm-real");
+		gear_one_pos=getprop("fdm/jsbsim/gear/unit[0]/pos-norm-real");
+		gear_two_pos=getprop("fdm/jsbsim/gear/unit[1]/pos-norm-real");
+		gear_three_pos=getprop("fdm/jsbsim/gear/unit[2]/pos-norm-real");
+		gear_one_stuck=getprop("fdm/jsbsim/gear/unit[0]/stuck");
+		gear_two_stuck=getprop("fdm/jsbsim/gear/unit[1]/stuck");
+		gear_three_stuck=getprop("fdm/jsbsim/gear/unit[2]/stuck");
+		# get instrumentation values	
+		switch_pos=getprop("instrumentation/gear-control/switch-pos-norm");
+		fix_pos=getprop("instrumentation/gear-control/fix-pos-norm");
+		#get gear valve and handles values
+		valve_press=getprop("instrumentation/gear-valve/pressure-norm");
+		left_handle_pos=getprop("instrumentation/gear-handles/left/switch-pos-norm");
+		right_handle_pos=getprop("instrumentation/gear-handles/right/switch-pos-norm");
+		#get power values
+		pump=getprop("systems/electrical-real/outputs/pump/volts-norm");
+		engine_running=getprop("engines/engine/running");
+		set_generator=getprop("fdm/jsbsim/systems/rightpanel/generator-switch");
+		speed=getprop("velocities/airspeed-kt");
+		if (
+			(gear_down == nil)
+			or (gear_down_real == nil)
+			or (gear_one_pos == nil)
+			or (gear_two_pos == nil)
+			or (gear_three_pos == nil)
+			or (gear_one_stuck == nil)
+			or (gear_two_stuck == nil)
+			or (gear_three_stuck == nil)
+			or (switch_pos == nil)
+			or (fix_pos == nil)
+			or (valve_press==nil)
+			or (left_handle_pos==nil)
+			or (right_handle_pos==nil)
+			or (pump==nil)
+			or (engine_running==nil)
+			or (set_generator==nil)
+			or (speed==nil)
+		)
+		{
+			stop_gearcontrol();
+	 		return ( settimer(gearcontrol, 0.1) ); 
+		}
+		if (gear_down!=gear_down_real)
+		{
+			if (
+				(
+					(pump==1) 
+					and (valve_press==0.8)
+				)
+				and
+				(
+					(engine_running!=1)
+					or (set_generator!=1)
+				)
+			)
+			{
+				pump=0;
+				setprop("fdm/jsbsim/systems/leftpanel/pump-input", 0);
+			}
+			if (fix_pos!=1)
+			{
+				fix_pos=fix_pos+0.3;
+				if (fix_pos>=1)
+				{
+					setprop("instrumentation/gear-control/fix-pos-norm", 1);
+					clicksound();
+				}
+				else
+				{
+					setprop("instrumentation/gear-control/fix-pos-norm", fix_pos);
+				}
+			}
+			else
+			{
+				if (gear_down_real>gear_down)
+				{
+					#gear goes up
+					if (switch_pos!=1)
+					{
+						switch_pos=switch_pos+0.3;
+						if (switch_pos>=1)
+						{
+							setprop("instrumentation/gear-control/switch-pos-norm", 1);
+							gear_down_real=gear_down;
+						}
+						else
+						{
+							setprop("instrumentation/gear-control/switch-pos-norm", switch_pos);
+						}
+					}
+					else
+					{
+						gear_down_real=gear_down;
+					}
+				}		
+				else
+				{
+					#gear goes down
+					if (switch_pos!=-1)
+					{
+						switch_pos=switch_pos-0.3;
+						if (switch_pos<=-1)
+						{
+							setprop("instrumentation/gear-control/switch-pos-norm", -1);
+							gear_down_real=gear_down;
+						}
+						else
+						{
+							setprop("instrumentation/gear-control/switch-pos-norm", switch_pos);
+						}
+					}
+					else
+					{
+						gear_down_real=gear_down;
+					}
+				}		
+			}
+		}
+		else
+		{
+			if (
+				(
+					(gear_down_real==1) 
+					and (
+						(gear_one_pos==1)
+						or (gear_one_stuck==1)
+					)
+					and
+					(
+						(gear_two_pos==1)
+						or (gear_two_stuck==1)
+					)
+					and
+					(
+						(gear_three_pos==1)
+						or (gear_three_stuck==1)
+					)
+				)
+				or
+				(
+					(gear_down_real==0) 
+					and (
+						(gear_one_pos==0)
+						or (gear_one_stuck==1)
+					)
+					and
+					(
+						(gear_two_pos==0)
+						or (gear_two_stuck==1)
+					)
+					and
+					(
+						(gear_three_pos==0)
+						or (gear_three_stuck==1)
+					)
+				)
+			)
+			{
+				#gear stay on place
+				if (abs(switch_pos)>0)
+				{
+					way_to=(-switch_pos)/abs(switch_pos);
+					switch_pos=switch_pos+0.3*way_to;
+					if (((way_to>0) and (switch_pos>0)) or ((way_to<0) and (switch_pos<0)))
+					{
+						setprop("instrumentation/gear-control/switch-pos-norm", 0);
+					}
+					else
+					{
+						setprop("instrumentation/gear-control/switch-pos-norm", switch_pos);
+					}
+				}
+				else
+				{
+					if (fix_pos>0)
+					{
+						fix_pos=fix_pos-0.3;
+						if (fix_pos<=0)
+						{
+							setprop("instrumentation/gear-control/fix-pos-norm", 0);
+							clicksound();
+						}
+						else
+						{
+							setprop("instrumentation/gear-control/fix-pos-norm", fix_pos);
+						}
+					}
+				}
+			}
+		}
+		if (
+			(pump==1)
+			and (valve_press==0.8)
+			and (left_handle_pos==0)
+			and (right_handle_pos==0)
+		)
+		{
+			setprop("fdm/jsbsim/gear/gear-cmd-norm-real", gear_down_real);
+		}
+		settimer(gearcontrol, 0.1);
+	}
+
+# set startup configuration
+init_gear_control = func
+{
+	setprop("instrumentation/gear-control/serviceable", 1);
+	setprop("instrumentation/gear-control/switch-pos-norm", 0);
+	setprop("instrumentation/gear-control/fix-pos-norm", 0);
+}
+
+#init_gear_control();
+
+gear_control_up = func
+	{
+		setprop("fdm/jsbsim/systems/gearcontrol/control-input", 1);
+	}
+
+gear_control_down = func
+	{
+		setprop("fdm/jsbsim/systems/gearcontrol/control-input", -1);
+	}
+
+geartoredsound = func
+	{
+		setprop("sounds/gears-tored/on", 1);
+		settimer(geartoredsoundoff, 0.3);
+	}
+
+geartoredsoundoff = func
+	{
+		setprop("sounds/gears-tored/on", 0);
+	}
+
+gear_touch_down = func
+	{
+		setprop("sounds/gears-down/on", 1);
+		settimer(end_gear_touch_down, 3);
+	}
+
+end_gear_touch_down = func
+	{
+		setprop("sounds/gears-down/on", 0);
+	}
+
+# start gear control process first time
+#gearcontrol ();
+
+#--------------------------------------------------------------------
+# Radio Altimeter rv-two
+
+# helper 
+stop_radioaltimeter = func 
+	{
+		setprop("instrumentation/radioaltimeter/lamp", 0);
+	}
+
+radioaltimeter = func 
+	{
+		#check serviceabless
+		in_service = getprop("instrumentation/radioaltimeter/serviceable");
+		if (in_service == nil)
+		{
+			stop_radioaltimeter();
+	 		return ( settimer(radioaltimeter, 0.1) ); 
+		}
+		if( in_service != 1 )
+		{
+			stop_radioaltimeter();
+		 	return ( settimer(radioaltimeter, 0.1) ); 
+		}
+		#check power
+		power=getprop("systems/electrical-real/outputs/radioaltimeter/volts-norm");
+		# check state
+		state_on=getprop("instrumentation/radioaltimeter/switch-pos-norm");
+		# check selector position
+		diapazone = getprop("instrumentation/radioaltimeter/diapazone/switch-pos-norm");
+		#check altitude positions
+		altitude=getprop("position/altitude-ft");
+		elevation=getprop("position/ground-elev-ft");
+		# get orientation values
+		roll_deg = getprop("orientation/roll-deg");
+		pitch_deg = getprop("orientation/pitch-deg");
+		if ((power==nil) or (state_on==nil) or (diapazone== nil) or (altitude==nil) or (elevation== nil) or (roll_deg==nil) or (pitch_deg==nil))
+		{
+			stop_radioaltimeter();
+	 		return ( settimer(radioaltimeter, 0.1) ); 
+		}
+		switchmove("instrumentation/radioaltimeter", "dummy/dummy");
+		switchmove("instrumentation/radioaltimeter/diapazone", "dummy/dummy");
+		if ((power==0) or (state_on==0))
+		{
+			setprop("instrumentation/radioaltimeter/value", -100);
+			stop_radioaltimeter();
+		 	return ( settimer(radioaltimeter, 0.1) ); 
+		}
+		setprop("instrumentation/radioaltimeter/lamp", power);
+		# convert from position to meters
+		if (diapazone==1)
+		{ 
+			#diapazone 0-1200m
+			value = (0.3048*(altitude-elevation)) / 10;
+		}
+		else
+		{
+			#diapazone 0-120m
+			value = 0.3048*(altitude-elevation);
+		}
+		#add maneur distortion
+		if (abs(pitch_deg)<90)
+		{
+			pitch_distort=0.5*(math.sin(abs(pitch_deg)/180*math.pi));
+		}
+		else
+		{
+			pitch_distort=0.5*(1+math.sin((abs(pitch_deg)-90)/180*math.pi));
+		}
+		setprop("instrumentation/radioaltimeter/pitch-deg", pitch_deg);
+		setprop("instrumentation/radioaltimeter/pitch-distort", pitch_distort);
+		if (abs(roll_deg)<90)
+		{
+			roll_distort=0.5*(math.sin(abs(roll_deg)/180*math.pi));
+		}
+		else
+		{
+			roll_distort=0.5*(1+math.sin((abs(pitch_deg)-90)/180*math.pi));
+		}
+		setprop("instrumentation/radioaltimeter/roll-deg", roll_deg);
+		setprop("instrumentation/radioaltimeter/roll-distort", roll_distort);
+		if (roll_distort>pitch_distort)
+		{
+			distort=roll_distort;
+		}
+		else
+		{
+			distort=pitch_distort;
+		}
+		value_distorted=value*(1+distort*0.2);
+	 	setprop("instrumentation/radioaltimeter/alt-real", value);
+	 	setprop("instrumentation/radioaltimeter/value", value_distorted);
+		settimer(radioaltimeter, 0.1);
+	}
+
+# set startup configuration
+init_radioaltimeter = func
+{
+	switchinit("instrumentation/radioaltimeter", 1, "dummy/dummy");
+	switchinit("instrumentation/radioaltimeter/diapazone", 0, "dummy/dummy");
+	setprop("instrumentation/radioaltimeter/serviceable", 1);
+	setprop("instrumentation/radioaltimeter/lamp", 0);
+	setprop("instrumentation/radioaltimeter/value", -100);
+}
+
+init_radioaltimeter();
+
+# start radio altimeter process first time
+radioaltimeter ();
+

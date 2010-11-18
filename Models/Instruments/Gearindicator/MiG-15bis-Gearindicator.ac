@@ -602,7 +602,7 @@ OBJECT poly
 name "GI_Box"
 data 8
 Cube.003
-texture "MiG-15bis-Gearindicator.rgb"
+texture "MiG-15bis-Gearindicator.png"
 texrep 1 1
 crease 30.000000
 numvert 375
@@ -4743,7 +4743,7 @@ OBJECT poly
 name "GI_Message"
 data 12
 Cylinder.022
-texture "MiG-15bis-Gearindicator.rgb"
+texture "MiG-15bis-Gearindicator.png"
 texrep 1 1
 crease 30.000000
 numvert 52

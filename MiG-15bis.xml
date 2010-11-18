@@ -1613,4 +1613,32 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 	<system file="Accchecker">
 	</system>
 
+	<system file="Rightpanel">
+	</system>
+
+	<system file="Stopcontrol">
+	</system>
+
+	<system file="Leftpanel">
+	</system>
+
+	<system file="Ignitionbutton">
+	</system>
+
+	<system file="Speedbrakescontrol">
+	</system>
+
+	<system file="Fuelcontrol">
+	</system>
+
+	<system file="Vertspeedometer">
+	</system>
+
+	<system file="Gearcontrol">
+	</system>
+
+	<system file="Radioaltimeter">
+	</system>
+
+
 </fdm_config>

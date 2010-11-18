@@ -10,7 +10,7 @@ OBJECT poly
 name "EG_LBOne"
 data 12
 Cylinder.121
-texture "MiG-15b-Gearhandles-Shadows.rgb"
+texture "MiG-15bis-Gearhandles-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 66
@@ -694,7 +694,7 @@ OBJECT poly
 name "EG_LBTwo"
 data 12
 Cylinder.005
-texture "MiG-15b-Gearhandles-Shadows.rgb"
+texture "MiG-15bis-Gearhandles-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 66
@@ -1425,7 +1425,7 @@ OBJECT poly
 name "EG_LBase_1"
 data 10
 Circle.003
-texture "MiG-15b-Gearhandles-Shadows.rgb"
+texture "MiG-15bis-Gearhandles-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 229
@@ -3638,7 +3638,7 @@ OBJECT poly
 name "EG_LConnector"
 data 12
 Cylinder.002
-texture "MiG-15b-Gearhandles-Shadows.rgb"
+texture "MiG-15bis-Gearhandles-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 66
@@ -4322,7 +4322,7 @@ OBJECT poly
 name "EG_LHHDown"
 data 10
 Circle.004
-texture "MiG-15b-Gearhandles-Shadows.rgb"
+texture "MiG-15bis-Gearhandles-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 84
@@ -4990,7 +4990,7 @@ OBJECT poly
 name "EG_LHHUp"
 data 10
 Circle.002
-texture "MiG-15b-Gearhandles-Shadows.rgb"
+texture "MiG-15bis-Gearhandles-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 84
@@ -5658,7 +5658,7 @@ OBJECT poly
 name "EG_LHandle"
 data 9
 Mesh.1821
-texture "MiG-15b-Gearhandles-Shadows.rgb"
+texture "MiG-15bis-Gearhandles-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 968
@@ -13862,7 +13862,7 @@ OBJECT poly
 name "EG_RBOne"
 data 12
 Cylinder.148
-texture "MiG-15b-Gearhandles-Shadows.rgb"
+texture "MiG-15bis-Gearhandles-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 66
@@ -14546,7 +14546,7 @@ OBJECT poly
 name "EG_RBTwo"
 data 12
 Cylinder.003
-texture "MiG-15b-Gearhandles-Shadows.rgb"
+texture "MiG-15bis-Gearhandles-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 66
@@ -15277,7 +15277,7 @@ OBJECT poly
 name "EG_RBase_1"
 data 6
 Circle
-texture "MiG-15b-Gearhandles-Shadows.rgb"
+texture "MiG-15bis-Gearhandles-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 230
@@ -18174,7 +18174,7 @@ OBJECT poly
 name "EG_RConnector"
 data 12
 Cylinder.149
-texture "MiG-15b-Gearhandles-Shadows.rgb"
+texture "MiG-15bis-Gearhandles-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 66
@@ -18858,7 +18858,7 @@ OBJECT poly
 name "EG_RHHDown"
 data 10
 Circle.006
-texture "MiG-15b-Gearhandles-Shadows.rgb"
+texture "MiG-15bis-Gearhandles-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 84
@@ -19526,7 +19526,7 @@ OBJECT poly
 name "EG_RHHUp"
 data 10
 Circle.005
-texture "MiG-15b-Gearhandles-Shadows.rgb"
+texture "MiG-15bis-Gearhandles-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 84
@@ -20194,7 +20194,7 @@ OBJECT poly
 name "EG_RHandle"
 data 9
 Mesh.1829
-texture "MiG-15b-Gearhandles-Shadows.rgb"
+texture "MiG-15bis-Gearhandles-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 968

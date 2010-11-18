@@ -10,7 +10,7 @@ OBJECT poly
 name "OP_Backplate"
 data 8
 Mesh.014
-texture "MiG-15bis-Oxypressmeter.rgb"
+texture "MiG-15bis-Oxypressmeter.png"
 texrep 1 1
 crease 30.000000
 numvert 17
@@ -133,7 +133,7 @@ OBJECT poly
 name "OP_Bezel"
 data 8
 Mesh.027
-texture "MiG-15bis-Oxypressmeter.rgb"
+texture "MiG-15bis-Oxypressmeter.png"
 texrep 1 1
 crease 30.000000
 numvert 224
@@ -1752,7 +1752,7 @@ OBJECT poly
 name "OP_Needle"
 data 8
 Mesh.003
-texture "MiG-15bis-Oxypressmeter.rgb"
+texture "MiG-15bis-Oxypressmeter.png"
 texrep 1 1
 crease 30.000000
 numvert 63

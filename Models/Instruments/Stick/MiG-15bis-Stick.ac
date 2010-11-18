@@ -441,7 +441,7 @@ OBJECT poly
 name "ST_AAxleThree"
 data 12
 Cylinder.008
-texture "MiG-15bis-Stick.rgb"
+texture "MiG-15bis-Stick.png"
 texrep 1 1
 crease 30.000000
 numvert 42
@@ -873,7 +873,7 @@ OBJECT poly
 name "ST_AAxleTwo"
 data 12
 Cylinder.027
-texture "MiG-15bis-Stick.rgb"
+texture "MiG-15bis-Stick.png"
 texrep 1 1
 crease 30.000000
 numvert 42
@@ -1305,7 +1305,7 @@ OBJECT poly
 name "ST_ABase"
 data 12
 Cylinder.016
-texture "MiG-15bis-Stick.rgb"
+texture "MiG-15bis-Stick.png"
 texrep 1 1
 crease 30.000000
 numvert 55
@@ -1846,7 +1846,7 @@ OBJECT poly
 name "ST_AHolder"
 data 12
 Cylinder.022
-texture "MiG-15bis-Stick.rgb"
+texture "MiG-15bis-Stick.png"
 texrep 1 1
 crease 30.000000
 numvert 55
@@ -2387,7 +2387,7 @@ OBJECT poly
 name "ST_ARockerOne"
 data 12
 Cylinder.020
-texture "MiG-15bis-Stick.rgb"
+texture "MiG-15bis-Stick.png"
 texrep 1 1
 crease 30.000000
 numvert 396
@@ -6095,7 +6095,7 @@ OBJECT poly
 name "ST_ARockerTwo"
 data 12
 Cylinder.011
-texture "MiG-15bis-Stick.rgb"
+texture "MiG-15bis-Stick.png"
 texrep 1 1
 crease 30.000000
 numvert 396
@@ -9803,7 +9803,7 @@ OBJECT poly
 name "ST_ARodOne"
 data 12
 Cylinder.021
-texture "MiG-15bis-Stick.rgb"
+texture "MiG-15bis-Stick.png"
 texrep 1 1
 crease 30.000000
 numvert 152
@@ -11270,7 +11270,7 @@ OBJECT poly
 name "ST_ARodTwo"
 data 12
 Cylinder.002
-texture "MiG-15bis-Stick.rgb"
+texture "MiG-15bis-Stick.png"
 texrep 1 1
 crease 30.000000
 numvert 172
@@ -12892,7 +12892,7 @@ OBJECT poly
 name "ST_BBase"
 data 12
 Cylinder.001
-texture "MiG-15bis-Stick.rgb"
+texture "MiG-15bis-Stick.png"
 texrep 1 1
 crease 30.000000
 numvert 130
@@ -16612,7 +16612,7 @@ OBJECT poly
 name "ST_BRBlocker"
 data 12
 Cylinder.007
-texture "MiG-15bis-Stick.rgb"
+texture "MiG-15bis-Stick.png"
 texrep 1 1
 crease 30.000000
 numvert 194
@@ -20588,7 +20588,7 @@ OBJECT poly
 name "ST_BRLever"
 data 4
 Mesh
-texture "MiG-15bis-Stick.rgb"
+texture "MiG-15bis-Stick.png"
 texrep 1 1
 crease 30.000000
 numvert 154
@@ -23407,7 +23407,7 @@ OBJECT poly
 name "ST_Base"
 data 12
 Cylinder.017
-texture "MiG-15bis-Stick.rgb"
+texture "MiG-15bis-Stick.png"
 texrep 1 1
 crease 30.000000
 numvert 345
@@ -30000,7 +30000,7 @@ OBJECT poly
 name "ST_EBase"
 data 12
 Cylinder.036
-texture "MiG-15bis-Stick.rgb"
+texture "MiG-15bis-Stick.png"
 texrep 1 1
 crease 30.000000
 numvert 130
@@ -31196,7 +31196,7 @@ OBJECT poly
 name "ST_ERod"
 data 12
 Cylinder.019
-texture "MiG-15bis-Stick.rgb"
+texture "MiG-15bis-Stick.png"
 texrep 1 1
 crease 30.000000
 numvert 96
@@ -32488,7 +32488,7 @@ OBJECT poly
 name "ST_Fix"
 data 12
 Cylinder.004
-texture "MiG-15bis-Stick.rgb"
+texture "MiG-15bis-Stick.png"
 texrep 1 1
 crease 30.000000
 numvert 208
@@ -34633,7 +34633,7 @@ OBJECT poly
 name "ST_Handle"
 data 8
 Mesh.011
-texture "MiG-15bis-Stick.rgb"
+texture "MiG-15bis-Stick.png"
 texrep 1 1
 crease 30.000000
 numvert 928
@@ -44273,7 +44273,7 @@ OBJECT poly
 name "ST_Pipe"
 data 12
 Cylinder.003
-texture "MiG-15bis-Stick.rgb"
+texture "MiG-15bis-Stick.png"
 texrep 1 1
 crease 30.000000
 numvert 283
@@ -47024,7 +47024,7 @@ OBJECT poly
 name "ST_RBase"
 data 12
 Cylinder.006
-texture "MiG-15bis-Stick.rgb"
+texture "MiG-15bis-Stick.png"
 texrep 1 1
 crease 30.000000
 numvert 202
@@ -48736,7 +48736,7 @@ OBJECT poly
 name "ST_RFive"
 data 12
 Cylinder.009
-texture "MiG-15bis-Stick.rgb"
+texture "MiG-15bis-Stick.png"
 texrep 1 1
 crease 30.000000
 numvert 421
@@ -58155,7 +58155,7 @@ OBJECT poly
 name "ST_RTwo"
 data 12
 Cylinder.034
-texture "MiG-15bis-Stick.rgb"
+texture "MiG-15bis-Stick.png"
 texrep 1 1
 crease 30.000000
 numvert 421

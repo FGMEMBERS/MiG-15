@@ -10,7 +10,7 @@
 		<object-name>RA_Backplate</object-name>
 		<object-name>RA_Foreplate</object-name>
   		<emission>
-			<factor-prop>instrumentation/radioaltimeter/lamp</factor-prop>
+			<factor-prop>fdm/jsbsim/systems/radioaltimeter/on</factor-prop>
 			<red>0.222</red>
 			<green>0.212</green>
 			<blue>0.212</blue>
@@ -46,7 +46,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RA_Needle</object-name>
-		<property>instrumentation/radioaltimeter/value</property>
+		<property>fdm/jsbsim/systems/radioaltimeter/indicated-alt</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0.0</dep></entry>
 			<entry><ind>120.0</ind><dep>240.0</dep></entry>
@@ -66,7 +66,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RA_VOnoff</object-name>
-		<property>instrumentation/radioaltimeter/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/radioaltimeter/power-pos</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0.0</dep></entry>
 			<entry><ind>1.0</ind><dep>60.0</dep></entry>
@@ -86,7 +86,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RA_VDiapazone</object-name>
-		<property>instrumentation/radioaltimeter/diapazone/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/radioaltimeter/diapazone-pos</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>-45</dep></entry>
 			<entry><ind>1.0</ind><dep>45.0</dep></entry>
@@ -111,8 +111,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/radioaltimeter")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/radioaltimeter/power-input")</script>
 			</binding>
 		</action>
 		<action>
@@ -120,8 +120,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/radioaltimeter")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/radioaltimeter/power-input")</script>
 			</binding>
 		</action>
 	</animation>
@@ -135,7 +135,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/radioaltimeter/diapazone")</script>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/radioaltimeter/diapazone-input")</script>
 			</binding>
 		</action>
 		<action>
@@ -143,12 +143,10 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/radioaltimeter/diapazone")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/radioaltimeter/diapazone-input")</script>
 			</binding>
 		</action>
 	</animation>
-
-
 
 </PropertyList> 

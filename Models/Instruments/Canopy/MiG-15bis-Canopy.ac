@@ -5493,7 +5493,7 @@ OBJECT poly
 name "CP_RCFrame_1"
 data 8
 Mesh.014
-texture "MiG-15bis-Canopy.rgb"
+texture "MiG-15bis-Canopy.png"
 texrep 1 1
 crease 30.000000
 numvert 381
@@ -12287,7 +12287,7 @@ OBJECT poly
 name "CP_FCFrameIn_1"
 data 8
 Mesh.003
-texture "MiG-15bis-Canopy.rgb"
+texture "MiG-15bis-Canopy.png"
 texrep 1 1
 crease 30.000000
 numvert 349
@@ -15945,7 +15945,7 @@ OBJECT poly
 name "CP_LBLCover"
 data 8
 Cylinder
-texture "MiG-15bis-Canopy-Internal.rgb"
+texture "MiG-15bis-Canopy-Internal.png"
 texrep 1 1
 crease 30.000000
 numvert 58
@@ -16540,7 +16540,7 @@ OBJECT poly
 name "CP_LBLHolder"
 data 10
 Circle.015
-texture "MiG-15bis-Canopy-Internal.rgb"
+texture "MiG-15bis-Canopy-Internal.png"
 texrep 1 1
 crease 30.000000
 numvert 42
@@ -16972,7 +16972,7 @@ OBJECT poly
 name "CP_LBLTurner"
 data 10
 Circle.016
-texture "MiG-15bis-Canopy-Internal.rgb"
+texture "MiG-15bis-Canopy-Internal.png"
 texrep 1 1
 crease 30.000000
 numvert 42
@@ -17404,7 +17404,7 @@ OBJECT poly
 name "CP_LBRCover"
 data 12
 Cylinder.001
-texture "MiG-15bis-Canopy-Internal.rgb"
+texture "MiG-15bis-Canopy-Internal.png"
 texrep 1 1
 crease 30.000000
 numvert 74
@@ -18177,7 +18177,7 @@ OBJECT poly
 name "CP_LBRHolder"
 data 10
 Circle.017
-texture "MiG-15bis-Canopy-Internal.rgb"
+texture "MiG-15bis-Canopy-Internal.png"
 texrep 1 1
 crease 30.000000
 numvert 42
@@ -28211,7 +28211,7 @@ OBJECT poly
 name "CP_LLBFix"
 data 10
 Circle.018
-texture "MiG-15bis-Canopy-Internal.rgb"
+texture "MiG-15bis-Canopy-Internal.png"
 texrep 1 1
 crease 30.000000
 numvert 82
@@ -29063,7 +29063,7 @@ OBJECT poly
 name "CP_LLBLatch"
 data 10
 Circle.019
-texture "MiG-15bis-Canopy-Internal.rgb"
+texture "MiG-15bis-Canopy-Internal.png"
 texrep 1 1
 crease 30.000000
 numvert 38
@@ -29453,7 +29453,7 @@ OBJECT poly
 name "CP_LLBox"
 data 8
 Mesh.009
-texture "MiG-15bis-Canopy-Internal.rgb"
+texture "MiG-15bis-Canopy-Internal.png"
 texrep 1 1
 crease 30.000000
 numvert 443
@@ -32909,7 +32909,7 @@ OBJECT poly
 name "CP_LLHBase"
 data 10
 Circle.020
-texture "MiG-15bis-Canopy-Internal.rgb"
+texture "MiG-15bis-Canopy-Internal.png"
 texrep 1 1
 crease 30.000000
 numvert 34
@@ -33222,7 +33222,7 @@ OBJECT poly
 name "CP_LLHandle"
 data 10
 Sphere.014
-texture "MiG-15bis-Canopy-Internal.rgb"
+texture "MiG-15bis-Canopy-Internal.png"
 texrep 1 1
 crease 30.000000
 numvert 182
@@ -37816,7 +37816,7 @@ OBJECT poly
 name "CP_LLRunner"
 data 8
 Mesh.011
-texture "MiG-15bis-Canopy-Internal.rgb"
+texture "MiG-15bis-Canopy-Internal.png"
 texrep 1 1
 crease 30.000000
 numvert 872
@@ -45030,7 +45030,7 @@ OBJECT poly
 name "CP_LLock"
 data 10
 Circle.021
-texture "MiG-15bis-Canopy-Internal.rgb"
+texture "MiG-15bis-Canopy-Internal.png"
 texrep 1 1
 crease 30.000000
 numvert 88
@@ -45950,7 +45950,7 @@ OBJECT poly
 name "CP_RBLCover"
 data 12
 Cylinder.014
-texture "MiG-15bis-Canopy-Internal.rgb"
+texture "MiG-15bis-Canopy-Internal.png"
 texrep 1 1
 crease 30.000000
 numvert 58
@@ -46545,7 +46545,7 @@ OBJECT poly
 name "CP_RBLHolder"
 data 10
 Circle.022
-texture "MiG-15bis-Canopy-Internal.rgb"
+texture "MiG-15bis-Canopy-Internal.png"
 texrep 1 1
 crease 30.000000
 numvert 42
@@ -46977,7 +46977,7 @@ OBJECT poly
 name "CP_RBLTurner"
 data 10
 Circle.023
-texture "MiG-15bis-Canopy-Internal.rgb"
+texture "MiG-15bis-Canopy-Internal.png"
 texrep 1 1
 crease 30.000000
 numvert 42
@@ -47409,7 +47409,7 @@ OBJECT poly
 name "CP_RBRCover"
 data 12
 Cylinder.015
-texture "MiG-15bis-Canopy-Internal.rgb"
+texture "MiG-15bis-Canopy-Internal.png"
 texrep 1 1
 crease 30.000000
 numvert 74
@@ -48182,7 +48182,7 @@ OBJECT poly
 name "CP_RBRHolder"
 data 10
 Circle.024
-texture "MiG-15bis-Canopy-Internal.rgb"
+texture "MiG-15bis-Canopy-Internal.png"
 texrep 1 1
 crease 30.000000
 numvert 42
@@ -61736,7 +61736,7 @@ OBJECT poly
 name "CP_RLBFix"
 data 10
 Circle.025
-texture "MiG-15bis-Canopy-Internal.rgb"
+texture "MiG-15bis-Canopy-Internal.png"
 texrep 1 1
 crease 30.000000
 numvert 82
@@ -62588,7 +62588,7 @@ OBJECT poly
 name "CP_RLBLatch"
 data 10
 Circle.026
-texture "MiG-15bis-Canopy-Internal.rgb"
+texture "MiG-15bis-Canopy-Internal.png"
 texrep 1 1
 crease 30.000000
 numvert 38
@@ -62978,7 +62978,7 @@ OBJECT poly
 name "CP_RLBox"
 data 8
 Mesh.018
-texture "MiG-15bis-Canopy-Internal.rgb"
+texture "MiG-15bis-Canopy-Internal.png"
 texrep 1 1
 crease 30.000000
 numvert 443
@@ -66434,7 +66434,7 @@ OBJECT poly
 name "CP_RLHBase"
 data 10
 Circle.027
-texture "MiG-15bis-Canopy-Internal.rgb"
+texture "MiG-15bis-Canopy-Internal.png"
 texrep 1 1
 crease 30.000000
 numvert 34
@@ -66747,7 +66747,7 @@ OBJECT poly
 name "CP_RLHandle"
 data 10
 Sphere.019
-texture "MiG-15bis-Canopy-Internal.rgb"
+texture "MiG-15bis-Canopy-Internal.png"
 texrep 1 1
 crease 30.000000
 numvert 182
@@ -71341,7 +71341,7 @@ OBJECT poly
 name "CP_RLRunner"
 data 8
 Mesh.019
-texture "MiG-15bis-Canopy-Internal.rgb"
+texture "MiG-15bis-Canopy-Internal.png"
 texrep 1 1
 crease 30.000000
 numvert 872
@@ -78555,7 +78555,7 @@ OBJECT poly
 name "CP_RLock"
 data 10
 Circle.028
-texture "MiG-15bis-Canopy-Internal.rgb"
+texture "MiG-15bis-Canopy-Internal.png"
 texrep 1 1
 crease 30.000000
 numvert 88

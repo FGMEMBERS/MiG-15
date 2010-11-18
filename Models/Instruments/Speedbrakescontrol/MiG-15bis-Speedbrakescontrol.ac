@@ -505,7 +505,7 @@ OBJECT poly
 name "SBC_Close"
 data 8
 Cube.002
-texture "MiG-15bis-Speedbrakescontrol.rgb"
+texture "MiG-15bis-Speedbrakescontrol.png"
 texrep 1 1
 crease 30.000000
 numvert 42
@@ -819,7 +819,7 @@ OBJECT poly
 name "SBC_Control"
 data 8
 Cube.003
-texture "MiG-15bis-Speedbrakescontrol.rgb"
+texture "MiG-15bis-Speedbrakescontrol.png"
 texrep 1 1
 crease 30.000000
 numvert 42
@@ -2279,7 +2279,7 @@ OBJECT poly
 name "SBC_Message"
 data 4
 Cube
-texture "MiG-15bis-Speedbrakescontrol.rgb"
+texture "MiG-15bis-Speedbrakescontrol.png"
 texrep 1 1
 crease 30.000000
 numvert 42
@@ -2593,7 +2593,7 @@ OBJECT poly
 name "SBC_Open"
 data 8
 Cube.007
-texture "MiG-15bis-Speedbrakescontrol.rgb"
+texture "MiG-15bis-Speedbrakescontrol.png"
 texrep 1 1
 crease 30.000000
 numvert 42

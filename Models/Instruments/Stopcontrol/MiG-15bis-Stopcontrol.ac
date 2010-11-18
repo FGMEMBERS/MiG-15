@@ -19,7 +19,7 @@ OBJECT poly
 name "PBC_Down"
 data 8
 Cube.005
-texture "MiG-15bis-Stopcontrol.rgb"
+texture "MiG-15bis-Stopcontrol.png"
 texrep 1 1
 crease 30.000000
 numvert 57
@@ -432,7 +432,7 @@ OBJECT poly
 name "PBC_LBase"
 data 12
 Cylinder.009
-texture "MiG-15bis-Stropcontrol-Shadows.rgb"
+texture "MiG-15bis-Stropcontrol-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 43
@@ -882,7 +882,7 @@ OBJECT poly
 name "PBC_LRing"
 data 12
 Cylinder.010
-texture "MiG-15bis-Stropcontrol-Shadows.rgb"
+texture "MiG-15bis-Stropcontrol-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 42
@@ -1314,7 +1314,7 @@ OBJECT poly
 name "PBC_Lever"
 data 8
 Mesh.001
-texture "MiG-15bis-Stropcontrol-Shadows.rgb"
+texture "MiG-15bis-Stropcontrol-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 961
@@ -8985,7 +8985,7 @@ OBJECT poly
 name "PBC_Message"
 data 8
 Cube.008
-texture "MiG-15bis-Stopcontrol.rgb"
+texture "MiG-15bis-Stopcontrol.png"
 texrep 1 1
 crease 30.000000
 numvert 42
@@ -9299,7 +9299,7 @@ OBJECT poly
 name "PBC_Up"
 data 8
 Cube.001
-texture "MiG-15bis-Stopcontrol.rgb"
+texture "MiG-15bis-Stopcontrol.png"
 texrep 1 1
 crease 30.000000
 numvert 57

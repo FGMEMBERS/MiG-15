@@ -34,10 +34,10 @@
 		<type>rotate</type>
 		<object-name>IGN_Safer</object-name>
 		<object-name>IGN_Axle</object-name>
-		<property>instrumentation/ignition-button/safer/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/ignitionbutton/safer-pos</property>
 		<interpolation>
-			<entry><ind>1</ind><dep>0.0</dep></entry>
-			<entry><ind>0</ind><dep>70.0</dep></entry>
+			<entry><ind>0</ind><dep>0.0</dep></entry>
+			<entry><ind>1</ind><dep>70.0</dep></entry>
 		</interpolation>
 		<center>
 			<x-m>0.0</x-m>
@@ -54,10 +54,10 @@
 	<animation>
 		<type>translate</type>
 		<object-name>IGN_Button</object-name>
-		<property>instrumentation/ignition-button/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/ignitionbutton/button-pos</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0.0</dep></entry>
-			<entry><ind>1</ind><dep>0.004</dep></entry>
+			<entry><ind>1.0</ind><dep>0.004</dep></entry>
 		</interpolation>
 		<axis>
 			<x>0</x>

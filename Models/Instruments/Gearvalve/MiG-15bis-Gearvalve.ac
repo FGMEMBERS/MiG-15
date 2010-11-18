@@ -524,7 +524,7 @@ OBJECT poly
 name "GV_Base"
 data 8
 Cylinder
-texture "MiG-15bis-Gearvalve-Shadows.rgb"
+texture "MiG-15bis-Gearvalve-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 74
@@ -1232,7 +1232,7 @@ OBJECT poly
 name "GV_Bolt"
 data 12
 Cylinder.004
-texture "MiG-15bis-Gearvalve-Shadows.rgb"
+texture "MiG-15bis-Gearvalve-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 74
@@ -1940,7 +1940,7 @@ OBJECT poly
 name "GV_Handle"
 data 8
 Mesh.001
-texture "MiG-15bis-Gearvalve-Shadows.rgb"
+texture "MiG-15bis-Gearvalve-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 343
@@ -5152,7 +5152,7 @@ OBJECT poly
 name "GV_Message"
 data 4
 Mesh
-texture "MiG-15bis-Gearvalve.rgb"
+texture "MiG-15bis-Gearvalve.png"
 texrep 1 1
 crease 30.000000
 numvert 12
@@ -5209,7 +5209,7 @@ OBJECT poly
 name "GV_Valve"
 data 12
 Cylinder.003
-texture "MiG-15bis-Gearvalve-Shadows.rgb"
+texture "MiG-15bis-Gearvalve-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 616

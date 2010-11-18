@@ -1368,7 +1368,7 @@ OBJECT poly
 name "HS_BBox"
 data 6
 Sphere
-texture "MiG-15bis-Headsight.rgb"
+texture "MiG-15bis-Headsight.png"
 texrep 1 1
 crease 30.000000
 numvert 148
@@ -12878,7 +12878,7 @@ OBJECT poly
 name "HS_Box_1"
 data 4
 Cube
-texture "MiG-15bis-Headsight.rgb"
+texture "MiG-15bis-Headsight.png"
 texrep 1 1
 crease 30.000000
 numvert 272
@@ -15573,7 +15573,7 @@ OBJECT poly
 name "HS_CCenter"
 data 10
 Circle.001
-texture "MiG-15bis-HSRing.rgb"
+texture "MiG-15bis-HSRing.png"
 texrep 1 1
 crease 30.000000
 numvert 21
@@ -15724,7 +15724,7 @@ OBJECT poly
 name "HS_CDown"
 data 10
 Circle.002
-texture "MiG-15bis-HSRing.rgb"
+texture "MiG-15bis-HSRing.png"
 texrep 1 1
 crease 30.000000
 numvert 21
@@ -15875,7 +15875,7 @@ OBJECT poly
 name "HS_CLDown"
 data 10
 Circle.008
-texture "MiG-15bis-HSRing.rgb"
+texture "MiG-15bis-HSRing.png"
 texrep 1 1
 crease 30.000000
 numvert 21
@@ -16026,7 +16026,7 @@ OBJECT poly
 name "HS_CLUp"
 data 10
 Circle.005
-texture "MiG-15bis-HSRing.rgb"
+texture "MiG-15bis-HSRing.png"
 texrep 1 1
 crease 30.000000
 numvert 21
@@ -16177,7 +16177,7 @@ OBJECT poly
 name "HS_CLeft"
 data 10
 Circle.004
-texture "MiG-15bis-HSRing.rgb"
+texture "MiG-15bis-HSRing.png"
 texrep 1 1
 crease 30.000000
 numvert 21
@@ -16328,7 +16328,7 @@ OBJECT poly
 name "HS_CRDown"
 data 10
 Circle.007
-texture "MiG-15bis-HSRing.rgb"
+texture "MiG-15bis-HSRing.png"
 texrep 1 1
 crease 30.000000
 numvert 21
@@ -16479,7 +16479,7 @@ OBJECT poly
 name "HS_CRUp"
 data 10
 Circle.006
-texture "MiG-15bis-HSRing.rgb"
+texture "MiG-15bis-HSRing.png"
 texrep 1 1
 crease 30.000000
 numvert 21
@@ -16630,7 +16630,7 @@ OBJECT poly
 name "HS_CRight"
 data 10
 Circle.003
-texture "MiG-15bis-HSRing.rgb"
+texture "MiG-15bis-HSRing.png"
 texrep 1 1
 crease 30.000000
 numvert 21
@@ -16781,7 +16781,7 @@ OBJECT poly
 name "HS_CUp"
 data 6
 Circle
-texture "MiG-15bis-HSRing.rgb"
+texture "MiG-15bis-HSRing.png"
 texrep 1 1
 crease 30.000000
 numvert 21
@@ -16932,7 +16932,7 @@ OBJECT poly
 name "HS_Cross"
 data 9
 Plane.001
-texture "MiG-15bis-HSCross.rgb"
+texture "MiG-15bis-HSCross.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -17133,7 +17133,7 @@ OBJECT poly
 name "HS_Cyl_1"
 data 12
 Cylinder.006
-texture "MiG-15bis-HSCyl.rgb"
+texture "MiG-15bis-HSCyl.png"
 texrep 1 1
 crease 30.000000
 numvert 72
@@ -18385,7 +18385,7 @@ OBJECT poly
 name "HS_FBox"
 data 10
 Sphere.002
-texture "MiG-15bis-Headsight.rgb"
+texture "MiG-15bis-Headsight.png"
 texrep 1 1
 crease 30.000000
 numvert 185
@@ -19838,7 +19838,7 @@ OBJECT poly
 name "HS_Frame"
 data 4
 Mesh
-texture "MiG-15bis-Headsight.rgb"
+texture "MiG-15bis-Headsight.png"
 texrep 1 1
 crease 30.000000
 numvert 759
@@ -29209,7 +29209,7 @@ OBJECT poly
 name "HS_Ring"
 data 5
 Plane
-texture "MiG-15bis-HSRing.rgb"
+texture "MiG-15bis-HSRing.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -30731,7 +30731,7 @@ OBJECT poly
 name "HS_SRing_1"
 data 10
 Sphere.005
-texture "MiG-15bis-HSSRing.rgb"
+texture "MiG-15bis-HSSRing.png"
 texrep 1 1
 crease 30.000000
 numvert 64
@@ -31667,7 +31667,7 @@ OBJECT poly
 name "HS_Sign"
 data 10
 Circle.009
-texture "MiG-15bis-HSRing.rgb"
+texture "MiG-15bis-HSRing.png"
 texrep 1 1
 crease 30.000000
 numvert 21
@@ -31818,7 +31818,7 @@ OBJECT poly
 name "HS_Sphere"
 data 10
 Sphere.004
-texture "MiG-15bis-HSSphere.rgb"
+texture "MiG-15bis-HSSphere.png"
 texrep 1 1
 crease 30.000000
 numvert 257
@@ -33845,7 +33845,7 @@ OBJECT poly
 name "HS_Switch"
 data 12
 Cylinder.018
-texture "MiG-15bis-Headsight.rgb"
+texture "MiG-15bis-Headsight.png"
 texrep 1 1
 crease 30.000000
 numvert 146

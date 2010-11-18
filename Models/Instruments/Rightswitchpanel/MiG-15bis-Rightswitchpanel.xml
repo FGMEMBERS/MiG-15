@@ -112,7 +112,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>ACC_Switch</object-name>
-		<property>instrumentation/switches/battery/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/rightpanel/battery-pos</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -139,8 +139,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/battery")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/battery-input")</script>
 			</binding>
 		</action>
 		<action>
@@ -148,8 +148,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/battery")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/battery-input")</script>
 			</binding>
 		</action>
 	</animation>
@@ -157,7 +157,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>GEN_Switch</object-name>
-		<property>instrumentation/switches/generator/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/rightpanel/generator-pos</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -184,8 +184,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/generator")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/generator-input")</script>
 			</binding>
 		</action>
 		<action>
@@ -193,8 +193,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/generator")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/generator-input")</script>
 			</binding>
 		</action>
 	</animation>
@@ -202,7 +202,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>HL_Switch</object-name>
-		<property>instrumentation/switches/headlight/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/rightpanel/headlight-pos</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -229,8 +229,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/headlight")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/headlight-input")</script>
 			</binding>
 		</action>
 		<action>
@@ -238,8 +238,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/headlight")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/headlight-input")</script>
 			</binding>
 		</action>
 	</animation>
@@ -247,7 +247,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>TRM_Switch</object-name>
-		<property>instrumentation/switches/trimmer/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/rightpanel/trimmer-pos</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -274,8 +274,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/trimmer")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/trimmer-input")</script>
 			</binding>
 		</action>
 		<action>
@@ -283,8 +283,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/trimmer")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/trimmer-input")</script>
 			</binding>
 		</action>
 	</animation>
@@ -292,7 +292,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>HOR_Switch</object-name>
-		<property>instrumentation/switches/horizon/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/rightpanel/horizon-pos</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -319,8 +319,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/horizon")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/horizon-input")</script>
 			</binding>
 		</action>
 		<action>
@@ -328,8 +328,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/horizon")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/horizon-input")</script>
 			</binding>
 		</action>
 	</animation>
@@ -337,7 +337,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RAD_Switch</object-name>
-		<property>instrumentation/switches/radio/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/rightpanel/radio-pos</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -364,8 +364,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/radio")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/radio-input")</script>
 			</binding>
 		</action>
 		<action>
@@ -373,8 +373,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/radio")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/radio-input")</script>
 			</binding>
 		</action>
 	</animation>
@@ -382,7 +382,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>BOM_Switch</object-name>
-		<property>instrumentation/switches/bomb/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/rightpanel/bomb-pos</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -409,8 +409,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/bomb")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/bomb-input")</script>
 			</binding>
 		</action>
 		<action>
@@ -418,17 +418,16 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/bomb")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/bomb-input")</script>
 			</binding>
 		</action>
 	</animation>
 
-
 	<animation>
 		<type>rotate</type>
 		<object-name>DBK_Switch</object-name>
-		<property>instrumentation/switches/drop-tank/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/rightpanel/drop-tank-pos</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -455,8 +454,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/drop-tank")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/drop-tank-input")</script>
 			</binding>
 		</action>
 		<action>
@@ -464,8 +463,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/drop-tank")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/drop-tank-input")</script>
 			</binding>
 		</action>
 	</animation>
@@ -473,7 +472,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RAC_Switch</object-name>
-		<property>instrumentation/switches/radiocompass/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/rightpanel/radiocompass-pos</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -500,8 +499,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/radiocompass")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/radiocompass-input")</script>
 			</binding>
 		</action>
 		<action>
@@ -509,8 +508,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/radiocompass")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/radiocompass-input")</script>
 			</binding>
 		</action>
 	</animation>
@@ -518,7 +517,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RAL_Switch</object-name>
-		<property>instrumentation/switches/radioaltimeter/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/rightpanel/radioaltimeter-pos</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -545,8 +544,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/radioaltimeter")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/radioaltimeter-input")</script>
 			</binding>
 		</action>
 		<action>
@@ -554,8 +553,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/radioaltimeter")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/radioaltimeter-input")</script>
 			</binding>
 		</action>
 	</animation>
@@ -564,7 +563,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>MG_Switch</object-name>
-		<property>instrumentation/switches/machinegun/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/rightpanel/machinegun-pos</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -591,8 +590,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/machinegun")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/machinegun-input")</script>
 			</binding>
 		</action>
 		<action>
@@ -600,8 +599,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/machinegun")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/machinegun-input")</script>
 			</binding>
 		</action>
 	</animation>
@@ -609,7 +608,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>HS_Switch</object-name>
-		<property>instrumentation/switches/headsight/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/rightpanel/headsight-pos</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -636,8 +635,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/headsight")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/headsight-input")</script>
 			</binding>
 		</action>
 		<action>
@@ -645,8 +644,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/headsight")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/headsight-input")</script>
 			</binding>
 		</action>
 	</animation>
@@ -654,7 +653,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>PHMG_Switch</object-name>
-		<property>instrumentation/switches/photo-machinegun/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/rightpanel/photo-machinegun-pos</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -681,8 +680,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/photo-machinegun")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/photo-machinegun-input")</script>
 			</binding>
 		</action>
 		<action>
@@ -690,8 +689,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/photo-machinegun")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/photo-machinegun-input")</script>
 			</binding>
 		</action>
 	</animation>
@@ -699,7 +698,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>PH_Switch</object-name>
-		<property>instrumentation/switches/photo/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/rightpanel/photo-pos</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -726,8 +725,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/photo")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/photo-input")</script>
 			</binding>
 		</action>
 		<action>
@@ -735,8 +734,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/photo")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/photo-input")</script>
 			</binding>
 		</action>
 	</animation>

@@ -7,7 +7,7 @@ OBJECT poly
 name "CP_RBox"
 data 8
 Cylinder
-texture "MiG-15bis-right-panel.rgb"
+texture "MiG-15bis-right-panel.png"
 texrep 1 1
 crease 30.000000
 numvert 284

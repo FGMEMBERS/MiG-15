@@ -10,7 +10,7 @@ OBJECT poly
 name "GC_Base"
 data 8
 Cube.001
-texture "MiG-15bis-Gearcontrol-Shadows.rgb"
+texture "MiG-15bis-Gearcontrol-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 302
@@ -2582,7 +2582,7 @@ OBJECT poly
 name "GC_Bolts"
 data 12
 Cylinder.001
-texture "MiG-15bis-Gearcontrol-Shadows.rgb"
+texture "MiG-15bis-Gearcontrol-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 126
@@ -3973,7 +3973,7 @@ OBJECT poly
 name "GC_Down_1"
 data 8
 Cube.004
-texture "MiG-15bis-Gearcontrol.rgb"
+texture "MiG-15bis-Gearcontrol.png"
 texrep 1 1
 crease 30.000000
 numvert 22
@@ -4127,7 +4127,7 @@ OBJECT poly
 name "GC_Fix"
 data 8
 Cube.005
-texture "MiG-15bis-Gearcontrol-Shadows.rgb"
+texture "MiG-15bis-Gearcontrol-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 117
@@ -5080,7 +5080,7 @@ OBJECT poly
 name "GC_Message"
 data 8
 Cube.006
-texture "MiG-15bis-Gearcontrol.rgb"
+texture "MiG-15bis-Gearcontrol.png"
 texrep 1 1
 crease 30.000000
 numvert 42
@@ -5394,7 +5394,7 @@ OBJECT poly
 name "GC_Switch"
 data 8
 Cylinder
-texture "MiG-15bis-Gearcontrol-Shadows.rgb"
+texture "MiG-15bis-Gearcontrol-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 156
@@ -6684,7 +6684,7 @@ OBJECT poly
 name "GC_Up"
 data 8
 Cube.003
-texture "MiG-15bis-Gearcontrol.rgb"
+texture "MiG-15bis-Gearcontrol.png"
 texrep 1 1
 crease 30.000000
 numvert 42
@@ -6998,7 +6998,7 @@ OBJECT poly
 name "GC_Upper"
 data 8
 Cube.002
-texture "MiG-15bis-Gearcontrol-Shadows.rgb"
+texture "MiG-15bis-Gearcontrol-Shadows.png"
 texrep 1 1
 crease 30.000000
 numvert 144

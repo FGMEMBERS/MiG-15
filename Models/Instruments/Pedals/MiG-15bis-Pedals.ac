@@ -9,7 +9,7 @@ OBJECT poly
 name "PD_LBBolt"
 data 12
 Cylinder.011
-texture "MiG-15bis-Pedals.rgb"
+texture "MiG-15bis-Pedals.png"
 texrep 1 1
 crease 30.000000
 numvert 50
@@ -3327,7 +3327,7 @@ OBJECT poly
 name "PD_LBTOne"
 data 12
 Cylinder.206
-texture "MiG-15bis-Pedals.rgb"
+texture "MiG-15bis-Pedals.png"
 texrep 1 1
 crease 30.000000
 numvert 66
@@ -4693,7 +4693,7 @@ OBJECT poly
 name "PD_LBTTwo"
 data 12
 Cylinder.207
-texture "MiG-15bis-Pedals.rgb"
+texture "MiG-15bis-Pedals.png"
 texrep 1 1
 crease 30.000000
 numvert 66
@@ -6741,7 +6741,7 @@ OBJECT poly
 name "PD_LBase"
 data 12
 Cylinder.029
-texture "MiG-15bis-Pedals.rgb"
+texture "MiG-15bis-Pedals.png"
 texrep 1 1
 crease 30.000000
 numvert 513
@@ -14482,7 +14482,7 @@ OBJECT poly
 name "PD_LPStrap"
 data 8
 Mesh.005
-texture "MiG-15bis-Pedals.rgb"
+texture "MiG-15bis-Pedals.png"
 texrep 1 1
 crease 30.000000
 numvert 114
@@ -15485,7 +15485,7 @@ OBJECT poly
 name "PD_LPedal"
 data 9
 Mesh.1214
-texture "MiG-15bis-Pedals.rgb"
+texture "MiG-15bis-Pedals.png"
 texrep 1 1
 crease 30.000000
 numvert 106
@@ -34959,7 +34959,7 @@ OBJECT poly
 name "PD_LTube"
 data 8
 Cylinder
-texture "MiG-15bis-Pedals.rgb"
+texture "MiG-15bis-Pedals.png"
 texrep 1 1
 crease 30.000000
 numvert 176
@@ -36623,7 +36623,7 @@ OBJECT poly
 name "PD_RBBolt"
 data 12
 Cylinder.019
-texture "MiG-15bis-Pedals.rgb"
+texture "MiG-15bis-Pedals.png"
 texrep 1 1
 crease 30.000000
 numvert 50
@@ -39427,7 +39427,7 @@ OBJECT poly
 name "PD_RBTOne"
 data 12
 Cylinder.013
-texture "MiG-15bis-Pedals.rgb"
+texture "MiG-15bis-Pedals.png"
 texrep 1 1
 crease 30.000000
 numvert 66
@@ -40111,7 +40111,7 @@ OBJECT poly
 name "PD_RBTTwo"
 data 12
 Cylinder.010
-texture "MiG-15bis-Pedals.rgb"
+texture "MiG-15bis-Pedals.png"
 texrep 1 1
 crease 30.000000
 numvert 66
@@ -41477,7 +41477,7 @@ OBJECT poly
 name "PD_RBase"
 data 12
 Cylinder.017
-texture "MiG-15bis-Pedals.rgb"
+texture "MiG-15bis-Pedals.png"
 texrep 1 1
 crease 30.000000
 numvert 513
@@ -49218,7 +49218,7 @@ OBJECT poly
 name "PD_RPStrap"
 data 8
 Mesh.001
-texture "MiG-15bis-Pedals.rgb"
+texture "MiG-15bis-Pedals.png"
 texrep 1 1
 crease 30.000000
 numvert 114
@@ -50221,7 +50221,7 @@ OBJECT poly
 name "PD_RPedal"
 data 8
 Mesh.002
-texture "MiG-15bis-Pedals.rgb"
+texture "MiG-15bis-Pedals.png"
 texrep 1 1
 crease 30.000000
 numvert 106
@@ -69695,7 +69695,7 @@ OBJECT poly
 name "PD_RTube"
 data 12
 Cylinder.018
-texture "MiG-15bis-Pedals.rgb"
+texture "MiG-15bis-Pedals.png"
 texrep 1 1
 crease 30.000000
 numvert 176
@@ -71359,7 +71359,7 @@ OBJECT poly
 name "PD_Rod"
 data 12
 Cylinder.187
-texture "MiG-15bis-Pedals.rgb"
+texture "MiG-15bis-Pedals.png"
 texrep 1 1
 crease 30.000000
 numvert 132

@@ -216,7 +216,7 @@ OBJECT poly
 name "FUS_NoseDoorLS"
 data 8
 Mesh.288
-texture "HullForeDown.rgb"
+texture "HullForeDown.png"
 texrep 1 1
 crease 30.000000
 numvert 18

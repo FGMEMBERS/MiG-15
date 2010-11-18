@@ -14,7 +14,7 @@ OBJECT poly
 name "TM_Backplate"
 data 8
 Mesh.007
-texture "MiG-15bis-Turnometer.rgb"
+texture "MiG-15bis-Turnometer.png"
 texrep 1 1
 crease 30.000000
 numvert 17
@@ -137,7 +137,7 @@ OBJECT poly
 name "TM_Ball"
 data 6
 Sphere
-texture "MiG-15bis-Turnometer.rgb"
+texture "MiG-15bis-Turnometer.png"
 texrep 1 1
 crease 30.000000
 numvert 26
@@ -413,7 +413,7 @@ OBJECT poly
 name "TM_Bezel"
 data 8
 Mesh.009
-texture "MiG-15bis-Turnometer.rgb"
+texture "MiG-15bis-Turnometer.png"
 texrep 1 1
 crease 30.000000
 numvert 224
@@ -1911,7 +1911,7 @@ OBJECT poly
 name "TM_Foreplate"
 data 4
 Mesh
-texture "MiG-15bis-Turnometer.rgb"
+texture "MiG-15bis-Turnometer.png"
 texrep 1 1
 crease 30.000000
 numvert 41
@@ -2269,7 +2269,7 @@ OBJECT poly
 name "TM_Needle"
 data 8
 Mesh.010
-texture "MiG-15bis-Turnometer.rgb"
+texture "MiG-15bis-Turnometer.png"
 texrep 1 1
 crease 30.000000
 numvert 57

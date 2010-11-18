@@ -1157,7 +1157,7 @@ OBJECT poly
 name "MK_Message"
 data 8
 Cube.007
-texture "MiG-15bis-Marklamp.rgb"
+texture "MiG-15bis-Marklamp.png"
 texrep 1 1
 crease 30.000000
 numvert 42

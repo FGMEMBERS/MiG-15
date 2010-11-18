@@ -40,7 +40,7 @@ MiG-15bis simulation config.
 	<sim>
 
 	<startup>
-		<splash-texture>Aircraft/MiG-15/MiG-15bis-splash.rgb</splash-texture>
+		<splash-texture>Aircraft/MiG-15/MiG-15bis-splash.png</splash-texture>
 	</startup>
 
 	<help>
@@ -499,7 +499,7 @@ MiG-15bis simulation config.
 				<desc>Swap main pump power</desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("instrumentation/switches/pump")</script>
+					<script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/pump-input")</script>
 				</binding>
 			</key>
             
@@ -529,7 +529,7 @@ MiG-15bis simulation config.
 				<desc>Swap egine emeRgency brake</desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("instrumentation/stop-control")</script>
+					<script>MIG15BIS.bitswap("fdm/jsbsim/systems/stopcontrol/lever-input")</script>
 				</binding>
 			</key>
 
@@ -540,7 +540,7 @@ MiG-15bis simulation config.
 				<desc>Earth/Air Starter ignition type</desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("instrumentation/switches/ignition-type")</script>
+					<script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/ignition-type-input")</script>
 				</binding>
 			</key>
 
@@ -550,7 +550,7 @@ MiG-15bis simulation config.
 				<desc>Swap ignition Starter panel power</desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("instrumentation/switches/ignition")</script>
+					<script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/ignition-input")</script>
 				</binding>
 			</key>
 
@@ -590,7 +590,7 @@ MiG-15bis simulation config.
 				<desc>Swap battEry powEr switch</desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("instrumentation/switches/battery")</script>
+					<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/battery-input")</script>
 				</binding>
 			</key>
 
@@ -600,7 +600,7 @@ MiG-15bis simulation config.
 				<desc>Swap APU gEnerator powEr switch</desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("instrumentation/switches/generator")</script>
+					<script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/generator-input")</script>
 				</binding>
 			</key>
 
@@ -610,7 +610,7 @@ MiG-15bis simulation config.
 				<desc>Swap Egine control instrumEntattion powEr</desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("instrumentation/switches/engine-control")</script>
+					<script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/engine-control-input")</script>
 				</binding>
 			</key>
 
@@ -620,7 +620,7 @@ MiG-15bis simulation config.
 				<desc>Close speedbrakes</desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>setprop("controls/flight/speedbrake", 0)</script>
+					<script>setprop("fdm/jsbsim/systems/speedbrakescontrol/control-input", 0)</script>
 				</binding>
 			</key>
 
@@ -629,9 +629,19 @@ MiG-15bis simulation config.
 				<desc>Open speedbrakes</desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>setprop("controls/flight/speedbrake", 1)</script>
+					<script>setprop("fdm/jsbsim/systems/speedbrakescontrol/control-input", 1)</script>
 				</binding>
 			</key>
+
+			<key n="2">
+				<name>Ctrl-B</name>
+				<desc>Swap speedbrakes</desc>
+				<binding n="0">
+					<command>nasal</command>
+					<script>MIG15BIS.bitswap("fdm/jsbsim/systems/speedbrakescontrol/control-input")</script>
+				</binding>
+			</key>
+
 
 <!-- Starter key -->
 			<key n="115">
@@ -654,7 +664,7 @@ MiG-15bis simulation config.
 				<desc>Swap engine isolation valve</desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("instrumentation/switches/isolation-valve")</script>
+					<script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/isolation-valve-input")</script>
 				</binding>
 			</key>
 
@@ -663,7 +673,7 @@ MiG-15bis simulation config.
 				<desc>Swap fUel source, standart tanks or balance tank </desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("instrumentation/switches/fuel-control")</script>
+					<script>MIG15BIS.bitswap("fdm/jsbsim/systems/fuelcontrol/control-input")</script>
 				</binding>
 			</key>
 
@@ -672,9 +682,30 @@ MiG-15bis simulation config.
 				<desc>Swap fUel source, inrernal or external tanks </desc>
 				<binding n="0">
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("instrumentation/switches/third-tank-pump")</script>
+					<script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/third-tank-pump-input")</script>
 				</binding>
 			</key>
+
+<!-- Gear control -->
+
+			<key n="103">
+				<name>G</name>
+				<desc>Gear up </desc>
+				<binding n="0">
+					<command>nasal</command>
+					<script>MIG15BIS.gear_control_up()</script>
+				</binding>
+			</key>
+
+			<key n="71">
+				<name>Shift-G</name>
+				<desc>Gear down </desc>
+				<binding n="0">
+					<command>nasal</command>
+					<script>MIG15BIS.gear_control_down()</script>
+				</binding>
+			</key>
+
 
 		</keyboard>
 	</input>
@@ -758,12 +789,15 @@ MiG-15bis simulation config.
 				<finally-initialized type="int">0</finally-initialized>
 				<unit n="0">
 					<pos-norm type="float">1</pos-norm>
+					<stuck type="bool">0</stuck>
 				</unit>
 				<unit n="1">
 					<pos-norm type="float">1</pos-norm>
+					<stuck type="bool">0</stuck>
 				</unit>
 				<unit n="2">
 					<pos-norm type="float">1</pos-norm>
+					<stuck type="bool">0</stuck>
 				</unit>
 			</gear>
 			<systems>
@@ -862,6 +896,202 @@ MiG-15bis simulation config.
 					<lock-pos type="float">0</lock-pos>
 					<tored type="float">0</tored>
 				</canopy>
+				<rightpanel>
+					<serviceable type="bool">1</serviceable>
+
+					<battery-input type="bool">0</battery-input>
+					<battery-command type="bool">0</battery-command>
+					<battery-pos type="float">0</battery-pos>
+					<battery-switch type="bool">0</battery-switch>
+
+					<generator-input type="bool">0</generator-input>
+					<generator-command type="bool">0</generator-command>
+					<generator-pos type="float">0</generator-pos>
+					<generator-switch type="bool">0</generator-switch>
+
+					<headlight-input type="bool">0</headlight-input>
+					<headlight-command type="bool">0</headlight-command>
+					<headlight-pos type="float">0</headlight-pos>
+					<headlight-switch type="bool">0</headlight-switch>
+
+					<trimmer-input type="bool">0</trimmer-input>
+					<trimmer-command type="bool">0</trimmer-command>
+					<trimmer-pos type="float">0</trimmer-pos>
+					<trimmer-switch type="bool">0</trimmer-switch>
+
+					<horizon-input type="bool">0</horizon-input>
+					<horizon-command type="bool">0</horizon-command>
+					<horizon-pos type="float">0</horizon-pos>
+					<horizon-switch type="bool">0</horizon-switch>
+
+					<radio-input type="bool">0</radio-input>
+					<radio-command type="bool">0</radio-command>
+					<radio-pos type="float">0</radio-pos>
+					<radio-switch type="bool">0</radio-switch>
+
+					<radioaltimeter-input type="bool">0</radioaltimeter-input>
+					<radioaltimeter-command type="bool">0</radioaltimeter-command>
+					<radioaltimeter-pos type="float">0</radioaltimeter-pos>
+					<radioaltimeter-switch type="bool">0</radioaltimeter-switch>
+
+					<radiocompass-input type="bool">0</radiocompass-input>
+					<radiocompass-command type="bool">0</radiocompass-command>
+					<radiocompass-pos type="float">0</radiocompass-pos>
+					<radiocompass-switch type="bool">0</radiocompass-switch>
+
+					<drop-tank-input type="bool">0</drop-tank-input>
+					<drop-tank-command type="bool">0</drop-tank-command>
+					<drop-tank-pos type="float">0</drop-tank-pos>
+					<drop-tank-switch type="bool">0</drop-tank-switch>
+
+					<bomb-input type="bool">0</bomb-input>
+					<bomb-command type="bool">0</bomb-command>
+					<bomb-pos type="float">0</bomb-pos>
+					<bomb-switch type="bool">0</bomb-switch>
+
+					<photo-input type="bool">0</photo-input>
+					<photo-command type="bool">0</photo-command>
+					<photo-pos type="float">0</photo-pos>
+					<photo-switch type="bool">0</photo-switch>
+
+					<photo-machinegun-input type="bool">0</photo-machinegun-input>
+					<photo-machinegun-command type="bool">0</photo-machinegun-command>
+					<photo-machinegun-pos type="float">0</photo-machinegun-pos>
+					<photo-machinegun-switch type="bool">0</photo-machinegun-switch>
+
+					<machinegun-input type="bool">0</machinegun-input>
+					<machinegun-command type="bool">0</machinegun-command>
+					<machinegun-pos type="float">0</machinegun-pos>
+					<machinegun-switch type="bool">0</machinegun-switch>
+
+					<headsight-input type="bool">0</headsight-input>
+					<headsight-command type="bool">0</headsight-command>
+					<headsight-pos type="float">0</headsight-pos>
+					<headsight-switch type="bool">0</headsight-switch>
+				</rightpanel>
+				<stopcontrol>
+					<serviceable type="bool">1</serviceable>
+
+					<lever-input type="bool">1</lever-input>
+					<lever-command type="bool">1</lever-command>
+					<lever-pos type="float">1</lever-pos>
+					<lever-switch type="bool">1</lever-switch>
+				</stopcontrol>
+				<leftpanel>
+					<serviceable type="bool">1</serviceable>
+
+					<pump-input type="bool">0</pump-input>
+					<pump-command type="bool">0</pump-command>
+					<pump-pos type="float">0</pump-pos>
+					<pump-switch type="bool">0</pump-switch>
+
+					<isolation-valve-input type="bool">0</isolation-valve-input>
+					<isolation-valve-command type="bool">0</isolation-valve-command>
+					<isolation-valve-pos type="float">0</isolation-valve-pos>
+					<isolation-valve-switch type="bool">0</isolation-valve-switch>
+
+					<ignition-type-input type="bool">0</ignition-type-input>
+					<ignition-type-command type="bool">0</ignition-type-command>
+					<ignition-type-pos type="float">0</ignition-type-pos>
+					<ignition-type-switch type="bool">0</ignition-type-switch>
+
+					<ignition-input type="bool">0</ignition-input>
+					<ignition-command type="bool">0</ignition-command>
+					<ignition-pos type="float">0</ignition-pos>
+					<ignition-switch type="bool">0</ignition-switch>
+
+					<engine-control-input type="bool">0</engine-control-input>
+					<engine-control-command type="bool">0</engine-control-command>
+					<engine-control-pos type="float">0</engine-control-pos>
+					<engine-control-switch type="bool">0</engine-control-switch>
+
+					<third-tank-pump-input type="bool">0</third-tank-pump-input>
+					<third-tank-pump-command type="bool">0</third-tank-pump-command>
+					<third-tank-pump-pos type="float">0</third-tank-pump-pos>
+					<third-tank-pump-switch type="bool">0</third-tank-pump-switch>
+				</leftpanel>
+				<ignitionbutton>
+					<serviceable type="bool">1</serviceable>
+
+					<button-input type="bool">0</button-input>
+					<button-command type="bool">0</button-command>
+
+					<button-pos type="float">0</button-pos>
+					<button-switch type="bool">0</button-switch>
+
+					<safer-command type="bool">0</safer-command>
+					<safer-pos type="float">0</safer-pos>
+					<safer-switch type="bool">0</safer-switch>
+
+				</ignitionbutton>
+				<speedbrakescontrol>
+					<serviceable type="bool">1</serviceable>
+
+					<control-input type="bool">0</control-input>
+					<control-command type="bool">0</control-command>
+					<control-pos type="float">0</control-pos>
+					<control-switch type="bool">0</control-switch>
+				</speedbrakescontrol>
+				<fuelcontrol>
+					<serviceable type="bool">1</serviceable>
+					<control-input type="bool">0</control-input>
+					<control-command type="bool">0</control-command>
+					<control-pos type="float">0</control-pos>
+					<control-switch type="bool">0</control-switch>
+				</fuelcontrol>
+				<vertspeedometer>
+					<serviceable type="bool">1</serviceable>
+					<on type="bool">0</on>
+				</vertspeedometer>
+				<gearcontrol>
+					<serviceable type="bool">1</serviceable>
+
+					<control-input type="bool">1</control-input>
+					<control-command type="bool">1</control-command>
+
+					<safer-command type="bool">0</safer-command>
+					<safer-pos type="float">0</safer-pos>
+					<safer-switch type="bool">0</safer-switch>
+
+					<lever-unsafed type="float">0</lever-unsafed>
+					<lever-pos type="float">0</lever-pos>
+					<control-switch type="bool">1</control-switch>
+
+					<gear-one-end-move type="bool">0</gear-one-end-move>
+					<gear-two-end-move type="bool">0</gear-two-end-move>
+					<gear-three-end-move type="bool">0</gear-three-end-move>
+
+					<gear-end-move type="bool">0</gear-end-move>
+					<lever-unsafed type="bool">0</lever-unsafed>
+
+				</gearcontrol>
+				<radioaltimeter>
+					<on type="bool">0</on>
+					<serviceable type="bool">1</serviceable>
+					<power-input type="bool">1</power-input>
+					<power-command type="bool">1</power-command>
+					<power-pos type="float">1</power-pos>
+					<power-switch type="bool">1</power-switch>
+					<diapazone-input type="bool">0</diapazone-input>
+					<diapazone-command type="bool">0</diapazone-command>
+					<diapazone-pos type="float">0</diapazone-pos>
+					<diapazone-switch type="bool">0</diapazone-switch>
+					<alt-meters type="float">0</alt-meters>
+					<diapazone-mod type="float">0</diapazone-mod>
+					<alt-mod type="float">0</alt-mod>
+					<pitch-distort-to-ninety type="float">0</pitch-distort-to-ninety>
+					<pitch-distort-from-ninety type="float">0</pitch-distort-from-ninety>
+					<pitch-distort type="float">0</pitch-distort>
+					<roll-distort-to-ninety type="float">0</roll-distort-to-ninety>
+					<roll-distort-from-ninety type="float">0</roll-distort-from-ninety>
+					<roll-distort type="float">0</roll-distort>
+					<alt-distort type="float">0</alt-distort>
+					<alt-distorted type="float">0</alt-distorted>
+					<alt-powered type="float">0</alt-powered>
+					<stored-alt type="float">0</stored-alt>
+					<indicated-alt type="float">0</indicated-alt>
+					<lamp type="bool">0</lamp>
+				</radioaltimeter>
 			</systems>
 		</jsbsim>
 	</fdm>

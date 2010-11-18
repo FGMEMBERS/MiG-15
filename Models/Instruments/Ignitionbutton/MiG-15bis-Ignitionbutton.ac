@@ -3727,7 +3727,7 @@ OBJECT poly
 name "IGN_Message"
 data 4
 Cube
-texture "MiG-15bis-Ignitionbutton.rgb"
+texture "MiG-15bis-Ignitionbutton.png"
 texrep 1 1
 crease 30.000000
 numvert 52

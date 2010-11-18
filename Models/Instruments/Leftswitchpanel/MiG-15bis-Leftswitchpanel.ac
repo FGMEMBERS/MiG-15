@@ -1082,7 +1082,7 @@ OBJECT poly
 name "EBC_LMessage"
 data 8
 Cube.003
-texture "MiG-15bis-Leftswitchpanel.rgb"
+texture "MiG-15bis-Leftswitchpanel.png"
 texrep 1 1
 crease 30.000000
 numvert 52
@@ -1546,7 +1546,7 @@ OBJECT poly
 name "EBC_Message"
 data 4
 Cube
-texture "MiG-15bis-Leftswitchpanel.rgb"
+texture "MiG-15bis-Leftswitchpanel.png"
 texrep 1 1
 crease 30.000000
 numvert 52
@@ -4440,7 +4440,7 @@ OBJECT poly
 name "EC_Message"
 data 8
 Cube.007
-texture "MiG-15bis-Leftswitchpanel.rgb"
+texture "MiG-15bis-Leftswitchpanel.png"
 texrep 1 1
 crease 30.000000
 numvert 52
@@ -7254,7 +7254,7 @@ OBJECT poly
 name "IGNT_Message"
 data 8
 Cube.015
-texture "MiG-15bis-Ignitiontypepanel.rgb"
+texture "MiG-15bis-Ignitiontypepanel.png"
 texrep 1 1
 crease 30.000000
 numvert 52
@@ -10073,7 +10073,7 @@ OBJECT poly
 name "IGN_Message"
 data 8
 Cube.005
-texture "MiG-15bis-Leftswitchpanel.rgb"
+texture "MiG-15bis-Leftswitchpanel.png"
 texrep 1 1
 crease 30.000000
 numvert 52
@@ -28861,7 +28861,7 @@ OBJECT poly
 name "PUC_Message"
 data 8
 Cube.001
-texture "MiG-15bis-Leftswitchpanel.rgb"
+texture "MiG-15bis-Leftswitchpanel.png"
 texrep 1 1
 crease 30.000000
 numvert 52
@@ -31675,7 +31675,7 @@ OBJECT poly
 name "PUTT_Message"
 data 8
 Cube.002
-texture "MiG-15bis-Leftswitchpanel.rgb"
+texture "MiG-15bis-Leftswitchpanel.png"
 texrep 1 1
 crease 30.000000
 numvert 52

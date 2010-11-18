@@ -19,7 +19,7 @@ OBJECT poly
 name "RC_BVDown"
 data 12
 Cylinder.057
-texture "MiG-15bis-BVern.rgb"
+texture "MiG-15bis-BVern.png"
 texrep 1 1
 crease 30.000000
 numvert 36
@@ -383,7 +383,7 @@ OBJECT poly
 name "RC_BVUp"
 data 12
 Cylinder.058
-texture "MiG-15bis-BVern.rgb"
+texture "MiG-15bis-BVern.png"
 texrep 1 1
 crease 30.000000
 numvert 36
@@ -886,7 +886,7 @@ OBJECT poly
 name "RC_BVern_1"
 data 10
 Sphere.011
-texture "MiG-15bis-LVern.rgb"
+texture "MiG-15bis-LVern.png"
 texrep 1 1
 crease 30.000000
 numvert 121
@@ -1837,7 +1837,7 @@ OBJECT poly
 name "RC_Base"
 data 6
 Sphere
-texture "MiG-15bis-RCTSelector.rgb"
+texture "MiG-15bis-RCTSelector.png"
 texrep 1 1
 crease 30.000000
 numvert 366
@@ -5409,7 +5409,7 @@ OBJECT poly
 name "RC_FICPlate"
 data 10
 Circle.002
-texture "MiG-15bis-FSInd.rgb"
+texture "MiG-15bis-FSInd.png"
 texrep 1 1
 crease 30.000000
 numvert 33
@@ -5644,7 +5644,7 @@ OBJECT poly
 name "RC_FICover"
 data 8
 Cylinder
-texture "MiG-15bis-FSelector.rgb"
+texture "MiG-15bis-FSelector.png"
 texrep 1 1
 crease 30.000000
 numvert 142
@@ -7148,7 +7148,7 @@ OBJECT poly
 name "RC_FICup"
 data 12
 Cylinder.004
-texture "MiG-15bis-RCFSelector.rgb"
+texture "MiG-15bis-RCFSelector.png"
 texrep 1 1
 crease 30.000000
 numvert 130
@@ -9613,7 +9613,7 @@ OBJECT poly
 name "RC_FIVBUp"
 data 12
 Cylinder.031
-texture "MiG-15bis-FRSelector.rgb"
+texture "MiG-15bis-FRSelector.png"
 texrep 1 1
 crease 30.000000
 numvert 98
@@ -10553,7 +10553,7 @@ OBJECT poly
 name "RC_FIVDown"
 data 12
 Cylinder.054
-texture "MiG-15bis-FSelector.rgb"
+texture "MiG-15bis-FSelector.png"
 texrep 1 1
 crease 30.000000
 numvert 36
@@ -10917,7 +10917,7 @@ OBJECT poly
 name "RC_FIVRod"
 data 12
 Cylinder.035
-texture "MiG-15bis-FRSelector.rgb"
+texture "MiG-15bis-FRSelector.png"
 texrep 1 1
 crease 30.000000
 numvert 132
@@ -12319,7 +12319,7 @@ OBJECT poly
 name "RC_FIVUp"
 data 12
 Cylinder.053
-texture "MiG-15bis-FSelector.rgb"
+texture "MiG-15bis-FSelector.png"
 texrep 1 1
 crease 30.000000
 numvert 36
@@ -12683,7 +12683,7 @@ OBJECT poly
 name "RC_FIVern"
 data 12
 Cylinder.032
-texture "MiG-15bis-FRSelector.rgb"
+texture "MiG-15bis-FRSelector.png"
 texrep 1 1
 crease 30.000000
 numvert 130
@@ -13901,7 +13901,7 @@ OBJECT poly
 name "RC_FLeft_1"
 data 12
 Cylinder.042
-texture "MiG-15bis-FRSelector.rgb"
+texture "MiG-15bis-FRSelector.png"
 texrep 1 1
 crease 30.000000
 numvert 16
@@ -14041,7 +14041,7 @@ OBJECT poly
 name "RC_FLeft_2"
 data 12
 Cylinder.042
-texture "MiG-15bis-FSelector.rgb"
+texture "MiG-15bis-FSelector.png"
 texrep 1 1
 crease 30.000000
 numvert 4
@@ -14062,7 +14062,7 @@ OBJECT poly
 name "RC_FP150x310"
 data 10
 Circle.005
-texture "MiG-15bis-RC150x310.rgb"
+texture "MiG-15bis-RC150x310.png"
 texrep 1 1
 crease 30.000000
 numvert 33
@@ -14297,7 +14297,7 @@ OBJECT poly
 name "RC_FP310x640"
 data 10
 Circle.004
-texture "MiG-15bis-RC310x640.rgb"
+texture "MiG-15bis-RC310x640.png"
 texrep 1 1
 crease 30.000000
 numvert 33
@@ -14532,7 +14532,7 @@ OBJECT poly
 name "RC_FP640x1300"
 data 10
 Circle.001
-texture "MiG-15bis-RC640x1300.rgb"
+texture "MiG-15bis-RC640x1300.png"
 texrep 1 1
 crease 30.000000
 numvert 33
@@ -14767,7 +14767,7 @@ OBJECT poly
 name "RC_FRight"
 data 12
 Cylinder.040
-texture "MiG-15bis-FRSelector.rgb"
+texture "MiG-15bis-FRSelector.png"
 texrep 1 1
 crease 30.000000
 numvert 18
@@ -14930,7 +14930,7 @@ OBJECT poly
 name "RC_FSDown"
 data 12
 Cylinder.016
-texture "MiG-15bis-RCFSelector.rgb"
+texture "MiG-15bis-RCFSelector.png"
 texrep 1 1
 crease 30.000000
 numvert 36
@@ -15294,7 +15294,7 @@ OBJECT poly
 name "RC_FSUp"
 data 12
 Cylinder.025
-texture "MiG-15bis-RCFSelector.rgb"
+texture "MiG-15bis-RCFSelector.png"
 texrep 1 1
 crease 30.000000
 numvert 36
@@ -16936,7 +16936,7 @@ OBJECT poly
 name "RC_FSelector_1"
 data 8
 Mesh.002
-texture "MiG-15bis-RCFSelector.rgb"
+texture "MiG-15bis-RCFSelector.png"
 texrep 1 1
 crease 30.000000
 numvert 523
@@ -22772,7 +22772,7 @@ OBJECT poly
 name "RC_FVern_1"
 data 8
 Mesh.025
-texture "MiG-15bis-RCFSelector.rgb"
+texture "MiG-15bis-RCFSelector.png"
 texrep 1 1
 crease 30.000000
 numvert 523
@@ -27317,7 +27317,7 @@ OBJECT poly
 name "RC_LVDown"
 data 12
 Cylinder.056
-texture "MiG-15bis-LVern.rgb"
+texture "MiG-15bis-LVern.png"
 texrep 1 1
 crease 30.000000
 numvert 36
@@ -27681,7 +27681,7 @@ OBJECT poly
 name "RC_LVUp"
 data 12
 Cylinder.055
-texture "MiG-15bis-LVern.rgb"
+texture "MiG-15bis-LVern.png"
 texrep 1 1
 crease 30.000000
 numvert 36
@@ -28184,7 +28184,7 @@ OBJECT poly
 name "RC_LVern_1"
 data 10
 Sphere.003
-texture "MiG-15bis-LVern.rgb"
+texture "MiG-15bis-LVern.png"
 texrep 1 1
 crease 30.000000
 numvert 121
@@ -30680,7 +30680,7 @@ OBJECT poly
 name "RC_RIBackplate"
 data 8
 Mesh.020
-texture "MiG-15bis-RCRInd.rgb"
+texture "MiG-15bis-RCRInd.png"
 texrep 1 1
 crease 30.000000
 numvert 17
@@ -31026,7 +31026,7 @@ OBJECT poly
 name "RC_RIBezel_1"
 data 8
 Mesh.021
-texture "MiG-15bis-RCRInd.rgb"
+texture "MiG-15bis-RCRInd.png"
 texrep 1 1
 crease 30.000000
 numvert 224
@@ -33321,7 +33321,7 @@ OBJECT poly
 name "RC_RINeedle_1"
 data 8
 Mesh.019
-texture "MiG-15bis-RCRInd.rgb"
+texture "MiG-15bis-RCRInd.png"
 texrep 1 1
 crease 30.000000
 numvert 9
@@ -33388,7 +33388,7 @@ OBJECT poly
 name "RC_RIProtplate"
 data 8
 Mesh.024
-texture "MiG-15bis-RCRInd.rgb"
+texture "MiG-15bis-RCRInd.png"
 texrep 1 1
 crease 30.000000
 numvert 128
@@ -35191,7 +35191,7 @@ OBJECT poly
 name "RC_TG_1"
 data 4
 Cube
-texture "MiG-15bis-TLTGSwitch.rgb"
+texture "MiG-15bis-TLTGSwitch.png"
 texrep 1 1
 crease 30.000000
 numvert 8
@@ -35716,7 +35716,7 @@ OBJECT poly
 name "RC_TGVern"
 data 12
 Cylinder.029
-texture "MiG-15bis-BVern.rgb"
+texture "MiG-15bis-BVern.png"
 texrep 1 1
 crease 30.000000
 numvert 102
@@ -36650,7 +36650,7 @@ OBJECT poly
 name "RC_TL_1"
 data 8
 Cube.006
-texture "MiG-15bis-TLTGSwitch.rgb"
+texture "MiG-15bis-TLTGSwitch.png"
 texrep 1 1
 crease 30.000000
 numvert 8
@@ -40104,7 +40104,7 @@ OBJECT poly
 name "RC_TLVern"
 data 12
 Cylinder.030
-texture "MiG-15bis-BVern.rgb"
+texture "MiG-15bis-BVern.png"
 texrep 1 1
 crease 30.000000
 numvert 102
@@ -41016,7 +41016,7 @@ OBJECT poly
 name "RC_TSDown"
 data 12
 Cylinder.026
-texture "MiG-15bis-RCTSelector.rgb"
+texture "MiG-15bis-RCTSelector.png"
 texrep 1 1
 crease 30.000000
 numvert 36
@@ -41380,7 +41380,7 @@ OBJECT poly
 name "RC_TSUp"
 data 12
 Cylinder.028
-texture "MiG-15bis-RCTSelector.rgb"
+texture "MiG-15bis-RCTSelector.png"
 texrep 1 1
 crease 30.000000
 numvert 36
@@ -43006,7 +43006,7 @@ OBJECT poly
 name "RC_TSelector_1"
 data 8
 Mesh.004
-texture "MiG-15bis-RCFSelector.rgb"
+texture "MiG-15bis-RCFSelector.png"
 texrep 1 1
 crease 30.000000
 numvert 521

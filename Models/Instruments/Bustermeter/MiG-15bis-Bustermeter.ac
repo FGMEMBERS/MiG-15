@@ -12,7 +12,7 @@ OBJECT poly
 name "BUM_Backplate"
 data 8
 Mesh.014
-texture "MiG-15bis-Bustermeter.rgb"
+texture "MiG-15bis-Bustermeter.png"
 texrep 1 1
 crease 30.000000
 numvert 17
@@ -135,7 +135,7 @@ OBJECT poly
 name "BUM_Bezel"
 data 8
 Mesh.027
-texture "MiG-15bis-BUMMessage.rgb"
+texture "MiG-15bis-BUMMessage.png"
 texrep 1 1
 crease 30.000000
 numvert 224
@@ -1754,7 +1754,7 @@ OBJECT poly
 name "BUM_Message"
 data 4
 Cube
-texture "MiG-15bis-BUMMessage.rgb"
+texture "MiG-15bis-BUMMessage.png"
 texrep 1 1
 crease 30.000000
 numvert 42
@@ -2068,7 +2068,7 @@ OBJECT poly
 name "BUM_Needle"
 data 8
 Mesh.003
-texture "MiG-15bis-BUMMessage.rgb"
+texture "MiG-15bis-BUMMessage.png"
 texrep 1 1
 crease 30.000000
 numvert 63

@@ -55,7 +55,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>SBC_Switch</object-name>
-		<property>instrumentation/speed-brake-control/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/speedbrakescontrol/control-pos</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -81,8 +81,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.bitswap("controls/flight/speedbrake")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/speedbrakescontrol/control-input")</script>
 			</binding>
 		</action>
 		<action>
@@ -90,8 +90,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.bitswap("controls/flight/speedbrake")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/speedbrakescontrol/control-input")</script>
 			</binding>
 		</action>
 	</animation>

@@ -1157,7 +1157,7 @@ OBJECT poly
 name "OA_Message"
 data 8
 Cube.003
-texture "MiG-15bis-Onair.rgb"
+texture "MiG-15bis-Onair.png"
 texrep 1 1
 crease 30.000000
 numvert 52
@@ -2688,7 +2688,7 @@ OBJECT poly
 name "PG_Message"
 data 8
 Cube.002
-texture "MiG-15bis-Photogun.rgb"
+texture "MiG-15bis-Photogun.png"
 texrep 1 1
 crease 30.000000
 numvert 52
@@ -4219,7 +4219,7 @@ OBJECT poly
 name "SL_Message"
 data 8
 Cube.001
-texture "MiG-15bis-Shutter.rgb"
+texture "MiG-15bis-Shutter.png"
 texrep 1 1
 crease 30.000000
 numvert 52

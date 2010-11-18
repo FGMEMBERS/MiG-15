@@ -8,7 +8,7 @@ OBJECT poly
 name "CP_LBox"
 data 12
 Cylinder.007
-texture "MiG-15bis-left-panel.rgb"
+texture "MiG-15bis-left-panel.png"
 texrep 1 1
 crease 30.000000
 numvert 678

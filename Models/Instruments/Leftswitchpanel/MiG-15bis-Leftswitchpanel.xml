@@ -72,7 +72,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>IGNT_Switch</object-name>
-		<property>instrumentation/switches/ignition-type/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/leftpanel/ignition-type-pos</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -92,7 +92,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>PUC_Switch</object-name>
-		<property>instrumentation/switches/pump/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/leftpanel/pump-pos</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -112,7 +112,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>EBC_Switch</object-name>
-		<property>instrumentation/switches/isolation-valve/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/leftpanel/isolation-valve-pos</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -132,7 +132,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>IGN_Switch</object-name>
-		<property>instrumentation/switches/ignition/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/leftpanel/ignition-pos</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -152,7 +152,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>PUTT_Switch</object-name>
-		<property>instrumentation/switches/third-tank-pump/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/leftpanel/third-tank-pump-pos</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -172,7 +172,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>EC_Switch</object-name>
-		<property>instrumentation/switches/engine-control/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/leftpanel/engine-control-pos</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>45.0</dep></entry>
 			<entry><ind>1.0</ind><dep>-45.0</dep></entry>
@@ -199,8 +199,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/ignition-type")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/ignition-type-input")</script>
 			</binding>
 		</action>
 		<action>
@@ -208,8 +208,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/ignition-type")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/ignition-type-input")</script>
 			</binding>
 		</action>
 	</animation>
@@ -223,8 +223,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/pump")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/pump-input")</script>
 			</binding>
 		</action>
 		<action>
@@ -232,8 +232,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/pump")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/pump-input")</script>
 			</binding>
 		</action>
 	</animation>
@@ -247,8 +247,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/isolation-valve")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/isolation-valve-input")</script>
 			</binding>
 		</action>
 		<action>
@@ -256,8 +256,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/isolation-valve")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/isolation-valve-input")</script>
 			</binding>
 		</action>
 	</animation>
@@ -271,8 +271,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/ignition")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/ignition-input")</script>
 			</binding>
 		</action>
 		<action>
@@ -280,8 +280,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/ignition")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/ignition-input")</script>
 			</binding>
 		</action>
 	</animation>
@@ -295,8 +295,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/third-tank-pump")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/third-tank-pump-input")</script>
 			</binding>
 		</action>
 		<action>
@@ -304,8 +304,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/third-tank-pump")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/third-tank-pump-input")</script>
 			</binding>
 		</action>
 	</animation>
@@ -319,8 +319,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/engine-control")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/engine-control-input")</script>
 			</binding>
 		</action>
 		<action>
@@ -328,8 +328,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/switches/engine-control")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/engine-control-input")</script>
 			</binding>
 		</action>
 	</animation>

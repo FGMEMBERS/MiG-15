@@ -13,7 +13,7 @@ OBJECT poly
 name "MAN_NeedleOne"
 data 8
 Mesh.001
-texture "MiG-15bis-Manometer.rgb"
+texture "MiG-15bis-Manometer.png"
 texrep 1 1
 crease 30.000000
 numvert 31
@@ -238,7 +238,7 @@ OBJECT poly
 name "MAN_NeedleTwo"
 data 8
 Mesh.002
-texture "MiG-15bis-Manometer.rgb"
+texture "MiG-15bis-Manometer.png"
 texrep 1 1
 crease 30.000000
 numvert 63
@@ -719,7 +719,7 @@ OBJECT poly
 name "MAN_Backplate"
 data 8
 Mesh.004
-texture "MiG-15bis-Manometer.rgb"
+texture "MiG-15bis-Manometer.png"
 texrep 1 1
 crease 30.000000
 numvert 17
@@ -842,7 +842,7 @@ OBJECT poly
 name "MAN_Bezel"
 data 8
 Mesh.006
-texture "MiG-15bis-Manometer.rgb"
+texture "MiG-15bis-Manometer.png"
 texrep 1 1
 crease 30.000000
 numvert 224

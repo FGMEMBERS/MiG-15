@@ -7,7 +7,7 @@ OBJECT poly
 name "TK_HDown"
 data 10
 Sphere.002
-texture "MiG-15bis-Fueltank.rgb"
+texture "MiG-15bis-Fueltank.png"
 texrep 1 1
 crease 30.000000
 numvert 444
@@ -3453,7 +3453,7 @@ OBJECT poly
 name "TK_HUp"
 data 10
 Sphere.003
-texture "MiG-15bis-Fueltank.rgb"
+texture "MiG-15bis-Fueltank.png"
 texrep 1 1
 crease 30.000000
 numvert 444
@@ -6899,7 +6899,7 @@ OBJECT poly
 name "TK_Wing"
 data 8
 Mesh.001
-texture "MiG-15bis-Fueltank.rgb"
+texture "MiG-15bis-Fueltank.png"
 texrep 1 1
 crease 30.000000
 numvert 275

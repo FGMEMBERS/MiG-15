@@ -10,7 +10,7 @@ OBJECT poly
 name "GVPM_Backplate"
 data 8
 Mesh.014
-texture "MiG-15bis-Gearvalvepressuremeter.rgb"
+texture "MiG-15bis-Gearvalvepressuremeter.png"
 texrep 1 1
 crease 30.000000
 numvert 17
@@ -133,7 +133,7 @@ OBJECT poly
 name "GVPM_Bezel"
 data 8
 Mesh.027
-texture "MiG-15bis-Gearvalvepressuremeter.rgb"
+texture "MiG-15bis-Gearvalvepressuremeter.png"
 texrep 1 1
 crease 30.000000
 numvert 224
@@ -1752,7 +1752,7 @@ OBJECT poly
 name "GVPM_Needle"
 data 8
 Mesh.003
-texture "MiG-15bis-Gearvalvepressuremeter.rgb"
+texture "MiG-15bis-Gearvalvepressuremeter.png"
 texrep 1 1
 crease 30.000000
 numvert 63

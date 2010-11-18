@@ -1157,7 +1157,7 @@ OBJECT poly
 name "IPL_Message"
 data 8
 Cube.001
-texture "MiG-15bis-Ignitionpanellamp.rgb"
+texture "MiG-15bis-Ignitionpanellamp.png"
 texrep 1 1
 crease 30.000000
 numvert 52

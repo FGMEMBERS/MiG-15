@@ -45,20 +45,19 @@
 
 -->
 
-
 	<animation>
 		<type>rotate</type>
 		<object-name>VSI_Needle</object-name>
-		<property>instrumentation/vertspeedometer/indicated-speed-m</property>
+		<property>fdm/jsbsim/systems/vertspeedometer/indicated-speed-fps</property>
 		<interpolation>
 			<entry><ind>10000.0</ind><dep>180.0</dep></entry>
-			<entry><ind>75.0</ind><dep>180.0</dep></entry>
-			<entry><ind>30.0</ind><dep>90.0</dep></entry>
-			<entry><ind>15.</ind><dep>45.0</dep></entry>
+			<entry><ind>246.06</ind><dep>180.0</dep></entry>
+			<entry><ind>98.42</ind><dep>90.0</dep></entry>
+			<entry><ind>49.21</ind><dep>45.0</dep></entry>
 			<entry><ind>0.0</ind><dep>0.0</dep></entry>
-			<entry><ind>-15.</ind><dep>-45.0</dep></entry>
-			<entry><ind>-30.0</ind><dep>-90.0</dep></entry>
-			<entry><ind>-75.0</ind><dep>-180.0</dep></entry>
+			<entry><ind>-49.21</ind><dep>-45.0</dep></entry>
+			<entry><ind>-98.42</ind><dep>-90.0</dep></entry>
+			<entry><ind>-246.06</ind><dep>-180.0</dep></entry>
 			<entry><ind>-10000.0</ind><dep>-180.0</dep></entry>
 		</interpolation>
 		<center>

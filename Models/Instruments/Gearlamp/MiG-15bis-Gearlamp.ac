@@ -839,7 +839,7 @@ OBJECT poly
 name "GE_Caption"
 data 10
 Circle.002
-texture "MiG-15bis-Gearlamp.rgb"
+texture "MiG-15bis-Gearlamp.png"
 texrep 1 1
 crease 30.000000
 numvert 11

@@ -119,7 +119,7 @@ OBJECT poly
 name "UC_MainL_DoorOS"
 data 8
 Mesh.321
-texture "WingDown.rgb"
+texture "WingDown.png"
 texrep 1 1
 crease 30.000000
 numvert 8

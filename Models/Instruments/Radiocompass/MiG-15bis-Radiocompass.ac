@@ -13,7 +13,7 @@ OBJECT poly
 name "RC_Needle"
 data 8
 Mesh.001
-texture "MiG-15bis-Radiocompass.rgb"
+texture "MiG-15bis-Radiocompass.png"
 texrep 1 1
 crease 30.000000
 numvert 31
@@ -238,7 +238,7 @@ OBJECT poly
 name "RC_Backplate"
 data 8
 Mesh.007
-texture "MiG-15bis-Radiocompass.rgb"
+texture "MiG-15bis-Radiocompass.png"
 texrep 1 1
 crease 30.000000
 numvert 17
@@ -361,7 +361,7 @@ OBJECT poly
 name "RC_Bezel"
 data 8
 Mesh.006
-texture "MiG-15bis-Radiocompass.rgb"
+texture "MiG-15bis-Radiocompass.png"
 texrep 1 1
 crease 30.000000
 numvert 224

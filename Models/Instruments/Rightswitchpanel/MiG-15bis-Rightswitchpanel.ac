@@ -12,7 +12,7 @@ OBJECT poly
 name "ACC_Message"
 data 8
 Cube.019
-texture "MiG-15bis-Rightswitchpanel.rgb"
+texture "MiG-15bis-Rightswitchpanel.png"
 texrep 1 1
 crease 30.000000
 numvert 52
@@ -2806,7 +2806,7 @@ OBJECT poly
 name "BOM_Message"
 data 8
 Cube.026
-texture "MiG-15bis-Rightswitchpanel.rgb"
+texture "MiG-15bis-Rightswitchpanel.png"
 texrep 1 1
 crease 30.000000
 numvert 52
@@ -5600,7 +5600,7 @@ OBJECT poly
 name "DBK_Message"
 data 8
 Cube.025
-texture "MiG-15bis-Rightswitchpanel.rgb"
+texture "MiG-15bis-Rightswitchpanel.png"
 texrep 1 1
 crease 30.000000
 numvert 52
@@ -8474,7 +8474,7 @@ OBJECT poly
 name "GEN_Message"
 data 8
 Cube.018
-texture "MiG-15bis-Rightswitchpanel.rgb"
+texture "MiG-15bis-Rightswitchpanel.png"
 texrep 1 1
 crease 30.000000
 numvert 52
@@ -11348,7 +11348,7 @@ OBJECT poly
 name "HL_Message"
 data 8
 Cube.014
-texture "MiG-15bis-Rightswitchpanel.rgb"
+texture "MiG-15bis-Rightswitchpanel.png"
 texrep 1 1
 crease 30.000000
 numvert 52
@@ -14142,7 +14142,7 @@ OBJECT poly
 name "HOR_Message"
 data 8
 Cube.021
-texture "MiG-15bis-Rightswitchpanel.rgb"
+texture "MiG-15bis-Rightswitchpanel.png"
 texrep 1 1
 crease 30.000000
 numvert 52
@@ -17016,7 +17016,7 @@ OBJECT poly
 name "HS_Message"
 data 8
 Cube.028
-texture "MiG-15bis-Rightswitchpanel.rgb"
+texture "MiG-15bis-Rightswitchpanel.png"
 texrep 1 1
 crease 30.000000
 numvert 52
@@ -19909,7 +19909,7 @@ OBJECT poly
 name "MG_Message"
 data 8
 Cube.029
-texture "MiG-15bis-Rightswitchpanel.rgb"
+texture "MiG-15bis-Rightswitchpanel.png"
 texrep 1 1
 crease 30.000000
 numvert 52
@@ -22703,7 +22703,7 @@ OBJECT poly
 name "PHMG_Message"
 data 8
 Cube.030
-texture "MiG-15bis-Rightswitchpanel.rgb"
+texture "MiG-15bis-Rightswitchpanel.png"
 texrep 1 1
 crease 30.000000
 numvert 52
@@ -25497,7 +25497,7 @@ OBJECT poly
 name "PH_Message"
 data 8
 Cube.027
-texture "MiG-15bis-Rightswitchpanel.rgb"
+texture "MiG-15bis-Rightswitchpanel.png"
 texrep 1 1
 crease 30.000000
 numvert 52
@@ -28291,7 +28291,7 @@ OBJECT poly
 name "RAC_Message"
 data 8
 Cube.024
-texture "MiG-15bis-Rightswitchpanel.rgb"
+texture "MiG-15bis-Rightswitchpanel.png"
 texrep 1 1
 crease 30.000000
 numvert 52
@@ -31085,7 +31085,7 @@ OBJECT poly
 name "RAD_Message"
 data 8
 Cube.022
-texture "MiG-15bis-Rightswitchpanel.rgb"
+texture "MiG-15bis-Rightswitchpanel.png"
 texrep 1 1
 crease 30.000000
 numvert 52
@@ -33879,7 +33879,7 @@ OBJECT poly
 name "RAL_Message"
 data 8
 Cube.023
-texture "MiG-15bis-Rightswitchpanel.rgb"
+texture "MiG-15bis-Rightswitchpanel.png"
 texrep 1 1
 crease 30.000000
 numvert 52
@@ -62081,7 +62081,7 @@ OBJECT poly
 name "TRM_Message"
 data 8
 Cube.020
-texture "MiG-15bis-Rightswitchpanel.rgb"
+texture "MiG-15bis-Rightswitchpanel.png"
 texrep 1 1
 crease 30.000000
 numvert 52

@@ -16,7 +16,7 @@ OBJECT poly
 name "Alt_NX100"
 data 8
 Mesh.007
-texture "MiG-15bis-AltBPlate.rgb"
+texture "MiG-15bis-AltBPlate.png"
 texrep 1 1
 crease 30.000000
 numvert 63
@@ -1220,7 +1220,7 @@ OBJECT poly
 name "Alt_Backplate"
 data 8
 Mesh.001
-texture "MiG-15bis-AltCPlate.rgb"
+texture "MiG-15bis-AltCPlate.png"
 texrep 1 1
 crease 30.000000
 numvert 33
@@ -1455,7 +1455,7 @@ OBJECT poly
 name "Alt_Bezel"
 data 8
 Mesh.005
-texture "MiG-15bis-AltCPlate.rgb"
+texture "MiG-15bis-AltCPlate.png"
 texrep 1 1
 crease 30.000000
 numvert 208
@@ -2845,7 +2845,7 @@ OBJECT poly
 name "Alt_Corplate"
 data 4
 Mesh
-texture "MiG-15bis-AltCPlate.rgb"
+texture "MiG-15bis-AltCPlate.png"
 texrep 1 1
 crease 30.000000
 numvert 17
@@ -3035,7 +3035,7 @@ OBJECT poly
 name "Alt_Down_1"
 data 8
 Cylinder
-texture "MiG-15bis-AltBPlate.rgb"
+texture "MiG-15bis-AltBPlate.png"
 texrep 1 1
 crease 30.000000
 numvert 44
@@ -3406,7 +3406,7 @@ OBJECT poly
 name "Alt_Foreplate"
 data 8
 Mesh.009
-texture "MiG-15bis-AltBPlate.rgb"
+texture "MiG-15bis-AltBPlate.png"
 texrep 1 1
 crease 30.000000
 numvert 29
@@ -3605,7 +3605,7 @@ OBJECT poly
 name "Alt_NX10"
 data 8
 Mesh.011
-texture "MiG-15bis-AltBPlate.rgb"
+texture "MiG-15bis-AltBPlate.png"
 texrep 1 1
 crease 30.000000
 numvert 63
@@ -4307,7 +4307,7 @@ OBJECT poly
 name "Alt_Up_1"
 data 12
 Cylinder.001
-texture "MiG-15bis-AltBPlate.rgb"
+texture "MiG-15bis-AltBPlate.png"
 texrep 1 1
 crease 30.000000
 numvert 33
