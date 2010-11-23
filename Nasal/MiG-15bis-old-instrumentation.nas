@@ -1247,3 +1247,78 @@ init_radioaltimeter();
 # start radio altimeter process first time
 radioaltimeter ();
 
+#-----------------------------------------------------------------------
+#Stick
+stop_stick=func
+	{
+	}
+
+stick=func
+	{
+		# check power
+		in_service = getprop("instrumentation/stick/serviceable");
+		if (in_service == nil)
+		{
+	 		return ( stop_stick() ); 
+		}
+		if ( in_service != 1 )
+		{
+	 		return ( stop_stick() ); 
+		}
+		#Get values
+		aileron=getprop("controls/flight/aileron");
+		elevator=getprop("controls/flight/elevator");
+		if (
+			(aileron==nil) 
+			or (elevator==nil)
+		)
+		{
+	 		return ( stop_stick() ); 
+		}
+		setprop("fdm/jsbsim/fcs/elevator-cmd-norm-real", elevator);
+		setprop("fdm/jsbsim/fcs/aileron-cmd-norm-real", aileron);
+		elevator_stick_deg=-elevator*4;
+		aileron_stick_deg=-aileron*5;
+		#constants getted fom sick model
+		elevator_rod_shift_x=-(0.088)*math.sin(elevator_stick_deg/180*math.pi);
+		elevator_rod_shift_z=(0.088)*(-1+math.cos(elevator_stick_deg/180*math.pi));
+		elevator_rod_shift_y=(0.088)*math.sin(aileron_stick_deg/180*math.pi);
+		aileron_first_rod_shift_y=(0.088)*math.sin(aileron_stick_deg/180*math.pi);
+		aileron_rocker_source_angle=math.atan2((0.200-0.168), (0.068-0.036))/math.pi*180;
+		aileron_rocker_next_angle=math.atan2((0.200-aileron_first_rod_shift_y-0.168), (0.068-0.036))/math.pi*180;
+		aileron_rocker_shift_angle=aileron_rocker_next_angle-aileron_rocker_source_angle;
+		aileron_second_rod_source_angle=math.atan2((0.230-0.200), (0.036-0.007))/math.pi*180;
+		aileron_second_rod_next_angle=aileron_second_rod_source_angle+aileron_rocker_shift_angle;
+			aileron_second_rod_shift_x=math.sqrt(
+				(0.230-0.200)*(0.230-0.200)+(0.036-0.007)*(0.036-0.007)
+				)
+				*(-math.sin(aileron_second_rod_source_angle/180*math.pi)+math.sin(aileron_second_rod_next_angle/180*math.pi));
+
+		setprop("instrumentation/stick/elevator_stick_deg", elevator_stick_deg);
+		setprop("instrumentation/stick/aileron_stick_deg", aileron_stick_deg);
+		setprop("instrumentation/stick/elevator_rod_shift_x", elevator_rod_shift_x);
+		setprop("instrumentation/stick/elevator_rod_shift_y", elevator_rod_shift_y);
+		setprop("instrumentation/stick/elevator_rod_shift_z", elevator_rod_shift_z);
+		setprop("instrumentation/stick/aileron_first_rod_shift_y", aileron_first_rod_shift_y);
+		setprop("instrumentation/stick/aileron_rocker_shift_angle", aileron_rocker_shift_angle);
+		setprop("instrumentation/stick/aileron_second_rod_shift_x", aileron_second_rod_shift_x);
+		setprop("instrumentation/stick/already-moved", 0);
+	}
+
+init_stick=func
+{
+	setprop("instrumentation/stick/serviceable", 1);
+	setprop("instrumentation/stick/elevator_stick_deg", 0);
+	setprop("instrumentation/stick/aileron_stick_deg", 0);
+	setprop("instrumentation/stick/elevator_rod_shift_x", 0);
+	setprop("instrumentation/stick/elevator_rod_shift_y", 0);
+	setprop("instrumentation/stick/elevator_rod_shift_z", 0);
+	setprop("instrumentation/stick/aileron_first_rod_shift_y", 0);
+	setprop("instrumentation/stick/aileron_rocker_shift_angle", 0);
+	setprop("instrumentation/stick/aileron_second_rod_shift_x", 0);
+}
+
+init_stick();
+
+setlistener("controls/flight/aileron", stick);
+setlistener("controls/flight/elevator", stick);

@@ -1640,5 +1640,8 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 	<system file="Radioaltimeter">
 	</system>
 
+	<system file="Stick">
+	</system>
+
 
 </fdm_config>

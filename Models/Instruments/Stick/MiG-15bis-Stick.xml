@@ -93,7 +93,7 @@
 		<object-name>ST_RThree</object-name>
 		<object-name>ST_RFour</object-name>
 		<object-name>ST_RFive</object-name>
-		<property>instrumentation/stick/aileron_stick_deg</property>
+		<property>fdm/jsbsim/systems/stick/aileron-stick-deg</property>
 		<factor>1</factor>
 		<center>
 			<x-m>0</x-m>
@@ -132,7 +132,7 @@
 		<object-name>ST_RThree</object-name>
 		<object-name>ST_RFour</object-name>
 		<object-name>ST_RFive</object-name>
-		<property>instrumentation/stick/elevator_stick_deg</property>
+		<property>fdm/jsbsim/systems/stick/elevator-stick-deg</property>
 		<factor>1</factor>
 		<center>
 			<x-m>0</x-m>
@@ -150,7 +150,7 @@
 		<type>translate</type>
 		<object-name>ST_ERod</object-name>
 		<object-name>ST_EAxleTwo</object-name>
-		<property>instrumentation/stick/elevator_rod_shift_x</property>
+		<property>fdm/jsbsim/systems/stick/elevator-rod-shift-x</property>
 		<factor>1</factor>
 		<axis>
 			<x>1</x>
@@ -163,7 +163,7 @@
 		<type>translate</type>
 		<object-name>ST_ERod</object-name>
 		<object-name>ST_EAxleTwo</object-name>
-		<property>instrumentation/stick/elevator_rod_shift_y</property>
+		<property>fdm/jsbsim/systems/stick/elevator-rod-shift-y</property>
 		<factor>1</factor>
 		<axis>
 			<x>0</x>
@@ -176,7 +176,7 @@
 		<type>translate</type>
 		<object-name>ST_ERod</object-name>
 		<object-name>ST_EAxleTwo</object-name>
-		<property>instrumentation/stick/elevator_rod_shift_z</property>
+		<property>fdm/jsbsim/systems/stick/elevator-rod-shift-z</property>
 		<factor>1</factor>
 		<axis>
 			<x>0</x>
@@ -190,7 +190,7 @@
 		<object-name>ST_ARodOne</object-name>
 		<object-name>ST_AAxleOne</object-name>
 		<object-name>ST_AAxleTwo</object-name>
-		<property>instrumentation/stick/aileron_first_rod_shift_y</property>
+		<property>fdm/jsbsim/systems/stick/aileron-first-rod-shift-y</property>
 		<factor>1</factor>
 		<axis>
 			<x>0</x>
@@ -203,7 +203,7 @@
 		<type>rotate</type>
 		<object-name>ST_ARockerOne</object-name>
 		<object-name>ST_ARockerTwo</object-name>
-		<property>/instrumentation/stick/aileron_rocker_shift_angle</property>
+		<property>fdm/jsbsim/systems/stick/aileron-rocker-shift-angle</property>
 		<factor>1</factor>
 		<center>
 			<x-m>-0.036</x-m>
@@ -221,7 +221,7 @@
 		<type>translate</type>
 		<object-name>ST_ARodTwo</object-name>
 		<object-name>ST_AAxleThree</object-name>
-		<property>instrumentation/stick/aileron_second_rod_shift_x</property>
+		<property>fdm/jsbsim/systems/stick/aileron-second-rod-shift-x</property>
 		<factor>1</factor>
 		<axis>
 			<x>-1</x>

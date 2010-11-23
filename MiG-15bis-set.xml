@@ -1092,6 +1092,33 @@ MiG-15bis simulation config.
 					<indicated-alt type="float">0</indicated-alt>
 					<lamp type="bool">0</lamp>
 				</radioaltimeter>
+				<stick>
+					<serviceable type="bool">1</serviceable>
+					<drop-button-command type="bool">0</drop-button-command>
+					<drop-button-pos type="float">0</drop-button-pos>
+					<drop-button-input type="bool">0</drop-button-input>
+					<drop-button-switch type="bool">0</drop-button-switch>
+					<safer-command type="bool">0</safer-command>
+					<safer-pos type="float">0</safer-pos>
+					<safer-input type="bool">0</safer-input>
+					<safer-switch type="bool">0</safer-switch>
+					<fire-button-command type="bool">0</fire-button-command>
+					<fire-button-pos type="float">0</fire-button-pos>
+					<fire-button-input type="bool">0</fire-button-input>
+					<fire-button-switch type="bool">0</fire-button-switch>
+					<elevator-stick-deg type="float">0</elevator-stick-deg>
+					<aileron-stick-deg type="float">0</aileron-stick-deg>
+					<elevator-rod-shift-x type="float">0</elevator-rod-shift-x>
+					<elevator-rod-shift-y type="float">0</elevator-rod-shift-y>
+					<elevator-rod-shift-z type="float">0</elevator-rod-shift-z>
+					<aileron-first-rod-rod-shift-y type="float">0</aileron-first-rod-rod-shift-y>
+					<aileron-rocker-source-angle type="float">0</aileron-rocker-source-angle>
+					<aileron-rocker-next-angle type="float">0</aileron-rocker-next-angle>
+					<aileron-rocker-shift-angle type="float">0</aileron-rocker-shift-angle>
+					<aileron-second-rod-source-angle type="float">0</aileron-second-rod-source-angle>
+					<aileron-second-rod-next-angle type="float">0</aileron-second-rod-next-angle>
+					<aileron-second-rod-shift-x type="float">0</aileron-second-rod-shift-x>
+				</stick>
 			</systems>
 		</jsbsim>
 	</fdm>
