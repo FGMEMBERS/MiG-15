@@ -234,7 +234,7 @@
 		<type>rotate</type>
 		<object-name>ST_BRLever</object-name>
 		<object-name>ST_BRAxleOne</object-name>
-		<property>instrumentation/stick/brake_deg</property>
+		<property>fdm/jsbsim/systems/stick/brake-angle-deg</property>
 		<factor>1</factor>
 		<axis>   
 			<x1-m>-0.005</x1-m>
@@ -250,7 +250,7 @@
 		<type>rotate</type>
 		<object-name>ST_BRBlocker</object-name>
 		<object-name>ST_BRAxleThree</object-name>
-		<property>instrumentation/stick/blocker_deg</property>
+		<property>fdm/jsbsim/systems/stick/brake-blocker-angle-deg</property>
 		<factor>1</factor>
 		<axis>   
 			<x1-m>-0.038</x1-m>
@@ -266,7 +266,7 @@
 		<type>translate</type>
 		<object-name>ST_BRRod</object-name>
 		<object-name>ST_BRAxleTwo</object-name>
-		<property>instrumentation/stick/brake_rod_shift_z</property>
+		<property>fdm/jsbsim/systems/stick/brake-rod-shift-z</property>
 		<factor>1</factor>
 		<axis>
 			<x>0</x>
@@ -275,12 +275,11 @@
 		</axis>
 	</animation>
 
-
 	<animation>
 		<type>rotate</type>
 		<object-name>ST_FAxle</object-name>
 		<object-name>ST_Fix</object-name>
-		<property>instrumentation/stick/fix/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/stick/safer-pos</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-270</dep></entry>
 			<entry><ind>1</ind><dep>0.0</dep></entry>
@@ -303,8 +302,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/stick/fix")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/stick/safer-input")</script>
 			</binding>
 		</action>
 		<action>
@@ -312,8 +311,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/stick/fix")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/stick/safer-input")</script>
 			</binding>
 		</action>
 	</animation>
@@ -327,7 +326,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/fire-command</property>
+				<property>fdm/jsbsim/systems/stick/fire-button-command</property>
 				<value>1</value>
 			</binding>
 		</action>
@@ -337,7 +336,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/fire-command</property>
+				<property>fdm/jsbsim/systems/stick/fire-button-command</property>
 				<value>1</value>
 			</binding>
 		</action>
@@ -346,7 +345,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>ST_MGButton</object-name>
-		<property>instrumentation/stick/button/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/stick/fire-button-pos</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0.0</dep></entry>
 			<entry><ind>1</ind><dep>0.004</dep></entry>
@@ -358,7 +357,6 @@
 		</axis>
 	</animation>
 
-
 	<animation>
 		<type>pick</type>
 		<object-name>ST_BButton</object-name>
@@ -368,7 +366,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/bomb-command</property>
+				<property>fdm/jsbsim/systems/stick/drop-button-command</property>
 				<value>1</value>
 			</binding>
 		</action>
@@ -378,7 +376,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-assign</command>
-				<property>controls/bomb-command</property>
+				<property>fdm/jsbsim/systems/stick/drop-button-command</property>
 				<value>1</value>
 			</binding>
 		</action>
@@ -387,7 +385,7 @@
 	<animation>
 		<type>translate</type>
 		<object-name>ST_BButton</object-name>
-		<property>instrumentation/stick/bomb-button/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/stick/drop-button-pos</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>0.0</dep></entry>
 			<entry><ind>1</ind><dep>0.004</dep></entry>
@@ -399,7 +397,6 @@
 		</axis>
 	</animation>
 
-
 	<animation>
 		<type>pick</type>
 		<object-name>ST_BRLever</object-name>
@@ -409,7 +406,7 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
+				<command>nasal</command>
 				<script>MIG15BIS.bitswap("controls/gear/brake-parking")</script>
 			</binding>
 		</action>
@@ -418,7 +415,7 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
+				<command>nasal</command>
 				<script>MIG15BIS.bitswap("controls/gear/brake-parking")</script>
 			</binding>
 		</action>

@@ -53,7 +53,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>FVPM_Needle</object-name>
-		<property>instrumentation/flaps-valve/pressure-indicated</property>
+		<property>fdm/jsbsim/systems/flapsvalve/pressure-indicated</property>
 		<interpolation>
 			<entry><ind>0.0</ind><dep>60.0</dep></entry>
 			<entry><ind>1.0</ind><dep>300.0</dep></entry>

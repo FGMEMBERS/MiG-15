@@ -54,7 +54,7 @@
 		<object-name>FV_Axle</object-name>
 		<object-name>FV_Handle</object-name>
 		<object-name>FV_Message</object-name>
-		<property>instrumentation/flaps-valve/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/flapsvalve/valve-pos</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>-30.0</dep></entry>
 			<entry><ind>1</ind><dep>300.0</dep></entry>
@@ -76,7 +76,7 @@
 		<object-name>FV_Axle</object-name>
 		<object-name>FV_Handle</object-name>
 		<object-name>FV_Message</object-name>
-		<property>instrumentation/flaps-valve/handle/switch-pos-norm</property>
+		<property>fdm/jsbsim/systems/flapsvalve/safer-pos</property>
 		<interpolation>
 			<entry><ind>0</ind><dep>0.0</dep></entry>
 			<entry><ind>1</ind><dep>120.0</dep></entry>
@@ -101,8 +101,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/flaps-valve/handle")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/flapsvalve/safer-input", 1)</script>
 			</binding>
 		</action>
 		<action>
@@ -110,8 +110,8 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/flaps-valve/handle")</script>
+				<command>nasal</command>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/flapsvalve/safer-input")</script>
 			</binding>
 		</action>
 	</animation>
@@ -124,8 +124,9 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/flaps-valve")</script>
+				<command>property-assign</command>
+				<property>fdm/jsbsim/systems/flapsvalve/valve-input</property>
+				<value>1</value>
 			</binding>
 		</action>
 		<action>
@@ -133,8 +134,9 @@
 			<repeatable>false</repeatable>
 			<interval-sec>0.1</interval-sec>
 			<binding>
-			        <command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/flaps-valve")</script>
+				<command>property-assign</command>
+				<property>fdm/jsbsim/systems/flapsvalve/valve-input</property>
+				<value>1</value>
 			</binding>
 		</action>
 	</animation>

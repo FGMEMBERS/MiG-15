@@ -376,7 +376,6 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 		</channel>
 
 		<property value="0">fcs/pitch-trim-norm-real</property>
-		<property value="0">fcs/elevator-cmd-norm-real</property>
 
 		<channel name="Pitch">
 
@@ -451,7 +450,6 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 
 		<property value="0.2">fcs/aileron-boost</property>
 		<property value="0">fcs/roll-trim-norm-real</property>
-		<property value="0">fcs/aileron-cmd-norm-real</property>
 
 		<channel name="Roll">
 
@@ -578,8 +576,6 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 			</aerosurface_scale>
 
 		</channel>
-
-		<property value="0">fcs/rudder-cmd-norm-real</property>
 
 		<channel name="Yaw">
 
@@ -1641,6 +1637,15 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 	</system>
 
 	<system file="Stick">
+	</system>
+
+	<system file="Pedals">
+	</system>
+
+	<system file="Gearvalve">
+	</system>
+
+	<system file="Flapsvalve">
 	</system>
 
 

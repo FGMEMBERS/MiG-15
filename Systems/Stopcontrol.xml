@@ -71,7 +71,6 @@
 			<output>systems/stopcontrol/lever-switch</output>
 		</switch>
 
-
 <!-- click -->
 
 		<switch name="calculations/stopcontrol/click">

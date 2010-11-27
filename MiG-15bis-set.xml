@@ -408,7 +408,7 @@ MiG-15bis simulation config.
 				<desc>Swap cannon switch saFer</desc>
 				<binding>
 					<command>nasal</command>
-					<script>MIG15BIS.switchswap("instrumentation/stick/fix")</script>
+					<script>MIG15BIS.bitswap("fdm/jsbsim/systems/stick/safer-input")</script>
 				</binding>
 			</key>
 <!-- Fire the cannons -->
@@ -502,7 +502,7 @@ MiG-15bis simulation config.
 					<script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/pump-input")</script>
 				</binding>
 			</key>
-            
+
 <!-- Swap throttle lock -->
 			<key n="114">
 				<name>R</name>
@@ -775,6 +775,11 @@ MiG-15bis simulation config.
 		<canopy>
 			<canopy-pos-norm type="float">1.0</canopy-pos-norm>
 		</canopy>
+
+		<!-- Initialise cannon button -->
+		<armament>
+			<trigger type="bool">0</trigger>
+		</armament>
 
 	</controls>
 
@@ -1094,17 +1099,21 @@ MiG-15bis simulation config.
 				</radioaltimeter>
 				<stick>
 					<serviceable type="bool">1</serviceable>
-					<drop-button-command type="bool">0</drop-button-command>
-					<drop-button-pos type="float">0</drop-button-pos>
 					<drop-button-input type="bool">0</drop-button-input>
+					<drop-button-command type="bool">0</drop-button-command>
+					<drop-button-command-resulted type="bool">0</drop-button-command-resulted>
+					<drop-button-command-internal type="bool">0</drop-button-command-internal>
+					<drop-button-pos type="float">0</drop-button-pos>
 					<drop-button-switch type="bool">0</drop-button-switch>
-					<safer-command type="bool">0</safer-command>
-					<safer-pos type="float">0</safer-pos>
-					<safer-input type="bool">0</safer-input>
-					<safer-switch type="bool">0</safer-switch>
-					<fire-button-command type="bool">0</fire-button-command>
-					<fire-button-pos type="float">0</fire-button-pos>
+					<safer-command type="bool">1</safer-command>
+					<safer-pos type="float">1</safer-pos>
+					<safer-input type="bool">1</safer-input>
+					<safer-switch type="bool">1</safer-switch>
 					<fire-button-input type="bool">0</fire-button-input>
+					<fire-button-command type="bool">0</fire-button-command>
+					<fire-button-command-resulted type="bool">0</fire-button-command-resulted>
+					<fire-button-command-internal type="bool">0</fire-button-command-internal>
+					<fire-button-pos type="float">0</fire-button-pos>
 					<fire-button-switch type="bool">0</fire-button-switch>
 					<elevator-stick-deg type="float">0</elevator-stick-deg>
 					<aileron-stick-deg type="float">0</aileron-stick-deg>
@@ -1118,7 +1127,88 @@ MiG-15bis simulation config.
 					<aileron-second-rod-source-angle type="float">0</aileron-second-rod-source-angle>
 					<aileron-second-rod-next-angle type="float">0</aileron-second-rod-next-angle>
 					<aileron-second-rod-shift-x type="float">0</aileron-second-rod-shift-x>
+
+					<brake-middle-angle type="float">0</brake-middle-angle>
+					<park-brake-angle type="float">0</park-brake-angle>
+					<brake-angle type="float">0</brake-angle>
+					<brake-middle-x type="float">0</brake-middle-x>
+					<brake-middle-y type="float">0</brake-middle-y>
+					<brake-z type="float">0.337</brake-z>
+					<brake-saxle-middle-x type="float">0</brake-saxle-middle-x>
+					<brake-saxle-middle-y type="float">0</brake-saxle-middle-y>
+					<brake-saxle-z type="float">0.345</brake-saxle-z>
+					<brake-blocker-middle-x type="float">0</brake-blocker-middle-x>
+					<brake-blocker-middle-y type="float">0</brake-blocker-middle-y>
+					<brake-blocker-z type="float">0.216</brake-blocker-z>
+					<brake-rod-middle-x type="float">0</brake-rod-middle-x>
+					<brake-rod-middle-y type="float">0</brake-rod-middle-y>
+					<brake-rod-z type="float">0.338</brake-rod-z>
+					<brake-saxle-shoulder-xy type="float">0</brake-saxle-shoulder-xy>
+					<brake-saxle-shoulder-z type="float">0</brake-saxle-shoulder-z>
+					<brake-saxle-source-angle type="float">0</brake-saxle-source-angle>
+					<brake-saxle-source-angle-deg type="float">0</brake-saxle-source-angle-deg>
+					<brake-saxle-angle type="float">0</brake-saxle-angle>
+					<brake-saxle-angle-deg type="float">0</brake-saxle-angle-deg>
+					<brake-saxle-shoulder type="float">0</brake-saxle-shoulder>
+					<brake-saxle-pos-xy type="float">0</brake-saxle-pos-xy>
+					<brake-saxle-pos-z type="float">0</brake-saxle-pos-z>
+					<brake-blocker-source-xy type="float">0</brake-blocker-source-xy>
+					<brake-blocker-shoulder-xy type="float">0</brake-blocker-shoulder-xy>
+					<brake-blocker-shoulder-z type="float">0</brake-blocker-shoulder-z>
+					<brake-blocker-angle type="float">0</brake-blocker-angle>
+					<brake-blocker-angle-deg type="float">0</brake-blocker-angle-deg>
+					<brake-rod-shoulder-xy type="float">0</brake-rod-shoulder-xy>
+					<brake-rod-shoulder-z type="float">0</brake-rod-shoulder-z>
+					<brake-rod-source-angle type="float">0</brake-rod-source-angle>
+					<brake-rod-angle type="float">0</brake-rod-angle>
+					<brake-rod-angle-deg type="float">0</brake-rod-angle-deg>
+					<brake-rod-account-z type="float">0</brake-rod-account-z>
+					<brake-rod-shift-z type="float">0</brake-rod-shift-z>
 				</stick>
+				<pedals>
+					<serviceable type="bool">1</serviceable>
+					<shift-x type="float">0</shift-x>
+					<tubes-source-angle type="float">0</tubes-source-angle>
+					<tubes-angle type="float">0</tubes-angle>
+					<tubes-shift-angle type="float">0</tubes-shift-angle>
+					<tubes-shift-rod-x type="float">0</tubes-shift-rod-x>
+				</pedals>
+				<gearvalve>
+					<serviceable type="bool">1</serviceable>
+					<left-handle-input type="bool">0</left-handle-input>
+					<left-handle-command type="bool">0</left-handle-command>
+					<left-handle-pos type="float">0</left-handle-pos>
+					<left-handle-switch type="bool">0</left-handle-switch>
+					<right-handle-input type="bool">0</right-handle-input>
+					<right-handle-command type="bool">0</right-handle-command>
+					<right-handle-pos type="float">0</right-handle-pos>
+					<right-handle-switch type="bool">0</right-handle-switch>
+					<safer-input type="bool">0</safer-input>
+					<safer-command type="bool">0</safer-command>
+					<safer-pos type="float">0</safer-pos>
+					<safer-switch type="bool">0</safer-switch>
+					<valve-input type="bool">0</valve-input>
+					<valve-command type="bool">0</valve-command>
+					<valve-pos type="float">0</valve-pos>
+					<valve-switch type="bool">0</valve-switch>
+					<valve-pressure-switch type="bool">0</valve-pressure-switch>
+					<pressure-pos type="float">1</pressure-pos>
+					<pressure-indicated type="float">1</pressure-indicated>
+				</gearvalve>
+				<flapsvalve>
+					<serviceable type="bool">1</serviceable>
+					<safer-input type="bool">0</safer-input>
+					<safer-command type="bool">0</safer-command>
+					<safer-pos type="float">0</safer-pos>
+					<safer-switch type="bool">0</safer-switch>
+					<valve-input type="bool">0</valve-input>
+					<valve-command type="bool">0</valve-command>
+					<valve-pos type="float">0</valve-pos>
+					<valve-switch type="bool">0</valve-switch>
+					<valve-pressure-switch type="bool">0</valve-pressure-switch>
+					<pressure-pos type="float">1</pressure-pos>
+					<pressure-indicated type="float">1</pressure-indicated>
+				</flapsvalve>
 			</systems>
 		</jsbsim>
 	</fdm>

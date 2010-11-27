@@ -1322,3 +1322,530 @@ init_stick();
 
 setlistener("controls/flight/aileron", stick);
 setlistener("controls/flight/elevator", stick);
+
+#-----------------------------------------------------------------------
+#Stick buttons
+stop_stick_buttons=func
+	{
+	}
+
+stick_buttons=func
+	{
+		# check power
+		in_service = getprop("instrumentation/stick/serviceable");
+		if (in_service == nil)
+		{
+			stop_stick_buttons();
+	 		return ( settimer(stick_buttons, 0.1) ); 
+		}
+		if ( in_service != 1 )
+		{
+			stop_stick_buttons();
+		 	return ( settimer(stick_buttons, 0.1) ); 
+		}
+		switchmove("instrumentation/stick/fix", "dummy/dummy");
+		switchmove("instrumentation/stick/brake-all", "dummy/dummy");
+		#Get values
+		left_brake=getprop("controls/gear/brake-left");
+		right_brake=getprop("controls/gear/brake-right");
+		brake_parking=getprop("controls/gear/brake-parking");
+		fix_pos=getprop("instrumentation/stick/fix/switch-pos-norm");
+		button_set_pos=getprop("instrumentation/stick/button/set-pos");
+		button_pos=getprop("instrumentation/stick/button/switch-pos-norm");
+		#command is from vc by mouse, button is from keyboard
+		fire_command=getprop("controls/fire-command");
+		fire_button=getprop("controls/armanent/trigger");
+		bomb_command=getprop("controls/bomb-command");
+		bomb_button=getprop("controls/bomb-button");
+		if (
+			(left_brake==nil)
+			or (right_brake==nil)
+			or (brake_parking==nil)
+			or (fix_pos==nil)
+			or (button_set_pos==nil)
+			or (button_pos==nil)
+			or (fire_command==nil)
+			or (fire_button==nil)
+			or (bomb_command==nil)
+			or (bomb_button==nil)
+		)
+		{
+			stop_stick_buttons();
+	 		return ( settimer(stick_buttons, 0.1) ); 
+		}
+		if ((fire_command==1) or (fire_button==1))
+		{
+			fire_pressed=1;
+		}
+		else
+		{
+			fire_pressed=0;
+		}
+		if (fix_pos==1)
+		{
+			fire_pressed=0;
+			setprop("controls/fire-command", 0);
+		}
+		setprop("controls/fire-pressed", fire_pressed);
+		switchfeedback("instrumentation/stick/button", "controls/fire-pressed");
+		timedswitchmove("instrumentation/stick/button", 0.2, "dummy/dummy", 1);
+		if ((bomb_command==1) or (bomb_button==1))
+		{
+			bomb_pressed=1;
+		}
+		else
+		{
+			bomb_pressed=0;
+		}
+		setprop("controls/bomb-pressed", bomb_pressed);
+		switchfeedback("instrumentation/stick/bomb-button", "controls/bomb-pressed");
+		timedswitchmove("instrumentation/stick/bomb-button", 0.2, "dummy/dummy", 1);
+		if (brake_parking==0)
+		{
+			brake_angle=((left_brake+right_brake)/2)*16;
+		}
+		else
+		{
+			brake_angle=(brake_parking)*16;
+		}
+		#constants getted fom sick model
+
+		brake_middle_x=abs((-0.005-0.016)/2);
+		setprop("instrumentation/stick/brake_middle_x", brake_middle_x);
+		brake_middle_y=abs((-0.011-0.002)/2);
+		setprop("instrumentation/stick/brake_middle_y", brake_middle_y);
+		brake_z=0.337;
+		setprop("instrumentation/stick/brake_z", brake_z);
+		saxle_middle_x=abs((-0.032-0.049)/2);
+		setprop("instrumentation/stick/saxle_middle_x", saxle_middle_x);
+		saxle_middle_y=abs((-0.038-0.018)/2);
+		setprop("instrumentation/stick/saxle_middle_y", saxle_middle_y);
+		saxle_z=0.345;
+		setprop("instrumentation/stick/saxle_z", saxle_z);
+		blocker_middle_x=abs((-0.038-0.043)/2);
+		setprop("instrumentation/stick/blocker_middle_x", blocker_middle_x);
+		blocker_middle_y=abs((-0.031-0.026)/2);
+		setprop("instrumentation/stick/blocker_middle_y", blocker_middle_y);
+		blocker_z=0.216;
+		setprop("instrumentation/stick/blocker_z", blocker_z);
+		rod_middle_x=abs((-0.020-0.031)/2);
+		setprop("instrumentation/stick/rod_middle_x", rod_middle_x);
+		rod_middle_y=abs((-0.023-0.010)/2);
+		setprop("instrumentation/stick/rod_middle_y", rod_middle_y);
+		rod_z=0.338;
+		setprop("instrumentation/stick/rod_z", rod_z);
+
+		saxle_shoulder_xy=math.sqrt((brake_middle_x-saxle_middle_x)*(brake_middle_x-saxle_middle_x)+(brake_middle_y-saxle_middle_y)*(brake_middle_y-saxle_middle_y));
+		setprop("instrumentation/stick/saxle_shoulder_xy", saxle_shoulder_xy);
+		saxle_shoulder_z=abs(brake_z-saxle_z);
+		setprop("instrumentation/stick/saxle_shoulder_z", saxle_shoulder_z);
+		saxle_source_angle=math.atan2(abs(brake_z-saxle_z), saxle_shoulder_xy);
+		setprop("instrumentation/stick/saxle_source_angle", saxle_source_angle);
+		saxle_source_angle_deg=saxle_source_angle/math.pi*180;
+		setprop("instrumentation/stick/saxle_source_angle_deg", saxle_source_angle_deg);
+		saxle_angle=saxle_source_angle+brake_angle/180*math.pi;
+		setprop("instrumentation/stick/saxle_angle", saxle_angle);
+		saxle_angle_deg=saxle_angle/math.pi*180;
+		setprop("instrumentation/stick/saxle_angle_deg", saxle_angle_deg);
+		saxle_shoulder=math.sqrt(saxle_shoulder_xy*saxle_shoulder_xy+saxle_shoulder_z*saxle_shoulder_z);
+		setprop("instrumentation/stick/saxle_shoulder", saxle_shoulder);
+		saxle_pos_xy=saxle_shoulder*math.cos(saxle_angle);
+		setprop("instrumentation/stick/saxle_pos_xy", saxle_pos_xy);
+		saxle_pos_z=brake_z+saxle_shoulder*math.sin(saxle_angle);
+		setprop("instrumentation/stick/saxle_pos_z", saxle_pos_z);
+		blocker_source_xy=math.sqrt((brake_middle_x-blocker_middle_x)*(brake_middle_x-blocker_middle_x)+(brake_middle_y-blocker_middle_y)*(brake_middle_y-blocker_middle_y));
+		setprop("instrumentation/stick/blocker_source_xy", blocker_source_xy);
+		blocker_shoulder_xy=abs(blocker_source_xy-saxle_pos_xy);
+		setprop("instrumentation/stick/blocker_shoulder_xy", blocker_shoulder_xy);
+		blocker_shoulder_z=abs(blocker_z-saxle_pos_z);
+		setprop("instrumentation/stick/blocker_shoulder_z", blocker_shoulder_z);
+		blocker_angle=math.atan2(blocker_shoulder_xy, blocker_shoulder_z);
+		setprop("instrumentation/stick/blocker_angle", blocker_angle);
+		blocker_angle_deg=blocker_angle/math.pi*180;
+		setprop("instrumentation/stick/blocker_angle_deg", blocker_angle_deg);
+
+		rod_shoulder_xy=math.sqrt((brake_middle_x-rod_middle_x)*(brake_middle_x-rod_middle_x)+(brake_middle_y-rod_middle_y)*(brake_middle_y-rod_middle_y));
+		setprop("instrumentation/stick/rod_shoulder_xy", rod_shoulder_xy);
+		rod_shoulder_z=abs(brake_z-rod_z);
+		setprop("instrumentation/stick/rod_shoulder_z", rod_shoulder_z);
+		rod_source_angle=math.atan2(rod_shoulder_z, rod_shoulder_xy);
+		setprop("instrumentation/stick/rod_source_angle", rod_source_angle);
+		rod_angle=rod_source_angle+brake_angle/180*math.pi;
+		setprop("instrumentation/stick/rod_angle", rod_angle);
+		rod_angle_deg=rod_angle/math.pi*180;
+		setprop("instrumentation/stick/rod_angle_deg", rod_angle_deg);
+		rod_account_z=rod_shoulder_xy*math.sin(rod_angle)/math.cos(rod_angle);
+		setprop("instrumentation/stick/rod_account_z", rod_account_z);
+		rod_shift_z=-rod_shoulder_z+rod_account_z;
+		setprop("instrumentation/stick/rod_shift_z", rod_shift_z);
+
+		setprop("instrumentation/stick/blocker_deg", blocker_angle_deg);
+		setprop("instrumentation/stick/brake_rod_shift_z", rod_shift_z);
+
+		setprop("instrumentation/stick/brake_deg", brake_angle);
+
+		settimer(stick_buttons, 0.1);
+	}
+
+init_stick_buttons=func
+{
+	setprop("instrumentation/stick/brake_deg", 0);
+	setprop("instrumentation/stick/blocker_deg", 0);
+	switchinit("instrumentation/stick/fix", 1, "dummy/dummy");
+	switchinit("instrumentation/stick/brake-all", 0, "dummy/dummy");
+	setprop("controls/fire-command", 0);
+	setprop("controls/armanent/trigger", 0);
+	setprop("controls/fire-pressed", 0);
+	switchinit("instrumentation/stick/button", 0, "dummy/dummy");
+	setprop("controls/bomb-command", 0);
+	setprop("controls/bomb-button", 0);
+	setprop("controls/bomb-pressed", 0);
+	switchinit("instrumentation/stick/bomb-button", 0, "dummy/dummy");
+}
+
+#init_stick_buttons();
+
+press_fire=func
+	{
+		setprop("controls/armament/trigger", 1);
+	}
+
+unpress_fire=func
+	{
+		setprop("controls/armament/trigger", 0);
+	}
+
+press_bomb=func
+	{
+		setprop("fdm/jsbsim/systems/stick/drop-button-input", 1);
+	}
+
+unpress_bomb=func
+	{
+		setprop("fdm/jsbsim/systems/stick/drop-button-input", 0);
+	}
+
+#stick_buttons();
+
+#-----------------------------------------------------------------------
+#Pedals
+stop_pedals=func
+	{
+	}
+
+pedals=func
+	{
+		# check power
+		in_service = getprop("instrumentation/pedals/serviceable");
+		if (in_service == nil)
+		{
+			stop_pedals();
+	 		return( 0 ); 
+		}
+		if ( in_service != 1 )
+		{
+			stop_pedals();
+		 	return( 0 ); 
+		}
+		#Get values
+		rudder=getprop("controls/flight/rudder");
+		if (rudder==nil) 
+		{
+			stop_pedals();
+	 		return( 0 ); 
+		}
+		setprop("fdm/jsbsim/fcs/rudder-cmd-norm-real", -rudder);
+		#constants getted from pedals model
+		pedals_shift_x=(0.0882)*rudder;
+		pedals_tubes_source_angle=math.atan2(0, 0.087)/math.pi*180;
+		pedals_tubes_next_angle=math.atan2(pedals_shift_x, 0.087)/math.pi*180;
+		pedals_tubes_shift_angle=-(pedals_tubes_next_angle-pedals_tubes_source_angle);
+		pedals_shift_rod_x=pedals_shift_x/0.087*0.057;
+
+		setprop("instrumentation/pedals/shift_x", pedals_shift_x);
+		setprop("instrumentation/pedals/shift_tubes_angle", pedals_tubes_shift_angle);
+		setprop("instrumentation/pedals/tubes_source_angle", pedals_tubes_source_angle);
+		setprop("instrumentation/pedals/tubes_next_angle", pedals_tubes_next_angle);
+		setprop("instrumentation/pedals/shift_rod_x", pedals_shift_rod_x);
+		setprop("instrumentation/pedals/rudder", rudder);
+
+		return(1);
+	}
+
+init_pedals=func
+{
+	setprop("instrumentation/pedals/serviceable", 1);
+	setprop("instrumentation/pedals/shift_x", 0);
+	setprop("instrumentation/pedals/shift_rod_x", 0);
+	setprop("instrumentation/pedals/shift_tubes_angle", 0);
+	setprop("instrumentation/pedals/rudder", 0);
+}
+
+init_pedals();
+
+setlistener("surface-positions/rudder-pos-norm", pedals);
+
+#-----------------------------------------------------------------------
+#Gear valve
+stop_gearvalve=func
+	{
+	}
+
+gearvalve=func
+	{
+		# check power
+		in_service = getprop("instrumentation/gear-valve/serviceable");
+		if (in_service == nil)
+		{
+			stop_gearvalve();
+	 		return ( settimer(gearvalve, 0.1) ); 
+		}
+		if ( in_service != 1 )
+		{
+			stop_gearvalve();
+		 	return ( settimer(gearvalve, 0.1) ); 
+		}
+		switchmove("instrumentation/gear-valve/handle", "dummy/dummy");
+		gear_one_pos=getprop("fdm/jsbsim/gear/unit[0]/pos-norm-real");
+		gear_two_pos=getprop("fdm/jsbsim/gear/unit[1]/pos-norm-real");
+		gear_three_pos=getprop("fdm/jsbsim/gear/unit[2]/pos-norm-real");
+		gear_one_tored=getprop("fdm/jsbsim/gear/unit[0]/tored");
+		gear_two_tored=getprop("fdm/jsbsim/gear/unit[1]/tored");
+		gear_three_tored=getprop("fdm/jsbsim/gear/unit[2]/tored");
+		set_pos=getprop("instrumentation/gear-valve/set-pos");
+		handle_pos=getprop("instrumentation/gear-valve/handle/switch-pos-norm");
+		#emergency handles positions
+		left_handle_pos=getprop("instrumentation/gear-handles/left/switch-pos-norm");
+		right_handle_pos=getprop("instrumentation/gear-handles/right/switch-pos-norm");
+		gear_control_switch_pos=getprop("instrumentation/gear-control/switch-pos-norm");
+		pressure=getprop("instrumentation/gear-valve/pressure-norm");	
+		pressure_error=getprop("instrumentation/gear-valve/pressure-error");	
+		bus=getprop("systems/electrical-real/bus");
+		engine_running=getprop("engines/engine/running");
+		if (
+			(gear_one_pos==nil)
+			or (gear_two_pos==nil)
+			or (gear_three_pos==nil)
+			or (gear_one_tored==nil)
+			or (gear_two_tored==nil)
+			or (gear_three_tored==nil)
+			or (set_pos==nil)
+			or (handle_pos==nil)
+			or (left_handle_pos==nil)
+			or (right_handle_pos==nil)
+			or (gear_control_switch_pos==nil)
+			or (bus==nil) 
+			or (engine_running==nil))
+		{
+			stop_gearvalve();
+			setprop("instrumentation/gear-valve/error", 1);
+	 		return ( settimer(gearvalve, 0.1) ); 
+		}
+		setprop("instrumentation/gear-valve/error", 0);
+		if (set_pos==1)
+		{
+			if (handle_pos==1)
+			{
+				if (
+					(gear_control_switch_pos==-1)
+					and (left_handle_pos==1)
+					and (right_handle_pos==1)
+					and (gear_one_tored==0)
+					and (gear_two_tored==0)
+					and (gear_three_tored==0)
+				)
+				{
+					switchmove("instrumentation/gear-valve", "fdm/jsbsim/gear/gear-cmd-norm-real");
+					pressure=0.8-abs((gear_one_pos+gear_two_pos+gear_three_pos)/3)*0.5;
+				}
+				else
+				{
+					switchmove("instrumentation/gear-valve", "dummy/dummy");
+					pressure=0.8-abs((gear_one_pos+gear_two_pos+gear_three_pos)/3)*0.5;
+				}
+			}
+			else
+			{
+				switchswap("instrumentation/gear-valve");
+			}
+		}
+		if (engine_running==1)
+		{
+			pressure_error=pressure_error+(1-2*rand(123))*0.01;
+			if (pressure_error>0.03)
+			{
+				pressure_error=0.03;
+			}
+			if (pressure_error<-0.03)
+			{
+				pressure_error=-0.03;
+			}
+		}
+		else
+		{
+			pressure_error=0;
+		}
+		setprop("instrumentation/gear-valve/pressure-norm", pressure);
+		setprop("instrumentation/gear-valve/pressure-error", pressure_error);
+		pressure_indicated=pressure+pressure_error;
+		setprop("instrumentation/gear-valve/pressure-indicated", pressure_indicated);
+		settimer(gearvalve, 0.1);
+	}
+
+init_gearvalve=func
+{
+	setprop("instrumentation/gear-valve/serviceable", 1);
+	switchinit("instrumentation/gear-valve", 0, "dummy/dummy");
+	switchinit("instrumentation/gear-valve/handle", 0, "dummy/dummy");
+	setprop("instrumentation/gear-valve/pressure-norm", 0.8);
+	setprop("instrumentation/gear-valve/pressure-indicated", 0.8);
+	setprop("instrumentation/gear-valve/pressure-error", 0);
+}
+
+init_gearvalve();
+
+gearvalve();
+
+#-----------------------------------------------------------------------
+#Gear handles
+stop_gearhandles=func
+	{
+	}
+
+gearhandles=func
+	{
+		# check power
+		in_service = getprop("instrumentation/gear-handles/serviceable");
+		if (in_service == nil)
+		{
+			stop_gearhandles();
+	 		return ( settimer(gearhandles, 0.1) ); 
+		}
+		if ( in_service != 1 )
+		{
+			stop_gearhandles();
+		 	return ( settimer(gearhandles, 0.1) ); 
+		}
+		switchmove("instrumentation/gear-handles/left", "dummy/dummy");
+		switchmove("instrumentation/gear-handles/right", "dummy/dummy");
+		settimer(gearhandles, 0.1);
+	}
+
+init_gearhandles=func
+{
+	setprop("instrumentation/gear-handles/serviceable", 1);
+	switchinit("instrumentation/gear-handles/left", 0, "dummy/dummy");
+	switchinit("instrumentation/gear-handles/right", 0, "dummy/dummy");
+}
+
+init_gearhandles();
+
+gearhandles();
+
+#-----------------------------------------------------------------------
+#Flaps valve
+stop_flapsvalve=func
+	{
+	}
+
+flapsvalve=func
+	{
+		in_service = getprop("instrumentation/flaps-valve/serviceable");
+		if (in_service == nil)
+		{
+			stop_flapsvalve();
+	 		return ( settimer(flapsvalve, 0.1) ); 
+		}
+		if ( in_service != 1 )
+		{
+			stop_flapsvalve();
+		 	return ( settimer(flapsvalve, 0.1) ); 
+		}
+		switchmove("instrumentation/flaps-valve/handle", "dummy/dummy");
+		flaps_pos = getprop("fdm/jsbsim/fcs/flap-pos-norm");
+		set_pos=getprop("instrumentation/flaps-valve/set-pos");
+		switch_pos=getprop("instrumentation/flaps-valve/switch-pos-norm");
+		handle_pos=getprop("instrumentation/flaps-valve/handle/switch-pos-norm");
+		flaps_control_switch_pos=getprop("instrumentation/flaps-control/switch-pos-norm");
+		pressure=getprop("instrumentation/flaps-valve/pressure-norm");	
+		pressure_error=getprop("instrumentation/flaps-valve/pressure-error");	
+		bus=getprop("systems/electrical-real/bus");
+		engine_running=getprop("engines/engine/running");
+		tored = getprop("fdm/jsbsim/fcs/flap-tored");
+		if (
+			(flaps_pos==nil)
+			or (set_pos==nil)
+			or (switch_pos==nil)
+			or (handle_pos==nil)
+			or (flaps_control_switch_pos==nil)
+			or (pressure==nil)
+			or (pressure_error==nil)
+			or (bus==nil)
+			or (engine_running==nil)
+			or (tored==nil)
+		)
+		{
+			stop_flapsvalve();
+			setprop("instrumentation/flaps-valve/error", 1);
+	 		return ( settimer(flapsvalve, 0.1) ); 
+		}
+		setprop("instrumentation/flaps-valve/error", 0);
+		if (
+			(set_pos==1)
+			and (flaps_pos!=set_pos)
+		)
+		{
+			if (handle_pos==1)
+			{
+				if ((flaps_control_switch_pos==1) and (tored==0))
+				{
+					switchmove("instrumentation/flaps-valve", "fdm/jsbsim/fcs/flap-cmd-norm-real");
+					pressure=0.8-abs(flaps_pos)*0.5;
+				}
+				else
+				{
+					switchmove("instrumentation/flaps-valve", "dummy/dummy");
+					pressure=0.8-abs(switch_pos)*0.5;
+				}
+			}
+			else
+			{
+				switchswap("instrumentation/flaps-valve");
+			}
+		}
+		if (engine_running==1)
+		{
+			pressure_error=pressure_error+(1-2*rand(123))*0.01;
+			if (pressure_error>0.03)
+			{
+				pressure_error=0.03;
+			}
+			if (pressure_error<-0.03)
+			{
+				pressure_error=-0.03;
+			}
+		}
+		else
+		{
+			pressure_error=0;
+		}
+		setprop("instrumentation/flaps-valve/pressure-error", pressure_error);
+		setprop("instrumentation/flaps-valve/pressure-norm", pressure);
+		indicated_pressure=pressure+pressure_error;
+		setprop("instrumentation/flaps-valve/pressure-indicated", indicated_pressure);
+		settimer(flapsvalve, 0.1);
+	}
+
+init_flapsvalve=func
+{
+	setprop("instrumentation/flaps-valve/serviceable", 1);
+	switchinit("instrumentation/flaps-valve", 0, "dummy/dummy");
+	switchinit("instrumentation/flaps-valve/handle", 0, "dummy/dummy");
+	setprop("instrumentation/flaps-valve/pressure-norm", 0.8);
+	setprop("instrumentation/flaps-valve/pressure-indicated", 0.8);
+	setprop("instrumentation/flaps-valve/pressure-error", 0);
+}
+
+init_flapsvalve();
+
+flapsvalve();

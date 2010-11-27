@@ -115,7 +115,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>PLT_LThigh</object-name>
-		<property>instrumentation/pedals/rudder</property>
+		<property>fdm/jsbsim/fcs/rudder-cmd-norm-real</property>
 		<factor>10</factor>
 		<center>
 			<x-m>2.059</x-m>
@@ -129,7 +129,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>PLT_LShin</object-name>
-		<property>instrumentation/pedals/rudder</property>
+		<property>fdm/jsbsim/fcs/rudder-cmd-norm-real</property>
 		<factor>-10</factor>
 		<center>
 			<x-m>1.333</x-m>
@@ -155,7 +155,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>PLT_RThigh</object-name>
-		<property>instrumentation/pedals/rudder</property>
+		<property>ifdm/jsbsim/fcs/rudder-cmd-norm-real</property>
 		<factor>10</factor>
 		<center>
 			<x-m>2.059</x-m>
@@ -169,7 +169,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>PLT_RShin</object-name>
-		<property>instrumentation/pedals/rudder</property>
+		<property>fdm/jsbsim/fcs/rudder-cmd-norm-real</property>
 		<factor>-10</factor>
 		<center>
 			<x-m>1.333</x-m>
@@ -244,7 +244,7 @@
 		<object-name>PLT_Helmet</object-name>
 		<object-name>PLT_FaceMask</object-name>
 		<object-name>PLT_Glass</object-name>
-		<property>instrumentation/stick/elevator_stick_deg</property>
+		<property>fdm/jsbsim/systems/stick/elevator-stick-deg</property>
 		<factor>1</factor>
 		<center>
 			<x-m>1.709</x-m>
@@ -321,7 +321,7 @@
 		<object-name>PLT_Helmet</object-name>
 		<object-name>PLT_FaceMask</object-name>
 		<object-name>PLT_Glass</object-name>
-		<property>instrumentation/stick/aileron_stick_deg</property>
+		<property>fdm/jsbsim/systems/stick/aileron-stick-deg</property>
 		<factor>1</factor>
 		<center>
 			<x-m>1.709</x-m>

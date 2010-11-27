@@ -245,7 +245,7 @@
 			<test logic="OR" value="systems/gascontrol/shift-locked">
 				systems/gascontrol/fix-pos lt 0.1
 				systems/gascontrol/lever-pos gt 0.04
-				systems/gascontrol/lever-command-diff ge 0.0
+				systems/gascontrol/shift-locked ge 0.0
 			</test>
 			<output>systems/gascontrol/shift-fixed</output>
 		</switch>
@@ -279,6 +279,15 @@
 		<!--	Thats no good to control global variable from JSB,
 			but there is no other way.
 		-->
+
+		<switch name="calculations/gascontrol/lever-pos-fixed">
+			<default value="systems/gascontrol/lever-pos"/>
+			<test logic="AND" value="0.04">
+				systems/gascontrol/fix-pos gt 0.1
+				systems/gascontrol/lever-pos lt 0.04
+			</test>
+			<output>systems/gascontrol/lever-pos</output>
+		</switch>
 
 		<switch name="calculations/gascontrol/feedback">
 			<default value="/controls/engines/engine/throttle"/>
