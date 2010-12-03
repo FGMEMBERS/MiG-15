@@ -759,7 +759,7 @@
 			</and>
 		</condition>
 		<volume>
-			<property>instrumentation/radiocompass/telephone-loudness</property>
+			<property>sounds/radio-tune/volume-norm</property>
 		</volume>
 	</radio-tune>
 
@@ -780,7 +780,7 @@
 			</and>
 		</condition>
 		<volume>
-			<property>instrumentation/radiocompass/telegraph-loudness</property>
+			<property>sounds/radio-morse/volume-norm</property>
 		</volume>
 	</radio-morse>
 
@@ -801,7 +801,7 @@
 			</and>
 		</condition>
 		<volume>
-			<property>instrumentation/radiocompass/noise-loudness</property>
+			<property>sounds/radio-noise/volume-norm</property>
 		</volume>
 	</radio-noise>
 

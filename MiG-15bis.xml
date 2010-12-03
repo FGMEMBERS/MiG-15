@@ -612,8 +612,6 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 
 		</channel>
 
-		<property value="0">fcs/flap-cmd-norm-real</property>
-
 		<channel name="Flaps">
 
 			<kinematic name="Flaps Control">
@@ -1646,6 +1644,9 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 	</system>
 
 	<system file="Flapsvalve">
+	</system>
+
+	<system file="Radiocompass">
 	</system>
 
 

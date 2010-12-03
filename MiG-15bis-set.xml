@@ -1209,6 +1209,63 @@ MiG-15bis simulation config.
 					<pressure-pos type="float">1</pressure-pos>
 					<pressure-indicated type="float">1</pressure-indicated>
 				</flapsvalve>
+				<radiocompass>
+					<serviceable type="bool">1</serviceable>
+
+					<type-input type="float">0</type-input>
+					<type-input-mult type="float">0</type-input-mult>
+					<type-command type="float">0</type-command>
+					<type-pos type="float">0</type-pos>
+					<type-switch type="int">0</type-switch>
+
+					<band-input type="int">0</band-input>
+					<band-input-mult type="float">0</band-input-mult>
+					<band-command type="int">0</band-command>
+					<band-pos type="float">0</band-pos>
+					<band-switch type="int">0</band-switch>
+					<tg-or-tl-input type="bool">0</tg-or-tl-input>
+					<tg-or-tl-command type="bool">0</tg-or-tl-command>
+					<tg-or-tl-pos type="float">0</tg-or-tl-pos>
+					<tg-or-tl-switch type="bool">0</tg-or-tl-switch>
+					<lamp type="float">0</lamp>
+					<brightness type="float">0.75</brightness>
+					<loudness type="float">0.25</loudness>
+					<telegraph-loudness type="float">0.75</telegraph-loudness>
+					<telephone-loudness type="float">0.75</telephone-loudness>
+					<noise-loudness type="float">0.75</noise-loudness>
+					<degree type="float">0.0</degree>
+					<frequency type="float">0.0</frequency>
+					<wait-time type="float">0.0</wait-time>
+					<wait-degree-time type="float">0.0</wait-degree-time>
+					<band n="0">
+						<scale-shift type="float">1</scale-shift>
+						<scale-pos type="float">1</scale-pos>
+						<frequency type="float">150.0</frequency>
+						<low-frequency type="float">150.0</low-frequency>
+						<high-frequency type="float">310.0</high-frequency>
+					</band>
+					<band n="1">
+						<scale-shift type="float">0</scale-shift>
+						<scale-pos type="float">0</scale-pos>
+						<frequency type="float">310.0</frequency>
+						<low-frequency type="float">310.0</low-frequency>
+						<high-frequency type="float">640.0</high-frequency>
+					</band>
+					<band n="2">
+						<scale-shift type="float">0</scale-shift>
+						<scale-pos type="float">0</scale-pos>
+						<frequency type="float">640.0</frequency>
+						<low-frequency type="float">640.0</low-frequency>
+						<high-frequency type="float">1300.0</high-frequency>
+					</band>
+					<frequency-vern type="float">0.0</frequency-vern>
+					<frequency-vern-previous type="float">0.0</frequency-vern-previous>
+					<recieve-lamp type="float">0.0</recieve-lamp>
+					<recieve-quality type="float">0.0</recieve-quality>
+					<frame-speed type="float">0.5</frame-speed>
+					<frame-speed type="float">0.5</frame-speed>
+					<repeat-time type="float">0.0</repeat-time>
+				</radiocompass>
 			</systems>
 		</jsbsim>
 	</fdm>
@@ -1266,7 +1323,7 @@ MiG-15bis simulation config.
 			<name>heading-indicator-dg</name>
 			<number>0</number>
 		</heading-indicator-dg>
-		<adf n="1">
+		<adf n="0">
 			<serviceable type="bool">true</serviceable>
 			<mode type="string">adf</mode>
 		</adf>

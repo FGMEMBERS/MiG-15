@@ -126,23 +126,9 @@
 		<prop>/systems/electrical/outputs/adf</prop>
 	</output>
 
-	<output>
-		<name>Adf2</name>
-		<prop>/systems/electrical/outputs/adf[1]</prop>
-	</output>
-
 	<connector>
 		<input>Bus</input>
 		<output>Adf</output>
-		<switch>
-			<prop>/controls/switches/radiocompass</prop>
-			<initial-state>off</initial-state>
-		</switch>
-	</connector>
-
-	<connector>
-		<input>Bus</input>
-		<output>Adf2</output>
 		<switch>
 			<prop>/controls/switches/radiocompass</prop>
 			<initial-state>off</initial-state>

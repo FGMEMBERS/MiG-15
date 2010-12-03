@@ -10,7 +10,7 @@
 		<object-name>RC_Backplate</object-name>
 		<object-name>RC_Foreplate</object-name>
   		<emission>
-			<factor-prop>instrumentation/radiocompass/lamp</factor-prop>
+			<factor-prop>fdm/jsbsim/systems/radiocompass/lamp</factor-prop>
 			<red>0.222</red>
 			<green>0.212</green>
 			<blue>0.212</blue>
@@ -44,7 +44,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>RC_Needle</object-name>
-		<property>instrumentation/radiocompass/degree</property>
+		<property>fdm/jsbsim/systems/radiocompass/degree</property>
 		<center>
 			<x-m>0</x-m>
 			<y-m>0</y-m>
