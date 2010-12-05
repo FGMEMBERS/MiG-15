@@ -1,3 +1,6 @@
+#This file contents old unused instrumentation that was changed to jsb based
+#Still that code can work and may be some example
+
 #--------------------------------------------------------------------
 # Artifical horizon 
 
@@ -2145,3 +2148,149 @@ init_radiocompass();
 
 # start radio compass process first time
 radiocompass ();
+
+
+# helper 
+stop_bustercontrol = func 
+	{
+		setprop("instrumentation/buster-indicator/indicated-pressure-norm", 0);
+	}
+
+bustercontrol = func 
+	{
+		# check power
+		in_service = getprop("instrumentation/buster-control/serviceable" );
+		if (in_service == nil)
+		{
+			stop_bustercontrol();
+	 		return ( settimer(bustercontrol, 0.1) ); 
+		}
+		if ( in_service != 1 )
+		{
+			stop_bustercontrol();
+		 	return ( settimer(bustercontrol, 0.1) ); 
+		}
+		# get aileron value
+		set_aileron_pos=getprop("fdm/jsbsim/fcs/roll-trim-sum-echoed");
+		aileron_pos=getprop("fdm/jsbsim/fcs/roll-trim-sum-timed");
+		# get buster values	
+		switch_pos=getprop("fdm/jsbsim/systems/boostercontrol/control-switch");
+		indicated_error=getprop("instrumentation/buster-indicator/indicated-pressure-error");
+		#get pump value
+		pump=getprop("systems/electrical-real/outputs/pump/volts-norm");
+		if (
+			(set_aileron_pos==nil)
+			or (aileron_pos==nil)
+			or (set_pos==nil)
+			or (switch_pos==nil)
+			or (fix_pos==nil)
+			or (indicated_error==nil)
+			or (pump==nil)
+		)
+		{
+			stop_bustercontrol();
+			setprop("instrumentation/buster-control/error", 1);
+	 		return ( settimer(bustercontrol, 0.1) ); 
+		}
+		setprop("instrumentation/buster-control/error", 0);
+		if (!(set_pos==switch_pos))
+		{
+			way_to=abs(set_pos-switch_pos)/(set_pos-switch_pos);
+			switch_pos=switch_pos+0.3*way_to;
+			if (((way_to>0) and (switch_pos>set_pos)) or ((way_to<0) and (switch_pos<set_pos)))
+			{
+				switch_pos=set_pos;
+				setprop("instrumentation/buster-control/switch-pos-norm", switch_pos);
+				setprop("instrumentation/buster-control/fix-pos-norm", 1);
+				clicksound();
+			}
+			else
+			{
+				setprop("instrumentation/buster-control/switch-pos-norm", switch_pos);
+				setprop("instrumentation/buster-control/fix-pos-norm", 0);
+			}
+		}
+		if ((switch_pos==0) or (pump==0))
+		{
+			aileron_boost=0.2;
+		}
+		else
+		{
+			aileron_boost=switch_pos/2;
+		}
+		setprop("fdm/jsbsim/fcs/aileron-boost", aileron_boost);
+		if (pump==0)
+		{
+			stop_bustercontrol();
+	 		return ( settimer(bustercontrol, 0.1) ); 
+		}
+		indicated_error=indicated_error+(1-2*rand(123))*0.01;
+		if (indicated_error>0.03)
+		{
+			indicated_error=0.03;
+		}
+		if (indicated_error<-0.03)
+		{
+			indicated_error=-0.03;
+		}
+		setprop("instrumentation/buster-indicator/indicated-pressure-error", indicated_error);
+		if (switch_pos==0) 
+		{
+			indicated_pressure=0;
+		}
+		else
+		{
+			indicated_pressure=0.2+switch_pos*0.2+abs(set_aileron_pos-aileron_pos)*0.1+indicated_error;
+		}
+		setprop("instrumentation/buster-indicator/indicated-pressure-norm", indicated_pressure);
+		settimer(bustercontrol, 0.1);
+	  }
+
+
+# start buster control process first time
+bustercontrol ();
+
+# helper 
+stop_speedbrakecontrol = func 
+	{
+		setprop("instrumentation/speed-brake-control/light-pos-norm", 0);
+	}
+
+speedbrakecontrol = func 
+	{
+		switchfeedback("instrumentation/speed-brake-control", "controls/flight/speedbrake");
+		switchmove("instrumentation/speed-brake-control", "controls/flight/speedbrake");
+		# check power
+		in_service = getprop("instrumentation/speed-brake-control/serviceable" );
+		if (in_service == nil)
+		{
+			stop_speedbrakecontrol();
+	 		return ( settimer(speedbrakecontrol, 0.1) ); 
+		}
+		if ( in_service != 1 )
+		{
+			stop_speedbrakecontrol();
+		 	return ( settimer(speedbrakecontrol, 0.1) ); 
+		}
+		# get speed brake values
+		brake_control_pos = getprop("fdm/jsbsim/systems/speedbrakescontrol/control-switch");
+		brake_pos = getprop("surface-positions/speedbrake-pos-norm");
+		#get bus value
+		bus=getprop("systems/electrical-real/bus");
+		if ((brake_control_pos == nil) or (brake_pos == nil) or (bus == nil))
+		{
+			stop_speedbrakecontrol();
+	 		return ( settimer(speedbrakecontrol, 0.1) );
+		}
+		if (bus==0)
+		{
+			stop_speedbrakecontrol();
+		 	return ( settimer(speedbrakecontrol, 0.1) );
+		}
+		if  ((brake_control_pos==1) or (brake_control_pos==0))
+		{
+			setprop("fdm/jsbsim/fcs/speedbrake-cmd-norm-real", brake_control_pos);
+		}
+		setprop("instrumentation/speed-brake-control/light-pos-norm", brake_pos);
+		settimer(speedbrakecontrol, 0.1);
+	}

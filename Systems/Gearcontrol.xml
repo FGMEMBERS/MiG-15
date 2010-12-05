@@ -16,28 +16,6 @@
 
 <!--	That must be aded to set file
 
-	<gearcontrol>
-		<serviceable type="bool">1</serviceable>
-
-		<control-input type="bool">1</control-input>
-		<control-command type="bool">1</control-command>
-
-		<lever-safed type="float">0</lever-safed>
-		<lever-pos type="float">0</lever-pos>
-		<control-switch type="bool">1</control-switch>
-
-		<safer-command type="bool">0</safer-command>
-		<safer-pos type="float">0</safer-pos>
-		<safer-switch type="bool">0</safer-switch>
-
-		<gear-one-end-move type="bool">0</gear-one-end-move>
-		<gear-two-end-move type="bool">0</gear-two-end-move>
-		<gear-three-end-move type="bool">0</gear-three-end-move>
-		<gear-end-move type="bool">0</gear-end-move>
-
-		<lever-unsafed type="bool">0</lever-unsafed>
-
-	</gearcontrol>
 
 -->
 	<channel name="gearcontrol">
@@ -184,7 +162,7 @@
 		</switch>
 
 		<switch name="calculations/gearcontrol/lever-unsafed">
-			<default value="calculations/gearcontrol/lever-safed"/>
+			<default value="systems/gearcontrol/lever-unsafed"/>
 			<test logic="AND" value="systems/gearcontrol/lever-command">
 				systems/gearcontrol/safer-switch eq 1
 			</test>

@@ -327,6 +327,10 @@
 				<property>fdm/jsbsim/gear/unit[0]/pos-norm-real</property>
 				<value>0</value>
 			</equals>
+			<equals>
+				<property>fdm/jsbsim/init/finally-initialized</property>
+				<value>1</value>
+			</equals>
 		</condition>
 	</gear>
 
@@ -336,6 +340,10 @@
 		<condition>
 			<equals>
 				<property>fdm/jsbsim/gear/unit[0]/pos-norm-real</property>
+				<value>1</value>
+			</equals>
+			<equals>
+				<property>fdm/jsbsim/init/finally-initialized</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -352,7 +360,7 @@
 			<factor>-0.001</factor>
 		</pitch>
 		<volume>
-			<property>fdm/jsbsim/gear/finally-initialized</property>
+			<property>fdm/jsbsim/init/finally-initialized</property>
 			<property>processes/gear-move/sound-enabled</property>
 			<factor>0.3</factor>
 		</volume>
@@ -365,6 +373,10 @@
 			<equals>
 				<property>fdm/jsbsim/gear/unit[1]/pos-norm-real</property>
 				<value>0</value>
+			</equals>
+			<equals>
+				<property>fdm/jsbsim/init/finally-initialized</property>
+				<value>1</value>
 			</equals>
 		</condition>
 	</gear>
@@ -405,6 +417,10 @@
 				<property>fdm/jsbsim/gear/unit[2]/pos-norm-real</property>
 				<value>0</value>
 			</equals>
+			<equals>
+				<property>fdm/jsbsim/init/finally-initialized</property>
+				<value>1</value>
+			</equals>
 		</condition>
 	</gear>
 
@@ -414,6 +430,10 @@
 		<condition>
 			<equals>
 				<property>fdm/jsbsim/gear/unit[2]/pos-norm-real</property>
+				<value>1</value>
+			</equals>
+			<equals>
+				<property>fdm/jsbsim/init/finally-initialized</property>
 				<value>1</value>
 			</equals>
 		</condition>
@@ -643,6 +663,7 @@
 			<volume>
 				<factor>0.5</factor>
 				<property>sim/current-view/internal</property>
+				<property>fdm/jsbsim/init/finally-initialized</property>
 			</volume>
 		</canopy>
 

@@ -787,11 +787,20 @@ MiG-15bis simulation config.
 
 	<fdm>
 		<jsbsim>
+			<init>
+				<finally-initialized type="int">0</finally-initialized>
+			</init>
+			<fcs>
+				<aileron-cmd-norm-real type="float">0</aileron-cmd-norm-real>
+				<elevator-cmd-norm-real type="float">0</elevator-cmd-norm-real>
+				<aileron-boost type="float">0.2</aileron-boost>
+				<roll-trim-sum type="float">0.0</roll-trim-sum>
+				<roll-trim-sum-timed type="float">0.0</roll-trim-sum-timed>
+			</fcs>
 			<gear>
 				<gear-cmd-norm type="int">1</gear-cmd-norm>
 				<gear-cmd-norm-real type="int">1</gear-cmd-norm-real>
 				<gear-pos-norm type="float">1</gear-pos-norm>
-				<finally-initialized type="int">0</finally-initialized>
 				<unit n="0">
 					<pos-norm type="float">1</pos-norm>
 					<stuck type="bool">0</stuck>
@@ -1031,11 +1040,11 @@ MiG-15bis simulation config.
 				</ignitionbutton>
 				<speedbrakescontrol>
 					<serviceable type="bool">1</serviceable>
-
 					<control-input type="bool">0</control-input>
 					<control-command type="bool">0</control-command>
 					<control-pos type="float">0</control-pos>
 					<control-switch type="bool">0</control-switch>
+					<light-pos type="float">0</light-pos>
 				</speedbrakescontrol>
 				<fuelcontrol>
 					<serviceable type="bool">1</serviceable>
@@ -1047,6 +1056,8 @@ MiG-15bis simulation config.
 				<vertspeedometer>
 					<serviceable type="bool">1</serviceable>
 					<on type="bool">0</on>
+					<stored-speed-fps type="float">0</stored-speed-fps>
+					<indicated-speed-fps type="float">0</indicated-speed-fps>
 				</vertspeedometer>
 				<gearcontrol>
 					<serviceable type="bool">1</serviceable>
@@ -1058,7 +1069,7 @@ MiG-15bis simulation config.
 					<safer-pos type="float">0</safer-pos>
 					<safer-switch type="bool">0</safer-switch>
 
-					<lever-unsafed type="float">0</lever-unsafed>
+					<lever-unsafed type="int">0</lever-unsafed>
 					<lever-pos type="float">0</lever-pos>
 					<control-switch type="bool">1</control-switch>
 
@@ -1067,8 +1078,6 @@ MiG-15bis simulation config.
 					<gear-three-end-move type="bool">0</gear-three-end-move>
 
 					<gear-end-move type="bool">0</gear-end-move>
-					<lever-unsafed type="bool">0</lever-unsafed>
-
 				</gearcontrol>
 				<radioaltimeter>
 					<on type="bool">0</on>
@@ -1266,6 +1275,23 @@ MiG-15bis simulation config.
 					<frame-speed type="float">0.5</frame-speed>
 					<repeat-time type="float">0.0</repeat-time>
 				</radiocompass>
+				<pump>
+					<on type="bool">0</on>
+				</pump>
+				<bus>
+					<on type="bool">0</on>
+				</bus>
+				<boostercontrol>
+					<serviceable type="bool">1</serviceable>
+					<control-input type="float">0.5</control-input>
+					<control-command type="float">0.5</control-command>
+					<control-pos type="float">0.5</control-pos>
+					<fix-pos type="float">0</fix-pos>
+					<pressure-pos type="float">0</pressure-pos>
+					<pressure-stored type="float">0</pressure-stored>
+					<pressure-indicated type="float">0</pressure-indicated>
+					<click-command type="bool">0</click-command>
+				</boostercontrol>
 			</systems>
 		</jsbsim>
 	</fdm>

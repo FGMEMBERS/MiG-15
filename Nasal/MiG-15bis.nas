@@ -1009,7 +1009,6 @@ terrain_under = func
 		{
 			setprop ("environment/terrain", 1);
 		}
-
 		settimer (terrain_under, 0.1);
 	}
 
@@ -1820,7 +1819,7 @@ gearmove = func
 		{
 			one_gear_move(2, gear_three_pos, gear_command_real, gear_three_stuck, 5, 1.332, 95, speed_km, 350);
 		}
-		settimer(gearmove, 0.1);
+		settimer(gearmove, 0.0);
 	}
 
 gearstuck = func (gear_num, sounded)
@@ -1844,6 +1843,11 @@ init_gearmove = func
 	setprop("processes/gear-move/enabled", 1);
 	setprop("processes/gear-move/sound-enabled", 1);
 	setprop("sounds/gears-stuck/on", 0);
+	#Aditional gears control restart
+	setprop("fdm/jsbsim/systems/gearcontrol/control-input", 1);
+	setprop("fdm/jsbsim/systems/gearcontrol/control-command", 1);
+	setprop("fdm/jsbsim/systems/gearcontrol/control-switch", 1);
+	setprop("fdm/jsbsim/gear/gear-cmd-norm-real", 1);
 }
 
 init_gearmove();
@@ -2554,6 +2558,10 @@ flapsprocess = func
 # set startup configuration
 init_flapsprocess = func 
 {
+	setprop("fdm/jsbsim/fcs/flap-cmd-norm", 0);
+	setprop("fdm/jsbsim/fcs/flap-cmd-norm-real", 0);
+	setprop("fdm/jsbsim/fcs/flap-pos-deg", 0);
+	setprop("fdm/jsbsim/fcs/flap-pos-norm", 0);
 }
 
 init_flapsprocess();
@@ -2564,63 +2572,18 @@ flapsprocess ();
 #--------------------------------------------------------------------
 # Speed brake control
 
-# helper 
-stop_speedbrakecontrol = func 
-	{
-		setprop("instrumentation/speed-brake-control/light-pos-norm", 0);
-	}
-
-speedbrakecontrol = func 
-	{
-		switchfeedback("instrumentation/speed-brake-control", "controls/flight/speedbrake");
-		switchmove("instrumentation/speed-brake-control", "controls/flight/speedbrake");
-		# check power
-		in_service = getprop("instrumentation/speed-brake-control/serviceable" );
-		if (in_service == nil)
-		{
-			stop_speedbrakecontrol();
-	 		return ( settimer(speedbrakecontrol, 0.1) ); 
-		}
-		if ( in_service != 1 )
-		{
-			stop_speedbrakecontrol();
-		 	return ( settimer(speedbrakecontrol, 0.1) ); 
-		}
-		# get speed brake values
-		brake_control_pos = getprop("fdm/jsbsim/systems/speedbrakescontrol/control-switch");
-		brake_pos = getprop("surface-positions/speedbrake-pos-norm");
-		#get bus value
-		bus=getprop("systems/electrical-real/bus");
-		if ((brake_control_pos == nil) or (brake_pos == nil) or (bus == nil))
-		{
-			stop_speedbrakecontrol();
-	 		return ( settimer(speedbrakecontrol, 0.1) );
-		}
-		if (bus==0)
-		{
-			stop_speedbrakecontrol();
-		 	return ( settimer(speedbrakecontrol, 0.1) );
-		}
-		if  ((brake_control_pos==1) or (brake_control_pos==0))
-		{
-			setprop("fdm/jsbsim/fcs/speedbrake-cmd-norm-real", brake_control_pos);
-		}
-		setprop("instrumentation/speed-brake-control/light-pos-norm", brake_pos);
-		settimer(speedbrakecontrol, 0.1);
-	}
-
 # set startup configuration
 init_speedbrakecontrol = func 
 {
-	setprop("instrumentation/speed-brake-control/serviceable", 1);
-	switchinit("instrumentation/speed-brake-control", 0, "controls/flight/speedbrake");
-	setprop("instrumentation/speed-brake-control/light-pos-norm", 0);
+	setprop("fdm/jsbsim/systems/speedbrakescontrol/serviceable", 1);
+	setprop("fdm/jsbsim/systems/speedbrakescontrol/control-input", 0);
+	setprop("fdm/jsbsim/systems/speedbrakescontrol/control-command", 0);
+	setprop("fdm/jsbsim/systems/speedbrakescontrol/control-pos", 0);
+	setprop("fdm/jsbsim/systems/speedbrakescontrol/control-switch", 0);
+	setprop("fdm/jsbsim/systems/speedbrakescontrol/light-pos", 0);
 }
 
 init_speedbrakecontrol();
-
-# start speed brake control process first time
-speedbrakecontrol ();
 
 #--------------------------------------------------------------------
 # Ignition button
@@ -3232,116 +3195,18 @@ end_engine_stop = func
 engineprocess ();
 
 #--------------------------------------------------------------------
-
 # Buster control and indicator
-
-# helper 
-stop_bustercontrol = func 
-	{
-		setprop("instrumentation/buster-indicator/indicated-pressure-norm", 0);
-	}
-
-bustercontrol = func 
-	{
-		# check power
-		in_service = getprop("instrumentation/buster-control/serviceable" );
-		if (in_service == nil)
-		{
-			stop_bustercontrol();
-	 		return ( settimer(bustercontrol, 0.1) ); 
-		}
-		if ( in_service != 1 )
-		{
-			stop_bustercontrol();
-		 	return ( settimer(bustercontrol, 0.1) ); 
-		}
-		# get aileron value
-		set_aileron_pos=getprop("fdm/jsbsim/fcs/roll-trim-sum-echoed");
-		aileron_pos=getprop("fdm/jsbsim/fcs/roll-trim-sum-timed");
-		# get buster values	
-		set_pos=getprop("instrumentation/buster-control/set-pos-norm");
-		switch_pos=getprop("instrumentation/buster-control/switch-pos-norm");
-		fix_pos=getprop("instrumentation/buster-control/fix-pos-norm");
-		indicated_error=getprop("instrumentation/buster-indicator/indicated-pressure-error");	
-		#get pump value
-		pump=getprop("systems/electrical-real/outputs/pump/volts-norm");
-		if (
-			(set_aileron_pos==nil)
-			or (aileron_pos==nil)
-			or (set_pos==nil)
-			or (switch_pos==nil)
-			or (fix_pos==nil)
-			or (indicated_error==nil)
-			or (pump==nil)
-		)
-		{
-			stop_bustercontrol();
-			setprop("instrumentation/buster-control/error", 1);
-	 		return ( settimer(bustercontrol, 0.1) ); 
-		}
-		setprop("instrumentation/buster-control/error", 0);
-		if (!(set_pos==switch_pos))
-		{
-			way_to=abs(set_pos-switch_pos)/(set_pos-switch_pos);
-			switch_pos=switch_pos+0.3*way_to;
-			if (((way_to>0) and (switch_pos>set_pos)) or ((way_to<0) and (switch_pos<set_pos)))
-			{
-				switch_pos=set_pos;
-				setprop("instrumentation/buster-control/switch-pos-norm", switch_pos);
-				setprop("instrumentation/buster-control/fix-pos-norm", 1);
-				clicksound();
-			}
-			else
-			{
-				setprop("instrumentation/buster-control/switch-pos-norm", switch_pos);
-				setprop("instrumentation/buster-control/fix-pos-norm", 0);
-			}
-		}
-		if ((switch_pos==0) or (pump==0))
-		{
-			aileron_boost=0.2;
-		}
-		else
-		{
-			aileron_boost=switch_pos/2;
-		}
-		setprop("fdm/jsbsim/fcs/aileron-boost", aileron_boost);
-		if (pump==0)
-		{
-			stop_bustercontrol();
-	 		return ( settimer(bustercontrol, 0.1) ); 
-		}
-		indicated_error=indicated_error+(1-2*rand(123))*0.01;
-		if (indicated_error>0.03)
-		{
-			indicated_error=0.03;
-		}
-		if (indicated_error<-0.03)
-		{
-			indicated_error=-0.03;
-		}
-		setprop("instrumentation/buster-indicator/indicated-pressure-error", indicated_error);
-		if (switch_pos==0) 
-		{
-			indicated_pressure=0;
-		}
-		else
-		{
-			indicated_pressure=0.2+switch_pos*0.2+abs(set_aileron_pos-aileron_pos)*0.1+indicated_error;
-		}
-		setprop("instrumentation/buster-indicator/indicated-pressure-norm", indicated_pressure);
-		settimer(bustercontrol, 0.1);
-	  }
 
 # set startup configuration
 init_bustercontrol = func 
 {
-	setprop("instrumentation/buster-control/serviceable", 1);
-	setprop("instrumentation/buster-control/fix-pos-norm", 1);
-	setprop("instrumentation/buster-control/switch-pos-norm", 1);
-	setprop("instrumentation/buster-control/set-pos-norm", 1);
-	setprop("instrumentation/buster-indicator/indicated-pressure-norm", 0);
-	setprop("instrumentation/buster-indicator/indicated-pressure-error", 0);
+	setprop("systems/electrical-real/outputs/pump/volts-norm", 0);
+	setprop("fdm/jsbsim/systems/pump/on", 0);
+	setprop("fdm/jsbsim/systems/boostercontrol/serviceable", 1);
+	setprop("fdm/jsbsim/systems/boostercontrol/fix-pos", 1);
+	setprop("fdm/jsbsim/systems/boostercontrol/control-input", 0.5);
+	setprop("fdm/jsbsim/systems/boostercontrol/control-command", 0.5);
+	setprop("fdm/jsbsim/systems/boostercontrol/control-pos", 0.5);
 }
 
 init_bustercontrol();
@@ -3350,32 +3215,29 @@ init_bustercontrol();
 
 more_booster = func 
 	{
-		set_pos=getprop("instrumentation/buster-control/set-pos-norm");
+		set_pos=getprop("fdm/jsbsim/systems/boostercontrol/control-input");
 		if (!(set_pos==nil))
 		{
-			if (set_pos<2)
+			if (set_pos<1)
 			{
-				set_pos=set_pos+1;
-				setprop("instrumentation/buster-control/set-pos-norm", set_pos);
+				set_pos=set_pos+0.5;
+				setprop("fdm/jsbsim/systems/boostercontrol/control-input", set_pos);
 			}
 		}
 	}
 
 less_booster = func 
 	{
-		set_pos=getprop("instrumentation/buster-control/set-pos-norm");
+		set_pos=getprop("fdm/jsbsim/systems/boostercontrol/control-input");
 		if (!(set_pos==nil))
 		{
 			if (set_pos>0)
 			{
-				set_pos=set_pos-1;
-				setprop("instrumentation/buster-control/set-pos-norm", set_pos);
+				set_pos=set_pos-0.5;
+				setprop("fdm/jsbsim/systems/boostercontrol/control-input", set_pos);
 			}
 		}
 	}
-
-# start buster control process first time
-bustercontrol ();
 
 #--------------------------------------------------------------------
 
@@ -3697,6 +3559,8 @@ realelectric=func
 		{
 			bus_on=0;
 		}
+		setprop("fdm/jsbsim/systems/bus/on", bus_on);
+
 		if (generator_on==1)
 		{
 			setprop("systems/electrical-real/amper-norm", 1);
@@ -3718,6 +3582,7 @@ realelectric=func
 			setprop("systems/electrical-real/volts-norm", 1);
 			setprop("systems/electrical-real/outputs/pump/on", set_pump);
 			setprop("systems/electrical-real/outputs/pump/volts-norm", set_pump);
+			setprop("fdm/jsbsim/systems/pump/on", set_pump);
 
 			setprop("controls/switches/pump", set_pump);
 
@@ -3771,6 +3636,7 @@ realelectric=func
 			setprop("systems/electrical-real/volts-norm", 0);
 			setprop("systems/electrical-real/outputs/pump/on", 0);
 			setprop("systems/electrical-real/outputs/pump/volts-norm", 0);
+			setprop("fdm/jsbsim/systems/pump/on", 0);
 			setprop("systems/electrical-real/outputs/third-tank-pump/on", 0);
 			setprop("systems/electrical-real/outputs/third-tank-pump/volts-norm", 0);
 			setprop("systems/electrical-real/outputs/ignition/on", 0);
@@ -3826,6 +3692,7 @@ init_realelectric = func
 	setprop("systems/electrical-real/volts-norm", 0);
 	setprop("systems/electrical-real/outputs/pump/on", 0);
 	setprop("systems/electrical-real/outputs/pump/volts-norm", 0);
+	setprop("fdm/jsbsim/systems/pump/on", 0);
 	setprop("systems/electrical-real/outputs/third-tank-pump/on", 0);
 	setprop("systems/electrical-real/outputs/third-tank-pump/volts-norm", 0);
 	setprop("systems/electrical-real/outputs/ignition/on", 0);
@@ -5120,6 +4987,9 @@ canopyprocess = func
 # set startup configuration
 init_canopyprocess=func
 {
+	setprop("fdm/jsbsim/systems/canopy/serviceable", 1);
+	setprop("fdm/jsbsim/systems/canopy/command", 1);
+	setprop("fdm/jsbsim/systems/canopy/pos", 1);
 }
 
 tear_canopy=func
@@ -5603,13 +5473,13 @@ aircraft_lock = func
 		setprop("fdm/jsbsim/systems/pedals/serviceable", 0);
 		setprop("fdm/jsbsim/systems/gearvalve/serviceable", 0);
 		setprop("fdm/jsbsim/systems/flapsvalve/serviceable", 0);
+		setprop("fdm/jsbsim/boostercontrol/serviceable", 0);
 
 		#Lock controls
 		setprop("instrumentation/gear-control/serviceable", 0);
 		setprop("instrumentation/flaps-control/serviceable", 0);
 		setprop("instrumentation/speed-brake-control/serviceable", 0);
 		setprop("instrumentation/ignition-button/serviceable", 0);
-		setprop("instrumentation/buster-control/serviceable", 0);
 		setprop("instrumentation/cannon/serviceable", 0);
 		setprop("instrumentation/trimmer/serviceable", 0);
 		setprop("fdm/jsbsim/systems/radiocompass/serviceable", 0);
@@ -6185,6 +6055,7 @@ aircraft_unlock=func
 		setprop("fdm/jsbsim/systems/ignitionbuton/serviceable", 1);
 		setprop("fdm/jsbsim/systems/speedbrakescontrol/serviceable", 1);
 		setprop("fdm/jsbsim/systems/radioaltimeter/serviceable", 1);
+		setprop("fdm/jsbsim/boostercontrol/serviceable", 1);
 
 		#Repair controls
 		setprop("instrumentation/gear-control/serviceable", 1);
@@ -6192,7 +6063,6 @@ aircraft_unlock=func
 		setprop("instrumentation/speed-brake-control/serviceable", 1);
 
 		setprop("instrumentation/ignition-button/serviceable", 1);
-		setprop("instrumentation/buster-control/serviceable", 1);
 		setprop("instrumentation/cannon/serviceable", 1);
 		setprop("instrumentation/trimmer/serviceable", 1);
 		setprop("fdm/jsbsim/systems/radiocompass/serviceable", 1);
@@ -6225,8 +6095,17 @@ aircraft_repair=func
 		setprop("fdm/jsbsim/gear/unit[1]/stuck", 0);
 		setprop("fdm/jsbsim/gear/unit[2]/stuck", 0);
 
-		#Repair gears
+		#Repair gears valve
 		init_gearvalve();
+
+		#Aditional repair gears control
+		var gear_cmd_norm_real=getprop("fdm/jsbsim/gear/gear-cmd-norm-real");
+		if (gear_cmd_norm_real!=nil)
+		{
+			setprop("fdm/jsbsim/systems/gearcontrol/control-input", gear_cmd_norm_real);
+			setprop("fdm/jsbsim/systems/gearcontrol/control-command", gear_cmd_norm_real);
+			setprop("fdm/jsbsim/systems/gearcontrol/control-switch", gear_cmd_norm_real);
+		}
 
 		#Repair flaps
 		setprop("fdm/jsbsim/fcs/flap-tored", 0);
@@ -6549,8 +6428,8 @@ autostart_process = func
 
 		if (pos==4)
 		{
-			setprop("fdm/jsbsim/systems/leftpanel/pump-input", 0);
-			switch_pos=getprop("fdm/jsbsim/systems/leftpanel/pump-switch");
+			setprop("fdm/jsbsim/systems/rightpanel/trimmer-input", 0);
+			switch_pos=getprop("fdm/jsbsim/systems/rightpanel/trimmer-switch");
 			if (switch_pos==nil)
 			{
 				stop_autostart_process();
@@ -6564,6 +6443,102 @@ autostart_process = func
 		}
 
 		if (pos==5)
+		{
+			setprop("fdm/jsbsim/systems/rightpanel/horizon-input", 0);
+			switch_pos=getprop("fdm/jsbsim/systems/rightpanel/horizon-switch");
+			if (switch_pos==nil)
+			{
+				stop_autostart_process();
+				return ( settimer(autostart_process, 0.1) ); 
+			}
+			if (switch_pos==0)
+			{
+				pos=pos+1;
+				setprop("processes/autostart/pos", pos);
+			}
+		}
+
+		if (pos==6)
+		{
+			setprop("fdm/jsbsim/systems/rightpanel/radioaltimeter-input", 0);
+			switch_pos=getprop("fdm/jsbsim/systems/rightpanel/radioaltimeter-switch");
+			if (switch_pos==nil)
+			{
+				stop_autostart_process();
+				return ( settimer(autostart_process, 0.1) ); 
+			}
+			if (switch_pos==0)
+			{
+				pos=pos+1;
+				setprop("processes/autostart/pos", pos);
+			}
+		}
+
+		if (pos==7)
+		{
+			setprop("fdm/jsbsim/systems/rightpanel/radiocompass-input", 0);
+			switch_pos=getprop("fdm/jsbsim/systems/rightpanel/radiocompass-switch");
+			if (switch_pos==nil)
+			{
+				stop_autostart_process();
+				return ( settimer(autostart_process, 0.1) ); 
+			}
+			if (switch_pos==0)
+			{
+				pos=pos+1;
+				setprop("processes/autostart/pos", pos);
+			}
+		}
+
+		if (pos==8)
+		{
+			setprop("fdm/jsbsim/systems/rightpanel/drop-tank-input", 0);
+			switch_pos=getprop("fdm/jsbsim/systems/rightpanel/drop-tank-switch");
+			if (switch_pos==nil)
+			{
+				stop_autostart_process();
+				return ( settimer(autostart_process, 0.1) ); 
+			}
+			if (switch_pos==0)
+			{
+				pos=pos+1;
+				setprop("processes/autostart/pos", pos);
+			}
+		}
+
+		if (pos==9)
+		{
+			setprop("fdm/jsbsim/systems/rightpanel/headsight-input", 0);
+			switch_pos=getprop("fdm/jsbsim/systems/rightpanel/headsight-switch");
+			if (switch_pos==nil)
+			{
+				stop_autostart_process();
+				return ( settimer(autostart_process, 0.1) ); 
+			}
+			if (switch_pos==0)
+			{
+				pos=pos+1;
+				setprop("processes/autostart/pos", pos);
+			}
+		}
+
+		if (pos==10)
+		{
+			setprop("fdm/jsbsim/systems/rightpanel/machinegun-input", 0);
+			switch_pos=getprop("fdm/jsbsim/systems/rightpanel/machinegun-switch");
+			if (switch_pos==nil)
+			{
+				stop_autostart_process();
+				return ( settimer(autostart_process, 0.1) ); 
+			}
+			if (switch_pos==0)
+			{
+				pos=pos+1;
+				setprop("processes/autostart/pos", pos);
+			}
+		}
+
+		if (pos==11)
 		{
 			setprop("fdm/jsbsim/systems/leftpanel/isolation-valve-input", 0);
 			switch_pos=getprop("fdm/jsbsim/systems/leftpanel/isolation-valve-switch");
@@ -6579,7 +6554,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==6)
+		if (pos==12)
 		{
 			setprop("fdm/jsbsim/systems/leftpanel/ignition-type-input", 0);
 			switch_pos=getprop("fdm/jsbsim/systems/leftpanel/ignition-type-switch");
@@ -6595,7 +6570,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==7)
+		if (pos==13)
 		{
 			setprop("fdm/jsbsim/systems/leftpanel/ignition-input", 0);
 			switch_pos=getprop("fdm/jsbsim/systems/leftpanel/ignition-switch");
@@ -6611,7 +6586,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==8)
+		if (pos==14)
 		{
 			setprop("fdm/jsbsim/systems/leftpanel/engine-control-input", 0);
 			switch_pos=getprop("fdm/jsbsim/systems/leftpanel/engine-control-switch");
@@ -6627,7 +6602,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==9)
+		if (pos==15)
 		{
 			setprop("fdm/jsbsim/systems/leftpanel/third-tank-pump-input", 0);
 			switch_pos=getprop("fdm/jsbsim/systems/leftpanel/third-tank-pump-switch");
@@ -6643,7 +6618,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==10)
+		if (pos==16)
 		{
 			setprop("fdm/jsbsim/systems/stopcontrol/lever-input", 0);
 			switch_pos=getprop("fdm/jsbsim/systems/stopcontrol/lever-switch");
@@ -6659,7 +6634,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==11)
+		if (pos==17)
 		{
 			setprop("fdm/jsbsim/systems/gascontrol/lock-command", 0);
 			if (throttle_lock_pos < 0.1)
@@ -6669,7 +6644,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==12)
+		if (pos==18)
 		{
 			if (abs(throttle_pos-0.11)>0.001)
 			{
@@ -6682,7 +6657,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==13)
+		if (pos==19)
 		{
 			setprop("fdm/jsbsim/systems/gascontrol/fix-command", 0);
 			if (throttle_fix_pos == 0.0)
@@ -6692,7 +6667,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==14)
+		if (pos==20)
 		{
 			if (abs(throttle_pos-0.0)>0.001)
 			{
@@ -6705,7 +6680,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==15)
+		if (pos==21)
 		{
 			setprop("fdm/jsbsim/systems/gascontrol/lock-command", 1);
 			if (throttle_lock_pos > 0.9)
@@ -6715,7 +6690,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==16)
+		if (pos==22)
 		{
 			setprop("fdm/jsbsim/systems/rightpanel/battery-input", 1);
 			switch_pos=getprop("fdm/jsbsim/systems/rightpanel/battery-switch");
@@ -6731,7 +6706,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==17)
+		if (pos==23)
 		{
 			setprop("fdm/jsbsim/systems/leftpanel/pump-input", 1);
 			switch_pos=getprop("fdm/jsbsim/systems/leftpanel/pump-switch");
@@ -6747,7 +6722,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==18)
+		if (pos==24)
 		{
 			setprop("fdm/jsbsim/systems/leftpanel/ignition-input", 1);
 			switch_pos=getprop("fdm/jsbsim/systems/leftpanel/ignition-switch");
@@ -6763,7 +6738,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==19)
+		if (pos==25)
 		{
 			setprop("fdm/jsbsim/systems/leftpanel/engine-control-input", 1);
 			switch_pos=getprop("fdm/jsbsim/systems/leftpanel/engine-control-switch");
@@ -6779,7 +6754,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==20) 
+		if (pos==26) 
 		{
 			if (starter_command==0)
 			{
@@ -6793,7 +6768,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==21) 
+		if (pos==27) 
 		{
 			if (engine_running==1)
 			{
@@ -6802,7 +6777,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==22)
+		if (pos==28)
 		{
 			setprop("fdm/jsbsim/systems/rightpanel/generator-input", 1);
 			switch_pos=getprop("fdm/jsbsim/systems/rightpanel/generator-switch");
@@ -6818,7 +6793,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==23)
+		if (pos==29)
 		{
 			setprop("fdm/jsbsim/systems/leftpanel/ignition-input", 1);
 			switch_pos=getprop("fdm/jsbsim/systems/leftpanel/ignition-switch");
@@ -6834,7 +6809,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==24)
+		if (pos==30)
 		{
 			setprop("fdm/jsbsim/systems/gascontrol/lock-command", 0);
 			if (throttle_lock_pos < 0.1)
@@ -6844,7 +6819,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==25)
+		if (pos==31)
 		{
 			if (abs(throttle_pos-0.2)>0.001)
 			{
@@ -6857,7 +6832,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==26)
+		if (pos==32)
 		{
 			setprop("fdm/jsbsim/systems/gascontrol/fix-command", 1);
 			if (throttle_fix_pos > 0.9)
@@ -6867,7 +6842,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==27)
+		if (pos==33)
 		{
 			if (abs(throttle_pos-0.04)>0.001)
 			{
@@ -6880,7 +6855,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==28)
+		if (pos==34)
 		{
 			setprop("fdm/jsbsim/systems/leftpanel/ignition-input", 0);
 			switch_pos=getprop("fdm/jsbsim/systems/leftpanel/ignition-switch");
@@ -6896,7 +6871,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==29)
+		if (pos==35)
 		{
 			setprop("fdm/jsbsim/systems/rightpanel/trimmer-input", 1);
 			switch_pos=getprop("fdm/jsbsim/systems/rightpanel/trimmer-switch");
@@ -6912,7 +6887,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==30)
+		if (pos==36)
 		{
 			setprop("fdm/jsbsim/systems/rightpanel/horizon-input", 1);
 			switch_pos=getprop("fdm/jsbsim/systems/rightpanel/horizon-switch");
@@ -6928,7 +6903,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==31)
+		if (pos==37)
 		{
 			setprop("fdm/jsbsim/systems/rightpanel/radioaltimeter-input", 1);
 			switch_pos=getprop("fdm/jsbsim/systems/rightpanel/radioaltimeter-switch");
@@ -6944,7 +6919,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==32)
+		if (pos==38)
 		{
 			setprop("fdm/jsbsim/systems/rightpanel/radiocompass-input", 1);
 			switch_pos=getprop("fdm/jsbsim/systems/rightpanel/radiocompass-switch");
@@ -6960,7 +6935,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==33)
+		if (pos==39)
 		{
 			setprop("fdm/jsbsim/systems/rightpanel/drop-tank-input", 1);
 			switch_pos=getprop("fdm/jsbsim/systems/rightpanel/drop-tank-switch");
@@ -6976,7 +6951,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==34)
+		if (pos==40)
 		{
 			setprop("fdm/jsbsim/systems/rightpanel/headsight-input", 1);
 			switch_pos=getprop("fdm/jsbsim/systems/rightpanel/headsight-switch");
@@ -6992,7 +6967,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==35)
+		if (pos==41)
 		{
 			setprop("fdm/jsbsim/systems/rightpanel/machinegun-input", 1);
 			switch_pos=getprop("fdm/jsbsim/systems/rightpanel/machinegun-switch");
@@ -7008,7 +6983,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==36)
+		if (pos==42)
 		{
 			setprop("fdm/jsbsim/systems/canopy/command", 0);
 			if (canopy_pos > 0.1)
@@ -7018,7 +6993,7 @@ autostart_process = func
 			}
 		}
 
-		if (pos==37)
+		if (pos==43)
 		{
 			setprop("processes/autostart/elapsed-time", 0);
 			return (1);

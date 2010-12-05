@@ -73,6 +73,24 @@
 			<output>systems/speedbrakescontrol/control-switch</output>
 		</switch>
 
+		<switch name="calculations/speedbrakescontrol/speedbrake-cmd-norm-real">
+			<default value="fcs/speedbrake-cmd-norm-real"/>
+			<test logic="AND" value="systems/speedbrakescontrol/control-switch">
+				systems/leftpanel/serviceable eq 1
+				systems/bus/on eq 1
+			</test>
+			<output>fcs/speedbrake-cmd-norm-real</output>
+		</switch>
+
+		<switch name="calculations/speedbrakescontrol/light-pos">
+			<default value="0"/>
+			<test logic="AND" value="fcs/speedbrake-pos-norm">
+				systems/leftpanel/serviceable eq 1
+				systems/bus/on eq 1
+			</test>
+			<output>systems/speedbrakescontrol/light-pos</output>
+		</switch>
+
 <!-- click -->
 
 		<switch name="calculations/speedbrakescontrol/click">

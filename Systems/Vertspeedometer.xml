@@ -35,7 +35,7 @@
 				systems/vertspeedometer/on == 1
 				systems/vertspeedometer/serviceable == 1
 			</test>
-			<output>systems/vertspeedometer/stored-kt</output>
+			<output>systems/vertspeedometer/stored-speed-fps</output>
 		</switch>
 
 		<switch name="calculations/vertspeedometer/indicated-speed-fps">

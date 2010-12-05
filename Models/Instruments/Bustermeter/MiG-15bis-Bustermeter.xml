@@ -51,24 +51,24 @@
 
 -->
 
-  <animation>
-    <type>rotate</type>
-    <object-name>BUM_Needle</object-name>
-    <property>instrumentation/buster-indicator/indicated-pressure-norm</property>
-    <interpolation>
-      <entry><ind>0.0</ind> <dep>54.0</dep></entry>
-      <entry><ind>1.0</ind> <dep>252.0</dep></entry>
-    </interpolation>
-    <center>
-      <x-m>0</x-m>
-      <y-m>0</y-m>
-      <z-m>0</z-m>
-    </center>  
-    <axis>
-      <x>0</x>
-      <y>0</y>
-      <z>-1</z>
-    </axis>
-  </animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>BUM_Needle</object-name>
+		<property>fdm/jsbsim/systems/boostercontrol/pressure-indicated</property>
+		<interpolation>
+			<entry><ind>0.0</ind> <dep>54.0</dep></entry>
+			<entry><ind>1.0</ind> <dep>252.0</dep></entry>
+		</interpolation>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>0</x>
+			<y>0</y>
+			<z>-1</z>
+		</axis>
+	</animation>
 
 </PropertyList> 

@@ -448,7 +448,6 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 
 		</channel>
 
-		<property value="0.2">fcs/aileron-boost</property>
 		<property value="0">fcs/roll-trim-norm-real</property>
 
 		<channel name="Roll">
@@ -654,8 +653,6 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 		<property value="0">gear/gear-pos-norm</property>
 
 -->
-
-		<property value="0">fcs/speedbrake-cmd-norm-real</property>
 
 		<channel name="Speedbrake">
 
@@ -1649,5 +1646,7 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 	<system file="Radiocompass">
 	</system>
 
+	<system file="Boostercontrol">
+	</system>
 
 </fdm_config>

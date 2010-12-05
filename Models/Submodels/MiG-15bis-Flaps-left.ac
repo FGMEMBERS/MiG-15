@@ -8,7 +8,7 @@ OBJECT poly
 name "WNG_FlapLDown"
 data 8
 Mesh.344
-texture "WingDown.rgb"
+texture "WingDown.png"
 texrep 1 1
 crease 30.000000
 numvert 12
@@ -83,7 +83,7 @@ OBJECT poly
 name "WNG_FlapLUp"
 data 8
 Mesh.013
-texture "WingDown.rgb"
+texture "WingDown.png"
 texrep 1 1
 crease 30.000000
 numvert 13

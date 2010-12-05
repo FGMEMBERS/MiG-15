@@ -45,7 +45,7 @@
 		<object-name>SBC_Lamp</object-name>
 		<object-name>SBC_Glass</object-name>
 	  	<emission>
-			<factor-prop>instrumentation/speed-brake-control/light-pos-norm</factor-prop>
+			<factor-prop>fdm/jsbsim/systems/speedbrakescontrol/light-pos</factor-prop>
 			<red>0.9</red>
 			<green>0.1</green>
 			<blue>0.1</blue>
