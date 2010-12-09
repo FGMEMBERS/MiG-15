@@ -155,7 +155,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>PLT_RThigh</object-name>
-		<property>ifdm/jsbsim/fcs/rudder-cmd-norm-real</property>
+		<property>fdm/jsbsim/fcs/rudder-cmd-norm-real</property>
 		<factor>10</factor>
 		<center>
 			<x-m>2.059</x-m>

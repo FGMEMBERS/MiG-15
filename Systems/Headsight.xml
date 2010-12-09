@@ -722,6 +722,7 @@
 				systems/headsight/on gt 0.9
 				systems/headsight/up-pos gt 0.9
 				systems/headsight/gyro-pos gt 0.9
+				systems/headsight/serviceable eq 1
 			</test>
 			<output>systems/headsight/cross-lamp</output>
 		</switch>
@@ -732,6 +733,7 @@
 				systems/headsight/on gt 0.9
 				systems/headsight/up-pos gt 0.9
 				systems/headsight/gyro-pos lt 0.1
+				systems/headsight/serviceable eq 1
 			</test>
 			<output>systems/headsight/ring-lamp</output>
 		</switch>
@@ -741,6 +743,7 @@
 			<test logic="AND" value="systems/headsight/lamp-brightness">
 				systems/headsight/on gt 0.9
 				systems/headsight/up-pos lt 0.1
+				systems/headsight/serviceable eq 1
 			</test>
 			<output>systems/headsight/lamp</output>
 		</switch>

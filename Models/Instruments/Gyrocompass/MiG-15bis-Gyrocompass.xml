@@ -50,56 +50,67 @@
 
 -->
 
-  <animation>
-    <type>rotate</type>
-    <object-name>GC_MDisk</object-name>
-    <object-name>GC_Needle</object-name>
-    <property>instrumentation/gyrocompass/indicated-heading-deg</property>
-    <center>
-      <x-m>0</x-m>
-      <y-m>0</y-m>
-      <z-m>0</z-m>
-    </center>  
-    <axis>
-      <x>-1</x>
-      <y>0</y>
-      <z>0</z>
-    </axis>
-  </animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>GC_MDisk</object-name>
+		<object-name>GC_Needle</object-name>
+		<property>fdm/jsbsim/systems/gyrocompass/heading-indicated-deg</property>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
 
-  <animation>
-    <type>rotate</type>
-    <object-name>GC_CDisk</object-name>
-    <property>instrumentation/gyrocompass/offset</property>
-    <center>
-      <x-m>0</x-m>
-      <y-m>0</y-m>
-      <z-m>0</z-m>
-    </center>  
-    <axis>
-      <x>-1</x>
-      <y>0</y>
-      <z>0</z>
-    </axis>
-  </animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>GC_CDisk</object-name>
+		<property>fdm/jsbsim/systems/gyrocompass/offset-deg</property>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>0</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
 
-  <animation>
-    <type>rotate</type>
-    <object-name>GC_Vern</object-name>
-    <property>instrumentation/gyrocompass/offset</property>
-    <factor>10</factor>
-    <center>
-      <x-m>0</x-m>
-      <y-m>0</y-m>
-      <z-m>-0.053</z-m>
-    </center>  
-    <axis>
-      <x>-1</x>
-      <y>0</y>
-      <z>0</z>
-    </axis>
-  </animation>
+	<animation>
+		<type>rotate</type>
+		<object-name>GC_Vern</object-name>
+		<property>fdm/jsbsim/systems/gyrocompass/offset-deg</property>
+		<factor>10</factor>
+		<center>
+			<x-m>0</x-m>
+			<y-m>0</y-m>
+			<z-m>-0.053</z-m>
+		</center>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
 
+	<animation>
+		<type>translate</type>
+		<object-name>GC_Vern</object-name>
+		<property>fdm/jsbsim/systems/gyrocompass/button-pos</property>
+		<factor>0.004</factor>
+		<axis>
+			<x>-1</x>
+			<y>0</y>
+			<z>0</z>
+		</axis>
+	</animation>
 
 	<animation>
 		<type>pick</type>
@@ -110,7 +121,7 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/gyrocompass")</script>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/gyrocompass/button-input")</script>
 			</binding>
 		</action>
 		<action>
@@ -119,72 +130,67 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>nasal</command>
-				<script>MIG15BIS.switchswap("instrumentation/gyrocompass")</script>
+				<script>MIG15BIS.bitswap("fdm/jsbsim/systems/gyrocompass/button-input")</script>
 			</binding>
 		</action>
 	</animation>
 
-  <animation>
-  <type>pick</type>
-  <object-name>GC_Down</object-name>
-  <action>
-    <button>0</button>
-    <repeatable>true</repeatable>
-    <interval-sec>0.1</interval-sec>
-     <binding>
-       <command>property-adjust</command>
-       <property>instrumentation/gyrocompass/offset</property>
-       <step>-1</step>
-	     <min>0</min>
-    	 <max>360</max>
-			 <wrap>true</wrap>
-     </binding>
-  </action>
-  <action>
-    <button>1</button>
-    <repeatable>true</repeatable>
-    <interval-sec>0.1</interval-sec>
-     <binding>
-       <command>property-adjust</command>
-       <command>property-adjust</command>
-       <property>instrumentation/gyrocompass/offset</property>
-       <step>-5</step>
-	     <min>0</min>
-    	 <max>360</max>
-			 <wrap>true</wrap>
-     </binding>
-  </action>
-</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>GC_Down</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>true</repeatable>
+			<interval-sec>0.1</interval-sec>
+			<binding>
+				<command>property-adjust</command>
+				<property>fdm/jsbsim/systems/gyrocompass/offset-input-deg</property>
+				<step>-1</step>
+				<min>0</min>
+				<max>360</max>
+				<wrap>true</wrap>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<repeatable>true</repeatable>
+			<interval-sec>0.1</interval-sec>
+			<binding>
+				<command>property-adjust</command>
+				<property>fdm/jsbsim/systems/gyrocompass/offset-input-deg</property>
+				<step>-5</step>
+				<wrap>true</wrap>
+			</binding>
+		</action>
+	</animation>
 
-  <animation>
-  <type>pick</type>
-  <object-name>GC_Up</object-name>
-  <action>
-    <button>0</button>
-    <repeatable>true</repeatable>
-    <interval-sec>0.1</interval-sec>
-     <binding>
-       <command>property-adjust</command>
-       <property>instrumentation/gyrocompass/offset</property>
-       <step>1</step>
-	     <min>0</min>
-    	 <max>360</max>
-			 <wrap>true</wrap>
-     </binding>
-  </action>
-  <action>
-    <button>1</button>
-    <repeatable>true</repeatable>
-    <interval-sec>0.1</interval-sec>
-     <binding>
-       <command>property-adjust</command>
-       <property>instrumentation/gyrocompass/offset</property>
-       <step>5</step>
-	     <min>0</min>
-    	 <max>360</max>
-			 <wrap>true</wrap>
-     </binding>
-  </action>
-</animation>
+	<animation>
+		<type>pick</type>
+		<object-name>GC_Up</object-name>
+		<action>
+			<button>0</button>
+			<repeatable>true</repeatable>
+			<interval-sec>0.1</interval-sec>
+			<binding>
+				<command>property-adjust</command>
+				<property>fdm/jsbsim/systems/gyrocompass/offset-input-deg</property>
+				<step>1</step>
+				<wrap>true</wrap>
+			</binding>
+		</action>
+		<action>
+			<button>1</button>
+			<repeatable>true</repeatable>
+			<interval-sec>0.1</interval-sec>
+			<binding>
+				<command>property-adjust</command>
+				<property>fdm/jsbsim/systems/gyrocompass/offset-input-deg</property>
+				<step>5</step>
+				<min>0</min>
+				<max>360</max>
+				<wrap>true</wrap>
+			</binding>
+		</action>
+	</animation>
 
 </PropertyList> 

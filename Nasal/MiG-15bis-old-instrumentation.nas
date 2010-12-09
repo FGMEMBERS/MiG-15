@@ -2294,3 +2294,79 @@ speedbrakecontrol = func
 		setprop("instrumentation/speed-brake-control/light-pos-norm", brake_pos);
 		settimer(speedbrakecontrol, 0.1);
 	}
+
+#----------------------------------------------------------------------
+#Gyrocompass
+
+# helper 
+stop_gyrocompass = func 
+	{
+	}
+
+gyrocompass = func 
+	{
+		# check state
+		in_service = getprop("instrumentation/gyrocompass/serviceable" );
+		if (in_service == nil)
+		{
+			stop_gyrocompass();
+	 		return ( settimer(gyrocompass, 0.1) ); 
+		}
+		if( in_service != 1 )
+		{
+			stop_gyrocompass();
+		 	return ( settimer(gyrocompass, 0.1) ); 
+		}
+		#get gyrocompass values
+		gyrocomp_status = getprop("instrumentation/gyrocompass/status");
+		gyrocomp_com_status = getprop("instrumentation/gyrocompass/status-command");
+		head_deg=getprop("orientation/heading-deg");
+		head_magnetic=getprop("orientation/heading-magnetic-deg");
+		ind_head_deg = getprop("instrumentation/gyrocompass/indicated-heading-deg");
+		zero_head_deg = getprop("instrumentation/gyrocompass/zero-heading-deg");
+		offset=getprop("instrumentation/gyrocompass/offset");
+		switch_pos = getprop("instrumentation/gyrocompass/switch-pos-norm");
+		#get electrical power
+		power=getprop("systems/electrical-real/outputs/horizon/on");
+		if ((switch_pos==nil) or (head_deg==nil) or (head_magnetic==nil) or (ind_head_deg==nil) or (zero_head_deg==nil) or (offset==nil) or  (power==nil))
+		{
+			stop_gyrocompass();
+			setprop("instrumentation/gyrocompass/error", 1);
+	 		return ( settimer(gyrocompass, 0.1) ); 
+		}
+		switchmove("instrumentation/gyrocompass", "dummy/dummy");
+		if (power==1)
+		{
+			if (switch_pos==1)
+			{
+				#If button pressed device move zero to real zero in ~5 second
+				zero_head_deg=(zero_head_deg*4)/5;
+			}
+			else
+			{
+				#If maneur is too fast it slightly distort degree values
+				#But int not include degree flip from -180 to +180
+				if ((abs(head_deg-head_magnetic)>20.0) and (abs(head_deg-head_magnetic)<150))
+				{
+					zero_head_deg=zero_head_deg+0.00005*(head_deg-head_magnetic);
+				}
+			}
+			ind_head_deg=-zero_head_deg+head_deg+offset;
+			setprop("instrumentation/gyrocompass/indicated-heading-deg", ind_head_deg);
+			setprop("instrumentation/gyrocompass/zero-heading-deg", zero_head_deg);
+		}
+	  	settimer(gyrocompass, 0.1);
+	}
+
+init_gyrocompass = func 
+{
+	setprop("instrumentation/gyrocompass/indicated-heading-deg", 0);
+	setprop("instrumentation/gyrocompass/zero-heading-deg", 0);
+	switchinit("instrumentation/gyrocompass", 0, "dummy/dummy");
+	setprop("instrumentation/gyrocompass/offset", 0);
+	setprop("instrumentation/gyrocompass/serviceable", 1);
+}
+
+init_gyrocompass();
+
+gyrocompass();

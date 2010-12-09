@@ -1649,4 +1649,10 @@ Default unit for spring rate is LBF/FT and damping is LBF/FT/S
 	<system file="Boostercontrol">
 	</system>
 
+	<system file="Gyrocompass">
+	</system>
+
+	<system file="Altimeter">
+	</system>
+
 </fdm_config>

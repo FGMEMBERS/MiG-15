@@ -1,4 +1,4 @@
-fautotakeoff = func {
+autotakeoff = func {
 
 # The ato_start function is only executed once but the ato_mode and
 # ato_spddep functions will re-schedule themselves until
@@ -900,6 +900,163 @@ init_chron();
 
 # start cronometer process first time
 chron ();
+
+#---------------------------------------------------------------------
+#Right panel
+
+# set startup configuration
+init_rightpanel = func 
+{
+	setprop("fdm/jsbsim/systems/rightpanel/serviceable", 1);
+	setprop("fdm/jsbsim/systems/rightpanel/battery-input", 0);
+	setprop("fdm/jsbsim/systems/rightpanel/generator-input", 0);
+	setprop("fdm/jsbsim/systems/rightpanel/headlight-input", 0);
+	setprop("fdm/jsbsim/systems/rightpanel/trimmer-input", 0);
+	setprop("fdm/jsbsim/systems/rightpanel/horizon-input", 0);
+	setprop("fdm/jsbsim/systems/rightpanel/radio-input", 0);
+	setprop("fdm/jsbsim/systems/rightpanel/radioaltimeter-input", 0);
+	setprop("fdm/jsbsim/systems/rightpanel/radiocompass-input", 0);
+	setprop("fdm/jsbsim/systems/rightpanel/drop-tank-input", 0);
+	setprop("fdm/jsbsim/systems/rightpanel/bomb-input", 0);
+	setprop("fdm/jsbsim/systems/rightpanel/photo-input", 0);
+	setprop("fdm/jsbsim/systems/rightpanel/photo-machinegun-input", 0);
+	setprop("fdm/jsbsim/systems/rightpanel/headsight-input", 0);
+	setprop("fdm/jsbsim/systems/rightpanel/machinegun-input", 0);
+}
+
+init_rightpanel();
+
+#---------------------------------------------------------------------
+#Left panel
+
+# set startup configuration
+init_leftpanel = func 
+{
+	setprop("fdm/jsbsim/systems/leftpanel/serviceable", 1);
+	setprop("fdm/jsbsim/systems/leftpanel/pump-input", 0);
+	setprop("fdm/jsbsim/systems/leftpanel/isolation-valve-input", 0);
+	setprop("fdm/jsbsim/systems/leftpanel/ignition-type-input", 0);
+	setprop("fdm/jsbsim/systems/leftpanel/ignition-input", 0);
+	setprop("fdm/jsbsim/systems/leftpanel/engine-control-input", 0);
+	setprop("fdm/jsbsim/systems/leftpanel/third-tank-pump-input", 0);
+}
+
+init_leftpanel();
+
+#---------------------------------------------------------------------
+#Stop control
+
+# set startup configuration
+init_stopcontrol = func 
+{
+	setprop("fdm/jsbsim/systems/stopcontrol/serviceable", 1);
+	setprop("fdm/jsbsim/systems/stopcontrol/lever-input", 1);
+}
+
+init_stopcontrol();
+
+#---------------------------------------------------------------------
+#Fuel control
+
+# set startup configuration
+init_fuelcontrol = func 
+{
+	setprop("fdm/jsbsim/systems/fuelcontrol/serviceable", 1);
+	setprop("fdm/jsbsim/systems/fuelcontrol/control-input", 1);
+}
+
+init_fuelcontrol();
+
+#---------------------------------------------------------------------
+#Headsight
+
+# set startup configuration
+init_headsight = func 
+{
+	setprop("fdm/jsbsim/systems/headsight/serviceable", 1);
+	setprop("fdm/jsbsim/systems/headsight/on", 0);
+	setprop("fdm/jsbsim/systems/headsight/up-command", 1);
+	setprop("fdm/jsbsim/systems/headsight/gyro-command", 1);
+	setprop("fdm/jsbsim/systems/headsight/frame-command", 0);
+	setprop("fdm/jsbsim/systems/headsight/brightness", 1);
+	setprop("fdm/jsbsim/systems/headsight/target-size", 15);
+	setprop("fdm/jsbsim/systems/headsight/target-distance", 400);
+	setprop("fdm/jsbsim/systems/headsight/from-eye-to-sight", 0.4);
+}
+
+init_headsight();
+
+#---------------------------------------------------------------------
+#Gascontrol
+
+# set startup configuration
+init_gascontrol = func 
+{
+	setprop("fdm/jsbsim/systems/gascontrol/serviceable", 0);
+	setprop("fdm/jsbsim/systems/gascontrol/lock-command", 1);
+	setprop("fdm/jsbsim/systems/gascontrol/lock-pos", 1);
+	setprop("fdm/jsbsim/systems/gascontrol/fix-command", 0);
+	setprop("fdm/jsbsim/systems/gascontrol/fix-pos", 0);
+	setprop("fdm/jsbsim/systems/gascontrol/lever-command", 0);
+	setprop("fdm/jsbsim/systems/gascontrol/lever-pos", 0);
+	setprop("fdm/jsbsim/systems/gascontrol/shift-oscillator-command", 0);
+	setprop("fdm/jsbsim/systems/gascontrol/shift-oscillator-pos", 0);
+	setprop("fdm/jsbsim/systems/gascontrol/serviceable", 1);
+}
+
+init_gascontrol();
+
+#---------------------------------------------------------------------
+#Flapscontrol
+
+# set startup configuration
+init_flapscontrol = func 
+{
+	setprop("fdm/jsbsim/systems/flapscontrol/serviceable", 0);
+	setprop("fdm/jsbsim/systems/flapscontrol/lever-command", 0);
+	setprop("fdm/jsbsim/systems/flapscontrol/lever-pos", 0);
+	setprop("fdm/jsbsim/systems/flapscontrol/fix-pos", 0);
+	setprop("fdm/jsbsim/systems/flapscontrol/serviceable", 1);
+}
+
+init_flapscontrol();
+
+#--------------------------------------------------------------------
+# Speed brake control
+
+# set startup configuration
+init_speedbrakecontrol = func 
+{
+	setprop("fdm/jsbsim/systems/speedbrakescontrol/serviceable", 1);
+	setprop("fdm/jsbsim/systems/speedbrakescontrol/control-input", 0);
+	setprop("fdm/jsbsim/systems/speedbrakescontrol/control-command", 0);
+	setprop("fdm/jsbsim/systems/speedbrakescontrol/control-pos", 0);
+	setprop("fdm/jsbsim/systems/speedbrakescontrol/control-switch", 0);
+	setprop("fdm/jsbsim/systems/speedbrakescontrol/light-pos", 0);
+}
+
+init_speedbrakecontrol();
+
+#---------------------------------------------------------------------
+#Gear control
+
+# set startup configuration
+init_gearcontrol = func 
+{
+	setprop("fdm/jsbsim/systems/gearcontrol/serviceable", 0);
+	setprop("fdm/jsbsim/systems/gearcontrol/control-input", 1);
+	setprop("fdm/jsbsim/systems/gearcontrol/control-command", 1);
+	setprop("fdm/jsbsim/systems/gearcontrol/safer-command", 1);
+	setprop("fdm/jsbsim/systems/gearcontrol/safer-pos", 1);
+	setprop("fdm/jsbsim/systems/gearcontrol/lever-pos", 0);
+	setprop("fdm/jsbsim/systems/gearcontrol/gear-one-end-move", 0);
+	setprop("fdm/jsbsim/systems/gearcontrol/gear-two-end-move", 0);
+	setprop("fdm/jsbsim/systems/gearcontrol/gear-three-end-move", 0);
+	setprop("fdm/jsbsim/systems/gearcontrol/gear-end-move", 0);
+	setprop("fdm/jsbsim/systems/gearcontrol/serviceable", 1);
+}
+
+init_gearcontrol();
 
 #--------------------------------------------------------------------
 # Cabin manometer
@@ -2128,6 +2285,17 @@ init_fuelometer();
 fuelometer ();
 
 #--------------------------------------------------------------------
+# Altimeter
+
+# set startup configuration
+init_altimeter = func 
+{
+	setprop("fdm/jsbsim/systems/altimeter/serviceable", 1);
+}
+
+init_altimeter();
+
+#--------------------------------------------------------------------
 # Altimeter lamp
 
 # helper 
@@ -2318,78 +2486,37 @@ oxypressmeter ();
 #----------------------------------------------------------------------
 #Gyrocompass
 
-# helper 
-stop_gyrocompass = func 
-	{
-	}
-
-gyrocompass = func 
-	{
-		# check state
-		in_service = getprop("instrumentation/gyrocompass/serviceable" );
-		if (in_service == nil)
-		{
-			stop_gyrocompass();
-	 		return ( settimer(gyrocompass, 0.1) ); 
-		}
-		if( in_service != 1 )
-		{
-			stop_gyrocompass();
-		 	return ( settimer(gyrocompass, 0.1) ); 
-		}
-		#get gyrocompass values
-		gyrocomp_status = getprop("instrumentation/gyrocompass/status");
-		gyrocomp_com_status = getprop("instrumentation/gyrocompass/status-command");
-		head_deg=getprop("orientation/heading-deg");
-		head_magnetic=getprop("orientation/heading-magnetic-deg");
-		ind_head_deg = getprop("instrumentation/gyrocompass/indicated-heading-deg");
-		zero_head_deg = getprop("instrumentation/gyrocompass/zero-heading-deg");
-		offset=getprop("instrumentation/gyrocompass/offset");
-		switch_pos = getprop("instrumentation/gyrocompass/switch-pos-norm");
-		#get electrical power
-		power=getprop("systems/electrical-real/outputs/horizon/on");
-		if ((switch_pos==nil) or (head_deg==nil) or (head_magnetic==nil) or (ind_head_deg==nil) or (zero_head_deg==nil) or (offset==nil) or  (power==nil))
-		{
-			stop_gyrocompass();
-			setprop("instrumentation/gyrocompass/error", 1);
-	 		return ( settimer(gyrocompass, 0.1) ); 
-		}
-		switchmove("instrumentation/gyrocompass", "dummy/dummy");
-		if (power==1)
-		{
-			if (switch_pos==1)
-			{
-				#If button pressed device move zero to real zero in ~5 second
-				zero_head_deg=(zero_head_deg*4)/5;
-			}
-			else
-			{
-				#If maneur is too fast it slightly distort degree values
-				#But int not include degree flip from -180 to +180
-				if ((abs(head_deg-head_magnetic)>20.0) and (abs(head_deg-head_magnetic)<150))
-				{
-					zero_head_deg=zero_head_deg+0.00005*(head_deg-head_magnetic);
-				}
-			}
-			ind_head_deg=-zero_head_deg+head_deg+offset;
-			setprop("instrumentation/gyrocompass/indicated-heading-deg", ind_head_deg);
-			setprop("instrumentation/gyrocompass/zero-heading-deg", zero_head_deg);
-		}
-	  	settimer(gyrocompass, 0.1);
-	}
-
 init_gyrocompass = func 
 {
-	setprop("instrumentation/gyrocompass/indicated-heading-deg", 0);
-	setprop("instrumentation/gyrocompass/zero-heading-deg", 0);
-	switchinit("instrumentation/gyrocompass", 0, "dummy/dummy");
-	setprop("instrumentation/gyrocompass/offset", 0);
-	setprop("instrumentation/gyrocompass/serviceable", 1);
+	setprop("fdm/jsbsim/systems/gyrocompass/serviceable", 1);
+	setprop("fdm/jsbsim/systems/gyrocompass/on", 0);
+	setprop("fdm/jsbsim/systems/gyrocompass/button-input", 0);
+	setprop("fdm/jsbsim/systems/gyrocompass/button-command", 0);
+	setprop("fdm/jsbsim/systems/gyrocompass/button-pos", 0);
+	setprop("fdm/jsbsim/systems/gyrocompass/button-switch", 0);
+	setprop("fdm/jsbsim/systems/gyrocompass/heading-great-drift", 0);
+	setprop("fdm/jsbsim/systems/gyrocompass/heading-zero-return-rad", 0);
+	setprop("fdm/jsbsim/systems/gyrocompass/heading-zero-drift-rad", 0);
+	setprop("fdm/jsbsim/systems/gyrocompass/heading-zero-stored-rad", 0);
+	setprop("fdm/jsbsim/systems/gyrocompass/heading-zero-input-rad", 0);
+	var heading=getprop("fdm/jsbsim/systems/attitude/heading-true-rad");
+	if (heading!=nil)
+	{
+		setprop("fdm/jsbsim/systems/gyrocompass/heading-zero-rad", -heading);
+	}
+	else
+	{
+		setprop("fdm/jsbsim/systems/gyrocompass/heading-zero-rad", 0);
+	}
+	setprop("fdm/jsbsim/systems/gyrocompass/offset-deg", 0);
+	setprop("fdm/jsbsim/systems/gyrocompass/offset-rad", 0);
+	setprop("fdm/jsbsim/systems/gyrocompass/heading-resulted-rad", 0);
+	setprop("fdm/jsbsim/systems/gyrocompass/heading-stored-rad", 0);
+	setprop("fdm/jsbsim/systems/gyrocompass/heading-indicated-rad", 0);
+	setprop("fdm/jsbsim/systems/gyrocompass/heading-indicated-deg", 0);
 }
 
 init_gyrocompass();
-
-gyrocompass();
 #--------------------------------------------------------------------
 # Flaps breaks process
 
@@ -2568,22 +2695,6 @@ init_flapsprocess();
 
 # start flaps control process first time
 flapsprocess ();
-
-#--------------------------------------------------------------------
-# Speed brake control
-
-# set startup configuration
-init_speedbrakecontrol = func 
-{
-	setprop("fdm/jsbsim/systems/speedbrakescontrol/serviceable", 1);
-	setprop("fdm/jsbsim/systems/speedbrakescontrol/control-input", 0);
-	setprop("fdm/jsbsim/systems/speedbrakescontrol/control-command", 0);
-	setprop("fdm/jsbsim/systems/speedbrakescontrol/control-pos", 0);
-	setprop("fdm/jsbsim/systems/speedbrakescontrol/control-switch", 0);
-	setprop("fdm/jsbsim/systems/speedbrakescontrol/light-pos", 0);
-}
-
-init_speedbrakecontrol();
 
 #--------------------------------------------------------------------
 # Ignition button
@@ -3449,6 +3560,9 @@ realelectric=func
 
 		var engine_running=getprop("engines/engine/running");
 
+		var crashed=getprop("fdm/jsbsim/simulation/crashed");
+		var exploded=getprop("fdm/jsbsim/simulation/exploded");
+
 		if (
 			(set_battery==nil)
 			or (set_generator==nil)
@@ -3479,11 +3593,19 @@ realelectric=func
 			or (battery_load_time==nil)
 			or (battery_max_load_time==nil)
 			or (engine_running==nil)
+			or (crashed==nil)
+			or (exploded==nil)
 
 		)
 		{
 			stop_realelectric();
 			return ( settimer(realelectric, 0.1) ); 
+		}
+
+ 		if ((crashed!=0) or (exploded!=0))
+		{
+			set_battery=0;
+			set_generator=0;
 		}
 
 		if (battery_load_time>battery_max_load_time)
@@ -3627,6 +3749,7 @@ realelectric=func
 			setprop("fdm/jsbsim/systems/airspeedometer/on", 1);
 			setprop("fdm/jsbsim/systems/vertspeedometer/on", 1);
 			setprop("fdm/jsbsim/systems/arthorizon/on", set_horizon);
+			setprop("fdm/jsbsim/systems/gyrocompass/on", set_horizon);
 			setprop("fdm/jsbsim/systems/headsight/on", set_headsight);
 			setprop("fdm/jsbsim/systems/tachometer/on", 1);
 			setprop("fdm/jsbsim/systems/radioaltimeter/on", set_radioaltimeter);
@@ -3672,6 +3795,7 @@ realelectric=func
 			setprop("fdm/jsbsim/systems/airspeedometer/on", 0);
 			setprop("fdm/jsbsim/systems/vertspeedometer/on", 0);
 			setprop("fdm/jsbsim/systems/arthorizon/on", 0);
+			setprop("fdm/jsbsim/systems/gyrocompass/on", 0);
 			setprop("fdm/jsbsim/systems/headsight/on", 0);
 			setprop("fdm/jsbsim/systems/tachometer/on", 0);
 			setprop("fdm/jsbsim/systems/radioaltimeter/on", 0);
@@ -5442,8 +5566,6 @@ aircraft_lock = func
 		setprop("instrumentation/altimeter-lamp/serviceable", 0);
 		setprop("instrumentation/gear-lamp/serviceable", 0);
 		setprop("instrumentation/oxygen-pressure-meter/serviceable", 0);
-		setprop("instrumentation/artifical-horizon/serviceable", 0);
-		setprop("instrumentation/gyrocompass/serviceable", 0);
 		setprop("instrumentation/brake-pressure-meter/serviceable", 0);
 		setprop("instrumentation/ignition-lamp/serviceable", 0);
 		setprop("instrumentation/gastermometer/serviceable", 0);
@@ -5460,7 +5582,7 @@ aircraft_lock = func
 		setprop("fdm/jsbsim/systems/vertspeedometer/serviceable", 0);
 		setprop("fdm/jsbsim/systems/arthorizon/serviceable", 0);
 		setprop("fdm/jsbsim/systems/tachometer/serviceable", 0);
-		setprop("fdm/jsbsim/systems/headsignt/serviceable", 0);
+		setprop("fdm/jsbsim/systems/headsight/serviceable", 0);
 		setprop("fdm/jsbsim/systems/gascontrol/serviceable", 0);
 		setprop("fdm/jsbsim/systems/flapscontrol/serviceable", 0);
 		setprop("fdm/jsbsim/systems/rightpanel/serviceable", 0);
@@ -5473,7 +5595,9 @@ aircraft_lock = func
 		setprop("fdm/jsbsim/systems/pedals/serviceable", 0);
 		setprop("fdm/jsbsim/systems/gearvalve/serviceable", 0);
 		setprop("fdm/jsbsim/systems/flapsvalve/serviceable", 0);
-		setprop("fdm/jsbsim/boostercontrol/serviceable", 0);
+		setprop("fdm/jsbsim/systems/boostercontrol/serviceable", 0);
+		setprop("fdm/jsbsim/systems/gyrocompass/serviceable", 0);
+		setprop("fdm/jsbsim/systems/altimeter/serviceable", 0);
 
 		#Lock controls
 		setprop("instrumentation/gear-control/serviceable", 0);
@@ -5486,9 +5610,7 @@ aircraft_lock = func
 		setprop("instrumentation/photo/serviceable", 0);
 		setprop("instrumentation/drop-tank/serviceable", 0);
 		setprop("instrumentation/pedals/serviceable", 0);
-		#Switch off power
-		setprop("fdm/jsbsim/systems/rightpanel/battery-input", 0);
-		setprop("fdm/jsbsim/systems/rightpanel/generator-input", 0);
+
 		#Switch off engine
 		setprop("controls/engines/engine/cutoff", 1);
 		setprop("engines/engine/cutoff-reason", "aircraft break");
@@ -6028,8 +6150,6 @@ aircraft_unlock=func
 		setprop("instrumentation/altimeter-lamp/serviceable", 1);
 		setprop("instrumentation/gear-lamp/serviceable", 1);
 		setprop("instrumentation/oxygen-pressure-meter/serviceable", 1);
-		setprop("instrumentation/artifical-horizon/serviceable", 1);
-		setprop("instrumentation/gyrocompass/serviceable", 1);
 		setprop("instrumentation/brake-pressure-meter/serviceable", 1);
 		setprop("instrumentation/ignition-lamp/serviceable", 1);
 		setprop("instrumentation/gastermometer/serviceable", 1);
@@ -6046,7 +6166,7 @@ aircraft_unlock=func
 		setprop("fdm/jsbsim/systems/vertspeedometer/serviceable", 1);
 		setprop("fdm/jsbsim/systems/arthorizon/serviceable", 1);
 		setprop("fdm/jsbsim/systems/tachometer/serviceable", 1);
-		setprop("fdm/jsbsim/systems/headsignt/serviceable", 1);
+		setprop("fdm/jsbsim/systems/headsight/serviceable", 1);
 		setprop("fdm/jsbsim/systems/gascontrol/serviceable", 1);
 		setprop("fdm/jsbsim/systems/flapscontrol/serviceable", 1);
 		setprop("fdm/jsbsim/systems/rightpanel/serviceable", 1);
@@ -6055,7 +6175,9 @@ aircraft_unlock=func
 		setprop("fdm/jsbsim/systems/ignitionbuton/serviceable", 1);
 		setprop("fdm/jsbsim/systems/speedbrakescontrol/serviceable", 1);
 		setprop("fdm/jsbsim/systems/radioaltimeter/serviceable", 1);
-		setprop("fdm/jsbsim/boostercontrol/serviceable", 1);
+		setprop("fdm/jsbsim/systems/boostercontrol/serviceable", 1);
+		setprop("fdm/jsbsim/systems/gyrocompass/serviceable", 1);
+		setprop("fdm/jsbsim/systems/altimeter/serviceable", 1);
 
 		#Repair controls
 		setprop("instrumentation/gear-control/serviceable", 1);
@@ -6158,16 +6280,23 @@ aircraft_init=func
 		init_photo();
 		init_droptank();
 		init_aircraftbreakprocess();
+		init_canopyprocess();
 
 		#Init control instrumentattion
+		init_rightpanel();
+		init_leftpanel();
+		init_stopcontrol();
+		init_fuelcontrol();
+		init_headsight();
+		init_gascontrol();
+		init_flapscontrol();
 		init_speedbrakecontrol();
+		init_gearcontrol();
 		init_ignitionbutton();
 		init_bustercontrol();
-
 		init_gearvalve();
 		init_flapsvalve();
 		init_trimmer();
-		init_canopyprocess();
 	}
 
 aircraft_start_refuel=func

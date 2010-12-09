@@ -985,7 +985,6 @@ MiG-15bis simulation config.
 				</rightpanel>
 				<stopcontrol>
 					<serviceable type="bool">1</serviceable>
-
 					<lever-input type="bool">1</lever-input>
 					<lever-command type="bool">1</lever-command>
 					<lever-pos type="float">1</lever-pos>
@@ -1292,6 +1291,41 @@ MiG-15bis simulation config.
 					<pressure-indicated type="float">0</pressure-indicated>
 					<click-command type="bool">0</click-command>
 				</boostercontrol>
+				<gyrocompass>
+					<serviceable type="bool">1</serviceable>
+					<on type="bool">0</on>
+					<button-input type="bool">0</button-input>
+					<button-command type="bool">0</button-command>
+					<button-pos type="float">0.0</button-pos>
+					<button-switch type="bool">0</button-switch>
+					<heading-great-drift type="bool">0</heading-great-drift>
+					<heading-zero-return-rad type="float">0</heading-zero-return-rad>
+					<heading-zero-drift-rad type="float">0</heading-zero-drift-rad>
+					<heading-zero-stored-rad type="float">0</heading-zero-stored-rad>
+					<heading-zero-input-rad type="float">0</heading-zero-input-rad>
+					<heading-zero-rad type="float">0</heading-zero-rad>
+					<offset-input-deg type="float">0</offset-input-deg>
+					<offset-deg type="float">0</offset-deg>
+					<offset-stored-deg type="float">0</offset-stored-deg>
+					<heading-resulted-rad type="float">0</heading-resulted-rad>
+					<heading-stored-rad type="float">0</heading-stored-rad>
+					<heading-indicated-rad type="float">0</heading-indicated-rad>
+					<heading-offsetted-rad type="float">0</heading-offsetted-rad>
+					<heading-indicated-deg type="float">0</heading-indicated-deg>
+				</gyrocompass>
+				<altimeter>
+					<serviceable type="bool">1</serviceable>
+					<offset-torr type="float">0</offset-torr>
+					<offset-stored-torr type="float">0</offset-stored-torr>
+					<offset-ft type="float">0</offset-ft>
+					<altitude-drift-ft type="float">0</altitude-drift-ft>
+					<altitude-to-stored-ft type="float">0</altitude-to-stored-ft>
+					<altitude-input-ft type="float">0</altitude-input-ft>
+					<altitude-ft type="float">0</altitude-ft>
+					<altitude-stored-ft type="float">0</altitude-stored-ft>
+					<altitude-resulted-ft type="float">0</altitude-resulted-ft>
+					<altitude-indicated-ft type="float">0</altitude-indicated-ft>
+				</altimeter>
 			</systems>
 		</jsbsim>
 	</fdm>

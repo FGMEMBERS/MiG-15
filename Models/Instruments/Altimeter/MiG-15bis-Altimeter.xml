@@ -55,7 +55,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>Alt_NX10</object-name>
-		<property>fdm/jsbsim/position/h-sl-ft</property>
+		<property>fdm/jsbsim/systems/altimeter/altitude-indicated-ft</property>
 		<factor>0.11</factor>
 		<center>
 			<x-m>0</x-m>
@@ -72,7 +72,7 @@
 	<animation>
 		<type>rotate</type>
 		<object-name>Alt_NX100</object-name>
-		<property>fdm/jsbsim/position/h-sl-ft</property>
+		<property>fdm/jsbsim/systems/altimeter/altitude-indicated-ft</property>
 		<factor>0.011</factor>
 		<center>
 			<x-m>0</x-m>
@@ -86,15 +86,14 @@
 		</axis>
 	</animation>
 
-
 	<animation>
 		<type>rotate</type>
 		<object-name>Alt_Corplate</object-name>
-		<property>instrumentation/altimeter/setting-inhg</property>
+		<property>fdm/jsbsim/systems/altimeter/offset-torr</property>
 		<interpolation>
-			<entry><ind>27.55</ind><dep>-180</dep></entry>
-			<entry><ind>32.28</ind><dep>180</dep></entry>
-			<entry><ind>29.921</ind><dep>0</dep></entry>
+			<entry><ind>-60</ind><dep>-180</dep></entry>
+			<entry><ind>0</ind><dep>0</dep></entry>
+			<entry><ind>60</ind><dep>180</dep></entry>
 		</interpolation>
 		<center>
 			<x-m>0</x-m>
@@ -117,10 +116,10 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>instrumentation/altimeter/setting-inhg</property>
-				<step>-0.1</step>
-				<min>27.6</min>
-				<max>32.2</max>
+				<property>fdm/jsbsim/systems/altimeter/offset-torr</property>
+				<step>-1</step>
+				<min>-60.0</min>
+				<max>60.0</max>
 				<wrap>false</wrap>
 			</binding>
 		</action>
@@ -130,36 +129,10 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>instrumentation/altimeter/setting-inhg</property>
-				<step>-1</step>
-				<min>27.6</min>
-				<max>32.2</max>
-				<wrap>false</wrap>
-			</binding>
-		</action>
-		<action>
-			<button>3</button>
-			<repeatable>true</repeatable>
-			<interval-sec>0.1</interval-sec>
-			<binding>
-				<command>property-adjust</command>
-				<property>instrumentation/altimeter/setting-inhg</property>
-				<step>-0.2</step>
-				<min>27.6</min>
-				<max>32.2</max>
-				<wrap>false</wrap>
-			</binding>
-		</action>
-		<action>
-			<button>4</button>
-			<repeatable>true</repeatable>
-			<interval-sec>0.1</interval-sec>
-			<binding>
-				<command>property-adjust</command>
-				<property>instrumentation/altimeter/setting-inhg</property>
-				<step>-0.5</step>
-				<min>27.6</min>
-				<max>32.2</max>
+				<property>fdm/jsbsim/systems/altimeter/offset-torr</property>
+				<step>-10</step>
+				<min>-60.0</min>
+				<max>60</max>
 				<wrap>false</wrap>
 			</binding>
 		</action>
@@ -174,10 +147,10 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>instrumentation/altimeter/setting-inhg</property>
-				<step>0.1</step>
-				<min>27.6</min>
-				<max>32.2</max>
+				<property>fdm/jsbsim/systems/altimeter/offset-torr</property>
+				<step>1</step>
+				<min>-60.0</min>
+				<max>60.0</max>
 				<wrap>false</wrap>
 			</binding>
 		</action>
@@ -187,41 +160,12 @@
 			<interval-sec>0.1</interval-sec>
 			<binding>
 				<command>property-adjust</command>
-				<property>instrumentation/altimeter/setting-inhg</property>
+				<property>fdm/jsbsim/systems/altimeter/offset-torr</property>
 				<step>1</step>
-				<min>27.6</min>
-				<max>32.2</max>
-				<wrap>false</wrap>
-			</binding>
-		</action>
-		<action>
-			<button>3</button>
-			<repeatable>true</repeatable>
-			<interval-sec>0.1</interval-sec>
-			<binding>
-				<command>property-adjust</command>
-				<property>instrumentation/altimeter/setting-inhg</property>
-				<step>0.2</step>
-				<min>27.6</min>
-				<max>32.2</max>
-				<wrap>false</wrap>
-			</binding>
-		</action>
-		<action>
-			<button>4</button>
-			<repeatable>true</repeatable>
-			<interval-sec>0.1</interval-sec>
-			<binding>
-				<command>property-adjust</command>
-				<property>instrumentation/altimeter/setting-inhg</property>
-				<step>0.5</step>
-				<min>27.6</min>
-				<max>32.2</max>
+				<min>-60.0</min>
+				<max>60</max>
 				<wrap>false</wrap>
 			</binding>
 		</action>
 	</animation>
-
-
-
 </PropertyList> 

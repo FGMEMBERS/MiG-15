@@ -3,10 +3,10 @@
   <ubody unit="FT/SEC"> 0 </ubody> 
   <vbody unit="FT/SEC"> 0 </vbody> 
   <wbody unit="FT/SEC"> 0 </wbody> 
-  <phi unit="DEG"> -1.21646e-16 </phi>
-  <theta unit="DEG"> 0.0595478 </theta>
-  <psi unit="DEG"> 5.19934 </psi>
-  <longitude unit="DEG"> -122.357 </longitude>
-  <latitude unit="DEG"> 37.4276 </latitude>
-  <altitude unit="FT"> 3.44322 </altitude>
+  <phi unit="DEG"> -9.03535e-17 </phi>
+  <theta unit="DEG"> 0.0572291 </theta>
+  <psi unit="DEG"> 4.27449 </psi>
+  <longitude unit="DEG"> 39.9584 </longitude>
+  <latitude unit="DEG"> 43.2584 </latitude>
+  <altitude unit="FT"> 68.5213 </altitude>
 </initialize>
