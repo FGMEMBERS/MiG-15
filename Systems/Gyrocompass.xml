@@ -131,7 +131,7 @@
 				</product>
 				<product>
 					<property>velocities/r-rad_sec</property>
-					<value>-1.0</value>
+					<value>-2.0</value>
 				</product>
 			</sum>
 		</function>

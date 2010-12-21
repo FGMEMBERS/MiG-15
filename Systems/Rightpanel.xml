@@ -112,7 +112,7 @@
 			</setting>
 			<setting>
 				<position>1</position>
-				<time>0.2</time>
+				<time>0.1</time>
 			</setting>
 			</traverse>
 			<output>systems/rightpanel/battery-pos</output>
@@ -156,7 +156,7 @@
 			</setting>
 			<setting>
 				<position>1</position>
-				<time>0.2</time>
+				<time>0.1</time>
 			</setting>
 			</traverse>
 			<output>systems/rightpanel/generator-pos</output>
@@ -200,7 +200,7 @@
 			</setting>
 			<setting>
 				<position>1</position>
-				<time>0.2</time>
+				<time>0.1</time>
 			</setting>
 			</traverse>
 			<output>systems/rightpanel/headlight-pos</output>
@@ -244,7 +244,7 @@
 			</setting>
 			<setting>
 				<position>1</position>
-				<time>0.2</time>
+				<time>0.1</time>
 			</setting>
 			</traverse>
 			<output>systems/rightpanel/trimmer-pos</output>
@@ -288,7 +288,7 @@
 			</setting>
 			<setting>
 				<position>1</position>
-				<time>0.2</time>
+				<time>0.1</time>
 			</setting>
 			</traverse>
 			<output>systems/rightpanel/horizon-pos</output>
@@ -332,7 +332,7 @@
 			</setting>
 			<setting>
 				<position>1</position>
-				<time>0.2</time>
+				<time>0.1</time>
 			</setting>
 			</traverse>
 			<output>systems/rightpanel/radio-pos</output>
@@ -377,7 +377,7 @@
 			</setting>
 			<setting>
 				<position>1</position>
-				<time>0.2</time>
+				<time>0.1</time>
 			</setting>
 			</traverse>
 			<output>systems/rightpanel/radioaltimeter-pos</output>
@@ -421,7 +421,7 @@
 			</setting>
 			<setting>
 				<position>1</position>
-				<time>0.2</time>
+				<time>0.1</time>
 			</setting>
 			</traverse>
 			<output>systems/rightpanel/radiocompass-pos</output>
@@ -465,7 +465,7 @@
 			</setting>
 			<setting>
 				<position>1</position>
-				<time>0.2</time>
+				<time>0.1</time>
 			</setting>
 			</traverse>
 			<output>systems/rightpanel/drop-tank-pos</output>
@@ -509,7 +509,7 @@
 			</setting>
 			<setting>
 				<position>1</position>
-				<time>0.2</time>
+				<time>0.1</time>
 			</setting>
 			</traverse>
 			<output>systems/rightpanel/bomb-pos</output>
@@ -553,7 +553,7 @@
 			</setting>
 			<setting>
 				<position>1</position>
-				<time>0.2</time>
+				<time>0.1</time>
 			</setting>
 			</traverse>
 			<output>systems/rightpanel/photo-pos</output>
@@ -597,7 +597,7 @@
 			</setting>
 			<setting>
 				<position>1</position>
-				<time>0.2</time>
+				<time>0.1</time>
 			</setting>
 			</traverse>
 			<output>systems/rightpanel/photo-machinegun-pos</output>
@@ -641,7 +641,7 @@
 			</setting>
 			<setting>
 				<position>1</position>
-				<time>0.2</time>
+				<time>0.1</time>
 			</setting>
 			</traverse>
 			<output>systems/rightpanel/headsight-pos</output>
@@ -685,7 +685,7 @@
 			</setting>
 			<setting>
 				<position>1</position>
-				<time>0.2</time>
+				<time>0.1</time>
 			</setting>
 			</traverse>
 			<output>systems/rightpanel/machinegun-pos</output>
