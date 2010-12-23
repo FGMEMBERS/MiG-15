@@ -1283,9 +1283,9 @@
 			rplayer.getNode("fdm/jsbsim/fcs/flap-tored", 1).
 				alias(rplayer.getNode("sim/multiplay/generic/float[7]"));
 
-			rplayer.getNode("instrumentation/canopy/switch-pos-inter", 1).
+			rplayer.getNode("fdm/jsbsim/systems/canopy/pos", 1).
 				alias(rplayer.getNode("sim/multiplay/generic/float[8]"));
-			rplayer.getNode("instrumentation/canopy/tored", 1).
+			rplayer.getNode("fdm/jsbsim/systems/canopy/tored", 1).
 				alias(rplayer.getNode("sim/multiplay/generic/float[9]"));
 
 			rplayer.getNode("fdm/jsbsim/simulation/exploded", 1).
@@ -1295,6 +1295,8 @@
 
 			rplayer.getNode("instrumentation/drop-tank/dropped", 1).
 				alias(rplayer.getNode("sim/multiplay/generic/float[12]"));
+			rplayer.getNode("instrumentation/drop-tank/one", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[13]"));
 
 		</load>
 		<unload>

@@ -149,7 +149,7 @@ MiG-15bis simulation config.
 	<author>Lee Elliott, Victor Slavutinskiy, with great help from Yurik V. Nikiforoff</author>
 	<aero>MiG-15bis</aero>
 	<fuel-fraction>1.0</fuel-fraction>
-	<description>MiG-15bis (JDBSim FDM)</description>
+	<description>MiG-15bis (JSBSim FDM)</description>
 	<virtual-cockpit archive="y">true</virtual-cockpit>
 
 	<chase-distance-m type="double" archive="y">-20.0</chase-distance-m>
@@ -386,13 +386,14 @@ MiG-15bis simulation config.
 			<float n="6" alias="/fdm/jsbsim/fcs/flap-pos-norm"/>
 			<float n="7" alias="/fdm/jsbsim/fcs/flap-tored"/>
 
-			<float n="8" alias="/instrumentation/canopy/switch-pos-inter"/>
-			<float n="9" alias="/instrumentation/canopy/tored"/>
+			<float n="8" alias="/fdm/jsbsim/systems/canopy/pos"/>
+			<float n="9" alias="/fdm/jsbsim/systems/canopy/tored"/>
 
 			<float n="10" alias="/fdm/jsbsim/simulation/exploded"/>
 			<float n="11" alias="/velocities/airspeed-kt"/>
 
 			<float n="12" alias="/instrumentation/drop-tank/dropped"/>
+			<float n="12" alias="/instrumentation/drop-tank/one"/>
 
 		</generic>
 	</multiplay>
@@ -1363,7 +1364,13 @@ MiG-15bis simulation config.
 	</instrumentation>
 -->
 
+<!-- Nasal initialisation -->
+
 	<nasal>
+		<Radiocompass>
+			<file>Aircraft/MiG-15/Nasal/Radiocompass.nas</file>
+			<script>start_radiocompass();</script>
+		</Radiocompass>
 		<MIG15BIS>
 			<file>Aircraft/MiG-15/Nasal/MiG-15bis.nas</file>
 			<script>start_up();</script>
@@ -1387,6 +1394,9 @@ MiG-15bis simulation config.
 			<serviceable type="bool">true</serviceable>
 			<mode type="string">adf</mode>
 		</adf>
+		<drop-tank>
+			<one type="int">1</one>
+		</drop-tank>
 	</instrumentation>
 
 </PropertyList>

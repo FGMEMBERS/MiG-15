@@ -2,6 +2,24 @@
 
 <PropertyList>
 
+<!--
+
+	That code gotta be puttet somethere in craft model file or file of panel of it.
+	Change path and set offset as needed.
+
+	<model>
+		<path>Aircraft/MiG-15/Models/Instruments/Radiocompassbox/MiG-15bis-Radiocompassbox.xml</path>
+		<offsets>
+			<x-m>0.0</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0.0</z-m>
+			<pitch-deg>0.0</pitch-deg>
+			<roll-deg>40</roll-deg>
+		</offsets>
+	</model>
+
+-->
+
 	<path>MiG-15bis-Radiocompassbox.ac</path> 
 
 	<animation>

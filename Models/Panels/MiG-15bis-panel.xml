@@ -216,15 +216,15 @@
     </offsets>
   </model>
 
-  <model>
-    <path>Aircraft/MiG-15/Models/Instruments/Radiocompass/MiG-15bis-Radiocompass.xml</path>
-    <offsets>
-      <x-m>1.558</x-m>
-      <y-m>0.180</y-m>
-      <z-m>0.542</z-m>
-	    <pitch-deg>0.0</pitch-deg>
-    </offsets>
-  </model>
+	<model>
+		<path>Aircraft/MiG-15/Models/Instruments/Radiocompass/MiG-15bis-Radiocompass.xml</path>
+		<offsets>
+			<x-m>1.558</x-m>
+			<y-m>0.180</y-m>
+			<z-m>0.542</z-m>
+			<pitch-deg>0.0</pitch-deg>
+		</offsets>
+	</model>
 
   <model>
     <path>Aircraft/MiG-15/Models/Instruments/Gyrocompass/MiG-15bis-Gyrocompass.xml</path>
