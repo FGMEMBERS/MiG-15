@@ -180,8 +180,6 @@
 		</axis>
 	</animation>
 
-
-
 <!-- Elevator -->
 	<animation>
 		<type>rotate</type>
@@ -1243,6 +1241,114 @@
 		<path>Aircraft/MiG-15/Models/Effects/MiG-15bis-smoke.xml</path>
 	</model>
 
+<!-- Turbine spin -->
+
+	<animation>
+		<type>spin</type>
+		<object-name>FUS_Turbine</object-name>
+		<property>fdm/jsbsim/propulsion/engine/n1</property>
+		<factor>1500.0</factor>
+		<center>
+			<x-m>0.0</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0.0</z-m>
+		</center>
+		<axis>
+			<x>1.0</x>
+			<y>0.0</y>
+			<z>0.0</z>
+		</axis>
+	</animation>
+
+<!-- Engine pipe emission -->
+
+	<animation>
+		<type>material</type>
+		<object-name>FUS_JPOne</object-name>
+		<emission>
+			<factor-prop>fdm/jsbsim/propulsion/engine/n1</factor-prop>
+			<red>0.0045</red>
+			<green>0.0018</green>
+			<blue>0.0003</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<object-name>FUS_JPTwo</object-name>
+		<emission>
+			<factor-prop>fdm/jsbsim/propulsion/engine/n1</factor-prop>
+			<red>0.0032</red>
+			<green>0.0012</green>
+			<blue>0.0002</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<object-name>FUS_JPThree</object-name>
+		<object-name>FUS_Turbine</object-name>
+		<emission>
+			<factor-prop>fdm/jsbsim/propulsion/engine/n1</factor-prop>
+			<red>0.0025</red>
+			<green>0.0010</green>
+			<blue>0.0001</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<object-name>FUS_JPFour</object-name>
+		<object-name>FUS_Laminator</object-name>
+		<emission>
+			<factor-prop>fdm/jsbsim/propulsion/engine/n1</factor-prop>
+			<red>0.0019</red>
+			<green>0.0007</green>
+			<blue>0.0001</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<object-name>FUS_JPFive</object-name>
+		<emission>
+			<factor-prop>fdm/jsbsim/propulsion/engine/n1</factor-prop>
+			<red>0.0012</red>
+			<green>0.0005</green>
+			<blue>0.0000</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<object-name>FUS_JPSix</object-name>
+		<emission>
+			<factor-prop>fdm/jsbsim/propulsion/engine/n1</factor-prop>
+			<red>0.0006</red>
+			<green>0.0002</green>
+			<blue>0.0000</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<object-name>FUS_JPSeven</object-name>
+		<emission>
+			<factor-prop>fdm/jsbsim/propulsion/engine/n1</factor-prop>
+			<red>0.0</red>
+			<green>0.0</green>
+			<blue>0.0</blue>
+		</emission>
+	</animation>
+
+
+<!-- Engine blur-->
+
+	<model>
+		<path>Aircraft/MiG-15/Models/Effects/MiG-15bis-blur.xml</path>
+	</model>
+
+
  <!-- LOD for the model as a whole =========================================-->
 	<animation>
 		<type>range</type>
@@ -1297,6 +1403,9 @@
 				alias(rplayer.getNode("sim/multiplay/generic/float[12]"));
 			rplayer.getNode("instrumentation/drop-tank/one", 1).
 				alias(rplayer.getNode("sim/multiplay/generic/float[13]"));
+
+			rplayer.getNode("fdm/jsbsim/propulsion/engine/n1", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[14]"));
 
 		</load>
 		<unload>

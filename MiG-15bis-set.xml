@@ -37,6 +37,10 @@ MiG-15bis simulation config.
 
 	<one>1</one>
 
+	<a>
+		<a>0</a>
+	</a>
+
 	<sim>
 
 	<startup>
@@ -393,7 +397,9 @@ MiG-15bis simulation config.
 			<float n="11" alias="/velocities/airspeed-kt"/>
 
 			<float n="12" alias="/instrumentation/drop-tank/dropped"/>
-			<float n="12" alias="/instrumentation/drop-tank/one"/>
+			<float n="13" alias="/instrumentation/drop-tank/one"/>
+
+			<float n="14" alias="/fdm/jsbsim/propulsion/engine/n1"/>
 
 		</generic>
 	</multiplay>
