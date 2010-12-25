@@ -384,6 +384,10 @@ ap_common_aileron_monitor = func {
   settimer(ap_common_aileron_monitor, 0.5);
 }
 #--------------------------------------------------------------------
+#Set common one
+setprop("one", 1);
+
+#--------------------------------------------------------------------
 start_up = func {
   settimer(initialise_drop_view_pos, 5);
   settimer(ap_common_elevator_monitor, 0.5);

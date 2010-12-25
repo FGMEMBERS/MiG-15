@@ -11,6 +11,69 @@
 		<pitch-deg>0</pitch-deg>
 	</offsets>
 
+ <!-- Multiplayer events =========================================-->
+	<nasal>
+		<load>
+			##############################################################################
+			# The on-load Nasal is not executed when this file is loaded as the user
+			# aircraft.
+			##############################################################################
+			var rplayer = cmdarg();
+			print("LOAD MiG-1bis ", rplayer.getPath());
+
+			# Set up property aliases for animations.
+			rplayer.getNode("fdm/jsbsim/gear/unit[0]/pos-norm-real", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[0]"));
+			rplayer.getNode("fdm/jsbsim/gear/unit[0]/tored", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[1]"));
+
+			rplayer.getNode("fdm/jsbsim/gear/unit[1]/pos-norm-real", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[2]"));
+			rplayer.getNode("fdm/jsbsim/gear/unit[1]/tored", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[3]"));
+
+			rplayer.getNode("fdm/jsbsim/gear/unit[2]/pos-norm-real", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[4]"));
+			rplayer.getNode("fdm/jsbsim/gear/unit[2]/tored", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[5]"));
+
+			rplayer.getNode("fdm/jsbsim/fcs/flap-pos-norm", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[6]"));
+
+			rplayer.getNode("fdm/jsbsim/fcs/flap-tored", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[7]"));
+
+			rplayer.getNode("fdm/jsbsim/systems/canopy/pos", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[8]"));
+			rplayer.getNode("fdm/jsbsim/systems/canopy/tored", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[9]"));
+
+			rplayer.getNode("fdm/jsbsim/simulation/exploded", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[10]"));
+			rplayer.getNode("velocities/airspeed-kt", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[11]"));
+
+			rplayer.getNode("instrumentation/drop-tank/dropped", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[12]"));
+			rplayer.getNode("instrumentation/drop-tank/one", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[13]"));
+
+			rplayer.getNode("fdm/jsbsim/propulsion/engine/n1", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[14]"));
+
+			rplayer.getNode("instrumentation/oxygen-pressure-meter/oxygen-on", 1).
+				alias(rplayer.getNode("sim/multiplay/generic/float[15]"));
+
+
+		</load>
+		<unload>
+##############################################################################
+			var rplayer = cmdarg();
+				print("UNLOAD MiG-1bis ", rplayer.getPath());
+##############################################################################
+		</unload>
+	</nasal>
+
 <!-- De-select pilot when view in cabine -->
 	<animation>
 		<type>select</type>
@@ -25,27 +88,32 @@
 		<object-name>PLT_FaceMask</object-name>
 		<object-name>PLT_Glass</object-name>
 		<condition>
-			<equals>
-				<property>sim/current-view/internal</property>
-				<value>false</value>	
-			</equals>
+			<or>
+				<equals>
+					<property>sim/current-view/internal</property>
+					<value>false</value>	
+				</equals>
+				<not-equals>
+					<property>id</property>
+					<value>0.0</value>	
+				</not-equals>
+			</or>
 		</condition>
 	</animation>
 
-
 <!-- Remove oxygen mask if oxy is not on -->
-  <animation>
-    <type>select</type>
-    <object-name>PLT_FaceMask</object-name>
-    <condition>
-      <not>
-        <equals>
-          <property>instrumentation/oxygen-pressure-meter/oxygen-on</property>
-          <value>0</value>
-        </equals>
-      </not>
-    </condition>
-  </animation>
+	<animation>
+		<type>select</type>
+		<object-name>PLT_FaceMask</object-name>
+		<condition>
+			<not>
+				<equals>
+					<property>instrumentation/oxygen-pressure-meter/oxygen-on</property>
+					<value>0</value>
+				</equals>
+			</not>
+		</condition>
+	</animation>
 
 <!--
 
@@ -179,8 +247,6 @@
 			<y>1</y>
 		</axis>
 	</animation>
-
-
 
 <!-- Elevator -->
 	<animation>
@@ -1243,68 +1309,119 @@
 		<path>Aircraft/MiG-15/Models/Effects/MiG-15bis-smoke.xml</path>
 	</model>
 
+<!-- Turbine spin -->
+
+	<animation>
+		<type>spin</type>
+		<object-name>FUS_Turbine</object-name>
+		<property>fdm/jsbsim/propulsion/engine/n1</property>
+		<factor>1500.0</factor>
+		<center>
+			<x-m>0.0</x-m>
+			<y-m>0.0</y-m>
+			<z-m>0.0</z-m>
+		</center>
+		<axis>
+			<x>1.0</x>
+			<y>0.0</y>
+			<z>0.0</z>
+		</axis>
+	</animation>
+
+<!-- Engine pipe emission -->
+
+	<animation>
+		<type>material</type>
+		<object-name>FUS_JPOne</object-name>
+		<emission>
+			<factor-prop>fdm/jsbsim/propulsion/engine/n1</factor-prop>
+			<red>0.0045</red>
+			<green>0.0018</green>
+			<blue>0.0003</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<object-name>FUS_JPTwo</object-name>
+		<emission>
+			<factor-prop>fdm/jsbsim/propulsion/engine/n1</factor-prop>
+			<red>0.0032</red>
+			<green>0.0012</green>
+			<blue>0.0002</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<object-name>FUS_JPThree</object-name>
+		<object-name>FUS_Turbine</object-name>
+		<emission>
+			<factor-prop>fdm/jsbsim/propulsion/engine/n1</factor-prop>
+			<red>0.0025</red>
+			<green>0.0010</green>
+			<blue>0.0001</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<object-name>FUS_JPFour</object-name>
+		<object-name>FUS_Laminator</object-name>
+		<emission>
+			<factor-prop>fdm/jsbsim/propulsion/engine/n1</factor-prop>
+			<red>0.0019</red>
+			<green>0.0007</green>
+			<blue>0.0001</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<object-name>FUS_JPFive</object-name>
+		<emission>
+			<factor-prop>fdm/jsbsim/propulsion/engine/n1</factor-prop>
+			<red>0.0012</red>
+			<green>0.0005</green>
+			<blue>0.0000</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<object-name>FUS_JPSix</object-name>
+		<emission>
+			<factor-prop>fdm/jsbsim/propulsion/engine/n1</factor-prop>
+			<red>0.0006</red>
+			<green>0.0002</green>
+			<blue>0.0000</blue>
+		</emission>
+	</animation>
+
+	<animation>
+		<type>material</type>
+		<object-name>FUS_JPSeven</object-name>
+		<emission>
+			<factor-prop>fdm/jsbsim/propulsion/engine/n1</factor-prop>
+			<red>0.0</red>
+			<green>0.0</green>
+			<blue>0.0</blue>
+		</emission>
+	</animation>
+
+
+<!-- Engine blur-->
+
+	<model>
+		<path>Aircraft/MiG-15/Models/Effects/MiG-15bis-blur.xml</path>
+	</model>
+
+
  <!-- LOD for the model as a whole =========================================-->
 	<animation>
 		<type>range</type>
 		<min-m>0</min-m>
 		<max-m>15000</max-m>
 	</animation>
-
-
- <!-- Multiplayer events =========================================-->
-	<nasal>
-		<load>
-			##############################################################################
-			# The on-load Nasal is not executed when this file is loaded as the user
-			# aircraft.
-			##############################################################################
-			var rplayer = cmdarg();
-			print("LOAD MiG-1bis ", rplayer.getPath());
-
-			# Set up property aliases for animations.
-			rplayer.getNode("fdm/jsbsim/gear/unit[0]/pos-norm-real", 1).
-				alias(rplayer.getNode("sim/multiplay/generic/float[0]"));
-			rplayer.getNode("fdm/jsbsim/gear/unit[0]/tored", 1).
-				alias(rplayer.getNode("sim/multiplay/generic/float[1]"));
-
-			rplayer.getNode("fdm/jsbsim/gear/unit[1]/pos-norm-real", 1).
-				alias(rplayer.getNode("sim/multiplay/generic/float[2]"));
-			rplayer.getNode("fdm/jsbsim/gear/unit[1]/tored", 1).
-				alias(rplayer.getNode("sim/multiplay/generic/float[3]"));
-
-			rplayer.getNode("fdm/jsbsim/gear/unit[2]/pos-norm-real", 1).
-				alias(rplayer.getNode("sim/multiplay/generic/float[4]"));
-			rplayer.getNode("fdm/jsbsim/gear/unit[2]/tored", 1).
-				alias(rplayer.getNode("sim/multiplay/generic/float[5]"));
-
-			rplayer.getNode("fdm/jsbsim/fcs/flap-pos-norm", 1).
-				alias(rplayer.getNode("sim/multiplay/generic/float[6]"));
-
-			rplayer.getNode("fdm/jsbsim/fcs/flap-tored", 1).
-				alias(rplayer.getNode("sim/multiplay/generic/float[7]"));
-
-			rplayer.getNode("fdm/jsbsim/systems/canopy/pos", 1).
-				alias(rplayer.getNode("sim/multiplay/generic/float[8]"));
-			rplayer.getNode("fdm/jsbsim/systems/canopy/tored", 1).
-				alias(rplayer.getNode("sim/multiplay/generic/float[9]"));
-
-			rplayer.getNode("fdm/jsbsim/simulation/exploded", 1).
-				alias(rplayer.getNode("sim/multiplay/generic/float[10]"));
-			rplayer.getNode("velocities/airspeed-kt", 1).
-				alias(rplayer.getNode("sim/multiplay/generic/float[11]"));
-
-			rplayer.getNode("instrumentation/drop-tank/dropped", 1).
-				alias(rplayer.getNode("sim/multiplay/generic/float[12]"));
-			rplayer.getNode("instrumentation/drop-tank/one", 1).
-				alias(rplayer.getNode("sim/multiplay/generic/float[13]"));
-
-		</load>
-		<unload>
-##############################################################################
-			var rplayer = cmdarg();
-				print("UNLOAD MiG-1bis ", rplayer.getPath());
-##############################################################################
-		</unload>
-	</nasal>
 
 </PropertyList>
