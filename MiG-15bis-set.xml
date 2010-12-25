@@ -35,11 +35,8 @@ MiG-15bis simulation config.
 
  -->
 
-	<one>1</one>
-
-	<a>
-		<a>0</a>
-	</a>
+	<one type="int">1</one>
+	<id type="int">0</id>
 
 	<sim>
 
@@ -329,6 +326,27 @@ MiG-15bis simulation config.
 
 	<instrumentation>
 		<path>Aircraft/MiG-15/MiG-15bis-instrumentation.xml</path>
+		<heading-indicator n="0">
+			<name>heading-indicator</name>
+			<number>0</number>
+			<suction>systems/vacuum/suction-inhg</suction>
+			<heading-bug-deg type="double">95</heading-bug-deg>
+			<heading-source type="bool">true</heading-source>
+		</heading-indicator>
+		<heading-indicator-dg n="0">
+			<name>heading-indicator-dg</name>
+			<number>0</number>
+		</heading-indicator-dg>
+		<adf n="0">
+			<serviceable type="bool">true</serviceable>
+			<mode type="string">adf</mode>
+		</adf>
+		<drop-tank>
+			<one type="int">1</one>
+		</drop-tank>
+		<oxygen-pressure-meter>
+			<oxygen-on type="int">0</oxygen-on>
+		</oxygen-pressure-meter>
 	</instrumentation>
 
 	<menubar>
@@ -400,6 +418,8 @@ MiG-15bis simulation config.
 			<float n="13" alias="/instrumentation/drop-tank/one"/>
 
 			<float n="14" alias="/fdm/jsbsim/propulsion/engine/n1"/>
+
+			<float n="15" alias="/instrumentation/oxygen-pressure-meter/oxygen-on"/>
 
 		</generic>
 	</multiplay>
@@ -1382,27 +1402,5 @@ MiG-15bis simulation config.
 			<script>start_up();</script>
 		</MIG15BIS>
 	</nasal>
-
-<!-- Instrumentation special values -->
-	<instrumentation n="0">
-		<heading-indicator n="0">
-			<name>heading-indicator</name>
-			<number>0</number>
-			<suction>systems/vacuum/suction-inhg</suction>
-			<heading-bug-deg type="double">95</heading-bug-deg>
-			<heading-source type="bool">true</heading-source>
-		</heading-indicator>
-		<heading-indicator-dg n="0">
-			<name>heading-indicator-dg</name>
-			<number>0</number>
-		</heading-indicator-dg>
-		<adf n="0">
-			<serviceable type="bool">true</serviceable>
-			<mode type="string">adf</mode>
-		</adf>
-		<drop-tank>
-			<one type="int">1</one>
-		</drop-tank>
-	</instrumentation>
 
 </PropertyList>
