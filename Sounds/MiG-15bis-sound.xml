@@ -75,11 +75,11 @@
 			</equals>
 		</condition>
 		<volume>
-		        <property>engines/engine[0]/thrust_lb</property>
+			<property>engines/engine[0]/thrust_lb</property>
 			<factor type="double">0.00016</factor>
 		</volume>
 		<pitch>
-		        <property>engines/engine[0]/n1</property>
+			<property>engines/engine[0]/n1</property>
 			<factor>0.2</factor>
 		</pitch>
 		<position>
@@ -449,22 +449,22 @@
 		</equals>
       </condition>
       <volume>
-        <property>velocities/speed-down-fps</property>
-        <factor>0.05</factor>
+	<property>velocities/speed-down-fps</property>
+	<factor>0.05</factor>
       </volume>
       <volume>
-        <property>velocities/airspeed-kt</property>
-        <factor>0.01</factor>
+	<property>velocities/airspeed-kt</property>
+	<factor>0.01</factor>
       </volume>
       <volume>
-        <internal>dt_stop</internal>
-        <factor>0.05</factor>
-        <max>1.0</max>
+	<internal>dt_stop</internal>
+	<factor>0.05</factor>
+	<max>1.0</max>
       </volume>
       <pitch>
-        <property>velocities/airspeed-kt</property>
-        <factor>0.0025</factor>
-        <offset>1.2</offset>
+	<property>velocities/airspeed-kt</property>
+	<factor>0.0025</factor>
+	<offset>1.2</offset>
       </pitch>
     </squeal>
 
@@ -478,22 +478,22 @@
 		</equals>
       </condition>
       <volume>
-        <property>velocities/speed-down-fps</property>
-        <factor>0.05</factor>
+	<property>velocities/speed-down-fps</property>
+	<factor>0.05</factor>
       </volume>
       <volume>
-        <property>velocities/airspeed-kt</property>
-        <factor>0.01</factor>
+	<property>velocities/airspeed-kt</property>
+	<factor>0.01</factor>
       </volume>
       <volume>
-        <internal>dt_stop</internal>
-        <factor>0.05</factor>
-        <max>1.0</max>
+	<internal>dt_stop</internal>
+	<factor>0.05</factor>
+	<max>1.0</max>
       </volume>
       <pitch>
-        <property>velocities/airspeed-kt</property>
-        <factor>0.0025</factor>
-        <offset>1.2</offset>
+	<property>velocities/airspeed-kt</property>
+	<factor>0.0025</factor>
+	<offset>1.2</offset>
       </pitch>
     </squeal>
 
@@ -507,22 +507,22 @@
 		</equals>
       </condition>
       <volume>
-        <property>velocities/speed-down-fps</property>
-        <factor>0.05</factor>
+	<property>velocities/speed-down-fps</property>
+	<factor>0.05</factor>
       </volume>
       <volume>
-        <property>velocities/airspeed-kt</property>
-        <factor>0.01</factor>
+	<property>velocities/airspeed-kt</property>
+	<factor>0.01</factor>
       </volume>
       <volume>
-        <internal>dt_stop</internal>
-        <factor>0.05</factor>
-        <max>1.0</max>
+	<internal>dt_stop</internal>
+	<factor>0.05</factor>
+	<max>1.0</max>
       </volume>
       <pitch>
-        <property>velocities/airspeed-kt</property>
-        <factor>0.0025</factor>
-        <offset>1.2</offset>
+	<property>velocities/airspeed-kt</property>
+	<factor>0.0025</factor>
+	<offset>1.2</offset>
       </pitch>
     </squeal>
 
@@ -562,7 +562,7 @@
       <path>Sounds/flaps.wav</path>
       <property>fdm/jsbsim/fcs/flap-pos-norm</property>
       <volume>
-        <factor>0.15</factor>
+	<factor>0.15</factor>
       </volume>
     </flap>
 
@@ -572,7 +572,7 @@
       <path>Sounds/flaps.wav</path>
       <property>surface-positions/left-spoiler-pos-norm</property>
       <volume>
-        <factor>0.15</factor>
+	<factor>0.15</factor>
       </volume>
     </spoiler>
 
@@ -582,7 +582,7 @@
       <path>Sounds/flaps.wav</path>
       <property>surface-positions/right-spoiler-pos-norm</property>
       <volume>
-        <factor>0.25</factor>
+	<factor>0.25</factor>
       </volume>
     </spoiler>
 
@@ -592,7 +592,7 @@
       <path>Sounds/flaps.wav</path>
       <property>surface-positions/speedbrake-pos-norm</property>
       <volume>
-        <factor>0.25</factor>
+	<factor>0.25</factor>
       </volume>
     </air-brakes>
 
@@ -677,6 +677,11 @@
 					<value>0</value>
 				</less-than-equals>
 			</condition>
+			<position>
+				<x>0.0</x>
+				<y>0.5</y>
+				<z>0.0</z>
+			</position>
 			<volume>
 				<factor>0.3</factor>
 				<property>sim/current-view/internal</property>
@@ -693,6 +698,11 @@
 					<value>0</value>
 				</less-than-equals>
 			</condition>
+			<position>
+				<x>0.0</x>
+				<y>-0.5</y>
+				<z>0.0</z>
+			</position>
 			<volume>
 				<factor>0.3</factor>
 				<property>sim/current-view/internal</property>
@@ -767,6 +777,7 @@
 		<name>radio-tune</name>
 		<path>Aircraft/MiG-15/Sounds/radio-tune.wav</path>
 		<mode>looped</mode>
+		<type>avionics</type>
 		<condition>
 			<and>
 				<equals>
@@ -788,6 +799,7 @@
 		<name>radio-morse</name>
 		<path>Aircraft/MiG-15/Sounds/radio-morse.wav</path>
 		<mode>looped</mode>
+		<type>avionics</type>
 		<condition>
 			<and>
 				<equals>
@@ -809,6 +821,7 @@
 		<name>radio-noise</name>
 		<path>Aircraft/MiG-15/Sounds/radio-noise.wav</path>
 		<mode>looped</mode>
+		<type>avionics</type>
 		<condition>
 			<and>
 				<equals>
@@ -830,6 +843,7 @@
 		<name>radio-search-left</name>
 		<path>Aircraft/MiG-15/Sounds/radio-search-left.wav</path>
 		<mode>looped</mode>
+		<type>avionics</type>
 		<condition>
 			<and>
 				<equals>
@@ -842,6 +856,11 @@
 				</equals>
 			</and>
 		</condition>
+		<position>
+			<x>0.0</x>
+			<y>0.5</y>
+			<z>0.0</z>
+		</position>
 		<volume>
 			<property>sounds/radio-search-left/volume-norm</property>
 		</volume>
@@ -851,6 +870,7 @@
 		<name>radio-search-right</name>
 		<path>Aircraft/MiG-15/Sounds/radio-search-right.wav</path>
 		<mode>looped</mode>
+		<type>avionics</type>
 		<condition>
 			<and>
 				<equals>
@@ -863,6 +883,11 @@
 				</equals>
 			</and>
 		</condition>
+		<position>
+			<x>0.0</x>
+			<y>-0.5</y>
+			<z>0.0</z>
+		</position>
 		<volume>
 			<property>sounds/radio-search-right/volume-norm</property>
 		</volume>
@@ -872,6 +897,7 @@
 		<name>photo-take</name>
 		<path>Aircraft/MiG-15/Sounds/photo-take.wav</path>
 		<mode>looped</mode>
+		<type>avionics</type>
 		<condition>
 			<equals>
 				<property>sounds/photo/on</property>
