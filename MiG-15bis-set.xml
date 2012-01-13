@@ -1376,6 +1376,7 @@ MiG-15bis simulation config.
 	<engines>
 		<engine n="0">
 			<rpm type="float">0</rpm>
+			<out-of-fuel type="bool">0</out-of-fuel>
 		</engine>
 	</engines>
 
