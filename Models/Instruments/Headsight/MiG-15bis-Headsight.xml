@@ -4,6 +4,16 @@
 
   <path>MiG-15bis-Headsight.ac</path> 
 
+      <effect>
+            <inherits-from>Effects/model-transparent</inherits-from>
+            <object-name>HS_Glass</object-name>
+      </effect>
+
+      <effect>
+            <inherits-from>Effects/model-transparent</inherits-from>
+            <object-name>HS_PGlass</object-name>
+      </effect>
+
 	<animation>
 		<type>select</type>
 		<object-name>HS_Sign</object-name>

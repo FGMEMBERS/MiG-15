@@ -21,6 +21,11 @@
 
 	<path>MiG-15bis-Radiocompass.ac</path> 
 
+      <effect>
+            <inherits-from>Effects/model-transparent</inherits-from>
+            <object-name>RC_Glass</object-name>
+      </effect>
+
 	<animation>
 		<type>material</type>
 		<object-name>RC_Needle</object-name>

@@ -4,6 +4,11 @@
 
   <path>MiG-15bis-Radioaltimeter.ac</path> 
 
+      <effect>
+            <inherits-from>Effects/model-transparent</inherits-from>
+            <object-name>RA_Glass</object-name>
+      </effect>
+
 	<animation>
 		<type>material</type>
 		<object-name>RA_Needle</object-name>

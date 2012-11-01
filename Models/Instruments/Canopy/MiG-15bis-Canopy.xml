@@ -4,7 +4,14 @@
 
 	<path>MiG-15bis-Canopy.ac</path> 
 
-
+      <effect>
+            <inherits-from>Effects/model-transparent</inherits-from>
+            <object-name>CP_FCGlass</object-name>
+      </effect>
+      <effect>
+            <inherits-from>Effects/model-transparent</inherits-from>
+            <object-name>CP_RCGlass</object-name>
+      </effect>
 	<!-- There's ain't no shadow from the glass, man 
 
 but that animation makes bug in currnet FG state, so it's off
