@@ -209,7 +209,7 @@
 
 		<switch name="calculations/stick/aileron-cmd-norm-real">
 			<default value="fcs/aileron-cmd-norm"/>
-			<test logic="AND" value="aileron-cmd-norm-real">
+			<test logic="AND" value="fcs/aileron-cmd-norm-real">
 				systems/stick/serviceable eq 0
 			</test>
 			<output>fcs/aileron-cmd-norm-real</output>
@@ -217,7 +217,7 @@
 
 		<switch name="calculations/stick/aileron-cmd-norm">
 			<default value="fcs/aileron-cmd-norm"/>
-			<test logic="AND" value="aileron-cmd-norm-real">
+			<test logic="AND" value="fcs/aileron-cmd-norm-real">
 				systems/stick/serviceable eq 0
 			</test>
 			<output>fcs/aileron-cmd-norm</output>
@@ -225,7 +225,7 @@
 
 		<switch name="calculations/stick/elevator-cmd-norm-real">
 			<default value="fcs/elevator-cmd-norm"/>
-			<test logic="AND" value="elevator-cmd-norm-real">
+			<test logic="AND" value="fcs/elevator-cmd-norm-real">
 				systems/stick/serviceable eq 0
 			</test>
 			<output>fcs/elevator-cmd-norm-real</output>
@@ -233,7 +233,7 @@
 
 		<switch name="calculations/stick/elevator-cmd-norm">
 			<default value="fcs/elevator-cmd-norm"/>
-			<test logic="AND" value="elevator-cmd-norm-real">
+			<test logic="AND" value="fcs/elevator-cmd-norm-real">
 				systems/stick/serviceable eq 0
 			</test>
 			<output>fcs/elevator-cmd-norm</output>
