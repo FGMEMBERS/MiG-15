@@ -1134,6 +1134,9 @@ init_magnetic_compass();
 #--------------------------------------------------------------------
 #Gear friction
 
+# Do terrain modelling ourselves.
+setprop("sim/fdm/surface/override-level", 1);
+
 terrain_under = func
 	{
 		lat = getprop ("position/latitude-deg");
