@@ -44,6 +44,13 @@ MiG-15bis simulation config.
 		<splash-texture>Aircraft/MiG-15/MiG-15bis-splash.png</splash-texture>
 	</startup>
 
+	<rating>
+		<FDM type="int">3</FDM>
+		<systems type="int">2</systems>
+		<cockpit type="int">4</cockpit>
+		<model type="int">4</model>
+	</rating>
+
 	<help>
 		<title>MiG-15 bis</title>
 		<line>Aircraft documentation in /MiG-15/Documentation directory</line>
