@@ -257,6 +257,12 @@ MiG-15bis simulation config.
       </config>
     </view>
 
+    <view n="7">
+      <config>
+        <target-z-offset-m archive="y" type="double">3.75</target-z-offset-m>
+      </config>
+    </view>
+
     <view n="100">
       <name>Drop View</name>
       <type>lookat</type>
@@ -357,6 +363,20 @@ MiG-15bis simulation config.
       <fast-deg>4.5</fast-deg>          <!-- target -0.5 deg -->         
       <too-fast-deg>3.5</too-fast-deg>  <!-- target -1.5 deg -->         
     </aoa-indexer>
+
+    <flight-recorder>
+      <replay-config type="int">0</replay-config>
+      <config n="0" include="/Aircraft/Generic/flightrecorder/generic-jet.xml">
+        <name type="string">MiG-15bis - Flight Recorder</name>
+        <signals>
+          <count type="int">16</count>
+          <signal>
+            <type>float</type>
+            <property>/sim/multiplay/generic/float[%i]</property>
+          </signal>
+        </signals>
+      </config>
+    </flight-recorder>
 
     <instrumentation>
       <path>Aircraft/MiG-15/MiG-15bis-instrumentation.xml</path>

@@ -439,7 +439,7 @@
         </domain>
         <range>
         <min> -1 </min>
-        <max>  1 </max>
+        <max>  0.51</max>
         </range>
         <output>fcs/elevator-pos-norm</output>
       </aerosurface_scale>
@@ -945,7 +945,7 @@
         <property>aero/qbar-psf</property>
         <property>metrics/Sw-sqft</property>
         <property>aero/cl-squared</property>
-        <value>0.12</value>
+        <value>0.07</value>
         </product>
       </function>
 

@@ -251,8 +251,8 @@ print("UNLOAD MiG-15bis ", rplayer.getPath());
     <type>rotate</type>
     <object-name>TP_ElevatorL</object-name>
     <object-name>TP_Trimmer</object-name>
-    <property>fdm/jsbsim/fcs/elevator-indicated-pos-rad</property>
-    <factor>-57.29</factor>
+    <property>surface-positions/elevator-pos-norm</property>
+    <factor>-31.51</factor>
     <center>
       <x-m>9.16</x-m>
       <y-m>-0.12</y-m>
@@ -268,8 +268,8 @@ print("UNLOAD MiG-15bis ", rplayer.getPath());
   <animation>
     <type>rotate</type>
     <object-name>TP_ElevatorR</object-name>
-    <property>fdm/jsbsim/fcs/elevator-indicated-pos-rad</property>
-    <factor>57.29</factor>
+    <property>surface-positions/elevator-pos-norm</property>
+    <factor>31.51</factor>
     <center>
       <x-m>9.16</x-m>
       <y-m>0.12</y-m>
@@ -308,8 +308,8 @@ print("UNLOAD MiG-15bis ", rplayer.getPath());
     <object-name>PLT_Helmet</object-name>
     <object-name>PLT_FaceMask</object-name>
     <object-name>PLT_Glass</object-name>
-    <property>fdm/jsbsim/systems/stick/elevator-stick-deg</property>
-    <factor>1</factor>
+    <property>surface-positions/elevator-pos-norm</property>
+    <factor>-4</factor>
     <center>
       <x-m>1.709</x-m>
       <y-m>0.0</y-m>
@@ -328,8 +328,8 @@ print("UNLOAD MiG-15bis ", rplayer.getPath());
     <type>rotate</type>
     <object-name>WNG_AileronL</object-name>
     <object-name>WNG_Trimmer</object-name>
-    <property>fdm/jsbsim/fcs/left-aileron-indicated-pos-rad</property>
-    <factor>-57.29</factor>
+    <property>surface-positions/left-aileron-pos-norm</property>
+    <factor>-14.89</factor>
     <center>
       <x-m>5.76</x-m>
       <y-m>-3.18</y-m>
@@ -346,8 +346,8 @@ print("UNLOAD MiG-15bis ", rplayer.getPath());
   <animation>
     <type>rotate</type>
     <object-name>WNG_AileronR</object-name>
-    <property>fdm/jsbsim/fcs/right-aileron-indicated-pos-rad</property>
-    <factor>57.29</factor>
+    <property>surface-positions/right-aileron-pos-norm</property>
+    <factor>14.89</factor>
     <center>
       <x-m>5.76</x-m>
       <y-m>3.18</y-m>
