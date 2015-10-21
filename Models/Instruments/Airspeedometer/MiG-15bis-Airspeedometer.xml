@@ -54,14 +54,11 @@
 
 	<animation>
 		<type>rotate</type>
-		<object-name>IAS_NeedleX1</object-name>
+		<object-name>IAS_NeedleX1</object-name> <!-- large needle: one full turn for every 100 km/h -->
 		<property>fdm/jsbsim/systems/airspeedometer/indicated-kt</property>
 		<interpolation>
-			<entry><ind>0.0</ind><dep>0.0</dep></entry>
-			<entry><ind>107.9916036</ind><dep>-360.0</dep></entry>
-			<entry><ind>161.9874054</ind><dep>-720.0</dep></entry>
-			<entry><ind>539.9580345</ind><dep>-3600.0</dep></entry>
-			<entry><ind>1079.913606</ind><dep>-7200.0</dep></entry>
+                	<entry><ind>0.0</ind><dep>-39.0</dep></entry> <!-- the needle in the .ac file is tilted, compensate -->
+			<entry><ind>539.9568034</ind><dep>-3639.0</dep></entry>
 		</interpolation>
 		<center>
 			<x-m>0</x-m>
@@ -77,14 +74,11 @@
 
 	<animation>
 		<type>rotate</type>
-		<object-name>IAS_NeedleX10</object-name>
+		<object-name>IAS_NeedleX10</object-name> <!-- small needle: no indication below 100 km/h -->
 		<property>fdm/jsbsim/systems/airspeedometer/indicated-kt</property>
 		<interpolation>
-			<entry><ind>0.0</ind><dep>0.0</dep></entry>
-			<entry><ind>107.9916036</ind><dep>-36.0</dep></entry>
-			<entry><ind>161.9874054</ind><dep>-72.0</dep></entry>
-			<entry><ind>539.9580345</ind><dep>-324.0</dep></entry>
-			<entry><ind>1079.913606</ind><dep>-684.0</dep></entry>
+			<entry><ind>53.99568034</ind><dep>0.0</dep></entry>
+			<entry><ind>539.9568034</ind><dep>-324.0</dep></entry>
 		</interpolation>
 		<center>
 			<x-m>0</x-m>

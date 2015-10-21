@@ -1,9 +1,5 @@
 <?xml version="1.0"?>
 
-<!--
-
--->
-
 <PropertyList>
 
   <name>Position Monitor</name>
@@ -11,7 +7,7 @@
   <h-base>120</h-base>
 
   <layers>
-<!-- Background -->
+    <!-- Background -->
     <layer>
       <name>background</name>
       <texture>
@@ -31,7 +27,7 @@
       </transformations>
     </layer>
 
-<!-- Title -->
+    <!-- Title -->
     <layer>
       <name>Title</name>
       <type>text</type>
@@ -59,8 +55,8 @@
       </transformations>
     </layer>
 
-<!-- LAT -->
-<!-- Latitude Title -->
+    <!-- LAT -->
+    <!-- Latitude Title -->
     <layer>
       <name>Title</name>
       <type>text</type>
@@ -88,7 +84,7 @@
       </transformations>
     </layer>
 
-<!-- Latitude -->
+    <!-- Latitude -->
     <layer>
       <name>Latitude</name>
       <type>text</type>
@@ -118,8 +114,8 @@
       </transformations>
     </layer>
 
-<!-- LON -->
-<!-- Logitude Title -->
+    <!-- LON -->
+    <!-- Logitude Title -->
     <layer>
       <name>Title</name>
       <type>text</type>
@@ -147,7 +143,7 @@
       </transformations>
     </layer>
 
-<!-- Longitude -->
+    <!-- Longitude -->
     <layer>
       <name>Logitude</name>
       <type>text</type>
@@ -177,8 +173,8 @@
       </transformations>
     </layer>
 
-<!-- ALTITUDE -->
-<!-- Altitude Title -->
+    <!-- ALTITUDE -->
+    <!-- Altitude Title -->
     <layer>
       <name>Title</name>
       <type>text</type>
@@ -206,7 +202,7 @@
       </transformations>
     </layer>
 
-<!-- Altitude (AH Disengaged) -->
+    <!-- Altitude (AH Disengaged) -->
     <layer>
       <name>Altitude (AH Disengaged)</name>
       <condition>
@@ -242,7 +238,7 @@
       </transformations>
     </layer>
 
-<!-- Altitude (AH Engaged) >= target-altitude -->
+    <!-- Altitude (AH Engaged) >= target-altitude -->
     <layer>
       <name>Altitude (AH Engaged) GTE target-altitude-ft</name>
       <condition>
@@ -284,7 +280,7 @@
       </transformations>
     </layer>
 
-<!-- Altitude (AH Engaged) < target-altitude -->
+    <!-- Altitude (AH Engaged) < target-altitude -->
     <layer>
       <name>Altitude (AH Engaged) LT target-altitude-ft</name>
       <condition>
@@ -326,8 +322,8 @@
       </transformations>
     </layer>
 
-<!-- AGL -->
-<!-- AGL Title -->
+    <!-- AGL -->
+    <!-- AGL Title -->
     <layer>
       <name>Title</name>
       <type>text</type>
@@ -355,7 +351,7 @@
       </transformations>
     </layer>
 
-<!-- AGL (AGLH Disengaged) -->
+    <!-- AGL (AGLH Disengaged) -->
     <layer>
       <name>AGL (AGLH Disengaged)</name>
       <condition>
@@ -391,7 +387,7 @@
       </transformations>
     </layer>
 
-<!-- AGL (AGLH Engaged) >= target agl -->
+    <!-- AGL (AGLH Engaged) >= target agl -->
     <layer>
       <name>AGL (AGLH Engaged) GTE target agl</name>
       <condition>
@@ -433,7 +429,7 @@
       </transformations>
     </layer>
 
-<!-- AGL ( < target agl) -->
+    <!-- AGL ( < target agl) -->
     <layer>
       <name>AGL LT target agl</name>
       <condition>
@@ -475,8 +471,8 @@
       </transformations>
     </layer>
 
-<!-- AOA -->
-<!-- AoA Title -->
+    <!-- AOA -->
+    <!-- AoA Title -->
     <layer>
       <name>Title</name>
       <type>text</type>
@@ -504,7 +500,7 @@
       </transformations>
     </layer>
 
-<!-- AoA -->
+    <!-- AoA -->
     <layer>
       <name>AoA</name>
       <type>text</type>
@@ -534,8 +530,8 @@
       </transformations>
     </layer>
 
-<!-- PITCH -->
-<!-- Pitch Title -->
+    <!-- PITCH -->
+    <!-- Pitch Title -->
     <layer>
       <name>Title</name>
       <type>text</type>
@@ -563,7 +559,7 @@
       </transformations>
     </layer>
 
-<!-- Pitch -->
+    <!-- Pitch -->
     <layer>
       <name>Pitch</name>
       <type>text</type>
@@ -593,8 +589,8 @@
       </transformations>
     </layer>
 
-<!-- ROLL -->
-<!-- Roll Title -->
+    <!-- ROLL -->
+    <!-- Roll Title -->
     <layer>
       <name>Title</name>
       <type>text</type>
@@ -622,7 +618,7 @@
       </transformations>
     </layer>
 
-<!-- Roll -->
+    <!-- Roll -->
     <layer>
       <name>Roll</name>
       <type>text</type>
@@ -652,8 +648,8 @@
       </transformations>
     </layer>
 
-<!-- HEADING -->
-<!-- Heading Title -->
+    <!-- HEADING -->
+    <!-- Heading Title -->
     <layer>
       <name>Title</name>
       <type>text</type>
@@ -681,7 +677,7 @@
       </transformations>
     </layer>
 
-<!-- Heading -->
+    <!-- Heading -->
     <layer>
       <name>Heading</name>
       <type>text</type>
@@ -711,8 +707,8 @@
       </transformations>
     </layer>
 
-<!-- HEADING (MAG) -->
-<!-- Heading (Magnetic) Title -->
+    <!-- HEADING (MAG) -->
+    <!-- Heading (Magnetic) Title -->
     <layer>
       <name>Title</name>
       <type>text</type>
@@ -740,7 +736,7 @@
       </transformations>
     </layer>
 
-<!-- Heading (Magnetic) -->
+    <!-- Heading (Magnetic) -->
     <layer>
       <name>Heading (Magnetic)</name>
       <type>text</type>
