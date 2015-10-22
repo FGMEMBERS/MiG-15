@@ -1270,12 +1270,12 @@ stop_gearbreakslistener = func
 gearbreakslistener = func 
 	{
 		# check state
-		in_service = getprop("listneners/gear-break/enabled" );
+		in_service = getprop("listneners/gear-break/enabled");
 		if (in_service == nil)
 		{
 			return ( stop_gearbreakslistener );
 		}
-		if ( in_service != 1 )
+		if ( in_service != 1 or getprop ("sim/replay/replay-state") != 0)
 		{
 			return ( stop_gearbreakslistener );
 		}
@@ -1399,7 +1399,7 @@ gearbreaksprocess = func
 			stop_gearbreaksprocess();
 	 		return ( settimer(gearbreaksprocess, 0.1) ); 
 		}
-		if ( in_service != 1 )
+		if (in_service != 1 or getprop ("sim/replay/replay-state") != 0)
 		{
 			stop_gearbreaksprocess();
 	 		return ( settimer(gearbreaksprocess, 0.1) ); 
@@ -1870,7 +1870,7 @@ gearmove = func
 			stop_gearmove();
 	 		return ( settimer(gearmove, 0.1) ); 
 		}
-		if ( in_service != 1 )
+		if (in_service != 1 or getprop("sim/replay/replay-state") != 0)
 		{
 			stop_gearmove();
 			return ( settimer(gearmove, 0.1) ); 
@@ -2539,8 +2539,8 @@ flapsbreaksprocess = func
 		tored = getprop("fdm/jsbsim/fcs/flap-tored");
 		#get speed value
 		speed=getprop("velocities/airspeed-kt");
-		if (
-			(flaps_pos_deg == nil)
+		if (getprop("sim/replay/replay-state") != 0
+			or (flaps_pos_deg == nil)
 			or (tored==nil)
 			or (speed==nil)
 		)
@@ -2647,7 +2647,7 @@ flapsprocess = func
 			stop_flapsprocess();
 	 		return ( settimer(flapsprocess, 0.1) ); 
 		}
-		if ( in_service != 1 )
+		if (in_service != 1 or getprop("sim/replay/replay-state") != 0)
 		{
 			stop_flapsprocess();
 		 	return ( settimer(flapsprocess, 0.1) ); 
@@ -2767,7 +2767,7 @@ engineprocess=func
 			stop_engineprocess();
 	 		return ( settimer(engineprocess, 0.1) ); 
 		}
-		if ( in_service != 1 )
+		if (in_service != 1 or getprop("sim/replay/replay-state") != 0)
 		{
 			stop_engineprocess();
 		 	return ( settimer(engineprocess, 0.1) ); 
@@ -4726,9 +4726,9 @@ canopyprocess = func
 			stop_canopyprocess();
 	 		return ( settimer(canopyprocess, 0.1) ); 
 		}
-		if ( in_service != 1 )
+		if (in_service != 1 or getprop ("sim/replay/replay-state") != 0)
 		{
-			stop_canopy();
+			stop_canopyprocess();
 			return ( settimer(canopyprocess, 0.1) ); 
 		}
 		var pos=getprop("fdm/jsbsim/systems/canopy/pos");
@@ -4982,7 +4982,7 @@ droptank = func
 			stop_droptank();
 	 		return ( settimer(droptank, 0.1) ); 
 		}
-		if ( in_service != 1 )
+		if (in_service != 1 or getprop ("sim/replay/replay-state") != 0)
 		{
 			stop_droptank();
 		 	return ( settimer(droptank, 0.1) ); 
@@ -5336,9 +5336,6 @@ aircraft_crash=func(crashtype, crashg, solid)
 		}
 
 		crash_tank_drop();
-
-		setprop("sim/replay/disable", 1);
-		setprop("sim/menubar/default/menu[1]/item[8]/enabled", 0);
 		return (1);
 	}
 
@@ -5355,7 +5352,7 @@ aircraftbreakprocess=func
 			stop_aircraftbreakprocess();
 			return ( settimer(aircraftbreakprocess, 0.1) ); 
 		}
-		if ( in_service != 1 )
+		if (in_service != 1 or getprop ("sim/replay/replay-state") != 0)
 		{
 			stop_aircraftbreakprocess();
 			return ( settimer(aircraftbreakprocess, 0.1) ); 
@@ -5603,8 +5600,6 @@ aircraft_explode = func(pilot_g)
 		setprop("fdm/jsbsim/simulation/explode-g", pilot_g);
 		setprop("fdm/jsbsim/simulation/exploded", 1);
 		setprop("sounds/aircraft-explode/on", 1);
-		setprop("sim/replay/disable", 1);
-		setprop("sim/menubar/default/menu[1]/item[8]/enabled", 0);
 		settimer(end_aircraft_explode, 3);
 	}
 
@@ -5638,7 +5633,7 @@ aircraftbreaklistener = func
 		{
 			return ( stop_aircraftbreaklistener );
 		}
-		if ( in_service != 1 )
+		if (in_service != 1 or getprop ("sim/replay/replay-state") != 0)
 		{
 			return ( stop_aircraftbreaklistener );
 		}
@@ -6009,9 +6004,6 @@ end_aircraftrestart=func
 		#Start break processes
 		setprop("processes/aircraft-break/enabled", 1);
 		setprop("processes/gear-break/enabled", 1);
-		#Unlock replay
-		setprop("sim/replay/disable", 0);
-		setprop("sim/menubar/default/menu[1]/item[8]/enabled", 1);
 	}
 
 aircraft_restart=func
@@ -6035,9 +6027,6 @@ aircraft_restart=func
 			setprop("sim/freeze/clock", 1);
 			setprop("sim/freeze/master", 1);
 			aircraft_repair();
-			#Lock replay
-			setprop("sim/replay/disable", 1);
-			setprop("sim/menubar/default/menu[1]/item[8]/enabled", 0);
 			#Additional gears restart
 			setprop("fdm/jsbsim/gear/gear-pos-norm", 1);
 			setprop("gear/gear[0]/position-norm", 1);
@@ -6098,7 +6087,7 @@ autostart_process = func
 			stop_autostart_process();
 			return ( settimer(autostart_process, 0.1) ); 
 		}
-		if ( in_service != 1 )
+		if (in_service != 1 or getprop ("sim/replay/replay-state") != 0)
 		{
 			stop_autostart_process();
 			return ( settimer(autostart_process, 0.1) ); 
@@ -6830,80 +6819,3 @@ dump_properties=func
 		io.write_properties(fg_home~"/state/properties-dump.xml", "/");
 	}
 }
-
-#-----------------------------------------------------------------------
-#Menu changer
-
-stop_menuchanger_process = func 
-	{
-		setprop("processes/menuchanger/on", 0);
-	}
-
-menuchanger_process = func 
-	{
-		in_service = getprop("processes/menuchanger/enabled" );
-		if (in_service == nil)
-		{
-			stop_menuchanger();
-			return ( settimer(menuchanger_process, 0.1) ); 
-		}
-		if ( in_service != 1 )
-		{
-			stop_menuchanger();
-			return ( settimer(menuchanger_process, 0.1) ); 
-		}
-		autostart_elapsed_time=getprop("processes/autostart/elapsed-time");
-		replay=getprop("sim/freeze/replay-state");
-		if (autostart_elapsed_time==nil)
-		{
-			stop_menuchanger_process();
-			return ( settimer(menuchanger_process, 0.1) ); 
-		}
-		if (autostart_elapsed_time>0)
-		{
-			replay=0;
-			setprop("sim/replay/disable", 1);
-			setprop("sim/menubar/default/menu[1]/item[8]/enabled", 0);
-		}
-		else
-		{
-			setprop("sim/replay/disable", 0);
-			setprop("sim/menubar/default/menu[1]/item[8]/enabled", 1);
-		}
-		if (replay!=nil)
-		{
-			if (replay==1)
-			{
-				setprop("sim/menubar/default/menu[50]/item[0]/enabled", 0);
-				setprop("sim/menubar/default/menu[50]/item[1]/enabled", 0);
-				setprop("sim/menubar/default/menu[50]/item[2]/enabled", 0);
-				setprop("sim/menubar/default/menu[50]/item[3]/enabled", 0);
-			}
-			else
-			{
-				setprop("sim/menubar/default/menu[50]/item[0]/enabled", 1);
-				setprop("sim/menubar/default/menu[50]/item[1]/enabled", 1);
-				setprop("sim/menubar/default/menu[50]/item[2]/enabled", 1);
-				setprop("sim/menubar/default/menu[50]/item[3]/enabled", 1);
-			}
-		}
-		else
-		{
-			setprop("sim/menubar/default/menu[50]/item[0]/enabled", 1);
-			setprop("sim/menubar/default/menu[50]/item[1]/enabled", 1);
-			setprop("sim/menubar/default/menu[50]/item[2]/enabled", 1);
-			setprop("sim/menubar/default/menu[50]/item[3]/enabled", 1);
-		}
-		return ( settimer(menuchanger_process, 0.1) );
-	}
-
-# set startup configuration
-init_menuchanger_process = func
-{
-	setprop("processes/menuchanger/enabled", 1);
-	setprop("processes/menuchanger/on", 1);
-}
-
-init_menuchanger_process();
-
-menuchanger_process();

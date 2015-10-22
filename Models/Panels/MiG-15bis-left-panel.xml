@@ -2,17 +2,17 @@
 
 <PropertyList>
 
-	<path>MiG-15bis-left-panel.ac</path>
+  <path>MiG-15bis-left-panel.ac</path>
 
-	<model>
-		<path>Aircraft/MiG-15/Models/Instruments/Leftswitchpanel/MiG-15bis-Leftswitchpanel.xml</path>
-		<offsets>
-			<x-m>1.705</x-m>
-			<y-m>-0.474</y-m>
-			<z-m>0.396</z-m>
-			<roll-deg>-50.0</roll-deg>
-		</offsets>
-	</model>
+  <model>
+    <path>Aircraft/MiG-15/Models/Instruments/Leftswitchpanel/MiG-15bis-Leftswitchpanel.xml</path>
+    <offsets>
+      <x-m>1.705</x-m>
+      <y-m>-0.474</y-m>
+      <z-m>0.396</z-m>
+      <roll-deg>-50.0</roll-deg>
+    </offsets>
+  </model>
 
   <model>
     <path>Aircraft/MiG-15/Models/Instruments/Gascontrol/MiG-15bis-Gascontrol.xml</path>
@@ -20,7 +20,7 @@
       <x-m>1.869</x-m>
       <y-m>-0.365</y-m>
       <z-m>0.297</z-m>
-	    <pitch-deg>0.0</pitch-deg>
+      <pitch-deg>0.0</pitch-deg>
     </offsets>
   </model>
 
@@ -30,7 +30,7 @@
       <x-m>1.869</x-m>
       <y-m>-0.459</y-m>
       <z-m>0.379</z-m>
-	    <roll-deg>44.0</roll-deg>
+      <roll-deg>44.0</roll-deg>
     </offsets>
   </model>
 
@@ -40,7 +40,7 @@
       <x-m>1.869</x-m>
       <y-m>-0.330</y-m>
       <z-m>0.297</z-m>
-	    <pitch-deg>0.0</pitch-deg>
+      <pitch-deg>0.0</pitch-deg>
     </offsets>
   </model>
 
@@ -50,7 +50,7 @@
       <x-m>1.735</x-m>
       <y-m>-0.359</y-m>
       <z-m>0.297</z-m>
-	    <pitch-deg>0.0</pitch-deg>
+      <pitch-deg>0.0</pitch-deg>
     </offsets>
   </model>
 
@@ -60,7 +60,7 @@
       <x-m>1.660</x-m>
       <y-m>-0.363</y-m>
       <z-m>0.297</z-m>
-	    <pitch-deg>0.0</pitch-deg>
+      <pitch-deg>0.0</pitch-deg>
     </offsets>
   </model>
 
@@ -71,19 +71,19 @@
       <x-m>1.602</x-m>
       <y-m>-0.363</y-m>
       <z-m>0.297</z-m>
-	    <pitch-deg>0.0</pitch-deg>
+      <pitch-deg>0.0</pitch-deg>
     </offsets>
   </model>
 
-		<model>
-			<path>Aircraft/MiG-15/Models/Instruments/Ignitionbutton/MiG-15bis-Ignitionbutton.xml</path>
-			<offsets>
-				<x-m>1.632</x-m>
-				<y-m>-0.363</y-m>
-				<z-m>0.297</z-m>
-				<pitch-deg>0.0</pitch-deg>
-			</offsets>
-		</model>
+  <model>
+    <path>Aircraft/MiG-15/Models/Instruments/Ignitionbutton/MiG-15bis-Ignitionbutton.xml</path>
+    <offsets>
+      <x-m>1.632</x-m>
+      <y-m>-0.363</y-m>
+      <z-m>0.297</z-m>
+      <pitch-deg>0.0</pitch-deg>
+    </offsets>
+  </model>
 
   <model>
     <path>Aircraft/MiG-15/Models/Instruments/Flapscontrol/MiG-15bis-Flapscontrol.xml</path>
@@ -91,7 +91,7 @@
       <x-m>1.980</x-m>
       <y-m>-0.338</y-m>
       <z-m>0.215</z-m>
-	    <pitch-deg>0.0</pitch-deg>
+      <pitch-deg>0.0</pitch-deg>
     </offsets>
   </model>
 
@@ -101,7 +101,7 @@
       <x-m>1.980</x-m>
       <y-m>-0.338</y-m>
       <z-m>0.033</z-m>
-	    <pitch-deg>0.0</pitch-deg>
+      <pitch-deg>0.0</pitch-deg>
     </offsets>
   </model>
 
@@ -111,9 +111,8 @@
       <x-m>2.032</x-m>
       <y-m>-0.426</y-m>
       <z-m>0.314</z-m>
-	    <pitch-deg>0.0</pitch-deg>
+      <pitch-deg>0.0</pitch-deg>
     </offsets>
   </model>
-
 
 </PropertyList> 

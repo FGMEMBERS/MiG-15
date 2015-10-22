@@ -1,9 +1,5 @@
 <?xml version="1.0"?>
 
-<!--
-
--->
-
 <PropertyList>
 
   <name>Text Auto Pilot Instrument</name>
@@ -17,7 +13,7 @@
   </params>
 
   <layers>
-<!-- Titles -->
+    <!-- Titles -->
     <layer>
       <name>background</name>
       <texture>
@@ -37,7 +33,7 @@
       </transformations>
     </layer>
 
-<!-- All Off -->
+    <!-- All Off -->
     <layer>
       <name>Title</name>
       <type>text</type>
@@ -65,7 +61,7 @@
       </transformations>
     </layer>
 
-<!-- AP Activated -->
+    <!-- AP Activated -->
     <layer>
       <condition>
         <not-equals>
@@ -99,8 +95,8 @@
       </transformations>
     </layer>
 
-<!-- Altitude hold -->
-<!-- Off -->
+    <!-- Altitude hold -->
+    <!-- Off -->
     <layer>
       <condition>
         <not-equals>
@@ -134,7 +130,7 @@
       </transformations>
     </layer>
 
-<!-- On -->
+    <!-- On -->
     <layer>
       <condition>
         <equals>
@@ -168,8 +164,8 @@
       </transformations>
     </layer>
 
-<!-- AGL Hold -->
-<!-- Off -->
+    <!-- AGL Hold -->
+    <!-- Off -->
     <layer>
       <condition>
         <not-equals>
@@ -203,7 +199,7 @@
       </transformations>
     </layer>
 
-<!-- On -->
+    <!-- On -->
     <layer>
       <condition>
         <equals>
@@ -237,8 +233,8 @@
       </transformations>
     </layer>
 
-<!-- Auto Take-off -->
-<!-- Disabled -->
+    <!-- Auto Take-off -->
+    <!-- Disabled -->
     <layer>
       <condition>
         <equals>
@@ -272,7 +268,7 @@
       </transformations>
     </layer>
 
-<!-- Enabled -->
+    <!-- Enabled -->
     <layer>
       <condition>
         <equals>
@@ -306,7 +302,7 @@
       </transformations>
     </layer>
 
-<!-- Engaged -->
+    <!-- Engaged -->
     <layer>
       <condition>
         <equals>
@@ -341,8 +337,8 @@
     </layer>
 
 
-<!-- Auto Landing -->
-<!-- Disabled -->
+    <!-- Auto Landing -->
+    <!-- Disabled -->
     <layer>
       <condition>
         <equals>
@@ -376,7 +372,7 @@
       </transformations>
     </layer>
 
-<!-- Enabled -->
+    <!-- Enabled -->
     <layer>
       <condition>
         <equals>
@@ -410,7 +406,7 @@
       </transformations>
     </layer>
 
-<!-- Engaged -->
+    <!-- Engaged -->
     <layer>
       <condition>
         <equals>
@@ -444,8 +440,8 @@
       </transformations>
     </layer>
 
-<!-- Mach Climb -->
-<!-- Disabled -->
+    <!-- Mach Climb -->
+    <!-- Disabled -->
     <layer>
       <condition>
         <not-equals>
@@ -479,7 +475,7 @@
       </transformations>
     </layer>
 
-<!-- Enabled -->
+    <!-- Enabled -->
     <layer>
       <condition>
         <equals>
@@ -513,7 +509,7 @@
       </transformations>
     </layer>
 
-<!-- Engaged -->
+    <!-- Engaged -->
     <layer>
       <condition>
         <equals>
@@ -551,7 +547,7 @@
 
   <actions>
 
-<!-- Disengage Autopilot -->
+    <!-- Disengage Autopilot -->
     <action>
       <name>Autopilot Off</name>
       <button>0</button>
@@ -586,7 +582,7 @@
       </binding>
     </action>
 
-<!-- Engage Alititude Hold -->
+    <!-- Engage Alititude Hold -->
     <action>
       <name>Altitude Hold Select</name>
       <button>0</button>
@@ -606,7 +602,7 @@
       </binding>
     </action>
 
-<!-- Engage Terrain Follow -->
+    <!-- Engage Terrain Follow -->
     <action>
       <name>Terrain Follow Select</name>
       <button>0</button>
@@ -626,7 +622,7 @@
       </binding>
     </action>
 
-<!-- Engage Take-Off Mode -->
+    <!-- Engage Take-Off Mode -->
     <action>
       <name>Take Off Select</name>
       <button>0</button>
@@ -640,7 +636,7 @@
       </binding>
     </action>
 
-<!-- Engage instrument Landing -->
+    <!-- Engage instrument Landing -->
     <action>
       <name>Instrument Landing Select</name>
       <button>0</button>
@@ -654,7 +650,7 @@
       </binding>
     </action>
 
-<!-- Engage Mach Climb -->
+    <!-- Engage Mach Climb -->
     <action>
       <name>Mach Climb Select</name>
       <button>0</button>

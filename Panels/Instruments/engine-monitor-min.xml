@@ -1,9 +1,5 @@
 <?xml version="1.0"?>
 
-<!--
-
--->
-
 <PropertyList>
 
   <name>Engine Monitor - minimised</name>
@@ -11,7 +7,7 @@
   <h-base>12</h-base>
 
   <layers>
-<!-- Background -->
+    <!-- Background -->
     <layer>
       <name>background</name>
       <texture>
@@ -31,7 +27,7 @@
       </transformations>
     </layer>
 
-<!-- Title -->
+    <!-- Title -->
     <layer>
       <name>Title</name>
       <type>text</type>

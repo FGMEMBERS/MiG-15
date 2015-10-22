@@ -1,9 +1,5 @@
 <?xml version="1.0"?>
 
-<!--
-
--->
-
 <PropertyList>
 
   <name>Engine Monitor</name>
@@ -20,7 +16,7 @@
   </params>
 
   <layers>
-<!-- Background -->
+    <!-- Background -->
     <layer>
       <name>background</name>
       <texture>
@@ -40,7 +36,7 @@
       </transformations>
     </layer>
 
-<!-- Title -->
+    <!-- Title -->
     <layer>
       <name>Title</name>
       <type>text</type>
@@ -68,8 +64,8 @@
       </transformations>
     </layer>
 
-<!-- THROTTLE -->
-<!-- Throttle Title -->
+    <!-- THROTTLE -->
+    <!-- Throttle Title -->
     <layer>
       <name>Title</name>
       <type>text</type>
@@ -97,7 +93,7 @@
       </transformations>
     </layer>
 
-<!-- Throttle Setting -->
+    <!-- Throttle Setting -->
     <layer>
       <name>Throttle setting</name>
       <type>text</type>
@@ -127,8 +123,8 @@
       </transformations>
     </layer>
 
-<!-- PTHRUST -->
-<!-- PThrust Title -->
+    <!-- PTHRUST -->
+    <!-- PThrust Title -->
     <layer>
       <name>Title</name>
       <type>text</type>
@@ -156,7 +152,7 @@
       </transformations>
     </layer>
 
-<!-- P Thrust -->
+    <!-- P Thrust -->
     <layer>
       <name>P Thrust</name>
       <type>text</type>
@@ -186,8 +182,8 @@
       </transformations>
     </layer>
 
-<!-- N1 -->
-<!-- N1 Title -->
+    <!-- N1 -->
+    <!-- N1 Title -->
     <layer>
       <name>Title</name>
       <type>text</type>
@@ -215,7 +211,7 @@
       </transformations>
     </layer>
 
-<!-- N1 <= 100 -->
+    <!-- N1 <= 100 -->
     <layer>
       <condition>
         <less-than-equals>
@@ -251,7 +247,7 @@
       </transformations>
     </layer>
 
-<!-- N1 <= 90 -->
+    <!-- N1 <= 90 -->
     <layer>
       <condition>
         <less-than-equals>
@@ -287,7 +283,7 @@
       </transformations>
     </layer>
 
-<!-- N1 > 100 -->
+    <!-- N1 > 100 -->
     <layer>
       <condition>
         <greater-than>
@@ -323,8 +319,8 @@
       </transformations>
     </layer>
 
-<!-- N2 -->
-<!-- N2 Title -->
+    <!-- N2 -->
+    <!-- N2 Title -->
     <layer>
       <name>Title</name>
       <type>text</type>
@@ -352,7 +348,7 @@
       </transformations>
     </layer>
 
-<!-- N2 <= 100 -->
+    <!-- N2 <= 100 -->
     <layer>
       <condition>
         <less-than-equals>
@@ -388,7 +384,7 @@
       </transformations>
     </layer>
 
-<!-- N2 <= 90 -->
+    <!-- N2 <= 90 -->
     <layer>
       <condition>
         <less-than-equals>
@@ -424,7 +420,7 @@
       </transformations>
     </layer>
 
-<!-- N2 > 100 -->
+    <!-- N2 > 100 -->
     <layer>
       <condition>
         <greater-than>
@@ -460,8 +456,8 @@
       </transformations>
     </layer>
 
-<!-- EGT -->
-<!-- EGT Title -->
+    <!-- EGT -->
+    <!-- EGT Title -->
     <layer>
       <name>Title</name>
       <type>text</type>
@@ -489,7 +485,7 @@
       </transformations>
     </layer>
 
-<!-- EGT -->
+    <!-- EGT -->
     <layer>
       <name>EGT</name>
       <type>text</type>
@@ -503,7 +499,7 @@
       <chunks>
         <chunk>
           <type>number-value</type>
-<!--          <property alias="../../../../../params/egt-select"/> -->
+          <!--          <property alias="../../../../../params/egt-select"/> -->
           <property>/engines/engine[0]/egt-degf</property>
           <format>%08.3f</format>
         </chunk>
@@ -520,8 +516,8 @@
       </transformations>
     </layer>
 
-<!-- FUEL FLOW -->
-<!-- Fuel Flow Title -->
+    <!-- FUEL FLOW -->
+    <!-- Fuel Flow Title -->
     <layer>
       <name>Title</name>
       <type>text</type>
@@ -549,7 +545,7 @@
       </transformations>
     </layer>
 
-<!-- Fuel Flow -->
+    <!-- Fuel Flow -->
     <layer>
       <name>Fuel FLow</name>
       <type>text</type>
@@ -579,8 +575,8 @@
       </transformations>
     </layer>
 
-<!-- FUEL TOT GALS -->
-<!-- Fuel Total Gallons Title -->
+    <!-- FUEL TOT GALS -->
+    <!-- Fuel Total Gallons Title -->
     <layer>
       <name>Title</name>
       <type>text</type>
@@ -608,7 +604,7 @@
       </transformations>
     </layer>
 
-<!-- Fuel Total Gallons (Norm >= 0.3) -->
+    <!-- Fuel Total Gallons (Norm >= 0.3) -->
     <layer>
       <name>Fuel Total Galons norm GTE 0.3</name>
       <condition>
@@ -644,7 +640,7 @@
       </transformations>
     </layer>
 
-<!-- Fuel Total Gallons (Norm < 0.3) -->
+    <!-- Fuel Total Gallons (Norm < 0.3) -->
     <layer>
       <name>Fuel Total Galons norm LT 0.3</name>
       <condition>
@@ -680,8 +676,8 @@
       </transformations>
     </layer>
 
-<!-- FUEL TOT LBS -->
-<!-- Fuel Total LBS Title -->
+    <!-- FUEL TOT LBS -->
+    <!-- Fuel Total LBS Title -->
     <layer>
       <name>Title</name>
       <type>text</type>
@@ -709,7 +705,7 @@
       </transformations>
     </layer>
 
-<!-- Fuel Total LBS (norm >= 0.3) -->
+    <!-- Fuel Total LBS (norm >= 0.3) -->
     <layer>
       <name>Fuel Total LBS norm GTE 0.3</name>
       <condition>
@@ -745,7 +741,7 @@
       </transformations>
     </layer>
 
-<!-- Fuel Total LBS (norm < 0.3) -->
+    <!-- Fuel Total LBS (norm < 0.3) -->
     <layer>
       <name>Fuel Total LBS norm LT 0.3</name>
       <condition>
@@ -781,8 +777,8 @@
       </transformations>
     </layer>
 
-<!-- FUEL TOT NORM -->
-<!-- Fuel Total Norm Title -->
+    <!-- FUEL TOT NORM -->
+    <!-- Fuel Total Norm Title -->
     <layer>
       <name>Title</name>
       <type>text</type>
@@ -810,7 +806,7 @@
       </transformations>
     </layer>
 
-<!-- Fuel Norm >= 0.3 -->
+    <!-- Fuel Norm >= 0.3 -->
     <layer>
       <name>Fuel Norm GTE 0.3</name>
       <condition>
@@ -846,7 +842,7 @@
       </transformations>
     </layer>
 
-<!-- Fuel Norm < 0.3 -->
+    <!-- Fuel Norm < 0.3 -->
     <layer>
       <name>Fuel Norm LT 0.3</name>
       <condition>
