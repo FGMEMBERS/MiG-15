@@ -316,12 +316,6 @@
 
   <model>
     <path>Aircraft/MiG-15/Models/Instruments/Gearhandles/MiG-15bis-Gearhandles.xml</path>
-    <offsets>
-      <x-m>0.0</x-m>
-      <y-m>0.0</y-m>
-      <z-m>0.0</z-m>
-      <pitch-deg>0</pitch-deg>
-    </offsets>
   </model>
 
 </PropertyList> 
