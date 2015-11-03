@@ -1988,6 +1988,7 @@ gearmove = func
 
 gearstuck = func (gear_num, sounded)
 	{
+                if (getprop ("processes/gear-break/enabled") == 0) { return; }
 		setprop("fdm/jsbsim/gear/unit["~gear_num~"]/stuck", 1);
 		if (sounded==1)
 		{
@@ -2540,6 +2541,7 @@ flapsbreaksprocess = func
 		#get speed value
 		speed=getprop("velocities/airspeed-kt");
 		if (getprop("sim/replay/replay-state") != 0
+			or getprop ("processes/aircraft-break/enabled") == 0
 			or (flaps_pos_deg == nil)
 			or (tored==nil)
 			or (speed==nil)
@@ -3180,7 +3182,7 @@ engineprocess=func
 				setprop("engines/engine/low-throttle-time", 0);
 				setprop("engines/engine/low-throttle-prev-time", 0);
 			}
-			if (engine_temperature_degc>825)
+			if (engine_temperature_degc>825 and getprop ("processes/engine/failures-enabled") == 1)
 			{
 				#Engine switch off if it goes on high temperature too long
 				if (high_temperature_prev_time==0)
@@ -3205,7 +3207,7 @@ engineprocess=func
 				if (ignition_power_begin_time==0)
 				{
 					ignition_power_begin_time=simulation_time;
-					setprop("engines/engine/ignition_power_begin_time", simulation_time);
+					setprop("engines/engine/ignition-power-begin-time", simulation_time);
 				}
 			}
 			else
@@ -3268,6 +3270,7 @@ engineprocess=func
 init_engineprocess = func 
 {
 	setprop("processes/engine/on", 1);
+	setprop("processes/engine/failures-enabled", 1);
 	setprop("engines/engine/stop", 0);
 	setprop("engines/engine/starter-begin-time", 0);
 	setprop("engines/engine/starter-time", 0);
@@ -4726,7 +4729,9 @@ canopyprocess = func
 			stop_canopyprocess();
 	 		return ( settimer(canopyprocess, 0.1) ); 
 		}
-		if (in_service != 1 or getprop ("sim/replay/replay-state") != 0)
+		if (in_service != 1
+                    or getprop ("sim/replay/replay-state") != 0
+                    or getprop ("processes/aircraft-break/enabled") == 0)
 		{
 			stop_canopyprocess();
 			return ( settimer(canopyprocess, 0.1) ); 

@@ -444,6 +444,25 @@ MiG-15bis simulation config.
 	      <script>MIG15BIS.dump_properties();</script>
 	    </binding>
 	  </item>
+          <item n="5">
+            <label>Beginner mode: no failures</label>
+            <binding><command>property-assign</command><property>listneners/aircraft-break/enabled</property> <value>0</value></binding>
+            <binding><command>property-assign</command><property>listneners/gear-break/enabled</property>     <value>0</value></binding>
+            <binding><command>property-assign</command><property>processes/aircraft-break/enabled</property>  <value>0</value></binding>
+            <binding><command>property-assign</command><property>processes/engine/failures-enabled</property> <value>0</value></binding>
+            <binding><command>property-assign</command><property>processes/gear-break/enabled</property>      <value>0</value></binding>
+          </item>
+          <!--item n="6">
+            <label>Intermediate mode: failures explained (not implemented yet)</label>
+          </item-->
+          <item n="7">
+            <label>Pilot mode</label>
+            <binding><command>property-assign</command><property>listneners/aircraft-break/enabled</property> <value>1</value></binding>
+            <binding><command>property-assign</command><property>listneners/gear-break/enabled</property>     <value>1</value></binding>
+            <binding><command>property-assign</command><property>processes/aircraft-break/enabled</property>  <value>1</value></binding>
+            <binding><command>property-assign</command><property>processes/engine/failures-enabled</property> <value>1</value></binding>
+            <binding><command>property-assign</command><property>processes/gear-break/enabled</property>      <value>1</value></binding>
+          </item>
 	</menu>
       </default>
     </menubar>
