@@ -6,11 +6,6 @@
 
   <path>MiG-15bis.ac</path>
 
-  <offsets>
-    <z-m>0.0</z-m>
-    <pitch-deg>0</pitch-deg>
-  </offsets>
-
   <!-- Multiplayer events =========================================-->
   <nasal>
     <load>
