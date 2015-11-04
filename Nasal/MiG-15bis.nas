@@ -1234,6 +1234,8 @@ teargear = func (gear_number, breaktype)
 		setprop("fdm/jsbsim/gear/unit["~gear_number~"]/z-position", 0);
 #		setprop("gear/gear["~gear_number~"]/position-norm", 0);
 		gears_tored_sound=getprop("sounds/gears-tored/on");
+                setprop("/sim/messages/copilot",
+                        "Gear " ~ gear_number ~ " torn: " ~ breaktype ~ "!");
 		if (gears_tored_sound!=nil)
 		{
 			if (gears_tored_sound==0)
@@ -1989,6 +1991,7 @@ gearmove = func
 gearstuck = func (gear_num, sounded)
 	{
                 if (getprop ("processes/gear-break/enabled") == 0) { return; }
+                setprop("/sim/messages/copilot", "Gear stuck!");
 		setprop("fdm/jsbsim/gear/unit["~gear_num~"]/stuck", 1);
 		if (sounded==1)
 		{
@@ -2565,6 +2568,7 @@ flapsbreaksprocess = func
 				setprop("fdm/jsbsim/fcs/flap-pos-norm", 0);
 				setprop("ai/submodels/left-flap-drop", 1);
 				setprop("ai/submodels/right-flap-drop", 1);
+                                setprop("/sim/messages/copilot", "Flaps torn!");
 				flapstoredsound();
 			}
 		}
@@ -3129,6 +3133,8 @@ engineprocess=func
 				setprop("engines/engine/starter-begin-time", 0);
 				setprop("engines/engine/starter-time", 0);
 				setprop("controls/engines/engine/starter-command", 0);
+                                setprop("/sim/messages/copilot",
+                                        "engine cut off due to the throttle shifting in flight");
 			}
 		}
 		if (
@@ -3304,6 +3310,7 @@ engine_stop = func(stop_reason)
 		setprop("engines/engine/cutoff-reason", "engine stop");
 		setprop("engines/engine/stop", 1);
 		settimer(end_engine_stop, 5);
+                setprop("/sim/messages/copilot", "Engine stopped: " ~ stop_reason);
 		return (0);
 	}
 
@@ -4793,6 +4800,7 @@ tear_canopy=func
 {
 	setprop("ai/submodels/canopy-drop", 1);
 	setprop("fdm/jsbsim/systems/canopy/tored", 1);
+        setprop("/sim/messages/copilot", "Canopy torn off!");
 	canopytoredsound();
 }
 
