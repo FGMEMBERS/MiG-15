@@ -705,9 +705,9 @@ init_fdm  = func
 	setprop("fdm/jsbsim/gear/unit[1]/z-position", -1.332/0.0254);
 	setprop("fdm/jsbsim/gear/unit[2]/z-position", -1.332/0.0254);
 
-	setprop("fdm/jsbsim/gear/unit[0]/tored", 0);
-	setprop("fdm/jsbsim/gear/unit[1]/tored", 0);
-	setprop("fdm/jsbsim/gear/unit[2]/tored", 0);
+	setprop("fdm/jsbsim/gear/unit[0]/torn", 0);
+	setprop("fdm/jsbsim/gear/unit[1]/torn", 0);
+	setprop("fdm/jsbsim/gear/unit[2]/torn", 0);
 
 	setprop("fdm/jsbsim/gear/unit[0]/stuck", 0);
 	setprop("fdm/jsbsim/gear/unit[1]/stuck", 0);
@@ -1218,29 +1218,29 @@ set_friction();
 
 teargear = func (gear_number, breaktype)
 	{
-		gear_tored=getprop("fdm/jsbsim/gear/unit["~gear_number~"]/tored");
-		if (gear_tored==nil)
+		gear_torn=getprop("fdm/jsbsim/gear/unit["~gear_number~"]/torn");
+		if (gear_torn==nil)
 		{
 			return (0);
 		}
-		if (gear_tored==1)
+		if (gear_torn==1)
 		{
 			return (0);
 		}
 		wow=getprop("gear/gear["~gear_number~"]/wow");
 		setprop("fdm/jsbsim/gear/unit["~gear_number~"]/break-type", breaktype);
-		setprop("fdm/jsbsim/gear/unit["~gear_number~"]/tored", 1);
+		setprop("fdm/jsbsim/gear/unit["~gear_number~"]/torn", 1);
 		setprop("fdm/jsbsim/gear/unit["~gear_number~"]/pos-norm-real", 0);
 		setprop("fdm/jsbsim/gear/unit["~gear_number~"]/z-position", 0);
 #		setprop("gear/gear["~gear_number~"]/position-norm", 0);
-		gears_tored_sound=getprop("sounds/gears-tored/on");
+		gears_torn_sound=getprop("sounds/gears-torn/on");
                 setprop("/sim/messages/copilot",
                         "Gear " ~ gear_number ~ " torn: " ~ breaktype ~ "!");
-		if (gears_tored_sound!=nil)
+		if (gears_torn_sound!=nil)
 		{
-			if (gears_tored_sound==0)
+			if (gears_torn_sound==0)
 			{
-				geartoredsound();
+				geartornsound();
 			}
 		}
 		if (wow!=nil)
@@ -1272,7 +1272,7 @@ stop_gearbreakslistener = func
 gearbreakslistener = func 
 	{
 		# check state
-		in_service = getprop("listneners/gear-break/enabled");
+		in_service = getprop("listeners/gear-break/enabled");
 		if (in_service == nil)
 		{
 			return ( stop_gearbreakslistener );
@@ -1282,9 +1282,9 @@ gearbreakslistener = func
 			return ( stop_gearbreakslistener );
 		}
 		# get gear values
-		gear_one_tored=getprop("fdm/jsbsim/gear/unit[0]/tored");
-		gear_two_tored=getprop("fdm/jsbsim/gear/unit[1]/tored");
-		gear_three_tored=getprop("fdm/jsbsim/gear/unit[2]/tored");
+		gear_one_torn=getprop("fdm/jsbsim/gear/unit[0]/torn");
+		gear_two_torn=getprop("fdm/jsbsim/gear/unit[1]/torn");
+		gear_three_torn=getprop("fdm/jsbsim/gear/unit[2]/torn");
 		pilot_g=getprop("fdm/jsbsim/accelerations/Nz");
 		maximum_g=getprop("fdm/jsbsim/accelerations/Nz-max");
 		speed=getprop("velocities/airspeed-kt");
@@ -1301,9 +1301,9 @@ gearbreakslistener = func
 		wow_three=getprop("gear/gear[2]/wow");
 		gear_started=getprop("fdm/jsbsim/init/finally-initialized");
 		if (
-			(gear_one_tored==nil)
-			or (gear_two_tored==nil)
-			or (gear_three_tored==nil)
+			(gear_one_torn==nil)
+			or (gear_two_torn==nil)
+			or (gear_three_torn==nil)
 			or (pilot_g==nil)
 			or (maximum_g==nil)
 			or (speed==nil)
@@ -1334,7 +1334,7 @@ gearbreakslistener = func
 			and (abs(pilot_g)>(maximum_g-(maximum_g*0.25)))
 		)
 		{
-			gear_one_tored=teargear(0, "hit overload "~pilot_g);
+			gear_one_torn=teargear(0, "hit overload "~pilot_g);
 		}
 		if (
 			(wow_two>0)
@@ -1342,7 +1342,7 @@ gearbreakslistener = func
 			and (abs(pilot_g)>(maximum_g-(maximum_g*0.25)))
 		)
 		{
-			gear_two_tored=teargear(1, "hit overload "~pilot_g);
+			gear_two_torn=teargear(1, "hit overload "~pilot_g);
 		}
 		if (
 			(wow_three>0)
@@ -1350,7 +1350,7 @@ gearbreakslistener = func
 			and (abs(pilot_g)>(maximum_g-(maximum_g*0.25)))
 		)
 		{
-			gear_three_tored=teargear(2, "hit overload "~pilot_g);
+			gear_three_torn=teargear(2, "hit overload "~pilot_g);
 		}
 		if (
 			(wow_one>0) 
@@ -1360,21 +1360,21 @@ gearbreakslistener = func
 			)
 		)
 		{
-			gear_one_tored=teargear(0, "dig "~pilot_g);
+			gear_one_torn=teargear(0, "dig "~pilot_g);
 		}
 		if (
 			(wow_one>0)
 			and (pitch_degps<-10)
 		)
 		{
-			gear_one_tored=teargear(0, "peck "~pitch_degps);
+			gear_one_torn=teargear(0, "peck "~pitch_degps);
 		}
 	}
 
 init_gearbreakslistener = func 
 {
-	setprop("sounds/gears-tored/on", 0);
-	setprop("listneners/gear-break/enabled", 1);
+	setprop("sounds/gears-torn/on", 0);
+	setprop("listeners/gear-break/enabled", 1);
 }
 
 init_gearbreakslistener();
@@ -1410,9 +1410,9 @@ gearbreaksprocess = func
 		gear_one_pos=getprop("fdm/jsbsim/gear/unit[0]/pos-norm-real");
 		gear_two_pos=getprop("fdm/jsbsim/gear/unit[1]/pos-norm-real");
 		gear_three_pos=getprop("fdm/jsbsim/gear/unit[2]/pos-norm-real");
-		gear_one_tored=getprop("fdm/jsbsim/gear/unit[0]/tored");
-		gear_two_tored=getprop("fdm/jsbsim/gear/unit[1]/tored");
-		gear_three_tored=getprop("fdm/jsbsim/gear/unit[2]/tored");
+		gear_one_torn=getprop("fdm/jsbsim/gear/unit[0]/torn");
+		gear_two_torn=getprop("fdm/jsbsim/gear/unit[1]/torn");
+		gear_three_torn=getprop("fdm/jsbsim/gear/unit[2]/torn");
 		pilot_g=getprop("fdm/jsbsim/accelerations/Nz");
 		maximum_g=getprop("fdm/jsbsim/accelerations/Nz-max");
 		maximum_g_tenth=getprop("fdm/jsbsim/accelerations/Nz-max-tenth");
@@ -1429,9 +1429,9 @@ gearbreaksprocess = func
 			(gear_one_pos == nil)
 			or (gear_two_pos == nil)
 			or (gear_three_pos == nil)
-			or (gear_one_tored==nil)
-			or (gear_two_tored==nil)
-			or (gear_three_tored==nil)
+			or (gear_one_torn==nil)
+			or (gear_two_torn==nil)
+			or (gear_three_torn==nil)
 			or (pilot_g==nil)
 			or (maximum_g==nil)
 			or (maximum_g_tenth=nil)
@@ -1487,9 +1487,9 @@ gearbreaksprocess = func
 		setprop("gear/info/friction_factor", info[1].friction_factor);
 		setprop("gear/info/rolling_friction", info[1].rolling_friction);
 		if (
-			((gear_one_pos>0) and (gear_one_tored==0))
-			or ((gear_two_pos>0) and (gear_two_tored==0))
-			or ((gear_three_pos>0) and (gear_three_tored==0))
+			((gear_one_pos>0) and (gear_one_torn==0))
+			or ((gear_two_pos>0) and (gear_two_torn==0))
+			or ((gear_three_pos>0) and (gear_three_torn==0))
 		)
 		{
 			speed_km=speed*1.852;
@@ -1498,83 +1498,83 @@ gearbreaksprocess = func
 			setprop("fdm/jsbsim/gear/unit[0]/speed-limit", speed_limit_middle);
 			if ((speed_km>speed_limit_middle) and (speed_limit_middle>0))
 			{
-				if ((gear_one_tored==0) and (gear_one_pos>0))
+				if ((gear_one_torn==0) and (gear_one_pos>0))
 				{
-					gear_one_tored=teargear(0, "overspeeed "~speed_km);
+					gear_one_torn=teargear(0, "overspeeed "~speed_km);
 				}
 			}
 			speed_limit_left=525-((gear_two_pos-0.5)/(1-0.5))*(525-505);
 			setprop("fdm/jsbsim/gear/unit[1]/speed-limit", speed_limit_left);
 			if ((speed_km>speed_limit_left) and (speed_limit_left>0))
 			{
-				if ((gear_two_tored==0) and (gear_two_pos>0))
+				if ((gear_two_torn==0) and (gear_two_pos>0))
 				{
-					gear_two_tored=teargear(1, "overspeeed "~speed_km);
+					gear_two_torn=teargear(1, "overspeeed "~speed_km);
 				}
 			}
 			speed_limit_right=610-((gear_three_pos-0.5)/(1-0.5))*(610-515);
 			setprop("fdm/jsbsim/gear/unit[2]/speed-limit", speed_limit_right);
 			if ((speed_km>speed_limit_right) and (speed_limit_right>0))
 			{
-				if ((gear_three_tored==0) and (gear_three_pos>0))
+				if ((gear_three_torn==0) and (gear_three_pos>0))
 				{
-					gear_three_tored=teargear(2, "overspeeed "~speed_km);
+					gear_three_torn=teargear(2, "overspeeed "~speed_km);
 				}
 			}
 			roll_speed_km_one=(roll_speed_one*(60*60)/1000);
 			roll_speed_km_two=(roll_speed_two*(60*60)/1000);
 			roll_speed_km_three=(roll_speed_three*(60*60)/1000);
-			if ((gear_one_tored==0) and (wow_one==1) and (roll_speed_km_one>300))
+			if ((gear_one_torn==0) and (wow_one==1) and (roll_speed_km_one>300))
 			{
-				gear_one_tored=teargear(0, "overroll "~speed_km);
+				gear_one_torn=teargear(0, "overroll "~speed_km);
 			}
-			if ((gear_two_tored==0) and (wow_two==1) and (roll_speed_km_two>325))
+			if ((gear_two_torn==0) and (wow_two==1) and (roll_speed_km_two>325))
 			{
-				gear_two_tored=teargear(1, "overroll "~speed_km);
+				gear_two_torn=teargear(1, "overroll "~speed_km);
 			}
-			if ((gear_three_tored==0) and (wow_three==1) and (roll_speed_km_three>320))
+			if ((gear_three_torn==0) and (wow_three==1) and (roll_speed_km_three>320))
 			{
-				gear_three_tored=teargear(2, "overroll "~speed_km);
+				gear_three_torn=teargear(2, "overroll "~speed_km);
 			}
 
 			if (
-				(gear_one_tored==0) 
+				(gear_one_torn==0) 
 				and (wow_one==0) 
 				and (abs(pilot_g)>3)
 			)
 			{
-				gear_one_tored=teargear(0, "flight overload "~pilot_g);
+				gear_one_torn=teargear(0, "flight overload "~pilot_g);
 			}
 			if (
-				(gear_two_tored==0) 
+				(gear_two_torn==0) 
 				and (wow_two==0) 
 				and (abs(pilot_g)>3)
 			)
 			{
-				gear_two_tored=teargear(1, "flight overload "~pilot_g);
+				gear_two_torn=teargear(1, "flight overload "~pilot_g);
 			}
 			if (
-				(gear_three_tored==0) 
+				(gear_three_torn==0) 
 				and (wow_three==0) 
 				and (abs(pilot_g)>3)
 			)
 			{
-				gear_three_tored=teargear(2, "flight overload "~pilot_g);
+				gear_three_torn=teargear(2, "flight overload "~pilot_g);
 			}
 
 			if (info[1].solid!=1)
 			{
-				if ((gear_one_tored==0) and (wow_one>0))
+				if ((gear_one_torn==0) and (wow_one>0))
 				{
-					gear_one_tored=teargear(0, "water ");
+					gear_one_torn=teargear(0, "water ");
 				}
-				if ((gear_two_tored==0) and (wow_two>0))
+				if ((gear_two_torn==0) and (wow_two>0))
 				{
-					gear_two_tored=teargear(1, "water ");
+					gear_two_torn=teargear(1, "water ");
 				}
-				if ((gear_three_tored==0) and (wow_three>0))
+				if ((gear_three_torn==0) and (wow_three>0))
 				{
-					gear_three_tored=teargear(2, "water ");
+					gear_three_torn=teargear(2, "water ");
 				}
 			}
 			if (
@@ -1583,17 +1583,17 @@ gearbreaksprocess = func
 				or (info[1].friction_factor<0.7)
 			)
 			{
-				if ((gear_one_tored==0) and (wow_one==1) and (roll_speed_km_one>75))
+				if ((gear_one_torn==0) and (wow_one==1) and (roll_speed_km_one>75))
 				{
-					gear_one_tored=teargear(0, "ground overroll "~speed_km);
+					gear_one_torn=teargear(0, "ground overroll "~speed_km);
 				}
-				if ((gear_two_tored==0) and (wow_two==1) and (roll_speed_km_two>80))
+				if ((gear_two_torn==0) and (wow_two==1) and (roll_speed_km_two>80))
 				{
-					gear_two_tored=teargear(1, "ground overroll "~speed_km);
+					gear_two_torn=teargear(1, "ground overroll "~speed_km);
 				}
-				if ((gear_three_tored==0) and (wow_three==1) and (roll_speed_km_three>82))
+				if ((gear_three_torn==0) and (wow_three==1) and (roll_speed_km_three>82))
 				{
-					gear_three_tored=teargear(2, "ground overroll "~speed_km);
+					gear_three_torn=teargear(2, "ground overroll "~speed_km);
 				}
 			}
 			if (
@@ -1601,17 +1601,17 @@ gearbreaksprocess = func
 				or (info[1].rolling_friction==1)
 			)
 			{
-				if ((gear_one_tored==0) and (wow_one==1))
+				if ((gear_one_torn==0) and (wow_one==1))
 				{
-					gear_one_tored=teargear(0, "wrongground");
+					gear_one_torn=teargear(0, "wrongground");
 				}
-				if ((gear_two_tored==0) and (wow_two==1))
+				if ((gear_two_torn==0) and (wow_two==1))
 				{
-					gear_two_tored=teargear(1, "wrongground");
+					gear_two_torn=teargear(1, "wrongground");
 				}
-				if ((gear_three_tored==0) and (wow_three==1))
+				if ((gear_three_torn==0) and (wow_three==1))
 				{
-					gear_three_tored=teargear(2, "wrongground");
+					gear_three_torn=teargear(2, "wrongground");
 				}
 			}
 
@@ -1694,7 +1694,7 @@ gearbreaksprocess = func
 		gear_middle_drop=getprop("ai/submodels/gear-middle-drop");
 		if (gear_middle_drop!=nil)
 		{
-			if ((gear_one_tored==0) and (gear_middle_drop==1))
+			if ((gear_one_torn==0) and (gear_middle_drop==1))
 			{
 				setprop("ai/submodels/gear-middle-drop", 0);
 			}
@@ -1702,7 +1702,7 @@ gearbreaksprocess = func
 		gear_left_drop=getprop("ai/submodels/gear-left-drop");
 		if (gear_left_drop!=nil)
 		{
-			if ((gear_two_tored==0) and (gear_left_drop==1))
+			if ((gear_two_torn==0) and (gear_left_drop==1))
 			{
 				setprop("ai/submodels/gear-left-drop", 0);
 			}
@@ -1710,7 +1710,7 @@ gearbreaksprocess = func
 		gear_right_drop=getprop("ai/submodels/gear-right-drop");
 		if (gear_right_drop!=nil)
 		{
-			if ((gear_three_tored==0) and (gear_right_drop==1))
+			if ((gear_three_torn==0) and (gear_right_drop==1))
 			{
 				setprop("ai/submodels/gear-right-drop", 0);
 			}
@@ -1726,15 +1726,15 @@ init_gearbreaksprocess = func
 
 init_gearbreaksprocess();
 
-geartoredsound = func
+geartornsound = func
 	{
-		setprop("sounds/gears-tored/on", 1);
-		settimer(geartoredsoundoff, 0.3);
+		setprop("sounds/gears-torn/on", 1);
+		settimer(geartornsoundoff, 0.3);
 	}
 
-geartoredsoundoff = func
+geartornsoundoff = func
 	{
-		setprop("sounds/gears-tored/on", 0);
+		setprop("sounds/gears-torn/on", 0);
 	}
 
 gear_touch_down = func
@@ -1764,15 +1764,15 @@ gear_control_down = func
 		setprop("fdm/jsbsim/systems/gearcontrol/control-input", 1);
 	}
 
-geartoredsound = func
+geartornsound = func
 	{
-		setprop("sounds/gears-tored/on", 1);
-		settimer(geartoredsoundoff, 0.3);
+		setprop("sounds/gears-torn/on", 1);
+		settimer(geartornsoundoff, 0.3);
 	}
 
-geartoredsoundoff = func
+geartornsoundoff = func
 	{
-		setprop("sounds/gears-tored/on", 0);
+		setprop("sounds/gears-torn/on", 0);
 	}
 
 gear_touch_down = func
@@ -1882,9 +1882,9 @@ gearmove = func
 		gear_one_pos=getprop("fdm/jsbsim/gear/unit[0]/pos-norm-real");
 		gear_two_pos=getprop("fdm/jsbsim/gear/unit[1]/pos-norm-real");
 		gear_three_pos=getprop("fdm/jsbsim/gear/unit[2]/pos-norm-real");
-		gear_one_tored=getprop("fdm/jsbsim/gear/unit[0]/tored");
-		gear_two_tored=getprop("fdm/jsbsim/gear/unit[1]/tored");
-		gear_three_tored=getprop("fdm/jsbsim/gear/unit[2]/tored");
+		gear_one_torn=getprop("fdm/jsbsim/gear/unit[0]/torn");
+		gear_two_torn=getprop("fdm/jsbsim/gear/unit[1]/torn");
+		gear_three_torn=getprop("fdm/jsbsim/gear/unit[2]/torn");
 		gear_one_stuck=getprop("fdm/jsbsim/gear/unit[0]/stuck");
 		gear_two_stuck=getprop("fdm/jsbsim/gear/unit[1]/stuck");
 		gear_three_stuck=getprop("fdm/jsbsim/gear/unit[2]/stuck");
@@ -1906,9 +1906,9 @@ gearmove = func
 			(gear_one_pos==nil)
 			or (gear_two_pos==nil)
 			or (gear_three_pos==nil)
-			or (gear_one_tored==nil)
-			or (gear_two_tored==nil)
-			or (gear_three_tored==nil)
+			or (gear_one_torn==nil)
+			or (gear_two_torn==nil)
+			or (gear_three_torn==nil)
 			or (gear_one_stuck==nil)
 			or (gear_two_stuck==nil)
 			or (gear_three_stuck==nil)
@@ -1961,9 +1961,9 @@ gearmove = func
 		}
 
 		if (
-			((gear_one_tored==0) and (gear_one_stuck==0))
-			or ((gear_two_tored==0) and (gear_two_stuck==0))
-			or ((gear_three_tored==0) and (gear_three_stuck==0))
+			((gear_one_torn==0) and (gear_one_stuck==0))
+			or ((gear_two_torn==0) and (gear_two_stuck==0))
+			or ((gear_three_torn==0) and (gear_three_stuck==0))
 		)
 		{
 			setprop("processes/gear-move/sound-enabled", 1);
@@ -1973,15 +1973,15 @@ gearmove = func
 			setprop("processes/gear-move/sound-enabled", 0);
 		}
 		speed_km=speed*1.852;
-		if (gear_one_tored==0)
+		if (gear_one_torn==0)
 		{
 			one_gear_move(0, gear_one_pos, gear_command_real, gear_one_stuck, 4.2, 1.459, 105, speed_km, 375);
 		}
-		if (gear_two_tored==0)
+		if (gear_two_torn==0)
 		{
 			one_gear_move(1, gear_two_pos, gear_command_real, gear_two_stuck, 4.8, 1.332, 95, speed_km, 355);
 		}
-		if (gear_three_tored==0)
+		if (gear_three_torn==0)
 		{
 			one_gear_move(2, gear_three_pos, gear_command_real, gear_three_stuck, 5, 1.332, 95, speed_km, 350);
 		}
@@ -2050,9 +2050,9 @@ gearindicator = func
 		gear_one_pos=getprop("fdm/jsbsim/gear/unit[0]/pos-norm-real");
 		gear_two_pos=getprop("fdm/jsbsim/gear/unit[1]/pos-norm-real");
 		gear_three_pos=getprop("fdm/jsbsim/gear/unit[2]/pos-norm-real");
-		gear_one_tored=getprop("fdm/jsbsim/gear/unit[0]/tored");
-		gear_two_tored=getprop("fdm/jsbsim/gear/unit[1]/tored");
-		gear_three_tored=getprop("fdm/jsbsim/gear/unit[2]/tored");
+		gear_one_torn=getprop("fdm/jsbsim/gear/unit[0]/torn");
+		gear_two_torn=getprop("fdm/jsbsim/gear/unit[1]/torn");
+		gear_three_torn=getprop("fdm/jsbsim/gear/unit[2]/torn");
 		# get instrumentation values	
 		red_pos=getprop("instrumentation/gear-indicator/red-pos-norm");
 		green_pos=getprop("instrumentation/gear-indicator/green-pos-norm");
@@ -2063,9 +2063,9 @@ gearindicator = func
 			(gear_one_pos==nil)
 			or (gear_two_pos==nil)
 			or (gear_three_pos==nil)
-			or (gear_one_tored==nil)
-			or (gear_two_tored==nil)
-			or (gear_three_tored==nil)
+			or (gear_one_torn==nil)
+			or (gear_two_torn==nil)
+			or (gear_three_torn==nil)
 			or (red_pos==nil)
 			or (green_pos==nil)
 			or (button_check_pos==nil)
@@ -2088,12 +2088,12 @@ gearindicator = func
 		}
 		else
 		{
-			setprop("instrumentation/gear-indicator/middle-up", (((gear_one_pos==0) or (button_check_pos==1))) and (gear_one_tored==0));
-			setprop("instrumentation/gear-indicator/left-up", (((gear_two_pos==0) or (button_check_pos==1))) and (gear_two_tored==0));
-			setprop("instrumentation/gear-indicator/right-up", (((gear_three_pos==0) or (button_check_pos==1))) and (gear_three_tored==0));
-			setprop("instrumentation/gear-indicator/middle-down", (((gear_one_pos==1) or (button_check_pos==1))) and (gear_one_tored==0));
-			setprop("instrumentation/gear-indicator/left-down", (((gear_two_pos==1) or (button_check_pos==1))) and (gear_two_tored==0));
-			setprop("instrumentation/gear-indicator/right-down", (((gear_three_pos==1) or (button_check_pos==1))) and (gear_three_tored==0));
+			setprop("instrumentation/gear-indicator/middle-up", (((gear_one_pos==0) or (button_check_pos==1))) and (gear_one_torn==0));
+			setprop("instrumentation/gear-indicator/left-up", (((gear_two_pos==0) or (button_check_pos==1))) and (gear_two_torn==0));
+			setprop("instrumentation/gear-indicator/right-up", (((gear_three_pos==0) or (button_check_pos==1))) and (gear_three_torn==0));
+			setprop("instrumentation/gear-indicator/middle-down", (((gear_one_pos==1) or (button_check_pos==1))) and (gear_one_torn==0));
+			setprop("instrumentation/gear-indicator/left-down", (((gear_two_pos==1) or (button_check_pos==1))) and (gear_two_torn==0));
+			setprop("instrumentation/gear-indicator/right-down", (((gear_three_pos==1) or (button_check_pos==1))) and (gear_three_torn==0));
 		}
 		settimer(gearindicator, 0.1);
 	}
@@ -2167,13 +2167,13 @@ flapslamp = func
 		flaps_pos = getprop("surface-positions/flap-pos-norm");
 		# get bus value
 		bus=getprop("systems/electrical-real/bus");
-		tored = getprop("fdm/jsbsim/fcs/flap-tored");
-		if ((flaps_pos == nil) or (bus==nil) or (tored==nil))
+		torn = getprop("fdm/jsbsim/fcs/flap-torn");
+		if ((flaps_pos == nil) or (bus==nil) or (torn==nil))
 		{
 			stop_flapslamp();
 	 		return ( settimer(flapslamp, 0.1) ); 
 		}
-		if ((bus==0) or (tored==1))
+		if ((bus==0) or (torn==1))
 		{
 			stop_flapslamp();
 	 		return ( settimer(flapslamp, 0.1) ); 
@@ -2540,20 +2540,20 @@ flapsbreaksprocess = func
 	{
 		# get flaps values
 		flaps_pos_deg = getprop("fdm/jsbsim/fcs/flap-pos-deg");
-		tored = getprop("fdm/jsbsim/fcs/flap-tored");
+		torn = getprop("fdm/jsbsim/fcs/flap-torn");
 		#get speed value
 		speed=getprop("velocities/airspeed-kt");
 		if (getprop("sim/replay/replay-state") != 0
 			or getprop ("processes/aircraft-break/enabled") == 0
 			or (flaps_pos_deg == nil)
-			or (tored==nil)
+			or (torn==nil)
 			or (speed==nil)
 		)
 		{
 			stop_flapsbreaksprocess();
 			return ( settimer(flapsbreaksprocess, 0.1) ); 
 		}
-		if ((tored==0) and (flaps_pos_deg>5))
+		if ((torn==0) and (flaps_pos_deg>5))
 		{
 			speed_km=speed*1.852;
 			#max 450 km\h on 20 deg, 350 on 55 deg
@@ -2561,15 +2561,15 @@ flapsbreaksprocess = func
 			setprop("fdm/jsbsim/fcs/flap-speed-limit", speed_limit);
 			if ((speed_km>speed_limit) and (speed_limit>0))
 			{
-				tored=1;
-				setprop("fdm/jsbsim/fcs/flap-tored", 1);
+				torn=1;
+				setprop("fdm/jsbsim/fcs/flap-torn", 1);
 				setprop("fdm/jsbsim/fcs/flap-cmd-norm-real", 0);
 				setprop("fdm/jsbsim/fcs/flap-pos-deg", 0);
 				setprop("fdm/jsbsim/fcs/flap-pos-norm", 0);
 				setprop("ai/submodels/left-flap-drop", 1);
 				setprop("ai/submodels/right-flap-drop", 1);
                                 setprop("/sim/messages/copilot", "Flaps torn!");
-				flapstoredsound();
+				flapstornsound();
 			}
 		}
 		flaps_impact=getprop("ai/submodels/left-flap-impact");
@@ -2594,7 +2594,7 @@ flapsbreaksprocess = func
 		right_flap_drop=getprop("ai/submodels/right-flap-drop");
 		if ((left_flap_drop!=nil) and (right_flap_drop!=nil))
 		{
-			if ((tored==0) and ((left_flap_drop==1) or (right_flap_drop==1)))
+			if ((torn==0) and ((left_flap_drop==1) or (right_flap_drop==1)))
 			{
 				setprop("ai/submodels/left-flap-drop", 0);
 				setprop("ai/submodels/right-flap-drop", 0);
@@ -2606,21 +2606,21 @@ flapsbreaksprocess = func
 # set startup configuration
 init_flapsbreaksprocess = func 
 {
-	setprop("fdm/jsbsim/fcs/flap-tored", 0);
+	setprop("fdm/jsbsim/fcs/flap-torn", 0);
 }
 
 init_flapsbreaksprocess();
 
 
-flapstoredsound = func
+flapstornsound = func
 	{
-		setprop("sounds/flaps-tored/on", 1);
-		settimer(flapstoredsoundoff, 0.3);
+		setprop("sounds/flaps-torn/on", 1);
+		settimer(flapstornsoundoff, 0.3);
 	}
 
-flapstoredsoundoff = func
+flapstornsoundoff = func
 	{
-		setprop("sounds/flaps-tored/on", 0);
+		setprop("sounds/flaps-torn/on", 0);
 	}
 
 flaps_touch_down = func
@@ -2659,7 +2659,7 @@ flapsprocess = func
 		 	return ( settimer(flapsprocess, 0.1) ); 
 		}
 		# get flaps values
-		var tored = getprop("fdm/jsbsim/fcs/flap-tored");
+		var torn = getprop("fdm/jsbsim/fcs/flap-torn");
 		var flaps_command_pos = getprop("fdm/jsbsim/fcs/flap-cmd-norm");
 		# get instrumentation values
 		var flaps_go=getprop("fdm/jsbsim/systems/flapscontrol/flaps-go");
@@ -2669,7 +2669,7 @@ flapsprocess = func
 		var engine_running=getprop("engines/engine/running");
 		var set_generator=getprop("fdm/jsbsim/systems/rightpanel/generator-switch");
 		if (
-			(tored==nil)
+			(torn==nil)
 			or (flaps_command_pos == nil)
 			or (flaps_go==nil)
 			or (valve_press==nil)
@@ -2681,7 +2681,7 @@ flapsprocess = func
 			stop_flapsprocess();
 			return ( settimer(flapsprocess, 0.1) ); 
 		}
-		if ((pump==1) and (valve_press==1.0) and (tored==0) and (flaps_go==1))
+		if ((pump==1) and (valve_press==1.0) and (torn==0) and (flaps_go==1))
 		{
 			if ((engine_running==1) and (set_generator==1))
 			{
@@ -4526,13 +4526,13 @@ flapspressure = func
 		indicated_error=getprop("instrumentation/flaps-pressure-indicator/indicated-pressure-error");	
 		flaps_set_pos = getprop("controls/flight/flaps");
 		flaps_pos = getprop("fdm/jsbsim/fcs/flap-pos-norm");
-		tored = getprop("fdm/jsbsim/fcs/flap-tored");
+		torn = getprop("fdm/jsbsim/fcs/flap-torn");
 		if (
 			(bus==nil)
 			or (indicated_error==nil)
 			or (flaps_set_pos==nil)
 			or (flaps_pos==nil)
-			or (tored==nil)
+			or (torn==nil)
 		)
 		{
 			stop_flapspressure();
@@ -4548,7 +4548,7 @@ flapspressure = func
 			indicated_error=-0.03;
 		}
 		setprop("instrumentation/flaps-pressure-indicator/indicated-pressure-error", indicated_error);
-		if ((bus==0) or (tored==1))
+		if ((bus==0) or (torn==1))
 		{
 			indicated_pressure=0;
 		}
@@ -4744,10 +4744,10 @@ canopyprocess = func
 			return ( settimer(canopyprocess, 0.1) ); 
 		}
 		var pos=getprop("fdm/jsbsim/systems/canopy/pos");
-		var tored=getprop("fdm/jsbsim/systems/canopy/tored");
+		var torn=getprop("fdm/jsbsim/systems/canopy/torn");
 		var mach=getprop("fdm/jsbsim/velocities/mach");
 		if (
-			(tored==nil)
+			(torn==nil)
 			or (mach==nil)
 		)
 		{
@@ -4756,11 +4756,11 @@ canopyprocess = func
 		}
 		if (
 			(pos>0.01)
-			and (tored==0)
+			and (torn==0)
 			and (mach>0.3)
 		)
 		{
-			tored=1;
+			torn=1;
 			tear_canopy();
 			stop_canopyprocess();
 			return ( settimer(canopyprocess, 0.1) ); 
@@ -4778,7 +4778,7 @@ canopyprocess = func
 		if (canopy_drop!=nil)
 		{
 			if (
-				(tored==0) 
+				(torn==0) 
 				and (canopy_drop==1)
 			)
 			{
@@ -4799,19 +4799,19 @@ init_canopyprocess=func
 tear_canopy=func
 {
 	setprop("ai/submodels/canopy-drop", 1);
-	setprop("fdm/jsbsim/systems/canopy/tored", 1);
+	setprop("fdm/jsbsim/systems/canopy/torn", 1);
         setprop("/sim/messages/copilot", "Canopy torn off!");
-	canopytoredsound();
+	canopytornsound();
 }
 
-canopytoredsound = func
+canopytornsound = func
 	{
 		setprop("sounds/canopy-crash/volume", 1);
 		setprop("sounds/canopy-crash/on", 1);
-		settimer(canopytoredsoundoff, 0.3);
+		settimer(canopytornsoundoff, 0.3);
 	}
 
-canopytoredsoundoff = func
+canopytornsoundoff = func
 	{
 		setprop("sounds/canopy-crash/on", 0);
 	}
@@ -5349,6 +5349,7 @@ aircraft_crash=func(crashtype, crashg, solid)
 		}
 
 		crash_tank_drop();
+		setprop("/sim/messages/copilot", crashtype);
 		return (1);
 	}
 
@@ -5641,7 +5642,7 @@ stop_aircraftbreaklistener = func
 aircraftbreaklistener = func 
 	{
 		# check state
-		in_service = getprop("listneners/aircraft-break/enabled" );
+		in_service = getprop("listeners/aircraft-break/enabled" );
 		if (in_service == nil)
 		{
 			return ( stop_aircraftbreaklistener );
@@ -5758,7 +5759,7 @@ init_aircraftbreaklistener = func
 {
 	setprop("sounds/aircraft-crash/on", 0);
 	setprop("sounds/aircraft-water-crash/on", 0);
-	setprop("listneners/aircraft-break/enabled", 1);
+	setprop("listeners/aircraft-break/enabled", 1);
 }
 
 init_aircraftbreaklistener();
@@ -5881,9 +5882,9 @@ aircraft_unlock=func
 aircraft_repair=func
 	{
 		#Repair gears
-		setprop("fdm/jsbsim/gear/unit[0]/tored", 0);
-		setprop("fdm/jsbsim/gear/unit[1]/tored", 0);
-		setprop("fdm/jsbsim/gear/unit[2]/tored", 0);
+		setprop("fdm/jsbsim/gear/unit[0]/torn", 0);
+		setprop("fdm/jsbsim/gear/unit[1]/torn", 0);
+		setprop("fdm/jsbsim/gear/unit[2]/torn", 0);
 
 		setprop("fdm/jsbsim/gear/unit[0]/break-type", "");
 		setprop("fdm/jsbsim/gear/unit[1]/break-type", "");
@@ -5906,11 +5907,11 @@ aircraft_repair=func
 		}
 
 		#Repair flaps
-		setprop("fdm/jsbsim/fcs/flap-tored", 0);
+		setprop("fdm/jsbsim/fcs/flap-torn", 0);
 		init_flapsvalve();
 
 		#Repair canopy
-		setprop("fdm/jsbsim/systems/canopy/tored", 0);
+		setprop("fdm/jsbsim/systems/canopy/torn", 0);
 
 		#Unlock aircraft
 		aircraft_unlock();
@@ -6012,8 +6013,8 @@ end_aircraftrestart=func
 	{
 		aircraft_end_refuel();
 		#Start break listeners
-		setprop("listneners/aircraft-break/enabled", 1);
-		setprop("listneners/gear-break/enabled", 1);
+		setprop("listeners/aircraft-break/enabled", 1);
+		setprop("listeners/gear-break/enabled", 1);
 		#Start break processes
 		setprop("processes/aircraft-break/enabled", 1);
 		setprop("processes/gear-break/enabled", 1);
@@ -6030,8 +6031,8 @@ aircraft_restart=func
 		)
 		{
 			#Stop break listeners
-			setprop("listneners/aircraft-break/enabled", 0);
-			setprop("listneners/gear-break/enabled", 0);
+			setprop("listeners/aircraft-break/enabled", 0);
+			setprop("listeners/gear-break/enabled", 0);
 			#Stop break processes
 			setprop("processes/aircraft-break/enabled", 0);
 			setprop("processes/gear-break/enabled", 0);

@@ -153,7 +153,7 @@
 			<default value="fcs/flap-cmd-norm-real"/>
 			<test logic="AND" value="1">
 				fcs/flap-cmd-norm eq 1.0
-				fcs/flap-tored eq 0.0
+				fcs/flap-torn eq 0.0
 				systems/flapsvalve/safer-switch eq 1.0
 				systems/flapsvalve/valve-switch eq 1.0
 				systems/flapsvalve/pressure-pos gt 0.75

@@ -19,28 +19,28 @@ print("LOAD MiG-15bis ", rplayer.getPath());
 # Set up property aliases for animations.
 rplayer.getNode("fdm/jsbsim/gear/unit[0]/pos-norm-real", 1).
 alias(rplayer.getNode("sim/multiplay/generic/float[0]"));
-rplayer.getNode("fdm/jsbsim/gear/unit[0]/tored", 1).
+rplayer.getNode("fdm/jsbsim/gear/unit[0]/torn", 1).
 alias(rplayer.getNode("sim/multiplay/generic/float[1]"));
 
 rplayer.getNode("fdm/jsbsim/gear/unit[1]/pos-norm-real", 1).
 alias(rplayer.getNode("sim/multiplay/generic/float[2]"));
-rplayer.getNode("fdm/jsbsim/gear/unit[1]/tored", 1).
+rplayer.getNode("fdm/jsbsim/gear/unit[1]/torn", 1).
 alias(rplayer.getNode("sim/multiplay/generic/float[3]"));
 
 rplayer.getNode("fdm/jsbsim/gear/unit[2]/pos-norm-real", 1).
 alias(rplayer.getNode("sim/multiplay/generic/float[4]"));
-rplayer.getNode("fdm/jsbsim/gear/unit[2]/tored", 1).
+rplayer.getNode("fdm/jsbsim/gear/unit[2]/torn", 1).
 alias(rplayer.getNode("sim/multiplay/generic/float[5]"));
 
 rplayer.getNode("fdm/jsbsim/fcs/flap-pos-norm", 1).
 alias(rplayer.getNode("sim/multiplay/generic/float[6]"));
 
-rplayer.getNode("fdm/jsbsim/fcs/flap-tored", 1).
+rplayer.getNode("fdm/jsbsim/fcs/flap-torn", 1).
 alias(rplayer.getNode("sim/multiplay/generic/float[7]"));
 
 rplayer.getNode("fdm/jsbsim/systems/canopy/pos", 1).
 alias(rplayer.getNode("sim/multiplay/generic/float[8]"));
-rplayer.getNode("fdm/jsbsim/systems/canopy/tored", 1).
+rplayer.getNode("fdm/jsbsim/systems/canopy/torn", 1).
 alias(rplayer.getNode("sim/multiplay/generic/float[9]"));
 
 rplayer.getNode("fdm/jsbsim/simulation/exploded", 1).
@@ -396,7 +396,7 @@ print("UNLOAD MiG-15bis ", rplayer.getPath());
 
   <!-- Flaps -->
 
-  <!-- Check if tored -->
+  <!-- Check if torn -->
 
   <animation>
     <type>select</type>
@@ -406,7 +406,7 @@ print("UNLOAD MiG-15bis ", rplayer.getPath());
     <object-name>WNG_FlapRDown</object-name>
     <condition>
       <equals>
-	<property>fdm/jsbsim/fcs/flap-tored</property>
+	<property>fdm/jsbsim/fcs/flap-torn</property>
 	<value>0</value>	
       </equals>
     </condition>
@@ -618,7 +618,7 @@ print("UNLOAD MiG-15bis ", rplayer.getPath());
 	  <value>0.0</value>
 	</greater-than>
 	<greater-than>
-	  <property>fdm/jsbsim/gear/unit[0]/tored</property>
+	  <property>fdm/jsbsim/gear/unit[0]/torn</property>
 	  <value>0.0</value>
 	</greater-than>
       </or>
@@ -647,7 +647,7 @@ print("UNLOAD MiG-15bis ", rplayer.getPath());
     <object-name>FUS_NoseDoorRS</object-name>
     <condition>
       <less-than>
-	<property>fdm/jsbsim/gear/unit[0]/tored</property>
+	<property>fdm/jsbsim/gear/unit[0]/torn</property>
 	<value>1.0</value>
       </less-than>
     </condition>
@@ -782,7 +782,7 @@ print("UNLOAD MiG-15bis ", rplayer.getPath());
 	  <value>0.0</value>
 	</greater-than>
 	<greater-than>
-	  <property>fdm/jsbsim/gear/unit[1]/tored</property>
+	  <property>fdm/jsbsim/gear/unit[1]/torn</property>
 	  <value>0.0</value>
 	</greater-than>
       </or>
@@ -817,7 +817,7 @@ print("UNLOAD MiG-15bis ", rplayer.getPath());
     <object-name>UC_MainL_DoorOS</object-name>
     <condition>
       <less-than>
-	<property>fdm/jsbsim/gear/unit[1]/tored</property>
+	<property>fdm/jsbsim/gear/unit[1]/torn</property>
 	<value>1.0</value>
       </less-than>
     </condition>
@@ -998,7 +998,7 @@ print("UNLOAD MiG-15bis ", rplayer.getPath());
 	  <value>0.0</value>
 	</greater-than>
 	<greater-than>
-	  <property>fdm/jsbsim/gear/unit[2]/tored</property>
+	  <property>fdm/jsbsim/gear/unit[2]/torn</property>
 	  <value>0.0</value>
 	</greater-than>
       </or>
@@ -1033,7 +1033,7 @@ print("UNLOAD MiG-15bis ", rplayer.getPath());
     <object-name>UC_MainR_DoorOS</object-name>
     <condition>
       <less-than>
-	<property>fdm/jsbsim/gear/unit[2]/tored</property>
+	<property>fdm/jsbsim/gear/unit[2]/torn</property>
 	<value>1.0</value>
       </less-than>
     </condition>
