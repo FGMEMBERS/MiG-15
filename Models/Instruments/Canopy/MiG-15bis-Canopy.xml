@@ -43,7 +43,7 @@ but that animation makes bug in currnet FG state, so it's off
 		<object-name>CP_RLock</object-name>
 		<condition>
 			<equals>
-				<property>fdm/jsbsim/systems/canopy/tored</property>
+				<property>fdm/jsbsim/systems/canopy/torn</property>
 				<value>0</value>
 			</equals>
 		</condition>

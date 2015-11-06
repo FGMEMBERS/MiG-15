@@ -24,7 +24,7 @@
 					<command type="float">1</command>
 					<pos type="float">1</pos>
 					<lock-pos type="float">0</lock-pos>
-					<tored type="float">0</tored>
+					<torn type="bool">0</torn>
 				</canopy>
 				<sounds>
 					<canopy-lock-click>

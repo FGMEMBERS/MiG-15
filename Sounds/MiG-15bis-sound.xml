@@ -532,7 +532,7 @@
       <mode>once</mode>
       <condition>
 	<equals>
-	  <property>sounds/gears-tored/on</property>
+	  <property>sounds/gears-torn/on</property>
 	  <value>1</value>
 	</equals>
       </condition>
@@ -945,7 +945,7 @@
       <mode>once</mode>
       <condition>
 	<equals>
-	  <property>sounds/flaps-tored/on</property>
+	  <property>sounds/flaps-torn/on</property>
 	  <value>1</value>
 	</equals>
       </condition>

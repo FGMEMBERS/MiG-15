@@ -79,7 +79,7 @@ MiG-15bis simulation config.
       <line>Aircraft documentation in /MiG-15/Documentation directory</line>
       <key>
 	<name>Ctrl-F</name>
-	<desc>Swap cannon switch saFer (on at startup)</desc>
+	<desc>Toggle cannon saFer switch (on at startup)</desc>
       </key>
       <key>
 	<name>F</name>
@@ -95,7 +95,7 @@ MiG-15bis simulation config.
       </key>
       <key>
 	<name>Shift-K</name>
-	<desc>toggle trajectory markers</desc>
+	<desc>Toggle trajectory markers</desc>
       </key>
       <key>
         <name>Shift-L</name>
@@ -103,7 +103,7 @@ MiG-15bis simulation config.
       </key>
       <key>
 	<name>Shift-U</name>
-	<desc>update drop view position</desc>
+	<desc>Update drop view position</desc>
       </key>
       <key>
 	<name>q/Q</name>
@@ -111,7 +111,7 @@ MiG-15bis simulation config.
       </key>
       <key>
 	<name>Ctrl-Q</name>
-	<desc>Swap main pump power switch (Off at start up)</desc>
+	<desc>Toggle main pump power switch (Off at start up)</desc>
       </key>
       <key>
 	<name>R</name>
@@ -119,15 +119,15 @@ MiG-15bis simulation config.
       </key>
       <key>
 	<name>Shift-R</name>
-	<desc>On/Off low throttle holdeR (Switched off at start up)</desc>
+	<desc>On/Off low throttle holdeR (Off at start up)</desc>
       </key>
       <key>
 	<name>Ctrl-R</name>
-	<desc>On/Off egine emeRgency brake (Switched on at start up)</desc>
+	<desc>On/Off egine emeRgency brake (On at start up)</desc>
       </key>
       <key>
 	<name>Ctrl-S</name>
-	<desc>Swap ignition Starter panel power (Off at start up)</desc>
+	<desc>Toggle Starter power switch (Off at start up)</desc>
       </key>
       <key>
 	<name>Shift-S</name>
@@ -151,7 +151,7 @@ MiG-15bis simulation config.
       </key>
       <key>
 	<name>Ctrl-E</name>
-	<desc>Toggle Engine control instrumEntation powEr switch (off at start up)</desc>
+	<desc>Toggle Engine instrumEntation powEr switch (off at start up)</desc>
       </key>
       <key>
 	<name>Ctrl-B</name>
@@ -167,15 +167,15 @@ MiG-15bis simulation config.
       </key>
       <key>
 	<name>`</name>
-	<desc>Swap engine isolation valve</desc>
+	<desc>Toggle engine isolation valve</desc>
       </key>
       <key>
 	<name>U</name>
-	<desc>Swap fUel source, standart tanks or balance tank</desc>
+	<desc>Toggle fUel source, main or balance tank</desc>
       </key>
       <key>
 	<name>Shift-U</name>
-	<desc>Swap fUel source, inrernal or external tanks</desc>
+	<desc>Toggle fUel source, internal or external tanks</desc>
       </key>
     </help>
 
@@ -444,6 +444,25 @@ MiG-15bis simulation config.
 	      <script>MIG15BIS.dump_properties();</script>
 	    </binding>
 	  </item>
+          <item n="5">
+            <label>Beginner mode: no failures</label>
+            <binding><command>property-assign</command><property>listeners/aircraft-break/enabled</property> <value>0</value></binding>
+            <binding><command>property-assign</command><property>listeners/gear-break/enabled</property>     <value>0</value></binding>
+            <binding><command>property-assign</command><property>processes/aircraft-break/enabled</property>  <value>0</value></binding>
+            <binding><command>property-assign</command><property>processes/engine/failures-enabled</property> <value>0</value></binding>
+            <binding><command>property-assign</command><property>processes/gear-break/enabled</property>      <value>0</value></binding>
+          </item>
+          <!--item n="6">
+            <label>Intermediate mode: failures explained (not implemented yet)</label>
+          </item-->
+          <item n="7">
+            <label>Pilot mode</label>
+            <binding><command>property-assign</command><property>listeners/aircraft-break/enabled</property> <value>1</value></binding>
+            <binding><command>property-assign</command><property>listeners/gear-break/enabled</property>     <value>1</value></binding>
+            <binding><command>property-assign</command><property>processes/aircraft-break/enabled</property>  <value>1</value></binding>
+            <binding><command>property-assign</command><property>processes/engine/failures-enabled</property> <value>1</value></binding>
+            <binding><command>property-assign</command><property>processes/gear-break/enabled</property>      <value>1</value></binding>
+          </item>
 	</menu>
       </default>
     </menubar>
@@ -451,19 +470,19 @@ MiG-15bis simulation config.
     <multiplay>
       <generic>
 	<float n="0" alias="/fdm/jsbsim/gear/unit[0]/pos-norm-real"/>
-	<float n="1" alias="/fdm/jsbsim/gear/unit[0]/tored"/>
+	<float n="1" alias="/fdm/jsbsim/gear/unit[0]/torn"/>
 
 	<float n="2" alias="/fdm/jsbsim/gear/unit[1]/pos-norm-real"/>
-	<float n="3" alias="/fdm/jsbsim/gear/unit[1]/tored"/>
+	<float n="3" alias="/fdm/jsbsim/gear/unit[1]/torn"/>
 
 	<float n="4" alias="/fdm/jsbsim/gear/unit[2]/pos-norm-real"/>
-	<float n="5" alias="/fdm/jsbsim/gear/unit[2]/tored"/>
+	<float n="5" alias="/fdm/jsbsim/gear/unit[2]/torn"/>
 
 	<float n="6" alias="/fdm/jsbsim/fcs/flap-pos-norm"/>
-	<float n="7" alias="/fdm/jsbsim/fcs/flap-tored"/>
+	<float n="7" alias="/fdm/jsbsim/fcs/flap-torn"/>
 
 	<float n="8" alias="/fdm/jsbsim/systems/canopy/pos"/>
-	<float n="9" alias="/fdm/jsbsim/systems/canopy/tored"/>
+	<float n="9" alias="/fdm/jsbsim/systems/canopy/torn"/>
 
 	<float n="10" alias="/fdm/jsbsim/simulation/exploded"/>
 	<float n="11" alias="/velocities/airspeed-kt"/>
@@ -483,16 +502,15 @@ MiG-15bis simulation config.
   <!-- Key mappings -->
   <input>
     <keyboard>
-      <!-- Swap cannon safer -->
       <key n="6">
 	<name>Ctrl-F</name>
-	<desc>Swap cannon switch saFer</desc>
+	<desc>Toggle cannon saFer switch</desc>
 	<binding>
 	  <command>nasal</command>
 	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/stick/safer-input")</script>
 	</binding>
       </key>
-      <!-- Fire the cannons -->
+
       <key n="102">
 	<name>F</name>
 	<desc>Fire cannons</desc>
@@ -508,7 +526,6 @@ MiG-15bis simulation config.
 	</mod-up>
       </key>
 
-      <!-- Drop tanks -->
       <key n="70">
 	<name>Shift-F</name>
 	<desc>Drop tanks to Free Float</desc>
@@ -524,7 +541,6 @@ MiG-15bis simulation config.
 	</mod-up>
       </key>
 
-      <!-- Open/Close Canopy -->
       <key n="67">
 	<name>C</name>
 	<desc>Toggle Canopy</desc>
@@ -534,7 +550,6 @@ MiG-15bis simulation config.
 	</binding>
       </key>
 
-      <!-- Trajectory Markers -->
       <key n="75">
 	<name>K</name>
 	<desc>Toggle trajectory markers</desc>
@@ -553,7 +568,6 @@ MiG-15bis simulation config.
         </binding>
       </key>
 
-      <!-- Update Drop View position -->
       <key n="85">
 	<name>U</name>
 	<desc>Update Drop View position</desc>
@@ -563,7 +577,6 @@ MiG-15bis simulation config.
 	</binding>
       </key>
 
-      <!-- More Aileron Booster -->
       <key n="113">
 	<name>Q</name>
 	<desc>More aileron booster</desc>
@@ -573,7 +586,6 @@ MiG-15bis simulation config.
 	</binding>
       </key>
 
-      <!-- Less Aileron Booster -->
       <key n="81">
 	<name>Shift-Q</name>
 	<desc>Less aileron booster</desc>
@@ -583,17 +595,15 @@ MiG-15bis simulation config.
 	</binding>
       </key>
 
-      <!-- Main pump power -->
       <key n="17">
 	<name>Ctrl-Q</name>
-	<desc>Swap main pump power</desc>
+	<desc>Toggle main pump power switch</desc>
 	<binding n="0">
 	  <command>nasal</command>
 	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/pump-input")</script>
 	</binding>
       </key>
 
-      <!-- Swap throttle lock -->
       <key n="114">
 	<name>R</name>
 	<desc>Lock/Unlock thRottle handle</desc>
@@ -603,7 +613,6 @@ MiG-15bis simulation config.
 	</binding>
       </key>
 
-      <!-- Swap low throttle holder -->
       <key n="82">
 	<name>Shift-R</name>
 	<desc>On/Off low throttle holder</desc>
@@ -613,18 +622,15 @@ MiG-15bis simulation config.
 	</binding>
       </key>
 
-      <!-- Swap engine emergency brake -->
       <key n="18">
 	<name>Ctrl-R</name>
-	<desc>Swap egine emeRgency brake</desc>
+	<desc>Toggle egine emeRgency brake</desc>
 	<binding n="0">
 	  <command>nasal</command>
 	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/stopcontrol/lever-input")</script>
 	</binding>
       </key>
 
-
-      <!-- Swap ignition type -->
       <key n="83">
 	<name>Shift-S</name>
 	<desc>Earth/Air Starter ignition type</desc>
@@ -634,17 +640,15 @@ MiG-15bis simulation config.
 	</binding>
       </key>
 
-      <!-- Swap ignition panel power -->
       <key n="19">
 	<name>Ctrl-S</name>
-	<desc>Swap ignition Starter panel power</desc>
+	<desc>Toggle Starter power switch</desc>
 	<binding n="0">
 	  <command>nasal</command>
 	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/ignition-input")</script>
 	</binding>
       </key>
 
-      <!-- Less sight target distance -->
       <key n="100">
 	<name>D</name>
 	<desc>Less sight target Distance</desc>
@@ -654,7 +658,6 @@ MiG-15bis simulation config.
 	</binding>
       </key>
 
-      <!-- More sight target distance -->
       <key n="68">
 	<name>Shift-D</name>
 	<desc>More sight target Distance</desc>
@@ -664,7 +667,6 @@ MiG-15bis simulation config.
 	</binding>
       </key>
 
-      <!-- Swap headsight up/down -->
       <key n="4">
 	<name>Ctrl-D</name>
 	<desc>Up/Down heaDsight</desc>
@@ -674,37 +676,33 @@ MiG-15bis simulation config.
 	</binding>
       </key>
 
-      <!-- Swap battery power -->
       <key n="101">
 	<name>E</name>
-	<desc>Swap battEry powEr switch</desc>
+	<desc>Toggle battEry switch</desc>
 	<binding n="0">
 	  <command>nasal</command>
 	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/battery-input")</script>
 	</binding>
       </key>
 
-      <!-- Swap generator power -->
       <key n="69">
 	<name>Shift-E</name>
-	<desc>Swap APU gEnerator powEr switch</desc>
+	<desc>Toggle gEnerator switch</desc>
 	<binding n="0">
 	  <command>nasal</command>
 	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/generator-input")</script>
 	</binding>
       </key>
 
-      <!-- Swap engine control instrumentation -->
       <key n="5">
 	<name>Ctrl-E</name>
-	<desc>Swap Engine control instrumEntattion powEr</desc>
+	<desc>Toggle Engine instrumEntation powEr</desc>
 	<binding n="0">
 	  <command>nasal</command>
 	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/engine-control-input")</script>
 	</binding>
       </key>
 
-      <!-- Speedbrakes -->
       <key n="106">
 	<name>j</name>
 	<desc>Close speedbrakes</desc>
@@ -732,8 +730,6 @@ MiG-15bis simulation config.
 	</binding>
       </key>
 
-
-      <!-- Starter key -->
       <key n="115">
 	<name>s</name>
 	<desc>Start engine</desc>
@@ -751,7 +747,7 @@ MiG-15bis simulation config.
 
       <key n="96">
 	<name>`</name>
-	<desc>Swap engine isolation valve</desc>
+	<desc>Toggle engine isolation valve</desc>
 	<binding n="0">
 	  <command>nasal</command>
 	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/isolation-valve-input")</script>
@@ -760,7 +756,7 @@ MiG-15bis simulation config.
 
       <key n="117">
 	<name>U</name>
-	<desc>Swap fUel source, standart tanks or balance tank </desc>
+	<desc>Toggle fUel source, main or balance tank</desc>
 	<binding n="0">
 	  <command>nasal</command>
 	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/fuelcontrol/control-input")</script>
@@ -769,14 +765,12 @@ MiG-15bis simulation config.
 
       <key n="85">
 	<name>Shift-U</name>
-	<desc>Swap fUel source, inrernal or external tanks </desc>
+	<desc>Toggle fUel source, internal or external tanks</desc>
 	<binding n="0">
 	  <command>nasal</command>
 	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/third-tank-pump-input")</script>
 	</binding>
       </key>
-
-      <!-- Gear control -->
 
       <key n="103">
 	<name>G</name>
@@ -795,7 +789,6 @@ MiG-15bis simulation config.
 	  <script>MIG15BIS.gear_control_down()</script>
 	</binding>
       </key>
-
 
     </keyboard>
   </input>
@@ -998,7 +991,7 @@ MiG-15bis simulation config.
 	  <command type="float">1</command>
 	  <pos type="float">1</pos>
 	  <lock-pos type="float">0</lock-pos>
-	  <tored type="float">0</tored>
+	  <torn type="bool">0</torn>
 	</canopy>
 	<rightpanel>
 	  <serviceable type="bool">1</serviceable>

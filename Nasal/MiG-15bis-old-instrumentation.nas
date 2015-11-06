@@ -1115,15 +1115,15 @@ gear_control_down = func
 		setprop("fdm/jsbsim/systems/gearcontrol/control-input", -1);
 	}
 
-geartoredsound = func
+geartornsound = func
 	{
-		setprop("sounds/gears-tored/on", 1);
-		settimer(geartoredsoundoff, 0.3);
+		setprop("sounds/gears-torn/on", 1);
+		settimer(geartornsoundoff, 0.3);
 	}
 
-geartoredsoundoff = func
+geartornsoundoff = func
 	{
-		setprop("sounds/gears-tored/on", 0);
+		setprop("sounds/gears-torn/on", 0);
 	}
 
 gear_touch_down = func
@@ -1612,9 +1612,9 @@ gearvalve=func
 		gear_one_pos=getprop("fdm/jsbsim/gear/unit[0]/pos-norm-real");
 		gear_two_pos=getprop("fdm/jsbsim/gear/unit[1]/pos-norm-real");
 		gear_three_pos=getprop("fdm/jsbsim/gear/unit[2]/pos-norm-real");
-		gear_one_tored=getprop("fdm/jsbsim/gear/unit[0]/tored");
-		gear_two_tored=getprop("fdm/jsbsim/gear/unit[1]/tored");
-		gear_three_tored=getprop("fdm/jsbsim/gear/unit[2]/tored");
+		gear_one_torn=getprop("fdm/jsbsim/gear/unit[0]/torn");
+		gear_two_torn=getprop("fdm/jsbsim/gear/unit[1]/torn");
+		gear_three_torn=getprop("fdm/jsbsim/gear/unit[2]/torn");
 		set_pos=getprop("instrumentation/gear-valve/set-pos");
 		handle_pos=getprop("instrumentation/gear-valve/handle/switch-pos-norm");
 		#emergency handles positions
@@ -1629,9 +1629,9 @@ gearvalve=func
 			(gear_one_pos==nil)
 			or (gear_two_pos==nil)
 			or (gear_three_pos==nil)
-			or (gear_one_tored==nil)
-			or (gear_two_tored==nil)
-			or (gear_three_tored==nil)
+			or (gear_one_torn==nil)
+			or (gear_two_torn==nil)
+			or (gear_three_torn==nil)
 			or (set_pos==nil)
 			or (handle_pos==nil)
 			or (left_handle_pos==nil)
@@ -1653,9 +1653,9 @@ gearvalve=func
 					(gear_control_switch_pos==-1)
 					and (left_handle_pos==1)
 					and (right_handle_pos==1)
-					and (gear_one_tored==0)
-					and (gear_two_tored==0)
-					and (gear_three_tored==0)
+					and (gear_one_torn==0)
+					and (gear_two_torn==0)
+					and (gear_three_torn==0)
 				)
 				{
 					switchmove("instrumentation/gear-valve", "fdm/jsbsim/gear/gear-cmd-norm-real");
@@ -1774,7 +1774,7 @@ flapsvalve=func
 		pressure_error=getprop("instrumentation/flaps-valve/pressure-error");	
 		bus=getprop("systems/electrical-real/bus");
 		engine_running=getprop("engines/engine/running");
-		tored = getprop("fdm/jsbsim/fcs/flap-tored");
+		torn = getprop("fdm/jsbsim/fcs/flap-torn");
 		if (
 			(flaps_pos==nil)
 			or (set_pos==nil)
@@ -1785,7 +1785,7 @@ flapsvalve=func
 			or (pressure_error==nil)
 			or (bus==nil)
 			or (engine_running==nil)
-			or (tored==nil)
+			or (torn==nil)
 		)
 		{
 			stop_flapsvalve();
@@ -1800,7 +1800,7 @@ flapsvalve=func
 		{
 			if (handle_pos==1)
 			{
-				if ((flaps_control_switch_pos==1) and (tored==0))
+				if ((flaps_control_switch_pos==1) and (torn==0))
 				{
 					switchmove("instrumentation/flaps-valve", "fdm/jsbsim/fcs/flap-cmd-norm-real");
 					pressure=0.8-abs(flaps_pos)*0.5;
