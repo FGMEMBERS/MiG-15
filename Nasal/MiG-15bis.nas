@@ -4030,6 +4030,13 @@ machometer=func
 		if (bus==1)
 		{
 			setprop("instrumentation/machometer/indicated-mach", mach);
+                        if (mach > 0.92) {
+                           # Like in the real aircraft, deploy speedbrakes automatically above this
+                           # speed -- but only if the mach meter is operational.  Since this
+                           # aircraft ws still crude, no provision exists to retract speedbrakes
+                           # automatically.  The pilot has to do that manually.
+                           setprop("fdm/jsbsim/systems/speedbrakescontrol/control-input", 1);
+                        }
 		}
 		settimer(machometer, 0.1);
 	}
