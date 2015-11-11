@@ -341,9 +341,6 @@ MiG-15bis simulation config.
       <electrical>
 	<path>Aircraft/MiG-15/Systems/MiG-15bis-electrical.xml</path>
       </electrical>
-      <autopilot>
-	<path>Aircraft/MiG-15/Systems/MiG-15bis-autopilot.xml</path>
-      </autopilot>
     </systems>
 
     <submodels>
@@ -502,6 +499,41 @@ MiG-15bis simulation config.
   <!-- Key mappings -->
   <input>
     <keyboard>
+      <key n="1">
+        <name>Ctrl-A</name>
+        <desc>no altitude lock</desc>
+        <binding>
+          <command>null</command>
+        </binding>
+      </key>
+
+      <key n="2">
+	<name>Ctrl-B</name>
+	<desc>Toggle speedbrakes</desc>
+	<binding n="0">
+	  <command>nasal</command>
+	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/speedbrakescontrol/control-input")</script>
+	</binding>
+      </key>
+
+      <key n="4">
+	<name>Ctrl-D</name>
+	<desc>Up/Down heaDsight</desc>
+	<binding n="0">
+	  <command>nasal</command>
+	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/headsight/up-command")</script>
+	</binding>
+      </key>
+
+      <key n="5">
+	<name>Ctrl-E</name>
+	<desc>Toggle Engine instrumEntation powEr</desc>
+	<binding n="0">
+	  <command>nasal</command>
+	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/engine-control-input")</script>
+	</binding>
+      </key>
+
       <key n="6">
 	<name>Ctrl-F</name>
 	<desc>Toggle cannon saFer switch</desc>
@@ -511,19 +543,98 @@ MiG-15bis simulation config.
 	</binding>
       </key>
 
-      <key n="102">
-	<name>F</name>
-	<desc>Fire cannons</desc>
-	<binding>
+      <key n="8">
+        <name>Ctrl-H</name>
+        <desc>no heading bug lock</desc>
+        <binding>
+          <command>null</command>
+        </binding>
+      </key>
+
+      <key n="14">
+        <name>Ctrl-N</name>
+        <desc>no nav1 lock</desc>
+        <binding>
+          <command>null</command>
+        </binding>
+      </key>
+
+      <key n="16">
+        <name>Ctrl-P</name>
+        <desc>no pitch hold</desc>
+        <binding>
+          <command>null</command>
+        </binding>
+      </key>
+
+      <key n="17">
+	<name>Ctrl-Q</name>
+	<desc>Toggle main pump power switch</desc>
+	<binding n="0">
 	  <command>nasal</command>
-	  <script>MIG15BIS.press_fire()</script>
+	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/pump-input")</script>
 	</binding>
-	<mod-up>
-	  <binding>
-	    <command>nasal</command>
-	    <script>MIG15BIS.unpress_fire()</script>
-	  </binding>
-	</mod-up>
+      </key>
+
+      <key n="18">
+	<name>Ctrl-R</name>
+	<desc>Toggle egine emeRgency brake</desc>
+	<binding n="0">
+	  <command>nasal</command>
+	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/stopcontrol/lever-input")</script>
+	</binding>
+      </key>
+
+      <key n="19">
+	<name>Ctrl-S</name>
+	<desc>Toggle Starter power switch</desc>
+	<binding n="0">
+	  <command>nasal</command>
+	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/ignition-input")</script>
+	</binding>
+      </key>
+
+      <key n="20">
+        <name>Ctrl-T</name>
+        <desc>terrain following mode</desc>
+        <binding>
+          <command>null</command>
+        </binding>
+      </key>
+
+      <key n="23">
+        <name>Ctrl-W</name>
+        <desc>no wing leveler</desc>
+        <binding>
+          <command>null</command>
+        </binding>
+      </key>
+
+      <key n="67">
+	<name>C</name>
+	<desc>Toggle Canopy</desc>
+	<binding n="0">
+	  <command>nasal</command>
+	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/canopy/command")</script>
+	</binding>
+      </key>
+
+      <key n="68">
+	<name>Shift-D</name>
+	<desc>More sight target Distance</desc>
+	<binding n="0">
+	  <command>nasal</command>
+	  <script>MIG15BIS.more_sight_distance()</script>
+	</binding>
+      </key>
+
+      <key n="69">
+	<name>Shift-E</name>
+	<desc>Toggle gEnerator switch</desc>
+	<binding n="0">
+	  <command>nasal</command>
+	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/generator-input")</script>
+	</binding>
       </key>
 
       <key n="70">
@@ -541,17 +652,17 @@ MiG-15bis simulation config.
 	</mod-up>
       </key>
 
-      <key n="67">
-	<name>C</name>
-	<desc>Toggle Canopy</desc>
+      <key n="71">
+	<name>Shift-G</name>
+	<desc>Gear down </desc>
 	<binding n="0">
 	  <command>nasal</command>
-	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/canopy/command")</script>
+	  <script>MIG15BIS.gear_control_down()</script>
 	</binding>
       </key>
 
       <key n="75">
-	<name>K</name>
+	<name>Shift-K</name>
 	<desc>Toggle trajectory markers</desc>
 	<binding n="0">
 	  <command>nasal</command>
@@ -568,48 +679,12 @@ MiG-15bis simulation config.
         </binding>
       </key>
 
-      <key n="85">
-	<name>U</name>
-	<desc>Update Drop View position</desc>
-	<binding n="0">
-	  <command>nasal</command>
-	  <script>MIG15BIS.update_drop_view_pos()</script>
-	</binding>
-      </key>
-
-      <key n="113">
-	<name>Q</name>
-	<desc>More aileron booster</desc>
-	<binding n="0">
-	  <command>nasal</command>
-	  <script>MIG15BIS.more_booster()</script>
-	</binding>
-      </key>
-
       <key n="81">
 	<name>Shift-Q</name>
 	<desc>Less aileron booster</desc>
 	<binding n="0">
 	  <command>nasal</command>
 	  <script>MIG15BIS.less_booster()</script>
-	</binding>
-      </key>
-
-      <key n="17">
-	<name>Ctrl-Q</name>
-	<desc>Toggle main pump power switch</desc>
-	<binding n="0">
-	  <command>nasal</command>
-	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/pump-input")</script>
-	</binding>
-      </key>
-
-      <key n="114">
-	<name>R</name>
-	<desc>Lock/Unlock thRottle handle</desc>
-	<binding n="0">
-	  <command>nasal</command>
-	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/gascontrol/lock-command")</script>
 	</binding>
       </key>
 
@@ -622,15 +697,6 @@ MiG-15bis simulation config.
 	</binding>
       </key>
 
-      <key n="18">
-	<name>Ctrl-R</name>
-	<desc>Toggle egine emeRgency brake</desc>
-	<binding n="0">
-	  <command>nasal</command>
-	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/stopcontrol/lever-input")</script>
-	</binding>
-      </key>
-
       <key n="83">
 	<name>Shift-S</name>
 	<desc>Earth/Air Starter ignition type</desc>
@@ -640,17 +706,26 @@ MiG-15bis simulation config.
 	</binding>
       </key>
 
-      <key n="19">
-	<name>Ctrl-S</name>
-	<desc>Toggle Starter power switch</desc>
+      <key n="85">
+	<name>Shift-U</name>
+	<desc>Update Drop View position</desc>
 	<binding n="0">
 	  <command>nasal</command>
-	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/ignition-input")</script>
+	  <script>MIG15BIS.update_drop_view_pos()</script>
+	</binding>
+      </key>
+
+      <key n="96">
+	<name>`</name>
+	<desc>Toggle engine isolation valve</desc>
+	<binding n="0">
+	  <command>nasal</command>
+	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/isolation-valve-input")</script>
 	</binding>
       </key>
 
       <key n="100">
-	<name>D</name>
+	<name>d</name>
 	<desc>Less sight target Distance</desc>
 	<binding n="0">
 	  <command>nasal</command>
@@ -658,26 +733,8 @@ MiG-15bis simulation config.
 	</binding>
       </key>
 
-      <key n="68">
-	<name>Shift-D</name>
-	<desc>More sight target Distance</desc>
-	<binding n="0">
-	  <command>nasal</command>
-	  <script>MIG15BIS.more_sight_distance()</script>
-	</binding>
-      </key>
-
-      <key n="4">
-	<name>Ctrl-D</name>
-	<desc>Up/Down heaDsight</desc>
-	<binding n="0">
-	  <command>nasal</command>
-	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/headsight/up-command")</script>
-	</binding>
-      </key>
-
       <key n="101">
-	<name>E</name>
+	<name>e</name>
 	<desc>Toggle battEry switch</desc>
 	<binding n="0">
 	  <command>nasal</command>
@@ -685,21 +742,27 @@ MiG-15bis simulation config.
 	</binding>
       </key>
 
-      <key n="69">
-	<name>Shift-E</name>
-	<desc>Toggle gEnerator switch</desc>
-	<binding n="0">
+      <key n="102">
+	<name>f</name>
+	<desc>Fire cannons</desc>
+	<binding>
 	  <command>nasal</command>
-	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/rightpanel/generator-input")</script>
+	  <script>MIG15BIS.press_fire()</script>
 	</binding>
+	<mod-up>
+	  <binding>
+	    <command>nasal</command>
+	    <script>MIG15BIS.unpress_fire()</script>
+	  </binding>
+	</mod-up>
       </key>
 
-      <key n="5">
-	<name>Ctrl-E</name>
-	<desc>Toggle Engine instrumEntation powEr</desc>
+      <key n="103">
+	<name>g</name>
+	<desc>Gear up </desc>
 	<binding n="0">
 	  <command>nasal</command>
-	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/engine-control-input")</script>
+	  <script>MIG15BIS.gear_control_up()</script>
 	</binding>
       </key>
 
@@ -721,12 +784,21 @@ MiG-15bis simulation config.
 	</binding>
       </key>
 
-      <key n="2">
-	<name>Ctrl-B</name>
-	<desc>Toggle speedbrakes</desc>
+      <key n="113">
+	<name>q</name>
+	<desc>More aileron booster</desc>
 	<binding n="0">
 	  <command>nasal</command>
-	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/speedbrakescontrol/control-input")</script>
+	  <script>MIG15BIS.more_booster()</script>
+	</binding>
+      </key>
+
+      <key n="114">
+	<name>r</name>
+	<desc>Lock/Unlock thRottle handle</desc>
+	<binding n="0">
+	  <command>nasal</command>
+	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/gascontrol/lock-command")</script>
 	</binding>
       </key>
 
@@ -745,15 +817,6 @@ MiG-15bis simulation config.
 	</mod-up>
       </key>
 
-      <key n="96">
-	<name>`</name>
-	<desc>Toggle engine isolation valve</desc>
-	<binding n="0">
-	  <command>nasal</command>
-	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/isolation-valve-input")</script>
-	</binding>
-      </key>
-
       <key n="117">
 	<name>U</name>
 	<desc>Toggle fUel source, main or balance tank</desc>
@@ -763,33 +826,15 @@ MiG-15bis simulation config.
 	</binding>
       </key>
 
-      <key n="85">
-	<name>Shift-U</name>
-	<desc>Toggle fUel source, internal or external tanks</desc>
-	<binding n="0">
-	  <command>nasal</command>
-	  <script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/third-tank-pump-input")</script>
-	</binding>
+      <key n="267">
+        <name>F11</name>
+        <desc>no autopilot dialog</desc>
+        <binding>
+          <command>property-assign</command>
+          <property>sim/messages/copilot</property>
+          <value>The MiG-15 does not have an autopilot.  Glorious Soviet pilots do not need one.</value>
+        </binding>
       </key>
-
-      <key n="103">
-	<name>G</name>
-	<desc>Gear up </desc>
-	<binding n="0">
-	  <command>nasal</command>
-	  <script>MIG15BIS.gear_control_up()</script>
-	</binding>
-      </key>
-
-      <key n="71">
-	<name>Shift-G</name>
-	<desc>Gear down </desc>
-	<binding n="0">
-	  <command>nasal</command>
-	  <script>MIG15BIS.gear_control_down()</script>
-	</binding>
-      </key>
-
     </keyboard>
   </input>
   
@@ -799,36 +844,6 @@ MiG-15bis simulation config.
     </submodels>
   </ai>
 
-  <!-- Autopilot -->
-  <autopilot>
-    <settings>
-      <auto-speed-brake-mach type="float">0.89</auto-speed-brake-mach>
-      <common-elevator-mode-agl-ft type="float">20000</common-elevator-mode-agl-ft>
-      <target-agl-ft type="float">800</target-agl-ft>
-      <target-altitude-ft type="float">3000</target-altitude-ft>
-      <target-ap-aoa-deg type="float">5.0</target-ap-aoa-deg>
-      <target-climb-rate-fps type="float">0</target-climb-rate-fps>
-      <target-gr-heading-deg type="float">-999.9</target-gr-heading-deg>
-      <target-gr-pitch-deg type="float">3.8</target-gr-pitch-deg>
-      <target-gr-rot-spd-kt type="float">85</target-gr-rot-spd-kt>
-      <target-mach type="float">0.66</target-mach>
-      <target-pitch-deg type="float">10</target-pitch-deg>
-      <target-speed-kt type="float">350.0</target-speed-kt>
-      <target-to-pitch-deg type="float">10</target-to-pitch-deg>
-    </settings>
-
-    <locks>
-      <auto-take-off type="string">enabled</auto-take-off>
-      <auto-landing type="string">enabled</auto-landing>
-      <auto-speed-brake type="string">engaged</auto-speed-brake>
-      <rudder-control type="string">off</rudder-control>
-      <approach-aoa-hold type="string">off</approach-aoa-hold>
-      <common-elevator-control type="string">off</common-elevator-control>
-      <common-aileron-control type="string">off</common-aileron-control>
-    </locks>
-    
-  </autopilot>
-  
   <!-- Set the mini panel monitor instruments to minimised -->
   <instrumentation>
     <apmonitor>
