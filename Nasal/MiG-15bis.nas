@@ -82,7 +82,7 @@ cfire_cannon = func
 		setprop("sounds/cannon/small-on", 0);
 	}
 
-cannon_shells_weght=func
+cannon_shells_weight=func
 	{
 
 		n37_count = getprop("ai/submodels/submodel[1]/count");
@@ -94,21 +94,21 @@ cannon_shells_weght=func
 			or (ns23_outer_count==nil)
 		)
 		{
-			return (settimer (cannon_shells_weght, 0.1));
+			return (settimer (cannon_shells_weight, 0.1));
 		}
 		shell_weight_as_fuel=(n37_count*0.735+(ns23_inner_count+ns23_outer_count)*0.2)/2.76;
 		setprop("consumables/fuel/tank[5]/level-gal_us", shell_weight_as_fuel);
-		settimer (cannon_shells_weght, 0.1);
+		settimer (cannon_shells_weight, 0.1);
 	}
 
-init_cannon_shells_weght=func
+init_cannon_shells_weight=func
 	{
 		setprop("consumables/fuel/tank[5]/selected", 0);
 	}
 
-init_cannon_shells_weght();
+init_cannon_shells_weight();
 
-cannon_shells_weght();
+cannon_shells_weight();
 
 #--------------------------------------------------------------------
 controls.trigger = func(b) { b ? fire_cannon() : cfire_cannon() }
@@ -1143,7 +1143,6 @@ gearbreaksprocess = func
 		gear_three_torn=getprop("fdm/jsbsim/gear/unit[2]/torn");
 		pilot_g=getprop("fdm/jsbsim/accelerations/Nz");
 		maximum_g=getprop("fdm/jsbsim/accelerations/Nz-max");
-		maximum_g_tenth=getprop("fdm/jsbsim/accelerations/Nz-max-tenth");
 		speed=getprop("velocities/airspeed-kt");
 		mach=getprop("velocities/mach");
 		pitch_degps=getprop("orientation/pitch-rate-degps");
@@ -1162,7 +1161,6 @@ gearbreaksprocess = func
 			or (gear_three_torn==nil)
 			or (pilot_g==nil)
 			or (maximum_g==nil)
-			or (maximum_g_tenth=nil)
 			or (speed==nil)
 			or (mach==nil)
 			or (pitch_degps==nil)
@@ -5025,7 +5023,6 @@ aircraft_lock = func
 		setprop("fdm/jsbsim/systems/radiocompass/serviceable", 0);
 		setprop("instrumentation/photo/serviceable", 0);
 		setprop("instrumentation/drop-tank/serviceable", 0);
-		setprop("instrumentation/pedals/serviceable", 0);
 
 		#Switch off engine
 		setprop("controls/engines/engine/cutoff", 1);
@@ -5602,7 +5599,6 @@ aircraft_unlock=func
 		setprop("fdm/jsbsim/systems/radiocompass/serviceable", 1);
 		setprop("instrumentation/photo/serviceable", 1);
 		setprop("instrumentation/drop-tank/serviceable", 1);
-		setprop("instrumentation/pedals/serviceable", 1);
 		setprop("instrumentation/panels/left/serviceable", 1);
 		setprop("fdm/jsbsim/systems/rightpanel/serviceable", 1);
 		setprop("fdm/jsbsim/systems/leftpanel/serviceable", 1);

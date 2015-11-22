@@ -576,35 +576,27 @@
 
     <channel name="Yaw">
 
-      <summer name="Rudder Command Sum">
+      <summer name="Rudder Command">
         <input>fcs/rudder-cmd-norm-real</input>
         <input>fcs/yaw-trim-cmd-norm</input>
         <clipto>
-        <min> -1 </min>
-        <max>  1 </max>
+          <min> -1 </min>
+          <max>  1 </max>
         </clipto>
+        <output>fcs/rudder-pos-norm</output>
       </summer>
 
       <aerosurface_scale name="Rudder Control">
-        <input>fcs/rudder-command-sum</input>
-        <range>
-        <min> -0.35 </min>
-        <max>  0.35 </max>
-        </range>
-        <output>fcs/rudder-pos-rad</output>
-      </aerosurface_scale>
-
-      <aerosurface_scale name="Rudder Normalization">
-        <input>fcs/rudder-pos-rad</input>
+        <input>fcs/rudder-pos-norm</input>
         <domain>
-        <min> -0.35 </min>
-        <max>  0.35 </max>
+          <min> -1 </min>
+          <max>  1 </max>
         </domain>       
         <range>
-        <min> -1 </min>
-        <max>  1 </max>
+          <min> -0.35 </min>
+          <max>  0.35 </max>
         </range>
-        <output>fcs/rudder-pos-norm</output>
+        <output>fcs/rudder-pos-rad</output>
       </aerosurface_scale>
 
     </channel>
