@@ -82,7 +82,7 @@ cfire_cannon = func
 		setprop("sounds/cannon/small-on", 0);
 	}
 
-cannon_shells_weght=func
+cannon_shells_weight=func
 	{
 
 		n37_count = getprop("ai/submodels/submodel[1]/count");
@@ -94,21 +94,21 @@ cannon_shells_weght=func
 			or (ns23_outer_count==nil)
 		)
 		{
-			return (settimer (cannon_shells_weght, 0.1));
+			return (settimer (cannon_shells_weight, 0.1));
 		}
 		shell_weight_as_fuel=(n37_count*0.735+(ns23_inner_count+ns23_outer_count)*0.2)/2.76;
 		setprop("consumables/fuel/tank[5]/level-gal_us", shell_weight_as_fuel);
-		settimer (cannon_shells_weght, 0.1);
+		settimer (cannon_shells_weight, 0.1);
 	}
 
-init_cannon_shells_weght=func
+init_cannon_shells_weight=func
 	{
 		setprop("consumables/fuel/tank[5]/selected", 0);
 	}
 
-init_cannon_shells_weght();
+init_cannon_shells_weight();
 
-cannon_shells_weght();
+cannon_shells_weight();
 
 #--------------------------------------------------------------------
 controls.trigger = func(b) { b ? fire_cannon() : cfire_cannon() }
@@ -1143,7 +1143,6 @@ gearbreaksprocess = func
 		gear_three_torn=getprop("fdm/jsbsim/gear/unit[2]/torn");
 		pilot_g=getprop("fdm/jsbsim/accelerations/Nz");
 		maximum_g=getprop("fdm/jsbsim/accelerations/Nz-max");
-		maximum_g_tenth=getprop("fdm/jsbsim/accelerations/Nz-max-tenth");
 		speed=getprop("velocities/airspeed-kt");
 		mach=getprop("velocities/mach");
 		pitch_degps=getprop("orientation/pitch-rate-degps");
@@ -1162,7 +1161,6 @@ gearbreaksprocess = func
 			or (gear_three_torn==nil)
 			or (pilot_g==nil)
 			or (maximum_g==nil)
-			or (maximum_g_tenth=nil)
 			or (speed==nil)
 			or (mach==nil)
 			or (pitch_degps==nil)
@@ -3490,7 +3488,7 @@ realelectric=func
 			setprop("systems/electrical-real/outputs/drop-tank/volts-norm", set_drop_tank);
 			setprop("systems/electrical-real/outputs/bomb/on", set_bomb);
 			setprop("systems/electrical-real/outputs/bomb/volts-norm", set_bomb);
-			#JSBsim handmaded instruments
+			#JSBsim handmade instruments
 			setprop("fdm/jsbsim/systems/airspeedometer/on", 1);
 			setprop("fdm/jsbsim/systems/vertspeedometer/on", 1);
 			setprop("fdm/jsbsim/systems/arthorizon/on", set_horizon);
@@ -4971,65 +4969,68 @@ gtremble();
 
 #-----------------------------------------------------------------------
 #Aircraft break
-aircraft_lock = func 
+
+
+aircraft_lock_unlock = func (new_state)
 	{
-		#Stop instruments
-		setprop("instrumentation/clock/serviceable", 0);
-		setprop("instrumentation/manometer/serviceable", 0);
-		setprop("instrumentation/gear-indicator/serviceable", 0);
-		setprop("instrumentation/flaps-lamp/serviceable", 0);
-		setprop("instrumentation/fuelometer/serviceable", 0);
-		setprop("instrumentation/altimeter-lamp/serviceable", 0);
-		setprop("instrumentation/gear-lamp/serviceable", 0);
-		setprop("instrumentation/oxygen-pressure-meter/serviceable", 0);
-		setprop("instrumentation/brake-pressure-meter/serviceable", 0);
-		setprop("instrumentation/ignition-lamp/serviceable", 0);
-		setprop("instrumentation/gastermometer/serviceable", 0);
-		setprop("instrumentation/motormeter/serviceable", 0);
-		setprop("instrumentation/machometer/serviceable", 0);
-		setprop("instrumentation/turnometer/serviceable", 0);
-		setprop("instrumentation/vertspeedometer/serviceable", 0);
-		setprop("instrumentation/gear-pressure-indicator/serviceable", 0);
-		setprop("instrumentation/flaps-pressure-indicator/serviceable", 0);
-		setprop("instrumentation/marker-beacon/serviceable", 0);
+		#instruments
+		setprop("instrumentation/clock/serviceable", new_state);
+		setprop("instrumentation/manometer/serviceable", new_state);
+		setprop("instrumentation/gear-indicator/serviceable", new_state);
+		setprop("instrumentation/flaps-lamp/serviceable", new_state);
+		setprop("instrumentation/fuelometer/serviceable", new_state);
+		setprop("instrumentation/altimeter-lamp/serviceable", new_state);
+		setprop("instrumentation/gear-lamp/serviceable", new_state);
+		setprop("instrumentation/oxygen-pressure-meter/serviceable", new_state);
+		setprop("instrumentation/brake-pressure-meter/serviceable", new_state);
+		setprop("instrumentation/ignition-lamp/serviceable", new_state);
+		setprop("instrumentation/gastermometer/serviceable", new_state);
+		setprop("instrumentation/motormeter/serviceable", new_state);
+		setprop("instrumentation/machometer/serviceable", new_state);
+		setprop("instrumentation/turnometer/serviceable", new_state);
+		setprop("instrumentation/vertspeedometer/serviceable", new_state);
+		setprop("instrumentation/gear-pressure-indicator/serviceable", new_state);
+		setprop("instrumentation/flaps-pressure-indicator/serviceable", new_state);
+		setprop("instrumentation/marker-beacon/serviceable", new_state);
 
 		#JSB instruments and controls
-		setprop("fdm/jsbsim/systems/airspeedometer/serviceable", 0);
-		setprop("fdm/jsbsim/systems/vertspeedometer/serviceable", 0);
-		setprop("fdm/jsbsim/systems/arthorizon/serviceable", 0);
-		setprop("fdm/jsbsim/systems/tachometer/serviceable", 0);
-		setprop("fdm/jsbsim/systems/headsight/serviceable", 0);
-		setprop("fdm/jsbsim/systems/gascontrol/serviceable", 0);
-		setprop("fdm/jsbsim/systems/flapscontrol/serviceable", 0);
-		setprop("fdm/jsbsim/systems/rightpanel/serviceable", 0);
-		setprop("fdm/jsbsim/systems/stopcontrol/serviceable", 0);
-		setprop("fdm/jsbsim/systems/leftpanel/serviceable", 0);
-		setprop("fdm/jsbsim/systems/ignitionbuton/serviceable", 0);
-		setprop("fdm/jsbsim/systems/speedbrakescontrol/serviceable", 0);
-		setprop("fdm/jsbsim/systems/radioaltimeter/serviceable", 0);
-		setprop("fdm/jsbsim/systems/stick/serviceable", 0);
-		setprop("fdm/jsbsim/systems/pedals/serviceable", 0);
-		setprop("fdm/jsbsim/systems/gearvalve/serviceable", 0);
-		setprop("fdm/jsbsim/systems/flapsvalve/serviceable", 0);
-		setprop("fdm/jsbsim/systems/boostercontrol/serviceable", 0);
-		setprop("fdm/jsbsim/systems/gyrocompass/serviceable", 0);
-		setprop("fdm/jsbsim/systems/altimeter/serviceable", 0);
+		setprop("fdm/jsbsim/systems/airspeedometer/serviceable", new_state);
+		setprop("fdm/jsbsim/systems/vertspeedometer/serviceable", new_state);
+		setprop("fdm/jsbsim/systems/arthorizon/serviceable", new_state);
+		setprop("fdm/jsbsim/systems/tachometer/serviceable", new_state);
+		setprop("fdm/jsbsim/systems/headsight/serviceable", new_state);
+		setprop("fdm/jsbsim/systems/gascontrol/serviceable", new_state);
+		setprop("fdm/jsbsim/systems/flapscontrol/serviceable", new_state);
+		setprop("fdm/jsbsim/systems/rightpanel/serviceable", new_state);
+		setprop("fdm/jsbsim/systems/stopcontrol/serviceable", new_state);
+		setprop("fdm/jsbsim/systems/leftpanel/serviceable", new_state);
+		setprop("fdm/jsbsim/systems/ignitionbuton/serviceable", new_state);
+		setprop("fdm/jsbsim/systems/speedbrakescontrol/serviceable", new_state);
+		setprop("fdm/jsbsim/systems/radioaltimeter/serviceable", new_state);
+		setprop("fdm/jsbsim/systems/stick/serviceable", new_state);
+		setprop("fdm/jsbsim/systems/pedals/serviceable", new_state);
+		setprop("fdm/jsbsim/systems/gearvalve/serviceable", new_state);
+		setprop("fdm/jsbsim/systems/flapsvalve/serviceable", new_state);
+		setprop("fdm/jsbsim/systems/boostercontrol/serviceable", new_state);
+		setprop("fdm/jsbsim/systems/gyrocompass/serviceable", new_state);
+		setprop("fdm/jsbsim/systems/altimeter/serviceable", new_state);
 
-		#Lock controls
-		setprop("instrumentation/gear-control/serviceable", 0);
-		setprop("instrumentation/flaps-control/serviceable", 0);
-		setprop("instrumentation/speed-brake-control/serviceable", 0);
-		setprop("instrumentation/ignition-button/serviceable", 0);
-		setprop("instrumentation/cannon/serviceable", 0);
-		setprop("instrumentation/trimmer/serviceable", 0);
-		setprop("fdm/jsbsim/systems/radiocompass/serviceable", 0);
-		setprop("instrumentation/photo/serviceable", 0);
-		setprop("instrumentation/drop-tank/serviceable", 0);
-		setprop("instrumentation/pedals/serviceable", 0);
+		#controls
+		setprop("instrumentation/gear-control/serviceable", new_state);
+		setprop("instrumentation/flaps-control/serviceable", new_state);
+		setprop("instrumentation/speed-brake-control/serviceable", new_state);
+		setprop("instrumentation/ignition-button/serviceable", new_state);
+		setprop("instrumentation/cannon/serviceable", new_state);
+		setprop("instrumentation/trimmer/serviceable", new_state);
+		setprop("fdm/jsbsim/systems/radiocompass/serviceable", new_state);
+		setprop("instrumentation/photo/serviceable", new_state);
+		setprop("instrumentation/drop-tank/serviceable", new_state);
 
 		#Switch off engine
-		setprop("controls/engines/engine/cutoff", 1);
-		setprop("engines/engine/cutoff-reason", "aircraft break");
+		setprop("controls/engines/engine/cutoff", new_state == 0);
+                if(new_state == 0) {
+			setprop("engines/engine/cutoff-reason", "aircraft break");
+                }
 	}
 
 aircraft_crash=func(crashtype, crashg, solid)
@@ -5044,7 +5045,7 @@ aircraft_crash=func(crashtype, crashg, solid)
 			setprop("fdm/jsbsim/simulation/crash-type", crashtype);
 			setprop("fdm/jsbsim/simulation/crash-g", crashg);
 			setprop("fdm/jsbsim/simulation/crashed", 1);
-			aircraft_lock();
+			aircraft_lock_unlock (0);
 		}
 
 		gear_pos=getprop("fdm/jsbsim/gear/unit[0]/pos-norm-real");
@@ -5267,7 +5268,7 @@ aircraftbreakprocess=func
 		)
 		{
 			exploded=1;
-			aircraft_lock();
+			aircraft_lock_unlock (0);
 			aircraft_explode(pilot_g);
 		}
 		if (
@@ -5551,69 +5552,6 @@ setlistener("gear/gear[10]/wow", aircraftbreaklistener);
 #-----------------------------------------------------------------------
 #Aircraft repair
 
-aircraft_unlock=func
-	{
-		#Repair instruments
-		setprop("instrumentation/clock/serviceable", 1);
-		setprop("instrumentation/manometer/serviceable", 1);
-		setprop("instrumentation/gear-indicator/serviceable", 1);
-		setprop("instrumentation/flaps-lamp/serviceable", 1);
-		setprop("instrumentation/fuelometer/serviceable", 1);
-		setprop("instrumentation/altimeter-lamp/serviceable", 1);
-		setprop("instrumentation/gear-lamp/serviceable", 1);
-		setprop("instrumentation/oxygen-pressure-meter/serviceable", 1);
-		setprop("instrumentation/brake-pressure-meter/serviceable", 1);
-		setprop("instrumentation/ignition-lamp/serviceable", 1);
-		setprop("instrumentation/gastermometer/serviceable", 1);
-		setprop("instrumentation/motormeter/serviceable", 1);
-		setprop("instrumentation/machometer/serviceable", 1);
-		setprop("instrumentation/turnometer/serviceable", 1);
-		setprop("instrumentation/vertspeedometer/serviceable", 1);
-		setprop("instrumentation/gear-pressure-indicator/serviceable", 1);
-		setprop("instrumentation/flaps-pressure-indicator/serviceable", 1);
-		setprop("instrumentation/marker-beacon/serviceable", 1);
-
-		#JSB instruments
-		setprop("fdm/jsbsim/systems/airspeedometer/serviceable", 1);
-		setprop("fdm/jsbsim/systems/vertspeedometer/serviceable", 1);
-		setprop("fdm/jsbsim/systems/arthorizon/serviceable", 1);
-		setprop("fdm/jsbsim/systems/tachometer/serviceable", 1);
-		setprop("fdm/jsbsim/systems/headsight/serviceable", 1);
-		setprop("fdm/jsbsim/systems/gascontrol/serviceable", 1);
-		setprop("fdm/jsbsim/systems/flapscontrol/serviceable", 1);
-		setprop("fdm/jsbsim/systems/rightpanel/serviceable", 1);
-		setprop("fdm/jsbsim/systems/stopcontrol/serviceable", 1);
-		setprop("fdm/jsbsim/systems/leftpanel/serviceable", 1);
-		setprop("fdm/jsbsim/systems/ignitionbuton/serviceable", 1);
-		setprop("fdm/jsbsim/systems/speedbrakescontrol/serviceable", 1);
-		setprop("fdm/jsbsim/systems/radioaltimeter/serviceable", 1);
-		setprop("fdm/jsbsim/systems/boostercontrol/serviceable", 1);
-		setprop("fdm/jsbsim/systems/gyrocompass/serviceable", 1);
-		setprop("fdm/jsbsim/systems/altimeter/serviceable", 1);
-
-		#Repair controls
-		setprop("instrumentation/gear-control/serviceable", 1);
-		setprop("instrumentation/flaps-control/serviceable", 1);
-		setprop("instrumentation/speed-brake-control/serviceable", 1);
-
-		setprop("instrumentation/ignition-button/serviceable", 1);
-		setprop("instrumentation/cannon/serviceable", 1);
-		setprop("instrumentation/trimmer/serviceable", 1);
-		setprop("fdm/jsbsim/systems/radiocompass/serviceable", 1);
-		setprop("instrumentation/photo/serviceable", 1);
-		setprop("instrumentation/drop-tank/serviceable", 1);
-		setprop("instrumentation/pedals/serviceable", 1);
-		setprop("instrumentation/panels/left/serviceable", 1);
-		setprop("fdm/jsbsim/systems/rightpanel/serviceable", 1);
-		setprop("fdm/jsbsim/systems/leftpanel/serviceable", 1);
-		setprop("fdm/jsbsim/systems/ignitionbuton/serviceable", 1);
-		setprop("fdm/jsbsim/systems/speedbrakescontrol/serviceable", 1);
-		setprop("fdm/jsbsim/systems/stick/serviceable", 1);
-		setprop("fdm/jsbsim/systems/pedals/serviceable", 1);
-		setprop("fdm/jsbsim/systems/gearvalve/serviceable", 1);
-		setprop("fdm/jsbsim/systems/flapsvalve/serviceable", 1);
-	}
-
 aircraft_repair=func
 	{
 		#Repair gears
@@ -5649,7 +5587,7 @@ aircraft_repair=func
 		setprop("fdm/jsbsim/systems/canopy/torn", 0);
 
 		#Unlock aircraft
-		aircraft_unlock();
+		aircraft_lock_unlock (1);
 
 		#Set repaired
 		setprop("fdm/jsbsim/simulation/crashed", 0);
@@ -5772,7 +5710,7 @@ aircraft_restart=func
 			setprop("processes/aircraft-break/enabled", 0);
 			setprop("processes/gear-break/enabled", 0);
 			#Lock controls
-			aircraft_lock();
+			aircraft_lock_unlock (0);
 			setprop("sim/freeze/clock", 1);
 			setprop("sim/freeze/master", 1);
 			aircraft_repair();
@@ -5799,28 +5737,6 @@ setprop("sim/freeze/state-saved/master", 0);
 
 #-----------------------------------------------------------------------
 #Aircraft autostart
-
-aurostart_switch_move=func(autostart_pos, switch_name, set_pos, autostart_current_pos)
-	{
-		if (autostart_current_pos==autostart_pos)
-		{
-			switch_pos=getprop(switch_name~"/switch-pos-norm");
-			if (switch_pos==nil)
-			{
-				return (-1);
-			}
-			if (switch_pos!=set_pos)
-			{
-				setprop(switch_name~"/set-pos", set_pos);
-			}
-			else
-			{
-				autostart_current_pos=autostart_current_pos+1;
-				setprop("processes/autostart/pos", autostart_current_pos);
-			}
-		}
-		return (autostart_current_pos);
-	}
 
 stop_autostart_process = func 
 	{
