@@ -5004,7 +5004,7 @@ aircraft_lock_unlock = func (new_state)
 		setprop("fdm/jsbsim/systems/rightpanel/serviceable", new_state);
 		setprop("fdm/jsbsim/systems/stopcontrol/serviceable", new_state);
 		setprop("fdm/jsbsim/systems/leftpanel/serviceable", new_state);
-		setprop("fdm/jsbsim/systems/ignitionbuton/serviceable", new_state);
+		setprop("fdm/jsbsim/systems/ignitionbutton/serviceable", new_state);
 		setprop("fdm/jsbsim/systems/speedbrakescontrol/serviceable", new_state);
 		setprop("fdm/jsbsim/systems/radioaltimeter/serviceable", new_state);
 		setprop("fdm/jsbsim/systems/stick/serviceable", new_state);
@@ -5359,7 +5359,7 @@ end_aircraft_explode = func
 		setprop("instrumentation/panels/left/serviceable", 0);
 		setprop("fdm/jsbsim/systems/rightpanel/serviceable", 0);
 		setprop("fdm/jsbsim/systems/leftpanel/serviceable", 0);
-		setprop("fdm/jsbsim/systems/ignitionbuton/serviceable", 0);
+		setprop("fdm/jsbsim/systems/ignitionbutton/serviceable", 0);
 		setprop("fdm/jsbsim/systems/speedbrakescontrol/serviceable", 0);
 		setprop("sounds/aircraft-explode/on", 0);
 	}
