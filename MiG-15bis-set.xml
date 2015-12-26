@@ -182,7 +182,7 @@ MiG-15bis simulation config.
     <flight-model>jsb</flight-model>
     <status>advanced production</status>
     <author>Lee Elliott, Victor Slavutinskiy, with great help from Yurik V. Nikiforoff</author>
-    <aircraft-version>1.1</aircraft-version>
+    <aircraft-version>3.0</aircraft-version>
     <aero>MiG-15bis</aero>
     <fuel-fraction>1.0</fuel-fraction>
     <description>MiG-15bis (JSBSim FDM)</description>
@@ -467,6 +467,8 @@ MiG-15bis simulation config.
 
     <multiplay>
       <generic>
+        <int n="10" alias="/ai/submodels/N-37"/>
+        <int n="11" alias="/ai/submodels/NS-23-I"/>
 	<float n="0" alias="/fdm/jsbsim/gear/unit[0]/pos-norm-real"/>
 	<float n="1" alias="/fdm/jsbsim/gear/unit[0]/torn"/>
 
@@ -1496,6 +1498,9 @@ MiG-15bis simulation config.
       <file>Aircraft/MiG-15/Nasal/MiG-15bis.nas</file>
       <script>start_up();</script>
     </MIG15BIS>
+    <MiG_15bis_bombable>
+      <file>Aircraft/MiG-15/Nasal/bombable.nas</file>
+    </MiG_15bis_bombable>
   </nasal>
 
 </PropertyList>

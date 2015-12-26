@@ -8,7 +8,7 @@
 
   <!-- Multiplayer events =========================================-->
   <nasal>
-    <load>
+    <load><![CDATA[
 ##############################################################################
 # The on-load Nasal is not executed when this file is loaded as the user
 # aircraft.
@@ -58,13 +58,14 @@ alias(rplayer.getNode("sim/multiplay/generic/float[14]"));
 
 rplayer.getNode("instrumentation/oxygen-pressure-meter/oxygen-on", 1).
 alias(rplayer.getNode("sim/multiplay/generic/float[15]"));
-    </load>
-    <unload>
-##############################################################################
+
+MiG_15bis_bombable.load();
+    ]]></load>
+    <unload><![CDATA[
 var rplayer = cmdarg();
 print("UNLOAD MiG-15bis ", rplayer.getPath());
-##############################################################################
-    </unload>
+MiG_15bis_bombable.unload();
+    ]]></unload>
   </nasal>
 
   <!-- De-select pilot when view in cabine -->
