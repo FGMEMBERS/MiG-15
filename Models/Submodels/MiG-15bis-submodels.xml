@@ -28,7 +28,7 @@
     <trigger>ai/submodels/N-37</trigger>
     <speed>2260</speed>
     <repeat>true</repeat>
-    <delay>0.01</delay>
+    <delay>0.15</delay> <!-- 400 rounds/minute -->
     <count>40</count>
     <!-- In feets -->
     <x-offset>-1.0</x-offset>
@@ -38,16 +38,14 @@
     <pitch-offset>0.0</pitch-offset>
     <roll-offset>0.0</roll-offset>
     <eda>0.0122</eda>
-    <weight>1.75</weight>
+    <weight>1.62</weight> <!-- 735 grams -->
     <cd>0.035</cd>
     <buoyancy>0</buoyancy>
     <wind>false</wind>
     <aero-stabilised>true</aero-stabilised>
     <life>5</life>
     <collision>true</collision>
-    <collision-report>sim/ai/aircraft/collision/N-37</collision-report>
     <impact>true</impact>
-    <impact-reports>sim/ai/aircraft/impact/N-37</impact-reports>
   </submodel>
 
   <submodel>
@@ -74,9 +72,9 @@
     <name>N-23 inner round</name>
     <model>Aircraft/MiG-15/Models/Submodels/MiG-15bis-NS-23-round.xml</model>
     <trigger>ai/submodels/NS-23-I</trigger>
-    <speed>2260</speed>
+    <speed>2300</speed>
     <repeat>true</repeat>
-    <delay>0.01</delay>
+    <delay>0.109</delay> <!-- 550 rounds/minute -->
     <count>80</count>
     <!-- In feets -->
     <x-offset>-1.2</x-offset>
@@ -86,13 +84,13 @@
     <pitch-offset>0.0</pitch-offset>
     <roll-offset>0.0</roll-offset>
     <eda>0.0122</eda>
-    <weight>1.75</weight>
+    <weight>0.386</weight> <!-- 175 grams -->
     <cd>0.035</cd>
     <buoyancy>0</buoyancy>
     <wind>false</wind>
     <aero-stabilised>true</aero-stabilised>
+    <collision>true</collision>
     <impact>true</impact>
-    <impact-reports>sim/ai/aircraft/impact/NS-23</impact-reports>
   </submodel>
 
   <submodel>
@@ -101,7 +99,7 @@
     <trigger>ai/submodels/NS-23-I</trigger>
     <speed>20</speed>
     <repeat>true</repeat>
-    <delay>0.1</delay>
+    <delay>0.109</delay>
     <count>80</count>
     <x-offset>-2.5</x-offset>
     <y-offset>-0.95</y-offset>
@@ -122,7 +120,7 @@
     <trigger>ai/submodels/NS-23-O</trigger>
     <speed>2260</speed>
     <repeat>true</repeat>
-    <delay>0.01</delay>
+    <delay>0.0109</delay> <!-- 550 rounds/minute -->
     <count>80</count>
     <!-- In feets -->
     <x-offset>-1.4</x-offset>
@@ -132,13 +130,13 @@
     <pitch-offset>0.0</pitch-offset>
     <roll-offset>0.0</roll-offset>
     <eda>0.0122</eda>
-    <weight>1.75</weight>
+    <weight>0.386</weight> <!-- 175 grams -->
     <cd>0.035</cd>
     <buoyancy>0</buoyancy>
     <wind>false</wind>
     <aero-stabilised>true</aero-stabilised>
+    <collision>true</collision>
     <impact>true</impact>
-    <impact-reports>sim/ai/aircraft/impact/NS-23</impact-reports>
   </submodel>
 
   <submodel>
@@ -147,7 +145,7 @@
     <trigger>ai/submodels/NS-23-O</trigger>
     <speed>20</speed>
     <repeat>true</repeat>
-    <delay>0.1</delay>
+    <delay>0.109</delay>
     <count>80</count>
     <x-offset>-2.5</x-offset>
     <y-offset>-1.25</y-offset>
