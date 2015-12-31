@@ -332,8 +332,8 @@ var bombableObject = {
 # Duplicate the 23mm cannon as we have two of them:
 bombableObject.weapons.ns_23_outer = bombableObject.weapons.ns_23_inner;
 
-load = func () {
-  var thisNodeName = cmdarg().getPath();
+load = func (thisNode) {
+  var thisNodeName = thisNode.getPath():
   print("MiG-15: loading bombable support ", thisNodeName);
 
   if (getprop ("/bombable/menusettings/bombable-enabled") != 1) {
@@ -344,8 +344,6 @@ load = func () {
     print ("Bombable support already initialized");
     return;
   }
-
-  var thisNode = props.globals.getNode(thisNodeName);
 
   bombableObject.objectNodeName = thisNodeName;
   bombableObject.objectNode     = thisNode;
@@ -374,9 +372,9 @@ load = func () {
   bombable.startSmoke("jetcontrail", thisNodeName );
 }
 
-var unload = func () {
+var unload = func (thisNode) {
   print("MiG-15: unloading bombable support.");
-  var nodeName = cmdarg().getPath();
+  var nodeName = thisNode.getPath();
   bombable.de_overall_initialize( nodeName );
   bombable.initialize_del( nodeName );
   bombable.ground_del( nodeName );

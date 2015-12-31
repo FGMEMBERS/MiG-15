@@ -59,12 +59,12 @@ alias(rplayer.getNode("sim/multiplay/generic/float[14]"));
 rplayer.getNode("instrumentation/oxygen-pressure-meter/oxygen-on", 1).
 alias(rplayer.getNode("sim/multiplay/generic/float[15]"));
 
-MiG_15bis_bombable.load();
+MiG_15bis_bombable.load(rplayer);
     ]]></load>
     <unload><![CDATA[
 var rplayer = cmdarg();
 print("UNLOAD MiG-15bis ", rplayer.getPath());
-MiG_15bis_bombable.unload();
+MiG_15bis_bombable.unload(rplayer);
     ]]></unload>
   </nasal>
 

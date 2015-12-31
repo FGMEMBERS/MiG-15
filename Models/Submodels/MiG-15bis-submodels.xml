@@ -118,7 +118,7 @@
     <name>N-23 outer round</name>
     <model>Aircraft/MiG-15/Models/Submodels/MiG-15bis-NS-23-round.xml</model>
     <trigger>ai/submodels/NS-23-O</trigger>
-    <speed>2260</speed>
+    <speed>2300</speed>
     <repeat>true</repeat>
     <delay>0.0109</delay> <!-- 550 rounds/minute -->
     <count>80</count>
