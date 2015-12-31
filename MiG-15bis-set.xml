@@ -180,8 +180,9 @@ MiG-15bis simulation config.
     </help>
 
     <flight-model>jsb</flight-model>
-    <status>beta</status>
+    <status>advanced production</status>
     <author>Lee Elliott, Victor Slavutinskiy, with great help from Yurik V. Nikiforoff</author>
+    <aircraft-version>3.0.2</aircraft-version>
     <aero>MiG-15bis</aero>
     <fuel-fraction>1.0</fuel-fraction>
     <description>MiG-15bis (JSBSim FDM)</description>
@@ -466,6 +467,8 @@ MiG-15bis simulation config.
 
     <multiplay>
       <generic>
+        <int n="10" alias="/ai/submodels/N-37"/>
+        <int n="11" alias="/ai/submodels/NS-23-I"/>
 	<float n="0" alias="/fdm/jsbsim/gear/unit[0]/pos-norm-real"/>
 	<float n="1" alias="/fdm/jsbsim/gear/unit[0]/torn"/>
 
@@ -501,9 +504,18 @@ MiG-15bis simulation config.
     <keyboard>
       <key n="1">
         <name>Ctrl-A</name>
-        <desc>no altitude lock</desc>
+        <desc>Altitude Lock</desc>
         <binding>
-          <command>null</command>
+          <command>nasal</command>
+          <script>
+            if (getprop("autopilot/locks/altitude") == "altitude-hold") {
+              setprop("autopilot/locks/altitude", "");
+            }
+            else {
+              setprop("autopilot/settings/target-altitude-ft", getprop("position/altitude-ft"));
+              setprop("autopilot/locks/altitude", "altitude-hold");
+            }
+          </script>
         </binding>
       </key>
 
@@ -545,9 +557,21 @@ MiG-15bis simulation config.
 
       <key n="8">
         <name>Ctrl-H</name>
-        <desc>no heading bug lock</desc>
+        <desc>Heading Hold</desc>
         <binding>
-          <command>null</command>
+          <command>nasal</command>
+          <script>
+            if (getprop("autopilot/locks/heading") == "dg-heading-hold") {
+              setprop("autopilot/locks/heading", "");
+              setprop("sim/messages/copilot", "warning: auto-coordination is off, toggle with Shift+L if necessary");
+            }
+            else {
+              setprop("controls/flight/auto-coordination", 0);
+              setprop("autopilot/settings/heading-bug-deg",
+                      getprop("instrumentation/heading-indicator/indicated-heading-deg"));
+              setprop("autopilot/locks/heading", "dg-heading-hold");
+            }
+          </script>
         </binding>
       </key>
 
@@ -561,9 +585,19 @@ MiG-15bis simulation config.
 
       <key n="16">
         <name>Ctrl-P</name>
-        <desc>no pitch hold</desc>
+        <desc>Pitch hold</desc>
         <binding>
-          <command>null</command>
+          <command>nasal</command>
+          <script>
+            if (getprop("autopilot/locks/altitude") == "pitch-hold") {
+              setprop("autopilot/locks/altitude", "");
+            }
+            else {
+              setprop("autopilot/settings/target-pitch-deg",
+                      getprop("orientation/pitch-deg"));
+              setprop("autopilot/locks/altitude", "pitch-hold");
+            }
+          </script>
         </binding>
       </key>
 
@@ -596,7 +630,7 @@ MiG-15bis simulation config.
 
       <key n="20">
         <name>Ctrl-T</name>
-        <desc>terrain following mode</desc>
+        <desc>No terrain following mode</desc>
         <binding>
           <command>null</command>
         </binding>
@@ -826,15 +860,6 @@ MiG-15bis simulation config.
 	</binding>
       </key>
 
-      <key n="267">
-        <name>F11</name>
-        <desc>no autopilot dialog</desc>
-        <binding>
-          <command>property-assign</command>
-          <property>sim/messages/copilot</property>
-          <value>The MiG-15 does not have an autopilot.  Glorious Soviet pilots do not need one.</value>
-        </binding>
-      </key>
     </keyboard>
   </input>
   
@@ -1473,6 +1498,9 @@ MiG-15bis simulation config.
       <file>Aircraft/MiG-15/Nasal/MiG-15bis.nas</file>
       <script>start_up();</script>
     </MIG15BIS>
+    <MiG_15bis_bombable>
+      <file>Aircraft/MiG-15/Nasal/bombable.nas</file>
+    </MiG_15bis_bombable>
   </nasal>
 
 </PropertyList>
