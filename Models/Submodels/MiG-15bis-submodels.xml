@@ -331,19 +331,19 @@
     <y-offset>0.0</y-offset>
     <!-- Move lower then it really to avoid immediately impact
 	 <z-offset>-3.254</z-offset>
-         -->
-	 <z-offset>-4.554</z-offset>
-	 <yaw-offset>0.0</yaw-offset>
-	 <pitch-offset>0.0</pitch-offset>
-	 <roll-offset>0.0</roll-offset>
-	 <eda>2.8</eda>
-	 <weight>80</weight>
-	 <cd>0.035</cd>
-	 <buoyancy>0</buoyancy>
-	 <wind>true</wind>
-	 <aero-stabilised>false</aero-stabilised>
-	 <impact>true</impact>
-	 <impact-reports>ai/submodels/gear-middle-impact</impact-reports>
+    -->
+    <z-offset>-4.554</z-offset>
+    <yaw-offset>0.0</yaw-offset>
+    <pitch-offset>0.0</pitch-offset>
+    <roll-offset>0.0</roll-offset>
+    <eda>2.8</eda>
+    <weight>80</weight>
+    <cd>0.035</cd>
+    <buoyancy>0</buoyancy>
+    <wind>true</wind>
+    <aero-stabilised>false</aero-stabilised>
+    <impact>true</impact>
+    <impact-reports>ai/submodels/gear-middle-impact</impact-reports>
   </submodel>
 
   <submodel>

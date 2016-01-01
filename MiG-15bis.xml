@@ -149,8 +149,8 @@
 
     <!--        Tank 2 is back balance tank
 
-			Normal 1 tank load is 138l, that is 243lbs, 40 gal
-			maximum load is 200l, that is 160kg, 353lbs, 57gal
+                        Normal 1 tank load is 138l, that is 243lbs, 40 gal
+                        maximum load is 200l, that is 160kg, 353lbs, 57gal
     -->
 
     <tank type="FUEL" number="2">
@@ -951,8 +951,8 @@
           <independentVar lookup="row">velocities/vc-kts</independentVar>
           <independentVar lookup="column">atmosphere/density-altitude</independentVar>
           <tableData>
-            		0.0	16404.0 32808.0 49212.0
-            0.0 	0.0013  0.0043  0.0143  0.0648
+                        0.0     16404.0 32808.0 49212.0
+            0.0         0.0013  0.0043  0.0143  0.0648
             269.9       0.0013  0.0043  0.0143  0.0648
             377.9       0.0003  0.0023  0.0075  0.0301
             431.9       0.0     0.0018  0.0055  0.0195

@@ -83,14 +83,14 @@ MiG_15bis_bombable.unload(rplayer);
     <object-name>PLT_Glass</object-name>
     <condition>
       <or>
-	<equals>
-	  <property>sim/current-view/internal</property>
-	  <value>false</value>	
-	</equals>
-	<not-equals>
-	  <property>id</property>
-	  <value>0.0</value>	
-	</not-equals>
+        <equals>
+          <property>sim/current-view/internal</property>
+          <value>false</value>  
+        </equals>
+        <not-equals>
+          <property>id</property>
+          <value>0.0</value>    
+        </not-equals>
       </or>
     </condition>
   </animation>
@@ -101,10 +101,10 @@ MiG_15bis_bombable.unload(rplayer);
     <object-name>PLT_FaceMask</object-name>
     <condition>
       <not>
-	<equals>
-	  <property>instrumentation/oxygen-pressure-meter/oxygen-on</property>
-	  <value>0</value>
-	</equals>
+        <equals>
+          <property>instrumentation/oxygen-pressure-meter/oxygen-on</property>
+          <value>0</value>
+        </equals>
       </not>
     </condition>
   </animation>
@@ -407,8 +407,8 @@ MiG_15bis_bombable.unload(rplayer);
     <object-name>WNG_FlapRDown</object-name>
     <condition>
       <equals>
-	<property>fdm/jsbsim/fcs/flap-torn</property>
-	<value>0</value>	
+        <property>fdm/jsbsim/fcs/flap-torn</property>
+        <value>0</value>        
       </equals>
     </condition>
   </animation>
@@ -614,14 +614,14 @@ MiG_15bis_bombable.unload(rplayer);
     <object-name>FUS_Nose_WWell</object-name>
     <condition>
       <or>
-	<greater-than>
-	  <property>fdm/jsbsim/gear/unit[0]/pos-norm-real</property>
-	  <value>0.0</value>
-	</greater-than>
-	<greater-than>
-	  <property>fdm/jsbsim/gear/unit[0]/torn</property>
-	  <value>0.0</value>
-	</greater-than>
+        <greater-than>
+          <property>fdm/jsbsim/gear/unit[0]/pos-norm-real</property>
+          <value>0.0</value>
+        </greater-than>
+        <greater-than>
+          <property>fdm/jsbsim/gear/unit[0]/torn</property>
+          <value>0.0</value>
+        </greater-than>
       </or>
     </condition>
   </animation>
@@ -636,8 +636,8 @@ MiG_15bis_bombable.unload(rplayer);
     <object-name>UC_Nose_Tyre</object-name>
     <condition>
       <greater-than>
-	<property>fdm/jsbsim/gear/unit[0]/pos-norm-real</property>
-	<value>0.0</value>
+        <property>fdm/jsbsim/gear/unit[0]/pos-norm-real</property>
+        <value>0.0</value>
       </greater-than>
     </condition>
   </animation>
@@ -648,8 +648,8 @@ MiG_15bis_bombable.unload(rplayer);
     <object-name>FUS_NoseDoorRS</object-name>
     <condition>
       <less-than>
-	<property>fdm/jsbsim/gear/unit[0]/torn</property>
-	<value>1.0</value>
+        <property>fdm/jsbsim/gear/unit[0]/torn</property>
+        <value>1.0</value>
       </less-than>
     </condition>
   </animation>
@@ -778,14 +778,14 @@ MiG_15bis_bombable.unload(rplayer);
     <object-name>WNG_WheelWellL</object-name>
     <condition>
       <or>
-	<greater-than>
-	  <property>fdm/jsbsim/gear/unit[1]/pos-norm-real</property>
-	  <value>0.0</value>
-	</greater-than>
-	<greater-than>
-	  <property>fdm/jsbsim/gear/unit[1]/torn</property>
-	  <value>0.0</value>
-	</greater-than>
+        <greater-than>
+          <property>fdm/jsbsim/gear/unit[1]/pos-norm-real</property>
+          <value>0.0</value>
+        </greater-than>
+        <greater-than>
+          <property>fdm/jsbsim/gear/unit[1]/torn</property>
+          <value>0.0</value>
+        </greater-than>
       </or>
     </condition>
   </animation>
@@ -805,8 +805,8 @@ MiG_15bis_bombable.unload(rplayer);
     <object-name>UC_MainL_DoorOB</object-name>
     <condition>
       <greater-than>
-	<property>fdm/jsbsim/gear/unit[1]/pos-norm-real</property>
-	<value>0.0</value>
+        <property>fdm/jsbsim/gear/unit[1]/pos-norm-real</property>
+        <value>0.0</value>
       </greater-than>
     </condition>
   </animation>
@@ -818,8 +818,8 @@ MiG_15bis_bombable.unload(rplayer);
     <object-name>UC_MainL_DoorOS</object-name>
     <condition>
       <less-than>
-	<property>fdm/jsbsim/gear/unit[1]/torn</property>
-	<value>1.0</value>
+        <property>fdm/jsbsim/gear/unit[1]/torn</property>
+        <value>1.0</value>
       </less-than>
     </condition>
   </animation>
@@ -994,14 +994,14 @@ MiG_15bis_bombable.unload(rplayer);
     <object-name>WNG_WheelWellR</object-name>
     <condition>
       <or>
-	<greater-than>
-	  <property>fdm/jsbsim/gear/unit[2]/pos-norm-real</property>
-	  <value>0.0</value>
-	</greater-than>
-	<greater-than>
-	  <property>fdm/jsbsim/gear/unit[2]/torn</property>
-	  <value>0.0</value>
-	</greater-than>
+        <greater-than>
+          <property>fdm/jsbsim/gear/unit[2]/pos-norm-real</property>
+          <value>0.0</value>
+        </greater-than>
+        <greater-than>
+          <property>fdm/jsbsim/gear/unit[2]/torn</property>
+          <value>0.0</value>
+        </greater-than>
       </or>
     </condition>
   </animation>
@@ -1021,8 +1021,8 @@ MiG_15bis_bombable.unload(rplayer);
     <object-name>UC_MainR_DoorOB</object-name>
     <condition>
       <greater-than>
-	<property>fdm/jsbsim/gear/unit[2]/pos-norm-real</property>
-	<value>0.0</value>
+        <property>fdm/jsbsim/gear/unit[2]/pos-norm-real</property>
+        <value>0.0</value>
       </greater-than>
     </condition>
   </animation>
@@ -1034,8 +1034,8 @@ MiG_15bis_bombable.unload(rplayer);
     <object-name>UC_MainR_DoorOS</object-name>
     <condition>
       <less-than>
-	<property>fdm/jsbsim/gear/unit[2]/torn</property>
-	<value>1.0</value>
+        <property>fdm/jsbsim/gear/unit[2]/torn</property>
+        <value>1.0</value>
       </less-than>
     </condition>
   </animation>
@@ -1236,7 +1236,7 @@ MiG_15bis_bombable.unload(rplayer);
       <y>1.0</y>
       <z>0.0</z>
     </axis>
-  </animation>	
+  </animation>  
 
   <animation>
     <type>spin</type>
@@ -1254,7 +1254,7 @@ MiG_15bis_bombable.unload(rplayer);
       <y>1.0</y>
       <z>0.0</z>
     </axis>
-  </animation>	
+  </animation>  
 
 
   <!-- Canopy -->
