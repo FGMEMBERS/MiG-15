@@ -98,6 +98,10 @@ MiG-15bis simulation config.
         <desc>Toggle trajectory markers</desc>
       </key>
       <key>
+        <name>Ctrl-K</name>
+        <desc>Toggle engine emergency braKe (On at start up)</desc>
+      </key>
+      <key>
         <name>Shift-L</name>
         <desc>Toggle auto-coordination</desc>
       </key>
@@ -120,10 +124,6 @@ MiG-15bis simulation config.
       <key>
         <name>Shift-R</name>
         <desc>On/Off low throttle holdeR (Off at start up)</desc>
-      </key>
-      <key>
-        <name>Ctrl-R</name>
-        <desc>On/Off egine emeRgency brake (On at start up)</desc>
       </key>
       <key>
         <name>Ctrl-S</name>
@@ -182,7 +182,7 @@ MiG-15bis simulation config.
     <flight-model>jsb</flight-model>
     <status>advanced production</status>
     <author>Lee Elliott, Victor Slavutinskiy, with great help from Yurik V. Nikiforoff</author>
-    <aircraft-version>3.0.3</aircraft-version>
+    <aircraft-version>3.0.4</aircraft-version>
     <aero>MiG-15bis</aero>
     <fuel-fraction>1.0</fuel-fraction>
     <description>MiG-15bis (JSBSim FDM)</description>
@@ -575,6 +575,15 @@ MiG-15bis simulation config.
         </binding>
       </key>
 
+      <key n="11">
+        <name>Ctrl-K</name>
+        <desc>Toggle engine emergency braKe</desc>
+        <binding n="0">
+          <command>nasal</command>
+          <script>MIG15BIS.bitswap("fdm/jsbsim/systems/stopcontrol/lever-input")</script>
+        </binding>
+      </key>
+
       <key n="14">
         <name>Ctrl-N</name>
         <desc>no nav1 lock</desc>
@@ -607,15 +616,6 @@ MiG-15bis simulation config.
         <binding n="0">
           <command>nasal</command>
           <script>MIG15BIS.bitswap("fdm/jsbsim/systems/leftpanel/pump-input")</script>
-        </binding>
-      </key>
-
-      <key n="18">
-        <name>Ctrl-R</name>
-        <desc>Toggle egine emeRgency brake</desc>
-        <binding n="0">
-          <command>nasal</command>
-          <script>MIG15BIS.bitswap("fdm/jsbsim/systems/stopcontrol/lever-input")</script>
         </binding>
       </key>
 
