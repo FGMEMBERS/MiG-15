@@ -76,7 +76,6 @@ MiG-15bis simulation config.
 
     <help>
       <title>MiG-15 bis</title>
-      <line>Aircraft documentation in /MiG-15/Documentation directory</line>
       <key>
         <name>Ctrl-F</name>
         <desc>Toggle cannon saFer switch (on at startup)</desc>
@@ -177,12 +176,68 @@ MiG-15bis simulation config.
         <name>Shift-U</name>
         <desc>Toggle fUel source, internal or external tanks</desc>
       </key>
+      <text>
+Detailed documentation in /MiG-15/Documentation directory
+
+TAKEOFF
+- Flaps 20deg
+- Push stick forward during acceleration
+- At 195km/h gently lift front wheel
+- Rotate only 5deg and let aircraft lift off by itself
+- Unstick speed 223km/h (with external tanks 235km/h)
+- Retract gear and flaps immediately after liftoff
+- Accelerate to 400km/h
+
+LOAD LIMITS
+- Max. load:         8g
+- Destructive load: 12g
+
+ENGINE LIMITS
+- Max.power ( 5min): 11560rpm
+- Nominal   (60min)  : 11200rpm
+- Cruise                 : 10870rpm
+- Max temperature  :   825degC
+
+MAXIMUM SPEEDS
+                    IAS (km/h)     Mach
+Clean                     1070     0.92
+With drop tanks          700     0.7
+Gear extended           350
+Flaps 20deg              450
+Flaps 55deg              350
+Touchdown               250
+
+BEST CLIMB SPEED
+v_true = 710km/h (11560rpm)
+
+MINIMUM SPEED FOR MANEUVERABILITY
+v_ind = 300km/h
+
+LANDING
+- Throttle to minimum
+- Extend speed brakes
+- Slow down to 450 km/h
+- Flaps 20deg
+- Slow down to 350 km/h
+- Flaps 55deg
+- Increase throttle to maintain 300 km/h
+- Align with runway
+- Release throttle holder (Shift+R)
+- Final approach 250 km/h
+- Extend gear
+- Throttle to idle above runway threshold
+- Flare at 225 km/h
+- Touch down at 172km/h (4010 kg)
+- Apply brakes
+
+The engine will flame out if you keep throttle to idle; increase throttle to 7000 rpm to taxi.
+      </text>
     </help>
 
     <flight-model>jsb</flight-model>
     <status>advanced production</status>
     <author>Lee Elliott, Victor Slavutinskiy, with great help from Yurik V. Nikiforoff</author>
-    <aircraft-version>3.0.6</aircraft-version>
+    <aircraft-version>3.0.7</aircraft-version>
     <aero>MiG-15bis</aero>
     <fuel-fraction>1.0</fuel-fraction>
     <description>MiG-15bis (JSBSim FDM)</description>
