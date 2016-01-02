@@ -3786,7 +3786,7 @@ turnometer=func
     return ( settimer(turnometer, 0.1) ); 
   }
   #Get values
-  turn=getprop("orientation/roll-deg");
+  turn=getprop("orientation/yaw-rate-degps");
   bus=getprop("systems/electrical-real/bus");
   if ((bus==nil) or (turn==nil))
   {
@@ -4763,7 +4763,7 @@ droptank = func
       settimer(setdrop, 0.2);
     }
   }
-  if ((dropped=1) and ((left_level>0) or (right_level>0)))
+  if ((dropped==1) and ((left_level>0) or (right_level>0)))
   {
     setprop("instrumentation/drop-tank/dropped", 0);
     setprop("fdm/jsbsim/tanks/fastened", 1);
@@ -6472,3 +6472,7 @@ dump_properties=func
     io.write_properties(fg_home~"/state/properties-dump.xml", "/");
   }
 }
+
+aircraft.livery.init ("Aircraft/MiG-15/Models/Liveries",
+                      "sim/model/livery/name",
+                      "sim/model/livery/index");

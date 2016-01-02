@@ -182,7 +182,7 @@ MiG-15bis simulation config.
     <flight-model>jsb</flight-model>
     <status>advanced production</status>
     <author>Lee Elliott, Victor Slavutinskiy, with great help from Yurik V. Nikiforoff</author>
-    <aircraft-version>3.0.4</aircraft-version>
+    <aircraft-version>3.0.5</aircraft-version>
     <aero>MiG-15bis</aero>
     <fuel-fraction>1.0</fuel-fraction>
     <description>MiG-15bis (JSBSim FDM)</description>
@@ -409,18 +409,16 @@ MiG-15bis simulation config.
             <label>Autostart aircraft</label>
             <binding>
               <command>nasal</command>
-              <script>MIG15BIS.aircraft_autostart();</script>
-            </binding>
-          </item>
-          <label>MiG-15bis</label>
-          <item n="1">
-            <label>Refuel aircraft</label>
-            <binding>
+	      <script>MIG15BIS.aircraft_autostart();</script>
+	    </binding>
+	  </item>
+	  <item n="1">
+	    <label>Refuel aircraft</label>
+	    <binding>
               <command>nasal</command>
               <script>MIG15BIS.aircraft_refuel();</script>
             </binding>
           </item>
-          <label>MiG-15bis</label>
           <item n="2">
             <label>Repair aircraft</label>
             <binding>
@@ -443,6 +441,13 @@ MiG-15bis simulation config.
             </binding>
           </item>
           <item n="5">
+            <label>Select livery</label>
+            <binding>
+              <command>nasal</command>
+              <script>aircraft.livery.dialog.toggle();</script>
+            </binding>
+          </item>
+          <item n="6">
             <label>Beginner mode: no failures</label>
             <binding><command>property-assign</command><property>listeners/aircraft-break/enabled</property> <value>0</value></binding>
             <binding><command>property-assign</command><property>listeners/gear-break/enabled</property>     <value>0</value></binding>
@@ -450,9 +455,6 @@ MiG-15bis simulation config.
             <binding><command>property-assign</command><property>processes/engine/failures-enabled</property> <value>0</value></binding>
             <binding><command>property-assign</command><property>processes/gear-break/enabled</property>      <value>0</value></binding>
           </item>
-          <!--item n="6">
-            <label>Intermediate mode: failures explained (not implemented yet)</label>
-          </item-->
           <item n="7">
             <label>Pilot mode</label>
             <binding><command>property-assign</command><property>listeners/aircraft-break/enabled</property> <value>1</value></binding>

@@ -87,8 +87,8 @@
     <object-name>TM_Needle</object-name>
     <property>instrumentation/turnometer/indicated-turn-rate</property>
     <interpolation>
-      <entry><ind>-2.0</ind><dep>-15.0</dep></entry>
-      <entry><ind>2.0</ind><dep>15.0</dep></entry>
+      <entry><ind>-24.0</ind><dep>-42.0</dep></entry>
+      <entry><ind>24.0</ind><dep>42.0</dep></entry>
     </interpolation>
     <center>
       <x-m>0</x-m>

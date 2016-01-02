@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+ 
+<PropertyList>
+    <sim>
+	<model>
+	    <livery>
+		<name type="string">CSSR_aerobatic</name>
+		<index type="int">2</index>
+		<txt_0>Liveries/CSSR_aerobatic/main.png</txt_0>
+		<txt_1>Liveries/CSSR_aerobatic/tail_antennas.png</txt_1>
+		<txt_2>Liveries/CSSR_aerobatic/intake.png</txt_2>
+		<txt_3>Liveries/CSSR_aerobatic/HullForeDown.png</txt_3>
+		<txt_4>Liveries/CSSR_aerobatic/SBDoor.png</txt_4>
+		<txt_5>Liveries/CSSR_aerobatic/sbdoorL.png</txt_5>
+		<txt_6>Liveries/CSSR_aerobatic/sbdoorR.png</txt_6>
+		<txt_7>Liveries/CSSR_aerobatic/HullBackDown.png</txt_7>
+		<txt_8>Liveries/CSSR_aerobatic/HullBackUp.png</txt_8>
+		<txt_9>Liveries/CSSR_aerobatic/WingDown.png</txt_9>
+		<txt_10>Liveries/CSSR_aerobatic/WingUp.png</txt_10>
+		<txt_11>Liveries/CSSR_aerobatic/aileronL.png</txt_11>
+		<txt_12>Liveries/CSSR_aerobatic/aileronR.png</txt_12>
+		<txt_13>Liveries/CSSR_aerobatic/trimmer.png</txt_13>
+		<txt_14>Liveries/CSSR_aerobatic/uv_canopy_0.png</txt_14>
+		<txt_15>Liveries/CSSR_aerobatic/uv_canopy_1.png</txt_15>
+		<txt_16>Liveries/CSSR_aerobatic/HullForeDown.png</txt_16>
+	    </livery>
+	</model>
+    </sim>
+</PropertyList>

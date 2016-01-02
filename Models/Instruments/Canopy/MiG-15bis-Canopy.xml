@@ -27,19 +27,20 @@ but that animation makes bug in currnet FG state, so it's off
   <!-- Canopy -->
   <animation>
     <type>select</type>
-    <object-name>CP_RCFrame</object-name>
-    <object-name>CP_RCGlass</object-name>
-    <object-name>CP_LLBox</object-name>
     <object-name>CP_LLAOne</object-name>
     <object-name>CP_LLATwo</object-name>
-    <object-name>CP_LLHandle</object-name>
+    <object-name>CP_LLBox</object-name>
     <object-name>CP_LLHBase</object-name>
+    <object-name>CP_LLHandle</object-name>
     <object-name>CP_LLock</object-name>
-    <object-name>CP_RLBox</object-name>
+    <object-name>CP_RCFrame_0</object-name>
+    <object-name>CP_RCFrame_1</object-name>
+    <object-name>CP_RCGlass</object-name>
     <object-name>CP_RLAOne</object-name>
     <object-name>CP_RLATwo</object-name>
-    <object-name>CP_RLHandle</object-name>
+    <object-name>CP_RLBox</object-name>
     <object-name>CP_RLHBase</object-name>
+    <object-name>CP_RLHandle</object-name>
     <object-name>CP_RLock</object-name>
     <condition>
       <equals>
@@ -51,18 +52,19 @@ but that animation makes bug in currnet FG state, so it's off
 
   <animation>
     <type>translate</type>
-    <object-name>CP_RCFrameOutUp</object-name>
-    <object-name>CP_RCFrame</object-name>
-    <object-name>CP_RCGlass</object-name>
-    <object-name>CP_LLBox</object-name>
     <object-name>CP_LLAOne</object-name>
     <object-name>CP_LLATwo</object-name>
+    <object-name>CP_LLBox</object-name>
     <object-name>CP_LLHBase</object-name>
     <object-name>CP_LLHandle</object-name>
     <object-name>CP_LLock</object-name>
-    <object-name>CP_RLBox</object-name>
+    <object-name>CP_RCFrameOutUp</object-name>
+    <object-name>CP_RCFrame_0</object-name>
+    <object-name>CP_RCFrame_1</object-name>
+    <object-name>CP_RCGlass</object-name>
     <object-name>CP_RLAOne</object-name>
     <object-name>CP_RLATwo</object-name>
+    <object-name>CP_RLBox</object-name>
     <object-name>CP_RLHBase</object-name>
     <object-name>CP_RLHandle</object-name>
     <object-name>CP_RLock</object-name>
@@ -71,50 +73,25 @@ but that animation makes bug in currnet FG state, so it's off
     <axis>
       <x>1</x>
       <y>0</y>
-      <z>0</z>
-    </axis>
-  </animation>
-
-  <animation>
-    <type>translate</type>
-    <object-name>CP_RCFrameOutUp</object-name>
-    <object-name>CP_RCFrame</object-name>
-    <object-name>CP_RCGlass</object-name>
-    <object-name>CP_LLBox</object-name>
-    <object-name>CP_LLAOne</object-name>
-    <object-name>CP_LLATwo</object-name>
-    <object-name>CP_LLHBase</object-name>
-    <object-name>CP_LLHandle</object-name>
-    <object-name>CP_LLock</object-name>
-    <object-name>CP_RLBox</object-name>
-    <object-name>CP_RLAOne</object-name>
-    <object-name>CP_RLATwo</object-name>
-    <object-name>CP_RLHBase</object-name>
-    <object-name>CP_RLHandle</object-name>
-    <object-name>CP_RLock</object-name>
-    <property>fdm/jsbsim/systems/canopy/pos</property>
-    <factor>0.05</factor>
-    <axis>
-      <x>0</x>
-      <y>0</y>
-      <z>1</z>
+      <z>0.037</z>
     </axis>
   </animation>
 
   <animation>
     <type>rotate</type>
-    <object-name>CP_RCFrameOutUp</object-name>
-    <object-name>CP_RCFrame</object-name>
-    <object-name>CP_RCGlass</object-name>
-    <object-name>CP_LLBox</object-name>
     <object-name>CP_LLAOne</object-name>
     <object-name>CP_LLATwo</object-name>
+    <object-name>CP_LLBox</object-name>
     <object-name>CP_LLHBase</object-name>
     <object-name>CP_LLHandle</object-name>
     <object-name>CP_LLock</object-name>
-    <object-name>CP_RLBox</object-name>
+    <object-name>CP_RCFrameOutUp</object-name>
+    <object-name>CP_RCFrame_0</object-name>
+    <object-name>CP_RCFrame_1</object-name>
+    <object-name>CP_RCGlass</object-name>
     <object-name>CP_RLAOne</object-name>
     <object-name>CP_RLATwo</object-name>
+    <object-name>CP_RLBox</object-name>
     <object-name>CP_RLHBase</object-name>
     <object-name>CP_RLHandle</object-name>
     <object-name>CP_RLock</object-name>
