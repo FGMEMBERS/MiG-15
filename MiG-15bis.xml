@@ -5,13 +5,15 @@
             xsi:noNamespaceSchemaLocation="http://jsbsim.sourceforge.net/JSBSim.xsd">
 
   <fileheader>
-    <author> Slavutinsky Victor, with great help from Yurik V. Nikiforoff </author>
-    <filecreationdate> 2010-09-24 </filecreationdate>
-    <version>$Revision: 1.20 $</version>
+    <author>
+      Slavutinsky Victor, Ludovic Brenta, Andreas Zenner
+    </author>
+    <filecreationdate> 2015-12 </filecreationdate>
+    <version>3.1</version>
     <description> MiG-15bis </description>
   </fileheader>
 
-<!--
+  <!--
         File:     MiG-15bis.xml
         Inputs:
         name:          MiG-15bis
@@ -36,14 +38,49 @@
         K:             0.12
 
         Most used data if from MiG-15bis technical documentation, book 1, on Russian
+  -->
 
--->
+  <!--
+      (Most comments below are by Andreas Zenner)
 
-<!--    ARP is 25% of mean aerodynamical chord, 
-     4.139-0.647+2.120*0.25=4.022
-     by Fig. 117
--->
+      Sources
+      =======
+      - [1] "Samolet MiG-15bis. Tekhicheskoe opisanie. Letnye
+        kharakteristiki samoleta. (Kniga 1)". You can find it online, for
+        example here: [http://airspot.ru/book/file/1108/MIG15bis.pdf]. This
+        is what vitos referenced as well.
+      - [2] "Aircraft UTI MiG-15, Description Book One, Flight
+        Charakteristics", an english manual for the MiG-15 trainer version.
+        Most parts of it are translated copies from [1]. Both aircraft are
+        identical except the second pilot seat, less gun power, less tank
+        volume and an older version of the engine (RD-45 instead of the
+        VK-1). As I don't speak russian, this was very helpful. I bought it
+        at a flight manual online shop.
+      - [3] "Aerodynamik des Flugzeuges, zweiter Teil", written by
+        Schlichting and Truckenbrodt (german). Some of the FDM calculations
+        are based on empirical or theoretical formulas for flight
+        performance estimations found in this book .
+      - [4] "Dubbel - Taschenbuch für den Maschinenbau", a generic
+        engineering handbook.
 
+      Tweak factors
+      =============
+
+      In many cases the available data used to determine the flight dynamics
+      isn't perfect, so for the fine tuning you need to (or: "might as
+      well") rely on intuition. I inserted some properties called
+      "/fdm/jsbsim/tweak_factors/..." at several locations in the fdm code,
+      to make it easier to play around with some flight characteristics in
+      real time while flying. The sound and the damage detection routines
+      can also be altered by tweak factors. Feel free to experiment with
+      them and make suggestions for different settings in the forum.
+  -->
+
+  <!--
+    ARP is 25% of mean aerodynamical chord,
+    4.139-0.647+2.120*0.25=4.022
+    by Fig. 117
+  -->
   <metrics>
     <wingarea  unit="FT2">              221.74 </wingarea>
     <wingspan  unit="FT" >              33.07 </wingspan>
@@ -70,11 +107,11 @@
     </location>
   </metrics>
 
-  <!--  Center of mass of empty aircraft is 30.1% of mean aerodynamical chord by Tab. 25
-       4.139-0.647+2.120*0.301=4.13012 by Fig. 117
-       ~Same poit as K 4.139-0.55 on Fig. 117
+  <!--
+      Center of mass of empty aircraft is 30.1% of mean aerodynamical chord by Tab. 25
+      4.139-0.647+2.120*0.301=4.13012 by Fig. 117
+      ~Same poit as K 4.139-0.55 on Fig. 117
   -->
-
   <mass_balance>
     <ixx unit="SLUG*FT2">      5000 </ixx>
     <iyy unit="SLUG*FT2">      8452 </iyy>
@@ -132,7 +169,8 @@
 
     <!--        Tank 1 is main tank -->
 
-    <!--        1 kg is 1/2.76 US gallons, 1/0.453 lbs
+    <!--
+        1 kg is 1/2.76 US gallons, 1/0.453 lbs
         Normal 1 tank load is 1035l, that is 828kg, 1827lbs, 300 gal
         maximum load is 1200l, that is 2119lbs, 347gal
     -->
@@ -147,10 +185,10 @@
       <contents unit="LBS"> 1827.00 </contents>
     </tank>
 
-    <!--        Tank 2 is back balance tank
-
-                        Normal 1 tank load is 138l, that is 243lbs, 40 gal
-                        maximum load is 200l, that is 160kg, 353lbs, 57gal
+    <!--
+        Tank 2 is back balance tank
+        Normal 1 tank load is 138l, that is 243lbs, 40 gal
+        maximum load is 200l, that is 160kg, 353lbs, 57gal
     -->
 
     <tank type="FUEL" number="2">
@@ -185,12 +223,13 @@
       <contents unit="LBS"> 400.00 </contents>
     </tank>
 
-    <!--        Tank 5 used to count gunshell weight influence
+    <!--
+        Tank 5 used to count gunshell weight influence
         Weights:
         1 kg is 1/2.76 US gallons, 1/0.453 lbs
         1 N-37 shell is 0.735 kg, overall 40
-        1 NS-23 shell is 0.2 kg, overall 80x2 
-        So, whole weight is 
+        1 NS-23 shell is 0.2 kg, overall 80x2
+        So, whole weight is
         (40*0.735+160*0.2)/0.453=135.54 lbs
         or
         (40*0.735+160*0.2)/2.76=22.24 gal_us
@@ -375,6 +414,7 @@
       <damping_coeff unit="LBS/FT/SEC"> 2692.31 </damping_coeff>
     </contact>
 
+
   </ground_reactions>
 
   <flight_control name="FCS: MiG-15bis">
@@ -393,72 +433,122 @@
 
     <channel name="Pitch">
 
-      <summer name="Pitch Trim Sum">
+      <fcs_function name="fcs/elevator-maximum-hinge-moment">
+        <function>
+          <abs>
+            <product>
+              <value>-0.0029</value>
+              <value>617.9</value>
+              <property>aero/qbar-psf</property>
+              <sum>
+                <!-- <property>fcs/elevator-pos-rad</property> -->
+                <value>0.559</value> <!--max.deflection=32deg-->
+                <property>aero/alpha-rad</property>
+              </sum>
+            </product>
+          </abs>
+        </function>
+      </fcs_function>
+
+      <fcs_function name="fcs/elevator-scale-factor">
+        <!--
+            The MiG-15 is a jet fighter without hydraulic steering assistance for
+            the elevator and the rudder. So at high speeds, the pilot wouldn't be
+            able to move the controls too quickly. One problem with flying a
+            simulator without force feedback is that you can easily exceed
+            g-forces or cause excessive sideslip angles when flying very fast.
+            This wouldn't happen in reality because the pilot would have to
+            overcome the hinge moment of the control surface.
+
+            As an attempt to model this, this function can scale down the elevator
+            and rudder deflection range at high speeds. So when flying really
+            fast, the control surfaces will not move the whole way. I calculated
+            the hinge moment for maximum deflection using [1], Fig.77 and [2],
+            Fig.63, and scaled down the range of the elevator and the rudder
+            depending on the maximum hinge moment.
+
+            The function that governs the control range looks like this:
+
+
+            ^ "fcs/[elevator|rudder]_scale_factor"
+            |
+           1+===
+            |   \
+            |    \
+            |     \
+           B+      =====
+           0+==+==-+====> M "fcs/[elevator|rudder]_maximum_hinge_moment"
+              100  A
+
+            Up to a hinge moment of 100Nm the range is still 1.0 (100%) and then
+            it starts decreasing to the range A at the hinge moment B, and stays
+            like that. You can change this behaviour by editing the tweak_factors
+            "[elevator|rudder]_range_at_high_speed_[A|B]". The default values are
+            A=1000Nm (which is hardly ever reached) and B=0.3. To deactivate this
+            feature, set B=1.
+        -->
+        <function>
+          <max>
+            <property>tweak_factors/elevator_range_at_high_speed_B</property>
+            <difference>
+              <value>1</value>
+              <product>
+                <max>
+                  <value>0</value>
+                  <difference>
+                    <property>fcs/elevator-maximum-hinge-moment</property>
+                    <value>100</value>
+                  </difference>
+                </max>
+                <quotient>
+                  <difference>
+                    <value>1</value>
+                    <property>tweak_factors/elevator_range_at_high_speed_B</property>
+                  </difference>
+                  <difference>
+                    <property>tweak_factors/elevator_range_at_high_speed_A</property>
+                    <value>100</value>
+                  </difference>
+                </quotient>
+              </product>
+            </difference>
+          </max>
+        </function>
+      </fcs_function>
+
+      <summer name="pitch-trim-sum-clipped">
         <input>fcs/elevator-cmd-norm-real</input>
-        <input>fcs/pitch-trim-norm-real</input>
+        <input>/controls/flight/elevator-trim</input>
         <clipto>
-          <min> -1 </min>
-          <max>  1 </max>
+          <min> -1.0 </min>
+          <max>  0.5 </max>
         </clipto>
       </summer>
 
-      <kinematic name="Pitch Trim Sum Timed">
-        <input>fcs/pitch-trim-sum</input>
-        <traverse>
-          <setting>
-            <position>-1</position>
-            <time>0</time>
-          </setting>
-          <setting>
-            <position>1</position>
-            <time>1</time>
-          </setting>
-        </traverse>
-      </kinematic>
+      <fcs_function name="fcs/pitch-trim-sum-clipped-scaled">
+        <function>
+          <product>
+            <property>fcs/pitch-trim-sum-clipped</property>
+            <property>fcs/elevator-scale-factor</property>
+          </product>
+        </function>
+      </fcs_function>
 
-      <kinematic name="Pitch Timed">
-        <input>fcs/elevator-cmd-norm</input>
-        <traverse>
-          <setting>
-            <position>-1</position>
-            <time>0</time>
-          </setting>
-          <setting>
-            <position>1</position>
-            <time>1</time>
-          </setting>
-        </traverse>
-      </kinematic>
+      <pure_gain name="fcs/elevator-pos-deg">
+        <input>fcs/pitch-trim-sum-clipped-scaled</input>
+        <gain>32</gain>
+        <output>fcs/elevator-pos-deg</output>
+      </pure_gain>
 
-      <aerosurface_scale name="Elevator Rad Scale">
-        <input>fcs/pitch-trim-sum-timed</input>
-        <range>
-          <min> -0.55 </min>
-          <max>  0.28 </max>
-        </range>
-        <output>fcs/elevator-pos-rad</output>
-      </aerosurface_scale>
+      <pure_gain name="fcs/elevator-pos-rad">
+        <input>fcs/pitch-trim-sum-clipped-scaled</input>
+        <gain>0.559</gain>
+      </pure_gain>
 
-      <aerosurface_scale name="Elevator Indicated Pos Rad">
-        <input>fcs/pitch-timed</input>
-        <range>
-          <min> -0.55 </min>
-          <max>  0.28 </max>
-        </range>
-      </aerosurface_scale>
-
-      <aerosurface_scale name="Elevator Norm Scale">
-        <input>fcs/elevator-pos-rad</input>
-        <domain>
-          <min> -0.55 </min>
-          <max>  0.28 </max>
-        </domain>
-        <range>
-          <min> -1 </min>
-          <max>  0.51</max>
-        </range>
-        <output>fcs/elevator-pos-norm</output>
-      </aerosurface_scale>
+      <pure_gain name="fcs/elevator-indicated-pos-rad">
+        <input>fcs/pitch-trim-sum-clipped-scaled</input>
+        <gain>0.559</gain>
+      </pure_gain>
 
     </channel>
 
@@ -471,9 +561,10 @@
         <gain>  fcs/aileron-boost </gain>]
       </pure_gain>
 
+
       <summer name="Roll Trim Sum">
         <input>fcs/aileron-cmd-norm-busted</input>
-        <input>fcs/roll-trim-norm-real</input>
+        <input>/controls/flight/aileron-trim</input>
         <clipto>
           <min> -1 </min>
           <max>  1 </max>
@@ -590,30 +681,105 @@
 
     </channel>
 
+
     <channel name="Yaw">
 
-      <summer name="Rudder Command">
+      <fcs_function name="fcs/rudder-maximum-hinge-moment">
+        <function>
+          <abs>
+            <product>
+              <value>-0.0033</value>
+              <value>1209.8</value>
+              <property>aero/qbar-psf</property>
+              <difference>
+                <value>0.350</value> <!--max.deflection=20deg-->
+                <property>aero/beta-rad</property>
+              </difference>
+            </product>
+          </abs>
+        </function>
+      </fcs_function>
+
+      <fcs_function name="fcs/rudder-scale-factor">
+        <!-- See comments above for fcs/elevator-scale-factor -->
+        <function>
+          <max>
+            <property>tweak_factors/rudder_range_at_high_speed_B</property>
+            <difference>
+              <value>1</value>
+              <product>
+                <max>
+                  <value>0</value>
+                  <difference>
+                    <property>fcs/rudder-maximum-hinge-moment</property>
+                    <value>100</value>
+                  </difference>
+                </max>
+                <quotient>
+                  <difference>
+                    <value>1</value>
+                    <property>tweak_factors/rudder_range_at_high_speed_B</property>
+                  </difference>
+                  <difference>
+                    <property>tweak_factors/rudder_range_at_high_speed_A</property>
+                    <value>100</value>
+                  </difference>
+                </quotient>
+              </product>
+            </difference>
+          </max>
+        </function>
+      </fcs_function>
+
+      <summer name="fcs/rudder-trim-sum">
         <input>fcs/rudder-cmd-norm-real</input>
-        <input>fcs/yaw-trim-cmd-norm</input>
+        <input>/controls/flight/rudder-trim</input>
         <clipto>
-          <min> -1 </min>
-          <max>  1 </max>
+          <min> -1.0 </min>
+          <max>  1.0 </max>
         </clipto>
-        <output>fcs/rudder-pos-norm</output>
       </summer>
 
-      <aerosurface_scale name="Rudder Control">
-        <input>fcs/rudder-pos-norm</input>
-        <domain>
-          <min> -1 </min>
-          <max>  1 </max>
-        </domain>       
-        <range>
-          <min> -0.35 </min>
-          <max>  0.35 </max>
-        </range>
-        <output>fcs/rudder-pos-rad</output>
-      </aerosurface_scale>
+      <switch name="fcs/rudder-trim-sum-sign">
+        <default value="1"/>
+        <test value="-1">
+          fcs/rudder-trim-sum lt 0
+        </test>
+      </switch>
+
+      <fcs_function name="fcs/rudder-trim-sum-exponent">
+        <function>
+          <product>
+            <pow>
+              <abs>
+                <property>fcs/rudder-trim-sum</property>
+              </abs>
+              <property>/sim/configuration/rudder_input_exponent</property>
+            </pow>
+            <property>fcs/rudder-trim-sum-sign</property>
+          </product>
+        </function>
+      </fcs_function>
+
+      <fcs_function name="fcs/rudder-trim-sum-scaled">
+        <function>
+          <product>
+            <property>fcs/rudder-trim-sum-exponent</property>
+            <!-- <property>fcs/rudder-trim-sum</property> -->
+            <property>fcs/rudder-scale-factor</property>
+          </product>
+        </function>
+      </fcs_function>
+
+      <pure_gain name="fcs/rudder-pos-deg_1">
+        <input>fcs/rudder-trim-sum-scaled</input>
+        <gain>20.0</gain>
+      </pure_gain>
+
+      <pure_gain name="fcs/rudder-pos-rad_1">
+        <input>fcs/rudder-trim-sum-scaled</input>
+        <gain>0.35</gain>
+      </pure_gain>
 
     </channel>
 
@@ -654,14 +820,11 @@
     </channel>
 
     <!-- Gears is fully controlled by main Nasal script
-
     <property value="0">gear/gear-cmd-norm</property>
     <property value="0">gear/gear-pos-norm</property>
-
     -->
 
     <channel name="Speedbrake">
-
       <kinematic name="Speedbrake Control">
         <input>fcs/speedbrake-cmd-norm-real</input>
         <traverse>
@@ -676,15 +839,70 @@
         </traverse>
         <output>fcs/speedbrake-pos-norm</output>
       </kinematic>
+    </channel>
+
+    <channel name="Sound Calculations">
+
+      <fcs_function>
+        <function name="/fdm/jsbsim/systems/canopy/noise_factor">
+          <table>
+            <independentVar>systems/canopy/pos</independentVar>
+            <tableData>
+              0.0    1.0
+              0.1    2.0
+              0.2    3.0
+              1.0    3.0
+            </tableData>
+          </table>
+        </function>
+      </fcs_function>
+
+      <fcs_function>
+        <function name="/fdm/jsbsim/aero/calculations/drag-MN">
+          <product>
+            <sum>
+              <property>/fdm/jsbsim/aero/coefficient/CDliftflap</property>
+              <property>/fdm/jsbsim/aero/coefficient/dCDalt</property>
+              <property>/fdm/jsbsim/aero/coefficient/CDgear</property>
+              <property>/fdm/jsbsim/aero/coefficient/CDtank</property>
+              <property>/fdm/jsbsim/aero/coefficient/CDsb</property>
+              <property>/fdm/jsbsim/aero/coefficient/CDbeta</property>
+              <property>/fdm/jsbsim/aero/coefficient/CDde</property>
+            </sum>
+            <property>/fdm/jsbsim/aero/qbar-psf</property>
+            <property>/fdm/jsbsim/metrics/Sw-sqft</property>
+            <value>4.44822e-06</value>
+          </product>
+        </function>
+      </fcs_function>
 
     </channel>
 
+    <channel name="velocities">
+      <fcs_function>
+        <function name="/fdm/jsbsim/calculations/H_density">
+          <product>
+            <property>/fdm/jsbsim/atmosphere/density-altitude</property>
+            <value>0.3048</value>
+          </product>
+        </function>
+      </fcs_function>
+
+      <fcs_function>
+        <function name="/fdm/jsbsim/calculations/v_true-kph">
+          <product>
+            <property>/fdm/jsbsim/velocities/vtrue-kts</property>
+            <value>1.852</value>
+          </product>
+        </function>
+      </fcs_function>
+
+    </channel>
   </flight_control>
 
   <aerodynamics>
 
-    <property value="1">tanks/fastened</property>
-
+    <!-- <property value="1">tanks/fastened</property> -->
     <property value="0">gtremble/on</property>
     <property value="1">gtremble/way</property>
     <property value="0.9">gtremble/max</property>
@@ -694,32 +912,188 @@
     <property value="8.0">accelerations/Nz-max</property>
 
     <!-- Gears is fully controlled by main Nasal script
-
     <property value="1.0">gear/unit[0]/pos-norm-real</property>
     <property value="1.0">gear/unit[1]/pos-norm-real</property>
     <property value="1.0">gear/unit[2]/pos-norm-real</property>
-
     -->
 
-    <!-- Fig 51, 52-->
-    <function name="calculations/aero/coefficient/liftalphaflapnorm">
-      <description>Lift_due_to_alpha_and_flaps_normalised</description>
+    <function name="aero/calculations/h-b_eta_left">
+      <description>left_wing_lift_center_elevation</description>
+      <sum>
+        <property>aero/h-b_mac</property>
+        <product>
+          <property>aero/calculations/eta_L</property>
+          <value>0.5</value>
+          <sin>
+            <property>attitude/roll-rad</property>
+          </sin>
+        </product>
+      </sum>
+    </function>
+
+    <function name="aero/calculations/h-b_eta_right">
+      <description>right_wing_lift_center_elevation</description>
+      <sum>
+        <property>aero/h-b_mac</property>
+        <product>
+          <property>aero/calculations/eta_L</property>
+          <value>-0.5</value>
+          <sin>
+            <property>attitude/roll-rad</property>
+          </sin>
+        </product>
+      </sum>
+    </function>
+
+    <function name="aero/calculations/kCLge_left">
+      <!--
+          The ground effect acts like an air cushion that gives extra lift to
+          the airplane and reduces the induced drag (a win-win situation), as
+          soon as your height is less than a couple of meters. Without it, the
+          ground is like an optical illusion until you actually touch it.
+
+          I simply took the ground effect from the c172p, this should do it for
+          now because it's a basic aerodynamic effect that mainly depends on
+          ground proximity.
+
+          The effect is calculated independently for the left and the right
+          wing, because in ground proximity it matters if one wing is closer to
+          the ground than the other (see "roll moment due to difference in
+          ground effect").
+      -->
+      <description>change_in_lift_due_to_ground_effect_left_wing</description>
+      <product>
+        <table>
+          <independentVar>aero/calculations/h-b_eta_left</independentVar>
+          <tableData>
+            0.0000      1.2030
+            0.1000      1.1270
+            0.1500      1.0900
+            0.2000      1.0730
+            0.3000      1.0460
+            0.4000      1.0550
+            0.5000      1.0190
+            0.6000      1.0130
+            0.7000      1.0080
+            0.8000      1.0060
+            0.9000      1.0030
+            1.0000      1.0020
+            1.1000      1.0000
+          </tableData>
+        </table>
+      </product>
+    </function>
+
+    <function name="aero/calculations/kCLge_right">
+      <!-- see comments above -->
+      <description>change_in_lift_due_to_ground_effect_right_wing</description>
+      <product>
+        <table>
+          <independentVar>aero/calculations/h-b_eta_right</independentVar>
+          <tableData>
+            0.0000      1.2030
+            0.1000      1.1270
+            0.1500      1.0900
+            0.2000      1.0730
+            0.3000      1.0460
+            0.4000      1.0550
+            0.5000      1.0190
+            0.6000      1.0130
+            0.7000      1.0080
+            0.8000      1.0060
+            0.9000      1.0030
+            1.0000      1.0020
+            1.1000      1.0000
+          </tableData>
+        </table>
+      </product>
+    </function>
+
+    <function name="aero/calculations/eta_L">
+      <!--
+          For each wing, one can determine a center of lift, which is the
+          location where a hypothetical net lift force would have to be attached
+          to get the same flight characteristics. eta_L is the relative
+          y-position of that point. eta_L = 0 means middle of the plane, eta_L =
+          1 is at the wingtips. This position depends on the flap setting,
+          because in landing configuration more lift will be produced by the
+          flaps at the inner half of the wings, so eta_L will decrease.
+
+          This property is needed for the roll_moment_due_to_sideslip and the
+          roll_moment_due_to_ground_effect. I tried two different approaches to
+          estimate eta_L:
+
+          First, one can look at [1] Fig.51/52, to find out how much the lift
+          force changes at a given angle of attack if the flaps are extended.
+          From there it can be estimated how much of the net lift force is
+          contributed by the inner (flap-) part of the wings and the outer
+          (no-flap-) part.
+
+          The second method involved [1] Fig.68. Given the flap setting and the
+          angle of attack, the equation to calculate roll-moment-due-to-sideslip
+          can be used to determine eta_L. The 55deg-result turned out to be
+          unrealistic, which is no surprise, since Fig.68 was derived from a
+          scale model in a wind tunnel.
+
+          Eventually I chose a compromise which is close to result 1, leaning a
+          bit towards result 2:
+
+          Flaps   1.method     2.method  compromise
+          0deg       0.47       0.56       0.50
+          20deg      0.43          -       0.42
+          55deg      0.41       0.19       0.37
+      -->
+      <description>center_of_lift_distance_from_aircraft_axis</description>
       <table>
-        <independentVar lookup="row">aero/alpha-wing-rad</independentVar>
-        <independentVar lookup="column">fcs/flap-pos-deg</independentVar>
+        <independentVar>fcs/flap-pos-deg</independentVar>
         <tableData>
-          0.0     20      55
-          -0.104  -0.53   -0.33   -0.08
-          0.0     -0.05   0.1     0.037
-          0.174   0.67    0.87    0.113
-          0.209   0.82    1.02    0.125
-          0.244   0.96    1.14    0.137
-          0.279   1.09    1.26    0.146
-          0.314   1.12    1.22    0.135
-          0.349   1.11    1.19    0.129
-          0.383   1.12    1.16    0.127
+           0 0.50
+          20 0.42
+          55 0.37
         </tableData>
       </table>
+    </function>
+
+    <!-- Fig 51, 52-->
+    <function name="aero/coefficient/CL">
+      <description>lift_due_to_alpha_flaps_groundeffect_normalized</description>
+      <product>
+        <sum>
+          <product>
+            <difference>
+              <product>
+                <sum>
+                  <property>aero/calculations/kCLge_left</property>
+                  <property>aero/calculations/kCLge_right</property>
+                </sum>
+                <value>0.5</value>
+              </product>
+              <value>1</value>
+            </difference>
+            <property>tweak_factors/ground_effect_lift</property>
+          </product>
+          <value>1</value>
+        </sum>
+        <table>
+          <independentVar lookup="row">aero/alpha-wing-rad</independentVar>
+          <independentVar lookup="column">fcs/flap-pos-deg</independentVar>
+          <tableData>
+                     0      20      55
+            -0.104  -0.53   -0.33   -0.08
+             0.0    -0.05    0.1     0.37
+             0.174   0.67    0.87    1.13
+             0.209   0.82    1.02    1.25
+             0.244   0.96    1.14    1.37
+             0.279   1.09    1.26    1.46
+             0.297   1.14    1.30    1.43
+             0.302   1.14    1.26    1.40
+             0.314   1.13    1.22    1.35
+             0.332   1.11    1.20    1.31
+             0.349   1.12    1.19    1.28
+             0.383   1.13    1.17    1.27
+          </tableData>
+        </table>
+      </product>
     </function>
 
     <axis name="LIFT">
@@ -730,22 +1104,7 @@
         <product>
           <property>aero/qbar-psf</property>
           <property>metrics/Sw-sqft</property>
-          <table>
-            <independentVar lookup="row">aero/alpha-wing-rad</independentVar>
-            <independentVar lookup="column">fcs/flap-pos-deg</independentVar>
-            <tableData>
-              0.0 20      55
-              -0.104      -0.53   -0.33   -0.08
-              0.0 -0.05   0.1     0.37
-              0.174       0.67    0.87    1.13
-              0.209       0.82    1.02    1.25
-              0.244       0.96    1.14    1.37
-              0.279       1.09    1.26    1.46
-              0.314       1.12    1.22    1.35
-              0.349       1.11    1.19    1.29
-              0.383       1.12    1.16    1.27
-            </tableData>
-          </table>
+          <property>aero/coefficient/CL</property>
         </product>
       </function>
 
@@ -795,13 +1154,13 @@
           <table>
             <independentVar lookup="row">aero/alpha-wing-rad</independentVar>
             <tableData>
-              0.0 -0.02
-              0.174       -0.03
-              0.209       -0.04
-              0.244    -0.05
-              0.279    -0.07
-              0.314    -0.1
-              0.383    -0.1
+              0.0   -0.02
+              0.174 -0.03
+              0.209 -0.04
+              0.244 -0.05
+              0.279 -0.07
+              0.314 -0.1
+              0.383 -0.1
             </tableData>
           </table>
         </product>
@@ -817,13 +1176,13 @@
           <table>
             <independentVar lookup="row">aero/alpha-wing-rad</independentVar>
             <tableData>
-              0.0 -0.02
-              0.174       -0.03
-              0.209       -0.04
-              0.244    -0.05
-              0.279    -0.07
-              0.314    -0.1
-              0.383    -0.1
+              0.0   -0.02
+              0.174 -0.03
+              0.209 -0.04
+              0.244 -0.05
+              0.279 -0.07
+              0.314 -0.1
+              0.383 -0.1
             </tableData>
           </table>
         </product>
@@ -839,13 +1198,13 @@
           <table>
             <independentVar lookup="row">aero/alpha-wing-rad</independentVar>
             <tableData>
-              0.0 -0.02
-              0.174       -0.03
-              0.209       -0.04
-              0.244    -0.05
-              0.279    -0.07
-              0.314    -0.1
-              0.383    -0.1
+              0.0   -0.02
+              0.174 -0.03
+              0.209 -0.04
+              0.244 -0.05
+              0.279 -0.07
+              0.314 -0.1
+              0.383 -0.1
             </tableData>
           </table>
         </product>
@@ -861,97 +1220,185 @@
           <table>
             <independentVar lookup="row">aero/alpha-wing-rad</independentVar>
             <tableData>
-              0.0 -0.03
-              0.174       -0.03
-              0.209       -0.03
-              0.244    -0.05
-              0.279    -0.1
-              0.314    -0.11
-              0.349    -0.09
-              0.383    -0.09
+              0.0    -0.03
+              0.174  -0.03
+              0.209  -0.03
+              0.244  -0.05
+              0.279  -0.1
+              0.314  -0.11
+              0.349  -0.09
+              0.383  -0.09
             </tableData>
           </table>
         </product>
       </function>
 
-      <!-- Commented out aeromatic stuff. No more needed tweak  -->
-      <!--
       <function name="aero/coefficient/CLde">
         <description>Lift_due_to_Elevator_Deflection</description>
         <product>
           <property>aero/qbar-psf</property>
           <property>metrics/Sw-sqft</property>
           <property>fcs/elevator-pos-rad</property>
-          <value>0.2</value>
+          <value>0.22</value>
         </product>
-      </function> 
-      -->
+      </function>
 
-      <!-- Need to add delta lift due to fuel tanks -->
     </axis>
+
+    <function name="aero/calculations/kCDge">
+      <description>change_in_drag_due_to_ground_effect</description>
+      <difference>
+        <value>1.0</value>
+        <product>
+          <difference>
+            <value>1.0</value>
+            <table>
+              <independentVar>aero/h-b_mac</independentVar>
+              <tableData>
+                0.00  0.480
+                0.10  0.515
+                0.15  0.629
+                0.20  0.709
+                0.30  0.815
+                0.40  0.882
+                0.50  0.928
+                0.60  0.962
+                0.70  0.988
+                0.80  1.000
+                0.90  1.000
+                1.00  1.000
+                1.10  1.000
+              </tableData>
+            </table>
+          </difference>
+          <property>tweak_factors/ground_effect_drag</property>
+        </product>
+      </difference>
+    </function>
 
     <axis name="DRAG">
 
-      <!-- Fig 51, 52-->
       <function name="aero/coefficient/CDliftflap">
-        <description>Drag_due_to_lift_coefficient_and_flaps</description>
+        <!--
+            Changed the table so it depends on alpha instead on the lift
+            coefficient according to Fig.51 and 52. This is neccessary to model
+            the rapid increase of drag when approaching the maximum lift
+            coefficient (stall), because one lift value might correspond to more
+            than one drag values, making the function ambiguous.
+
+            Fig.51/52 shows the drag curves for M=0.2 only, but with several
+            flap and gear configurations. Fig.55/56 shows drag due to mach
+            number, but only for the clean aircraft configuration. So we need to
+            combine Fig.51/52 and 55/56. For M=<0.6 the curves are nearly
+            parallel, so as an approximation we can add a constant value to the
+            curves from Fig.51/52, depending on the Mach number. This is done by
+            subtracting 0.018 (and adding tweak_factor/drag_offset), to move the
+            curve to Cx=0 and then again adding the offset for Mach. For
+            Mach-numbers >0.6 the curves aren't parallel so there needs to be
+            another factor to bend the curves to the right. The estimations I
+            used here are quite rough, this is not very accurate and needs to be
+            corrected in the future to get a realistic simulation of fuel
+            consumption, maximum speed and range.
+
+            Effect: During flight with very high angles of attack you will lose
+            speed much quicker than before.
+        -->
+        <description>Drag_due_to_alpha_and_flaps</description>
+        <product>
+          <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <property>aero/calculations/kCDge</property>
+          <sum>
+            <!-- drag due to alpha at M=0.2, H=5km according to fig 51, 52-->
+            <table>
+              <independentVar lookup="row">aero/alpha-wing-rad</independentVar>
+              <independentVar lookup="column">fcs/flap-pos-deg</independentVar>
+              <tableData>
+                       0.0   20.0   55.0
+                0.000  0.018  0.031  0.088
+                0.035  0.018  0.033  0.091
+                0.070  0.020  0.038  0.104
+                0.105  0.027  0.048  0.116
+                0.140  0.037  0.063  0.135
+                0.157  0.044  0.070  0.147
+                0.175  0.051  0.079  0.158
+                0.192  0.060  0.090  0.170
+                0.209  0.070  0.102  0.181
+                0.227  0.082  0.112  0.195
+                0.244  0.092  0.127  0.213
+                0.262  0.108  0.140  0.228
+                0.279  0.120  0.160  0.240
+                0.297  0.144  0.180  0.290
+                0.314  0.160  0.220  0.320
+                0.332  0.180  0.240  0.340
+                0.349  0.200  0.260  0.370
+                0.384  0.240  0.280  0.400
+              </tableData>
+            </table>
+            <!-- drag variation due to Mach number-->
+            <value>-0.018</value>
+            <property>tweak_factors/drag_offset</property>
+            <product>
+              <table>
+                <independentVar lookup="row">/velocities/mach</independentVar>
+                <tableData>
+                  0.20  0.0172
+                  0.30  0.0165
+                  0.40  0.0160
+                  0.50  0.0158
+                  0.60  0.0157
+                  0.70  0.0160
+                  0.80  0.0167
+                  0.84  0.0174
+                  0.86  0.0181
+                  0.88  0.0197
+                  0.90  0.0232
+                  0.92  0.0302
+                  0.94  0.0402
+                  0.95  0.0453
+                  0.96  0.0496
+                  0.97  0.0537
+                  0.98  0.0568
+                  0.99  0.0588
+                  1.00  0.0598
+                </tableData>
+              </table>
+              <!-- bending the curves 'to the right' for M>0.6 -->
+              <table>
+                <independentVar lookup="row">/velocities/mach</independentVar>
+                <independentVar lookup="column">aero/coefficient/CL</independentVar>
+                <tableData>
+                         0.00   0.16   0.45
+                  0.0    1.0    1.0    1.0
+                  0.6    1.0    1.0    1.0
+                  0.7    1.0    1.0    1.02
+                  0.8    1.0    1.0    1.12
+                  0.9    1.0    1.0    2.00
+                  0.92   1.0    1.0    2.17
+                  1.00   1.0    1.0    3.18
+                </tableData>
+              </table>
+            </product>
+          </sum>
+        </product>
+      </function>
+
+      <function name="aero/coefficient/dCDalt">
+        <!--
+            Figs.55/56 in [1] are given for H=5000m. For other altitudes there is a
+            formula provided on page 23, which is represented by the table function.
+        -->
+        <description>delta_drag_due_to_altitude</description>
         <product>
           <property>aero/qbar-psf</property>
           <property>metrics/Sw-sqft</property>
           <table>
-            <independentVar lookup="row">calculations/aero/coefficient/liftalphaflapnorm</independentVar>
-            <independentVar lookup="column">fcs/flap-pos-deg</independentVar>
+            <independentVar lookup="row">position/h-sl-meters</independentVar>
             <tableData>
-              0.0 20.0    55.0
-              0.0 0.018   0.03    0.084
-              0.1 0.019   0.031   0.085
-              0.2 0.02    0.032   0.086
-              0.3 0.022   0.034   0.087
-              0.4 0.026   0.038   0.088
-              0.5 0.034   0.043   0.09
-              0.6 0.043   0.05    0.096
-              0.7 0.053   0.06    0.106
-              0.8 0.066   0.07    0.112
-              0.9 0.082   0.082   0.124
-              1.0 0.092   0.098   0.138
-              1.1 0.122   0.116   0.152
-              1.2 0.122   0.128   0.172
-              1.3 0.122   0.168   0.190
-              1.4 0.122   0.168   0.218
-              1.5 0.122   0.168   0.250
-            </tableData>
-          </table>
-        </product>
-      </function>
-
-      <!-- Aeromatic stuff, data not included in MiG documentation -->
-      <function name="aero/coefficient/CDi">
-        <description>Induced_drag</description>
-        <product>
-          <property>aero/qbar-psf</property>
-          <property>metrics/Sw-sqft</property>
-          <property>aero/cl-squared</property>
-          <value>0.07</value>
-        </product>
-      </function>
-
-      <!-- Fig 57. Speeds are 500, 700, 800, 900 1000km\h -->
-      <function name="aero/coefficient/CDmachalt">
-        <description>Drag_due_to_speed_and_altitude</description>
-        <product>
-          <property>aero/qbar-psf</property>
-          <property>metrics/Sw-sqft</property>
-          <table>
-            <independentVar lookup="row">velocities/vc-kts</independentVar>
-            <independentVar lookup="column">atmosphere/density-altitude</independentVar>
-            <tableData>
-              0.0     16404.0 32808.0 49212.0
-              0.0         0.0013  0.0043  0.0143  0.0648
-              269.9       0.0013  0.0043  0.0143  0.0648
-              377.9       0.0003  0.0023  0.0075  0.0301
-              431.9       0.0     0.0018  0.0055  0.0195
-              485.9       0.0008  0.0023  0.0055  0.0165
-              539.9       0.0013  0.0035  0.0208  0.0648
+              0     -0.00065
+              5000   0.0
+              10000  0.00090
+              15000  0.00235
             </tableData>
           </table>
         </product>
@@ -988,7 +1435,6 @@
         </product>
       </function>
 
-      <!-- Fig 51, 53 -->
       <function name="aero/coefficient/CDtank">
         <description>Drag_due_to_fuel_tanks</description>
         <product>
@@ -996,22 +1442,17 @@
           <property>metrics/Sw-sqft</property>
           <property>tanks/fastened</property>
           <table>
-          <independentVar lookup="row">velocities/mach</independentVar>
+            <independentVar lookup="row">aero/coefficient/CL</independentVar>
             <tableData>
-            0.0 0.02
-            0.2 0.022
-            0.3 0.0221
-            0.4 0.0225
-            0.5 0.023
-            0.6 0.0235
-            0.7 0.025
-            0.8 0.027
-            0.9 0.03
-            1.0 0.0337
-            1.1 0.0373
+              0.0    0.004
+              0.8    0.005
+              0.9    0.008
+              0.95   0.010
+              0.975  0.021
+              1.0    0.043
+              1.1    0.267
             </tableData>
           </table>
-        <value> 0.2 </value>
         </product>
       </function>
 
@@ -1050,13 +1491,14 @@
           <table>
             <independentVar lookup="row">aero/beta-rad</independentVar>
             <tableData>
-              -1.57       1.230
+              -1.57    1.230
               -0.26    0.050
-              0.00       0.000
-              0.26    0.050
-              1.57       1.230
+               0.00    0.000
+               0.26    0.050
+               1.57    1.230
             </tableData>
           </table>
+          <property>tweak_factors/drag_due_to_sideslip</property>
         </product>
       </function>
 
@@ -1070,13 +1512,21 @@
           <value>0.01</value>
         </product>
       </function>
-
     </axis>
 
     <axis name="SIDE">
-
       <!-- Fig 76 -->
       <function name="aero/coefficient/CYb">
+        <!--
+            Turning the aircraft's nose to one side will move the airplane to the
+            side where the nose is headed. A typical situation where this effect
+            comes to show would be during landing, when you notice that you're not
+            aligned with the centerline. Then you can use the rudder to shift the
+            aircraft sideways laterally while keeping the wings level with the
+            ailerons. (But don't do this with the MiG-15, abort the landing
+            instead!). I corrected a factor-10-type-o here, so the effect is
+            noticable now.
+        -->
         <description>Side_force_due_to_beta</description>
         <product>
           <property>aero/qbar-psf</property>
@@ -1085,7 +1535,6 @@
           <value>-0.7776</value>
         </product>
       </function>
-
     </axis>
 
     <!-- Adition by the book, page 72, text -->
@@ -1098,13 +1547,13 @@
           <independentVar lookup="column">atmosphere/density-altitude</independentVar>
           <independentVar lookup="row">velocities/mach</independentVar>
           <tableData>
-            6561.67       9842.51 32808.3 36089.23
-            0.86  0.0     0.0     0.0     0.0
-            0.88  6.0     0.0     0.0     0.0
-            0.9   12.0    0.0     0.0     0.0
-            0.92  18.0    0.0     0.0     6.0
-            0.94  18.0    0.0     0.0     12.0
-            0.96  18.0    0.0     0.0     18.0
+                 6561.67  9842.51 32808.3 36089.23
+            0.86    0.0      0.0      0.0     0.0
+            0.88    6.0      0.0      0.0     0.0
+            0.9    12.0      0.0      0.0     0.0
+            0.92   18.0      0.0      0.0     6.0
+            0.94   18.0      0.0      0.0    12.0
+            0.96   18.0      0.0      0.0    18.0
           </tableData>
         </table>
       </sum>
@@ -1112,23 +1561,73 @@
 
     <axis name="ROLL">
 
-      <!-- Fig 68 -->
       <function name="aero/coefficient/Clbflap">
-        <description>Roll_moment_due_to_beta_and_flaps</description>
+        <!--
+            When applying the left rudder in horizontal flight so the aircraft's
+            nose turns to the left, the MiG-15 will generally start to roll
+            counterclockwise. This is mainly due to its swept wing, because the
+            right wing now exposes a larger area to the airflow and produces more
+            lift.
+
+            But - if the roll continues to a 90deg bank angle, and the wings aren't
+            producing lift anymore, the effect will vanish. And during inverted
+            horizontal flight, it will be even negative. This is because altough
+            the right wing still produces more lift, the lift force now points the
+            other way: Up, which is towards the wing's downside. So now the roll
+            moment will turn the plane clockwise.
+
+            The underlying reason is that roll-moment-due-to-beta depends on the
+            lift coefficient. This effect is the cause for roll stability and is
+            quite strong in swept wing aircraft. To reduce roll stability (and
+            increase maneuverability), the MiG-15 has a negative dihedral angle,
+            also called an anhedral wing (the wings point downward).
+
+            According to [3], chapter 7.5, the roll coefficient can be
+            approximated by:
+
+            Cl = ((A + B * eta_L) * CL + K ) * beta
+
+            where:
+            Cl     roll coefficient (M_roll = q A s Cl)
+            A      0.124
+            B      0.350
+            eta_L  y-position of the center of lift (see section on eta_L)
+            CL     lift coefficient
+            K      -0.028, constant value due to dihedral angle
+            beta   sideslip angle [rad]
+
+            The values of A and B depend on CL, they were calculated using the
+            wing's shape and sweep angle. eta_L is the lever that transforms the
+            delta lift to the roll moment. K represents the anhedral wing effect,
+            it is negative, and does not depend on CL. This means that if the lift
+            coefficient is sufficiently small (like when flying with low g-force),
+            then both effects may cancel each other out or the negative effect may
+            have the upper hand. So in these cases, pointing the nose to the left
+            may cause a clockwise roll. At speeds higher than about 700..900km/h,
+            depending on height and weight, this will even happen in level flight.
+
+            A, B and K are adjustable as tweak factor properties.
+        -->
+        <description>Roll_moment_due_to_beta</description>
         <product>
           <property>aero/qbar-psf</property>
           <property>metrics/Sw-sqft</property>
           <property>metrics/bw-ft</property>
-          <table>
-            <independentVar lookup="row">aero/beta-rad</independentVar>
-            <independentVar lookup="column">fcs/flap-pos-deg</independentVar>
-            <tableData>
-              0.0 55.0
-              -0.174      0.016   0.033
-              0.0 0.0     0.0
-              0.174       -0.016  -0.033
-            </tableData>
-          </table>
+          <property>aero/beta-rad</property>
+          <sum>
+            <product>
+              <sum>
+                <property>tweak_factors/roll_moment_due_to_beta_A</property>
+                <product>
+                  <property>tweak_factors/roll_moment_due_to_beta_B</property>
+                  <property>aero/calculations/eta_L</property>
+                </product>
+              </sum>
+              <property>aero/coefficient/CL</property>
+            </product>
+            <property>tweak_factors/roll_moment_due_to_beta_K</property>
+          </sum>
+          <value>-1</value>
         </product>
       </function>
 
@@ -1147,6 +1646,10 @@
 
       <!-- Aeromatic stuff, data not included in MiG documentation -->
       <function name="aero/coefficient/Clr">
+        <!--
+            Following the estimation given in [3], p.111, I increased the
+            aeromatic factor from 0.15 to 0.22.
+        -->
         <description>Roll_moment_due_to_yaw_rate</description>
         <product>
           <property>aero/qbar-psf</property>
@@ -1154,7 +1657,8 @@
           <property>metrics/bw-ft</property>
           <property>aero/bi2vel</property>
           <property>velocities/r-aero-rad_sec</property>
-          <value>0.15</value>
+          <property>tweak_factors/roll_moment_due_to_yaw_rate</property>
+          <value>0.222</value>
         </product>
       </function>
 
@@ -1169,24 +1673,24 @@
             <independentVar lookup="column">fcs/left-aileron-pos-deg-mod</independentVar>
             <independentVar lookup="row">velocities/mach</independentVar>
             <tableData>
-              -14 -12     -8      -4      0       4       8       12      14
-              0.0 0.0     0.0     0.0     0.0     0       0.0     0.0     0.0     0.0
-              0.2 -0.022  -0.017  -0.0125 -0.006  0       0.006   0.0125  0.017   0.022
-              0.80        -0.022  -0.017  -0.0125 -0.006  0       0.006   0.0125  0.017   0.022
-              0.82        -0.02   -0.017  -0.0125 -0.006  0       0.006   0.0125  0.017   0.02
-              0.86        -0.022  -0.018  -0.0125 -0.006  0       0.006   0.0125  0.018   0.022
-              0.88        -0.018  -0.016  -0.012  -0.008  0       0.008   0.012   0.016   0.018
-              0.9 -0.016  -0.014  -0.011  -0.008  0       0.008   0.011   0.014   0.016
-              0.92        -0.014  -0.012  -0.009  -0.007  0       0.007   0.009   0.012   0.014
-              0.94        -0.013  -0.01   -0.008  -0.007  0       0.007   0.008   0.01    0.013
-              0.96        -0.011  -0.009  -0.008  -0.007  0       0.007   0.008   0.009   0.011
+                  -14     -12      -8      -4      0       4       8      12      14
+              0.0   0.0     0.0     0.0     0.0    0       0.0     0.0     0.0     0.0
+              0.2  -0.022  -0.017  -0.0125 -0.006  0       0.006   0.0125  0.017   0.022
+              0.80 -0.022  -0.017  -0.0125 -0.006  0       0.006   0.0125  0.017   0.022
+              0.82 -0.02   -0.017  -0.0125 -0.006  0       0.006   0.0125  0.017   0.02
+              0.86 -0.022  -0.018  -0.0125 -0.006  0       0.006   0.0125  0.018   0.022
+              0.88 -0.018  -0.016  -0.012  -0.008  0       0.008   0.012   0.016   0.018
+              0.9  -0.016  -0.014  -0.011  -0.008  0       0.008   0.011   0.014   0.016
+              0.92 -0.014  -0.012  -0.009  -0.007  0       0.007   0.009   0.012   0.014
+              0.94 -0.013  -0.01   -0.008  -0.007  0       0.007   0.008   0.01    0.013
+              0.96 -0.011  -0.009  -0.008  -0.007  0       0.007   0.008   0.009   0.011
             </tableData>
           </table>
           <value>5.81</value>
           <table>
             <independentVar lookup="row">velocities/mach</independentVar>
             <tableData>
-              0.0 0.0
+              0.0         0.0
               0.30        0.172
               0.40        0.168
               0.50        0.164
@@ -1194,11 +1698,11 @@
               0.70        0.150
               0.80        0.126
               0.86        0.102
-              0.9 0.082
+              0.9         0.082
               0.92        0.054
               0.94        0.000
-              0.96        -0.06
-              0.98        -0.05
+              0.96       -0.06
+              0.98       -0.05
             </tableData>
           </table>
         </product>
@@ -1212,27 +1716,49 @@
           <property>aero/qbar-psf</property>
           <property>metrics/Sw-sqft</property>
           <property>metrics/bw-ft</property>
-          <property>fcs/rudder-pos-rad</property>
+          <property>fcs/rudder-pos-rad_1</property>
           <value>0.01</value>
           <table>
             <independentVar lookup="row">velocities/mach</independentVar>
             <tableData>
-              0.4 3.0
-              0.5 2.9
-              0.6 2.7
-              0.7 2.3
-              0.8 1.4
-              0.825       0.8
-              0.85        0.3
-              0.875       -0.9
-              0.9 -1.3
-              0.925       -1.2
-              0.95        -0.4
-              0.975       0.7
-              1.0 1.5
+              0.4    3.0
+              0.5    2.9
+              0.6    2.7
+              0.7    2.3
+              0.8    1.4
+              0.825  0.8
+              0.85   0.3
+              0.875 -0.9
+              0.9   -1.3
+              0.925 -1.2
+              0.95  -0.4
+              0.975  0.7
+              1.0    1.5
             </tableData>
           </table>
           <value>0.3333</value>
+        </product>
+      </function>
+
+      <function name="aero/calculations/Cldge">
+        <!--
+            The closer a wing gets to the ground, the more its lift will be
+            increased by ground effect. So if one wing is closer to the runway, it
+            will produce more lift and cause a roll moment with the tendency to
+            level the wings - it's a pleasant little effect. It depends on the
+            center of lift position (eta_L), because that is the lever which turns
+            the delta lift into a roll moment.
+        -->
+        <description>Roll_moment_due_to_difference_in_ground_effect</description>
+        <product>
+          <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <difference>
+            <property>aero/calculations/kCLge_left</property>
+            <property>aero/calculations/kCLge_right</property>
+          </difference>
+          <value>16.54</value>
+          <property>aero/calculations/eta_L</property>
         </product>
       </function>
 
@@ -1267,7 +1793,7 @@
 
     <axis name="PITCH">
 
-      <!-- Fig 169 
+      <!-- Fig 169
       <function name="fcs/elevator-pos-rad-mod">
         <description>Elevator_modified_due_mach_and_altitude</description>
         <sum>
@@ -1303,7 +1829,7 @@
       </function>
       -->
 
-      <!-- 
+      <!--
          Delta pitch due to weight diffrence, page 26
          Common formulae is Mz=Mznorm+(CMw-CMnorm)*Cynorm,
          so delta is Cynorm*(CMw-CMnorm),
@@ -1322,6 +1848,13 @@
 
       <!-- Fig 63 -->
       <function name="aero/coefficient/Cmalphaelev">
+        <!--
+             - Fixed the problem that when pushing the flight stick full forward,
+               the elevator's effect was limited to a deflection of 5deg instead of
+               16deg.
+             - Added more detail to the table and fixed a type-o.
+             - Extended modelling range from -2deg AOA to -14deg AOA.
+        -->
         <description>Pitch_moment_due_to_alpha_and_elevator</description>
         <product>
           <property>aero/qbar-psf</property>
@@ -1346,7 +1879,7 @@
         </product>
       </function>
 
-      <!-- Fig 66 
+      <!-- Fig 66
       <function name="aero/coefficient/dCmmach">
         <description>Delta_pitch_moment_due_to_mach</description>
         <product>
@@ -1384,36 +1917,46 @@
           <property>metrics/Sw-sqft</property>
           <property>metrics/cbarw-ft</property>
           <table>
-            <independentVar lookup="column">calculations/aero/coefficient/liftalphaflapnorm</independentVar>
+            <independentVar lookup="column">aero/coefficient/CL</independentVar>
             <independentVar lookup="row">velocities/mach</independentVar>
             <tableData>
-              0   0.1     0.2     0.3     0.4     0.5     0.6     0.7
-              0.0 0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0
-              0.2 0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0
-              0.4 0.004   0.004   0.005   0.005   0.005   0.005   0.005   0.005
-              0.6 0.004   0.005   0.005   0.006   0.007   0.01    0.015   0.022
-              0.7 0.005   0.006   0.01    0.012   0.012   0.015   0.022   0.03
-              0.74        0.005   0.007   0.01    0.012   0.016   0.02    0.028   0.035
-              0.8 0.006   0.008   0.01    0.012   0.014   0.019   0.025   0.03
-              0.82        0.007   0.009   0.012   0.014   0.012   0.018   0.02    0.022
-              0.84        0.008   0.009   0.01    0.009   0.008   0.007   0.005   0.003
-              0.86        0.012   0.011   0.007   0.005   0.003   0.0     -0.005  -0.01
-              0.88        0.018   0.015   0.012   0.006   0.002   -0.008  -0.016  -0.02
-              0.9 0.023   0.018   0.016   0.005   -0.004  -0.012  -0.026  -0.04
-              0.92        0.03    0.025   0.018   0.008   -0.005  -0.012  -0.028  -0.045
-              0.94        0.042   0.036   0.025   0.016   0.005   -0.012  -0.026  -0.042
-              0.96        0.05    0.045   0.032   0.025   0.01    -0.015  -0.035  -0.055
-              0.98        0.06    0.05    0.038   0.03    0.008   -0.025  -0.055  -0.075
-              1.0 0.065   0.05    0.04    0.028   0.0     -0.04   -0.08   -0.115
-              1.02        0.065   0.045   0.035   0.02    -0.01   -0.045  -0.09   -0.13
+                     0       0.1     0.2     0.3     0.4     0.5     0.6     0.7
+              0.0    0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0
+              0.2    0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0
+              0.4    0.004   0.004   0.005   0.005   0.005   0.005   0.005   0.005
+              0.6    0.004   0.005   0.005   0.006   0.007   0.01    0.015   0.022
+              0.7    0.005   0.006   0.01    0.012   0.012   0.015   0.022   0.03
+              0.74   0.005   0.007   0.01    0.012   0.016   0.02    0.028   0.035
+              0.8    0.006   0.008   0.01    0.012   0.014   0.019   0.025   0.03
+              0.82   0.007   0.009   0.012   0.014   0.012   0.018   0.02    0.022
+              0.84   0.008   0.009   0.01    0.009   0.008   0.007   0.005   0.003
+              0.86   0.012   0.011   0.007   0.005   0.003   0.0    -0.005  -0.01
+              0.88   0.018   0.015   0.012   0.006   0.002  -0.008  -0.016  -0.02
+              0.9    0.023   0.018   0.016   0.005  -0.004  -0.012  -0.026  -0.04
+              0.92   0.03    0.025   0.018   0.008  -0.005  -0.012  -0.028  -0.045
+              0.94   0.042   0.036   0.025   0.016   0.005  -0.012  -0.026  -0.042
+              0.96   0.05    0.045   0.032   0.025   0.01   -0.015  -0.035  -0.055
+              0.98   0.06    0.05    0.038   0.03    0.008  -0.025  -0.055  -0.075
+              1.0    0.065   0.05    0.04    0.028   0.0    -0.04   -0.08   -0.115
+              1.02   0.065   0.045   0.035   0.02   -0.01   -0.045  -0.09   -0.13
             </tableData>
           </table>
         </product>
       </function>
 
-
       <!-- Aeromatic stuff, data not included in MiG documentation -->
       <function name="aero/coefficient/Cmq">
+        <!--
+              I don't fully understand this and the next aeromatic sections. There can't be
+              much of a difference between pitch rate and alpha rate - I suppose one
+              is for the elevator influence and the other one for the (much weaker)
+              main wing influence. According to my calculations using [3], the
+              pitch_moment_due_to_pitch should be only a third of the aeromatic
+              value. But then the aircraft pitches really fast, leading to
+              annoyingly high g-forces (and a blacking out pilot or a breaking
+              aircraft). So for the time being I left it as it is. There's a tweak
+              factor in case you are curious how a smaller pitch damping feels.
+        -->
         <description>Pitch_moment_due_to_pitch_rate</description>
         <product>
           <property>aero/qbar-psf</property>
@@ -1421,6 +1964,7 @@
           <property>metrics/cbarw-ft</property>
           <property>aero/ci2vel</property>
           <property>velocities/q-aero-rad_sec</property>
+          <property>tweak_factors/pitch_moment_due_to_pitch_rate</property>
           <value>-18</value>
         </product>
       </function>
@@ -1457,19 +2001,70 @@
 
       <!-- Need to add pitch due to fuel tanks-->
 
+      <function name="fcs/pitch_moment_due_to_gyro_effect">
+        <!--
+            The rotating masses inside the engine cause a gyroscopic effect,
+            depending on the engine speed. During a pitch up movement, the effect
+            will produce a yaw moment to the left, and during a yaw left movement,
+            it will produce a pitch down moment. Both moments combined increase
+            stability of the aircraft's symmetry axis, because every movement in
+            pitch or yaw direction leads to a counteracting moment.
+
+            According to [4], the moment M given off by a gyroscope is (in 3D
+            vectors):
+
+            M = - omega_f x D
+            D = omega_rot * J
+
+            omega_f    rotational speed forced upon the gyroscope [rad/s]
+            D          rotational impuls
+            omega_rot  spinning speed of the gyroscope [rad/s]
+            J          rotational inertia (3rd grade tensor)
+
+            Expressing the vectors in the aircraft body frame (forward, right,
+            down), we can reduce D to the engine rotation axis x, neglecting the
+            y- and the z-axis. The engine rotates counterclockwise in flight
+            direction, so omega_rot = -omega_engine. If the aircraft is forced
+            into a yaw motion to the right with the rotational speed omega_f [in
+            rad/s], the equation takes the form:
+
+                      0         -omega_engine     J_x
+            M = - (   0   ) x ((      0      ) * ( 0 ))
+                   omega_f            0            0
+
+            The result is:
+            M_y = omega_f * omega_engine * J_x,
+            a positive pitch moment (nose up).
+
+            To estimate the value of J, I looked at drawings of the rotating shaft
+            in a rolls royce nene engine (the VK-1 is based on a copy of the nene,
+            see
+            [http://www.avialogs.com/index.php/en/engines/united-kingdom/rolls-royce/nene/rolls-royce-nene-turbo-jet-aero-engines.html]).
+            I made scale drawings and broke them down into many simple shaped
+            slices to calculate the inertia of each slice ( dJ = r^2 dm ). The
+            result is J=7.63(kg*m^2)
+
+            The factor 0.0772 is needed for unit conversion (RPM/(rad/s))*(Nm/(lbf*ft)).
+        -->
+        <product>
+          <value>0.0772</value>
+          <property>/orientation/r-body</property>
+          <property>/engines/engine/rpm</property>
+          <property>tweak_factors/engine_rotational_inertia</property>
+        </product>
+      </function>
     </axis>
 
     <!-- High g tremble yaw modification, page 73 -->
     <function name="fcs/rudder-pos-deg-mod">
       <description>Rudder_angle_modified_due_to_high_g_tremble</description>
       <sum>
-        <property>fcs/rudder-pos-deg</property>
+        <property>fcs/rudder-pos-deg_1</property>
         <property>gtremble/current</property>
       </sum>
     </function>
 
     <axis name="YAW">
-
       <!-- Fig 73 -->
       <function name="aero/coefficient/Cnbflap">
         <description>Yaw_moment_due_to_beta_and_flaps</description>
@@ -1481,26 +2076,27 @@
             <independentVar lookup="row">aero/beta-deg</independentVar>
             <independentVar lookup="column">fcs/flap-pos-deg</independentVar>
             <tableData>
-              0.0       55.0
-              -16       -0.042  -0.046
-              -14       -0.033  -0.041
-              -12       -0.025  -0.034
-              -10       -0.018  -0.028
-              -8        -0.014  -0.023
-              -6        -0.011  -0.017
-              -4        -0.006  -0.012
-              -2        -0.003  -0.006
-              0 0       0
-              2 0.003   0.006
-              4 0.006   0.012
-              6 0.011   0.017
-              8 0.014   0.023
-              10        0.018   0.028
-              12        0.025   0.034
-              14        0.033   0.041
-              16        0.042   0.046
+                     0.0    55.0
+              -16   -0.042  -0.046
+              -14   -0.033  -0.041
+              -12   -0.025  -0.034
+              -10   -0.018  -0.028
+              -8    -0.014  -0.023
+              -6    -0.011  -0.017
+              -4    -0.006  -0.012
+              -2    -0.003  -0.006
+               0     0       0
+               2     0.003   0.006
+               4     0.006   0.012
+               6     0.011   0.017
+               8     0.014   0.023
+               10    0.018   0.028
+               12    0.025   0.034
+               14    0.033   0.041
+               16    0.042   0.046
             </tableData>
           </table>
+          <property>tweak_factors/yaw_moment_due_to_beta_and_flaps</property>
         </product>
       </function>
 
@@ -1514,6 +2110,7 @@
           <property>aero/bi2vel</property>
           <property>velocities/r-aero-rad_sec</property>
           <value>-0.15</value>
+          <property>tweak_factors/yaw_moment_due_to_yaw_rate</property>
         </product>
       </function>
 
@@ -1527,9 +2124,9 @@
           <table>
             <independentVar lookup="row">fcs/rudder-pos-deg-mod</independentVar>
             <tableData>
-              -17       0.022
-              0 0
-              17        -0.022
+              -17  0.022
+                0  0
+               17 -0.022
             </tableData>
           </table>
         </product>
@@ -1537,99 +2134,120 @@
 
       <!-- Aeromatic stuff, data not included in MiG documentation -->
       <function name="aero/coefficient/Cnda">
+        <!--
+            When the ailerons are applied to make the aircraft roll clockwise, the
+            left aileron moves down to create more lift. As a side effect, it will
+            also create more drag, leading to a yaw moment turning the nose to the
+            left. To fly a clean turn without sideslip (or even the risk of
+            entering a spin), the rudder is always used simultaneously with the
+            ailerons. This is the reason why the Wrights invented the rudder in
+            the first place. If you don't have a rudder input device, switch on
+            auto-coordination.
+
+            In [2], Fig.25 the aileron effectiveness is given as "change in angle
+            of attack per 1deg of aileron deflection" and has a value of about 0.16.
+            From the change in AOA one can derive the change in lift and then the
+            change in drag (that's what happens in the table). Then multiply this
+            by the ratio of aileron area / wing area and by the lever distance
+            between aileron and center line.
+        -->
         <description>Adverse_yaw</description>
         <product>
           <property>aero/qbar-psf</property>
           <property>metrics/Sw-sqft</property>
           <property>metrics/bw-ft</property>
           <property>fcs/left-aileron-pos-rad</property>
-          <value>0</value>
+          <value>-0.083</value>
+          <table>
+            <independentVar lookup="row">aero/coefficient/CL</independentVar>
+            <tableData>
+              0    0
+              0.2  0.044
+              0.4  0.062
+              0.5  0.076
+              0.6  0.098
+              0.8  0.140
+              0.9  0.162
+              1.0  0.180
+              1.1  0.266
+              1.15 0.5
+            </tableData>
+          </table>
+          <property>tweak_factors/adverse_yaw</property>
+        </product>
+      </function>
+
+      <function name="aero/coefficient/Cnp">
+        <!--
+            Rolling an aircraft results in an increase of AOA on the wing going
+            down and a decrease of AOA on the wing going up. Similar to the
+            adverse yaw effect, this will lead to an asymmetrical drag
+            distribution which causes a yaw moment, trying to turn the nose
+            towards the downgoing wing.
+
+            According to [3], p.106, for an elliptic wing, the yaw coefficient is:
+
+            m_z = -0.053 * omega_x * b/2V * C_L
+        -->
+        <description>Yaw_moment_due_to_roll_rate</description>
+        <product>
+          <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <property>metrics/bw-ft</property>
+          <property>velocities/p-aero-rad_sec</property>
+          <property>aero/bi2vel</property>
+          <property>aero/coefficient/CL</property>
+          <value>-0.053</value>
+          <property>tweak_factors/yaw_moment_due_to_roll_rate</property>
         </product>
       </function>
 
       <!-- Yaw due to mach can be avoided-->
       <!-- Yaw due to fuel tanks can be avoided-->
 
+      <function name="fcs/yaw_moment_due_to_gyro_effect">
+        <!--
+            Same as pitch moment due to gyro effect, except now the (nose up)
+            pitch movement omega_f causes a yaw moment of:
+
+            M_z = - omega_f * omega_engine * J_x, which is a negative yaw moment
+            (trying to turn the nose to the left).
+        -->
+        <product>
+          <value>-0.077</value>
+          <property>/orientation/q-body</property>
+          <property>/engines/engine/rpm</property>
+          <property>tweak_factors/engine_rotational_inertia</property>
+        </product>
+      </function>
     </axis>
 
   </aerodynamics>
 
-  <system file="Click">
-  </system>
-
-  <system file="Airspeedometer">
-  </system>
-
-  <system file="Arthorizon">
-  </system>
-
-  <system file="Headsight">
-  </system>
-
-  <system file="Tachometer">
-  </system>
-
-  <system file="Gascontrol">
-  </system>
-
-  <system file="Flapscontrol">
-  </system>
-
-  <system file="Canopy">
-  </system>
-
-  <system file="Accchecker">
-  </system>
-
-  <system file="Rightpanel">
-  </system>
-
-  <system file="Stopcontrol">
-  </system>
-
-  <system file="Leftpanel">
-  </system>
-
-  <system file="Ignitionbutton">
-  </system>
-
-  <system file="Speedbrakescontrol">
-  </system>
-
-  <system file="Fuelcontrol">
-  </system>
-
-  <system file="Vertspeedometer">
-  </system>
-
-  <system file="Gearcontrol">
-  </system>
-
-  <system file="Radioaltimeter">
-  </system>
-
-  <system file="Stick">
-  </system>
-
-  <system file="Pedals">
-  </system>
-
-  <system file="Gearvalve">
-  </system>
-
-  <system file="Flapsvalve">
-  </system>
-
-  <system file="Radiocompass">
-  </system>
-
-  <system file="Boostercontrol">
-  </system>
-
-  <system file="Gyrocompass">
-  </system>
-
-  <system file="Altimeter">
-  </system>
-
+  <system file="Airspeedometer"/>
+  <system file="Arthorizon"/>
+  <system file="Click"/>
+  <system file="Headsight"/>
+  <system file="Tachometer"/>
+  <system file="Gascontrol"/>
+  <system file="Flapscontrol"/>
+  <system file="Canopy"/>
+  <system file="Accchecker"/>
+  <system file="Rightpanel"/>
+  <system file="Stopcontrol"/>
+  <system file="Leftpanel"/>
+  <system file="Ignitionbutton"/>
+  <system file="Speedbrakescontrol"/>
+  <system file="Fuelcontrol"/>
+  <system file="Vertspeedometer"/>
+  <system file="Gearcontrol"/>
+  <system file="Radioaltimeter"/>
+  <system file="Stick"/>
+  <system file="Pedals"/>
+  <system file="Gearvalve"/>
+  <system file="Flapsvalve"/>
+  <system file="Radiocompass"/>
+  <system file="Boostercontrol"/>
+  <system file="Gyrocompass"/>
+  <system file="Altimeter"/>
 </fdm_config>

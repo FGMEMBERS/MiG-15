@@ -237,13 +237,13 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
     <flight-model>jsb</flight-model>
     <status>advanced production</status>
     <author>Lee Elliott, Victor Slavutinskiy, with great help from Yurik V. Nikiforoff</author>
-    <aircraft-version>3.0.7</aircraft-version>
+    <aircraft-version>3.0.8</aircraft-version>
     <aero>MiG-15bis</aero>
     <fuel-fraction>1.0</fuel-fraction>
     <description>MiG-15bis (JSBSim FDM)</description>
     <virtual-cockpit archive="y">true</virtual-cockpit>
 
-    <chase-distance-m type="double" archive="y">-20.0</chase-distance-m>
+    <chase-distance-m type="double">20.0</chase-distance-m>
 
     <view n="0">
       <name>Pilot View</name>
@@ -252,8 +252,8 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
         <x-offset-m type="double" archive="y">0.0</x-offset-m>
         <y-offset-m type="double" archive="y">0.84</y-offset-m>
         <z-offset-m type="double" archive="y">2.34</z-offset-m>
-        <pitch-offset-deg type="double">-20</pitch-offset-deg>
-        <default-field-of-view-deg type="double">75</default-field-of-view-deg>
+        <pitch-offset-deg type="double">-11</pitch-offset-deg>
+        <default-field-of-view-deg type="double">80</default-field-of-view-deg>
       </config>
     </view>
 
@@ -272,20 +272,12 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
       </config>
     </view>
 
-
-    <!-- Shift the camera target point back 
-         <view n="1">
-         <config>
-         <target-z-offset-m archive="y" type="double">3.75</target-z-offset-m>
-         </config>
-         </view>
-    -->
-
     <view n="2">
       <config>
         <y-offset-m archive="y" type="double">3.4</y-offset-m>
-        <z-offset-m archive="y" type="double">-19.7</z-offset-m>
+        <z-offset-m archive="y" type="double">20</z-offset-m>
         <target-z-offset-m archive="y" type="double">3.75</target-z-offset-m>
+        <heading-offset-deg archive="y" type="double">180</heading-offset-deg>
       </config>
     </view>
 
@@ -304,6 +296,8 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
     <view n="5">
       <config>
         <target-z-offset-m archive="y" type="double">3.75</target-z-offset-m>
+        <z-offset-m type="double">20</z-offset-m>
+        <heading-offset-deg archive="y" type="double">180</heading-offset-deg>
       </config>
     </view>
 
@@ -315,7 +309,8 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
 
     <view n="7">
       <config>
-        <target-z-offset-m archive="y" type="double">3.75</target-z-offset-m>
+        <z-offset-m type="double">20</z-offset-m>
+        <heading-offset-deg archive="y" type="double">180</heading-offset-deg>
       </config>
     </view>
 
@@ -393,6 +388,10 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
       </MiG-15bis-model>
     </model>
 
+    <configuration>
+      <rudder_input_exponent type="float" archive="y">2</rudder_input_exponent>
+    </configuration>
+
     <systems>
       <electrical>
         <path>Aircraft/MiG-15/Systems/MiG-15bis-electrical.xml</path>
@@ -464,12 +463,12 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
             <label>Autostart aircraft</label>
             <binding>
               <command>nasal</command>
-	      <script>MIG15BIS.aircraft_autostart();</script>
-	    </binding>
-	  </item>
-	  <item n="1">
-	    <label>Refuel aircraft</label>
-	    <binding>
+              <script>MIG15BIS.aircraft_autostart();</script>
+            </binding>
+          </item>
+          <item n="1">
+            <label>Refuel aircraft</label>
+            <binding>
               <command>nasal</command>
               <script>MIG15BIS.aircraft_refuel();</script>
             </binding>
@@ -967,13 +966,21 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
 
   <fdm>
     <jsbsim>
+      <aero>
+        <h-b_mac alias="/fdm/jsbsim/aero/h_b-mac-ft"></h-b_mac>
+      </aero>
+      <calculations>
+        <vspeed_gear_one type="float">0</vspeed_gear_one>
+        <vspeed_gear_two type="float">0</vspeed_gear_two>
+        <vspeed_gear_three type="float">0</vspeed_gear_three>
+      </calculations>
       <init>
         <finally-initialized type="int">0</finally-initialized>
       </init>
       <fcs>
         <aileron-cmd-norm-real type="float">0</aileron-cmd-norm-real>
         <elevator-cmd-norm-real type="float">0</elevator-cmd-norm-real>
-        <aileron-boost type="float">0.2</aileron-boost>
+        <aileron-boost type="float">1.0</aileron-boost>
         <roll-trim-sum type="float">0.0</roll-trim-sum>
         <roll-trim-sum-timed type="float">0.0</roll-trim-sum-timed>
       </fcs>
@@ -1507,6 +1514,41 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
           <altitude-indicated-ft type="float">0</altitude-indicated-ft>
         </altimeter>
       </systems>
+
+      <tanks>
+        <attached archive="y" type="bool">1</attached>
+      </tanks>
+
+      <tweak_factors>
+        <ground_effect_lift type="float">1</ground_effect_lift>
+        <ground_effect_drag type="float">1</ground_effect_drag>
+        <drag_due_to_sideslip type="float">1</drag_due_to_sideslip>
+        <drag_offset type="float">0.003</drag_offset>
+        <pitch_moment_due_to_pitch_rate type="float">1.0</pitch_moment_due_to_pitch_rate>
+        <roll_moment_due_to_yaw_rate type="float">1.05</roll_moment_due_to_yaw_rate>
+        <roll_moment_due_to_beta_A type="float">0.124</roll_moment_due_to_beta_A>
+        <roll_moment_due_to_beta_B type="float">0.350</roll_moment_due_to_beta_B>
+        <roll_moment_due_to_beta_K type="float">-0.028</roll_moment_due_to_beta_K>
+        <yaw_moment_due_to_beta_and_flaps type="float">1</yaw_moment_due_to_beta_and_flaps>
+        <yaw_moment_due_to_yaw_rate type="float">1.2</yaw_moment_due_to_yaw_rate>
+        <yaw_moment_due_to_roll_rate type="float">1.05</yaw_moment_due_to_roll_rate>
+        <adverse_yaw type="float">1</adverse_yaw>
+        <engine_rotational_inertia type="float">7.63</engine_rotational_inertia>
+        <elevator_range_at_high_speed_A type="float">1000</elevator_range_at_high_speed_A>
+        <elevator_range_at_high_speed_B type="float">0.3</elevator_range_at_high_speed_B>
+        <rudder_range_at_high_speed_A type="float">1000</rudder_range_at_high_speed_A>
+        <rudder_range_at_high_speed_B type="float">0.3</rudder_range_at_high_speed_B>
+        <vol_highpitch type="float">1</vol_highpitch>
+        <vol_jet type="float">0.5</vol_jet>
+        <vol_engine1 type="float">1</vol_engine1>
+        <vol_engine_total type="float">2</vol_engine_total>
+        <vol_gear type="float">0.7</vol_gear>
+        <vol_wind type="float">1.0</vol_wind>
+        <gear_main_maxload type="float">2.4</gear_main_maxload>
+        <gear_one_maxload type="float">1.3</gear_one_maxload>
+        <gear_one_maxload_single type="float">0.8</gear_one_maxload_single>
+      </tweak_factors>
+
     </jsbsim>
   </fdm>
 
@@ -1560,4 +1602,13 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
     </MiG_15bis_bombable>
   </nasal>
 
+  <orientation>
+    <p-body type="double">0</p-body>
+    <q-body type="double">0</q-body>
+    <r-body type="double">0</r-body>
+  </orientation>
+
+  <init_volume type="double">0</init_volume>
+
 </PropertyList>
+
