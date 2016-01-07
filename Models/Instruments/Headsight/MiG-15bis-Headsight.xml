@@ -1104,5 +1104,52 @@
     </condition>
   </animation>
 
-
+  <animation>
+    <type>select</type>
+    <object-name>HS_Axle</object-name>
+    <object-name>HS_BBox</object-name>
+    <object-name>HS_Base</object-name>
+    <object-name>HS_Bolts</object-name>
+    <object-name>HS_Cyl</object-name>
+    <object-name>HS_CLUp</object-name>
+    <object-name>HS_CLDown</object-name>
+    <object-name>HS_DCyl</object-name>
+    <object-name>HS_FBox</object-name>
+    <object-name>HS_GHolder</object-name>
+    <object-name>HS_Holder</object-name>
+    <object-name>HS_SRing</object-name>
+    <object-name>HS_SRUp</object-name>
+    <object-name>HS_SRDown</object-name>
+    <object-name>HS_Sphere</object-name>
+    <object-name>HS_SUp</object-name>
+    <object-name>HS_SDown</object-name>
+    <object-name>HS_Switch</object-name>
+    <object-name>HS_Vern</object-name>
+    <object-name>HS_Frame</object-name>
+    <object-name>HS_Backplate</object-name>
+    <object-name>HS_Sign</object-name>
+    <object-name>HS_PGlass</object-name>
+    <object-name>HS_Glass</object-name>
+    <object-name>HS_Backplate</object-name>
+    <object-name>HS_CCenter</object-name>
+    <object-name>HS_CUp</object-name>
+    <object-name>HS_CDown</object-name>
+    <object-name>HS_CLeft</object-name>
+    <object-name>HS_CRight</object-name>
+    <object-name>HS_CLeft</object-name>
+    <object-name>HS_CRUp</object-name>
+    <object-name>HS_Box</object-name>
+    <object-name>HS_CylUp</object-name>
+    <object-name>HS_CylDown</object-name>
+    <object-name>HS_CLUp</object-name>
+    <object-name>HS_CLDown</object-name>
+    <object-name>HS_CRDown</object-name>
+    <object-name>HS_Ring</object-name>
+    <object-name>HS_VUp</object-name>
+    <object-name>HS_VDown</object-name>
+    <condition>
+      <property>/sim/model/show_gunsight</property>
+    </condition>
+  </animation>
+  
 </PropertyList> 

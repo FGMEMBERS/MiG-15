@@ -18,6 +18,28 @@
     <inherits-from>Effects/model-transparent</inherits-from>
     <object-name>MC_Down</object-name>
   </effect>
+  
+  <animation>
+    <type>select</type>
+    <object-name>MC_Cylinder</object-name>
+    <object-name>MC_Backplate</object-name>
+    <object-name>MC_Box</object-name>
+    <object-name>MC_Bezel</object-name>
+    <object-name>MC_Bolts</object-name>
+    <object-name>MC_Vernbase</object-name>
+    <object-name>MC_Vern</object-name>
+    <object-name>MC_Glass</object-name>
+    <object-name>MC_Up</object-name>
+    <object-name>MC_Down</object-name>
+    <object-name>MC_Line</object-name>
+    <object-name>MC_Blackpanel</object-name>
+    <condition>
+      <equals>
+	<property>/sim/model/show_Magcompass</property>
+	<value>1</value>
+      </equals>
+    </condition>
+  </animation>
 
   <animation>
     <type>range</type>
@@ -38,32 +60,29 @@
   </animation>
 
   <!--
-
-<animation>
-<type>material</type>
-<object-name>MC_Cylinder</object-name>
-<object-name>MC_Backplate</object-name>
-<object-name>MC_Box</object-name>
-<object-name>MC_Bezel</object-name>
-<object-name>MC_Bolts</object-name>
-<object-name>MC_Vernbase</object-name>
-<object-name>MC_Vern</object-name>
-<emission>
-<factor-prop>systems/light/canopy-lamps-norm</factor-prop>
-<red>0.777</red>
-<green>0.700</green>
-<blue>0.700</blue>
-</emission>
-<condition>
-<equals>
-<property>systems/light/use-canopy-lamps</property>
-<value>1</value>
-</equals>
-</condition>
-</animation>
-
+  <animation>
+    <type>material</type>
+    <object-name>MC_Cylinder</object-name>
+    <object-name>MC_Backplate</object-name>
+    <object-name>MC_Box</object-name>
+    <object-name>MC_Bezel</object-name>
+    <object-name>MC_Bolts</object-name>
+    <object-name>MC_Vernbase</object-name>
+    <object-name>MC_Vern</object-name>
+    <emission>
+      <factor-prop>systems/light/canopy-lamps-norm</factor-prop>
+      <red>0.777</red>
+      <green>0.700</green>
+      <blue>0.700</blue>
+    </emission>
+    <condition>
+      <equals>
+        <property>systems/light/use-canopy-lamps</property>
+        <value>1</value>
+      </equals>
+    </condition>
+  </animation>
   -->
-
 
   <animation>
     <type>rotate</type>

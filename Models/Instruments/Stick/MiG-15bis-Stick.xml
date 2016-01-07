@@ -11,59 +11,101 @@
   </animation>
 
   <!--
-
-<animation>
-<type>material</type>
-<object-name>ST_AAHolder</object-name>
-<object-name>ST_AAxleOne</object-name>
-<object-name>ST_AAxleTwo</object-name>
-<object-name>ST_AAxleThree</object-name>
-<object-name>ST_AAxleTFour</object-name>
-<object-name>ST_ABase</object-name>
-<object-name>ST_AHolder</object-name>
-<object-name>ST_ARocker</object-name>
-<object-name>ST_ARodOne</object-name>
-<object-name>ST_ARodTwo</object-name>
-<object-name>ST_BBase</object-name>
-<object-name>ST_BBesel</object-name>
-<object-name>ST_BButton</object-name>
-<object-name>ST_BRAxleOne</object-name>
-<object-name>ST_BRAxleTwo</object-name>
-<object-name>ST_BRBlocker</object-name>
-<object-name>ST_BRCord</object-name>
-<object-name>ST_BRLever</object-name>
-<object-name>ST_BRRod</object-name>
-<object-name>ST_Base</object-name>
-<object-name>ST_EAxleOne</object-name>
-<object-name>ST_EAxleTwo</object-name>
-<object-name>ST_EBase</object-name>
-<object-name>ST_ERod</object-name>
-<object-name>ST_FAxle</object-name>
-<object-name>ST_Fix</object-name>
-<object-name>ST_Handle</object-name>
-<object-name>ST_MGBezel</object-name>
-<object-name>ST_MGButton</object-name>
-<object-name>ST_Pipe</object-name>
-<object-name>ST_ROne</object-name>
-<object-name>ST_RTwo</object-name>
-<object-name>ST_RThree</object-name>
-<object-name>ST_RFour</object-name>
-<object-name>ST_RFive</object-name>
-<emission>
-<factor-prop>systems/light/canopy-lamps-norm</factor-prop>
-<red>0.777</red>
-<green>0.700</green>
-<blue>0.700</blue>
-</emission>
-<condition>
-<equals>
-<property>systems/light/use-canopy-lamps</property>
-<value>1</value>
-</equals>
-</condition>
-</animation>
-
+  <animation>
+    <type>material</type>
+    <object-name>ST_AAHolder</object-name>
+    <object-name>ST_AAxleOne</object-name>
+    <object-name>ST_AAxleTwo</object-name>
+    <object-name>ST_AAxleThree</object-name>
+    <object-name>ST_AAxleTFour</object-name>
+    <object-name>ST_ABase</object-name>
+    <object-name>ST_AHolder</object-name>
+    <object-name>ST_ARocker</object-name>
+    <object-name>ST_ARodOne</object-name>
+    <object-name>ST_ARodTwo</object-name>
+    <object-name>ST_BBase</object-name>
+    <object-name>ST_BBesel</object-name>
+    <object-name>ST_BButton</object-name>
+    <object-name>ST_BRAxleOne</object-name>
+    <object-name>ST_BRAxleTwo</object-name>
+    <object-name>ST_BRBlocker</object-name>
+    <object-name>ST_BRCord</object-name>
+    <object-name>ST_BRLever</object-name>
+    <object-name>ST_BRRod</object-name>
+    <object-name>ST_Base</object-name>
+    <object-name>ST_EAxleOne</object-name>
+    <object-name>ST_EAxleTwo</object-name>
+    <object-name>ST_EBase</object-name>
+    <object-name>ST_ERod</object-name>
+    <object-name>ST_FAxle</object-name>
+    <object-name>ST_Fix</object-name>
+    <object-name>ST_Handle</object-name>
+    <object-name>ST_MGBezel</object-name>
+    <object-name>ST_MGButton</object-name>
+    <object-name>ST_Pipe</object-name>
+    <object-name>ST_ROne</object-name>
+    <object-name>ST_RTwo</object-name>
+    <object-name>ST_RThree</object-name>
+    <object-name>ST_RFour</object-name>
+    <object-name>ST_RFive</object-name>
+    <emission>
+    <factor-prop>systems/light/canopy-lamps-norm</factor-prop>
+      <red>0.777</red>
+      <green>0.700</green>
+      <blue>0.700</blue>
+    </emission>
+    <condition>
+      <equals>
+        <property>systems/light/use-canopy-lamps</property>
+        <value>1</value>
+      </equals>
+    </condition>
+  </animation>
   -->
+
+  <animation>
+    <type>select</type>
+    <object-name>ST_AAxleOne</object-name>
+    <object-name>ST_AAxleThree</object-name>
+    <object-name>ST_AAxleTwo</object-name>
+    <object-name>ST_ABase</object-name>
+    <object-name>ST_AHolder</object-name>
+    <object-name>ST_ARockerOne</object-name>
+    <object-name>ST_ARockerTwo</object-name>
+    <object-name>ST_ARodOne</object-name>
+    <object-name>ST_ARodTwo</object-name>
+    <object-name>ST_BBase</object-name>
+    <object-name>ST_BBezel</object-name>
+    <object-name>ST_BButton</object-name>
+    <object-name>ST_BRAxleOne</object-name>
+    <object-name>ST_BRAxleThree</object-name>
+    <object-name>ST_BRAxleTwo</object-name>
+    <object-name>ST_BRBlocker</object-name>
+    <object-name>ST_BRCord</object-name>
+    <object-name>ST_BRLever</object-name>
+    <object-name>ST_BRRod</object-name>
+    <object-name>ST_Base</object-name>
+    <object-name>ST_Bolts</object-name>
+    <object-name>ST_EAxleOne</object-name>
+    <object-name>ST_EAxleTwo</object-name>
+    <object-name>ST_EBase</object-name>
+    <object-name>ST_ERod</object-name>
+    <object-name>ST_FAxle</object-name>
+    <object-name>ST_Fix</object-name>
+    <object-name>ST_Handle</object-name>
+    <object-name>ST_MGBezel</object-name>
+    <object-name>ST_MGButton</object-name>
+    <object-name>ST_Pipe</object-name>
+    <object-name>ST_RBase</object-name>
+    <object-name>ST_RFive</object-name>
+    <object-name>ST_RFour</object-name>
+    <object-name>ST_ROne</object-name>
+    <object-name>ST_RThree</object-name>
+    <object-name>ST_RTwo</object-name>
+    <condition>
+      <property>/sim/model/show_stick</property>
+    </condition>
+  </animation>
 
   <animation>
     <type>rotate</type>
@@ -420,6 +462,5 @@
       </binding>
     </action>
   </animation>
-
 
 </PropertyList> 

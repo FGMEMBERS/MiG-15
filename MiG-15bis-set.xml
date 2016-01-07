@@ -202,15 +202,15 @@ MAXIMUM SPEEDS
                     IAS (km/h)     Mach
 Clean                     1070     0.92
 With drop tanks          700     0.7
-Gear extended           350
-Flaps 20deg              450
-Flaps 55deg              350
+Gear extended           400
+Flaps 20deg              500
+Flaps 55deg              380
 Touchdown               250
 
 BEST CLIMB SPEED
 v_true = 710km/h (11560rpm)
 
-MINIMUM SPEED FOR MANEUVERABILITY
+MINIMUM MANOEUVERING SPEED
 v_ind = 300km/h
 
 LANDING
@@ -237,7 +237,7 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
     <flight-model>jsb</flight-model>
     <status>advanced production</status>
     <author>Lee Elliott, Victor Slavutinskiy, with great help from Yurik V. Nikiforoff</author>
-    <aircraft-version>3.0.9</aircraft-version>
+    <aircraft-version>3.1.0</aircraft-version>
     <aero>MiG-15bis</aero>
     <fuel-fraction>1.0</fuel-fraction>
     <description>MiG-15bis (JSBSim FDM)</description>
@@ -385,6 +385,10 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
           <enabled type="bool">true</enabled>
         </particles>
       </MiG-15bis-model>
+      <show_gunsight archive="y" type="bool">true</show_gunsight>
+      <show_Magcompass archive="y" type="bool">true</show_Magcompass>
+      <show_stick archive="y" type="bool">true</show_stick>
+      <show_heattube archive="y" type="bool">true</show_heattube>
     </model>
 
     <configuration>
@@ -501,20 +505,11 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
             </binding>
           </item>
           <item n="6">
-            <label>Beginner mode: no failures</label>
-            <binding><command>property-assign</command><property>listeners/aircraft-break/enabled</property> <value>0</value></binding>
-            <binding><command>property-assign</command><property>listeners/gear-break/enabled</property>     <value>0</value></binding>
-            <binding><command>property-assign</command><property>processes/aircraft-break/enabled</property>  <value>0</value></binding>
-            <binding><command>property-assign</command><property>processes/engine/failures-enabled</property> <value>0</value></binding>
-            <binding><command>property-assign</command><property>processes/gear-break/enabled</property>      <value>0</value></binding>
-          </item>
-          <item n="7">
-            <label>Pilot mode</label>
-            <binding><command>property-assign</command><property>listeners/aircraft-break/enabled</property> <value>1</value></binding>
-            <binding><command>property-assign</command><property>listeners/gear-break/enabled</property>     <value>1</value></binding>
-            <binding><command>property-assign</command><property>processes/aircraft-break/enabled</property>  <value>1</value></binding>
-            <binding><command>property-assign</command><property>processes/engine/failures-enabled</property> <value>1</value></binding>
-            <binding><command>property-assign</command><property>processes/gear-break/enabled</property>      <value>1</value></binding>
+            <label>Configuration</label>
+            <binding>
+              <command>dialog-show</command>
+              <dialog-name>configuration_dialog</dialog-name>
+            </binding>
           </item>
         </menu>
       </default>

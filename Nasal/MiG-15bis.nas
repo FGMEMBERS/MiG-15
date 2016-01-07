@@ -943,6 +943,77 @@ set_friction();
 #--------------------------------------------------------------------
 # Gear breaks listener
 
+# gear break evaluation
+calculate_vspeed_gear_one = func{
+  wow = getprop("/gear/gear[0]/wow");
+  if (wow) {
+    pitch_degps = getprop("/orientation/pitch-rate-degps");
+    vspeed = getprop("/velocities/speed-down-fps");
+    var result = 0.3048 * vspeed - 0.01745 * pitch_degps * 2.9; #m/s
+    setprop("/fdm/jsbsim/calculations/vspeed_gear_one",result);
+    logprint(3,"vspeed_gear_one:" ~ result ~ "m/s");
+  }
+}
+setlistener("/gear/gear[0]/wow",calculate_vspeed_gear_one,0,0);
+
+calculate_vspeed_gear_two = func{
+  wow = getprop("/gear/gear[1]/wow");
+  if (wow) {
+    vspeed = getprop("/velocities/speed-down-fps")*0.3048;
+    setprop("/fdm/jsbsim/calculations/vspeed_gear_two",vspeed);
+    logprint(3,"vspeed_gear_two:" ~ vspeed ~ "m/s");
+  }
+}
+setlistener("/gear/gear[1]/wow",calculate_vspeed_gear_two,0,0);
+
+calculate_vspeed_gear_three = func{
+  wow = getprop("/gear/gear[2]/wow");
+  if (wow) {
+    vspeed = getprop("/velocities/speed-down-fps")*0.3048;
+    setprop("/fdm/jsbsim/calculations/vspeed_gear_three",vspeed);
+    logprint(3,"vspeed_gear_three:" ~ vspeed ~ "m/s");
+  }
+}
+setlistener("/gear/gear[2]/wow",calculate_vspeed_gear_three,0,0);
+
+# show touchdown speeds
+indicate_1 = func{
+  indicate = getprop("/sim/configuration/show_touchdown_speeds");
+  if (indicate) {
+    wow = getprop("/gear/gear[0]/wow");
+    downspeed = getprop("/fdm/jsbsim/calculations/vspeed_gear_one");
+    if (wow) {
+      screen.log.write(sprintf("Gear 1: %.2f m/s",downspeed),0,1,0);
+    }
+  }
+}
+settimer(func{setlistener("/gear/gear[0]/wow",indicate_1,0,0);},10);
+
+indicate_2 = func{
+  indicate = getprop("/sim/configuration/show_touchdown_speeds");
+  if (indicate) {
+    wow = getprop("/gear/gear[1]/wow");
+    downspeed = getprop("/fdm/jsbsim/calculations/vspeed_gear_two");
+    if (wow) {
+      screen.log.write(sprintf("Gear 2: %.2f m/s",downspeed),0,1,0);
+    }
+  }
+}
+settimer(func{setlistener("/gear/gear[1]/wow",indicate_2,0,0);},10);
+
+indicate_3 = func{
+  indicate = getprop("/sim/configuration/show_touchdown_speeds");
+  if (indicate) {
+    wow = getprop("/gear/gear[2]/wow");
+    downspeed = getprop("/fdm/jsbsim/calculations/vspeed_gear_three");
+    if (wow) {
+      screen.log.write(sprintf("Gear 3: %.2f m/s",downspeed),0,1,0);
+    }
+  }
+}
+settimer(func{setlistener("/gear/gear[2]/wow",indicate_3,0,0);},10);
+
+
 teargear = func (gear_number, breaktype)
 {
   gear_torn=getprop("fdm/jsbsim/gear/unit["~gear_number~"]/torn");
@@ -959,7 +1030,6 @@ teargear = func (gear_number, breaktype)
   setprop("fdm/jsbsim/gear/unit["~gear_number~"]/torn", 1);
   setprop("fdm/jsbsim/gear/unit["~gear_number~"]/pos-norm-real", 0);
   setprop("fdm/jsbsim/gear/unit["~gear_number~"]/z-position", 0);
-# setprop("gear/gear["~gear_number~"]/position-norm", 0);
   gears_torn_sound=getprop("sounds/gears-torn/on");
   setprop("/sim/messages/copilot",
     "Gear " ~ gear_number ~ " torn: " ~ breaktype ~ "!");
@@ -1013,10 +1083,9 @@ gearbreakslistener = func
   gear_two_torn=getprop("fdm/jsbsim/gear/unit[1]/torn");
   gear_three_torn=getprop("fdm/jsbsim/gear/unit[2]/torn");
   pilot_g=getprop("fdm/jsbsim/accelerations/Nz");
-  maximum_g=getprop("fdm/jsbsim/accelerations/Nz-max");
+  gear_maximum_g=10.0;
   speed=getprop("velocities/airspeed-kt");
   mach=getprop("velocities/mach");
-  pitch_degps=getprop("orientation/pitch-rate-degps");
   roll_speed_one=getprop("gear/gear/rollspeed-ms");
   roll_speed_two=getprop("gear/gear[1]/rollspeed-ms");
   roll_speed_three=getprop("gear/gear[2]/rollspeed-ms");
@@ -1027,15 +1096,23 @@ gearbreakslistener = func
   wow_two=getprop("gear/gear[1]/wow");
   wow_three=getprop("gear/gear[2]/wow");
   gear_started=getprop("fdm/jsbsim/init/finally-initialized");
+
+  vspeed_gear_one = getprop("/fdm/jsbsim/calculations/vspeed_gear_one");
+  vspeed_gear_two = getprop("/fdm/jsbsim/calculations/vspeed_gear_two");
+  vspeed_gear_three = getprop("/fdm/jsbsim/calculations/vspeed_gear_three");
+  gear_main_load=getprop("/fdm/jsbsim/accelerations/Nz-max");
+  gear_main_maxload=getprop("/fdm/jsbsim/tweak_factors/gear_main_maxload");
+  gear_one_maxload=getprop("/fdm/jsbsim/tweak_factors/gear_one_maxload");
+  gear_one_maxload_single=getprop("/fdm/jsbsim/tweak_factors/gear_one_maxload_single");
+  var mass_factor=getprop("/fdm/jsbsim/inertia/weight-lbs")*0.45359/4000;
   if (
     (gear_one_torn==nil)
     or (gear_two_torn==nil)
     or (gear_three_torn==nil)
     or (pilot_g==nil)
-    or (maximum_g==nil)
+    or (gear_maximum_g==nil)
     or (speed==nil)
     or (mach==nil)
-    or (pitch_degps==nil)
     or (roll_speed_one==nil)
     or (roll_speed_two==nil)
     or (roll_speed_three==nil)
@@ -1054,47 +1131,21 @@ gearbreakslistener = func
   {
     return ( stop_gearbreakslistener ); 
   }
-  #Hit breaks and ground type breaks checks here, speed breaks checks in process
-  if (
-    (wow_one>0)
-    and (abs(pilot_g)>2)
-    and (abs(pilot_g)>(maximum_g-(maximum_g*0.25)))
-  )
-  {
-    gear_one_torn=teargear(0, "hit overload "~pilot_g);
+
+  # gear breaking is now decided using vertical velocity and aircraft weight
+  if (wow_one>0) {
+    var max = 0;
+    if (wow_two == 0 or wow_three == 0) { max = gear_one_maxload_single/mass_factor; }
+    else                                { max = gear_one_maxload/mass_factor; }
+    if (vspeed_gear_one > max) {
+      gear_one_torn = teargear(0, "front gear broken: " ~ vspeed_gear_one ~ "m/s");
+    }
   }
-  if (
-    (wow_two>0)
-    and (abs(pilot_g)>2)
-    and (abs(pilot_g)>(maximum_g-(maximum_g*0.25)))
-  )
-  {
-    gear_two_torn=teargear(1, "hit overload "~pilot_g);
+  if (wow_two > 0 and vspeed_gear_two > (gear_main_maxload/mass_factor)) {
+    gear_two_torn = teargear(1, "main gear broken: " ~ vspeed_gear_two ~ "m/s");
   }
-  if (
-    (wow_three>0)
-    and (abs(pilot_g)>2)
-    and (abs(pilot_g)>(maximum_g-(maximum_g*0.25)))
-  )
-  {
-    gear_three_torn=teargear(2, "hit overload "~pilot_g);
-  }
-  if (
-    (wow_one>0) 
-    and (
-      (wow_two==0)
-      and (wow_three==0)
-    )
-  )
-  {
-    gear_one_torn=teargear(0, "dig "~pilot_g);
-  }
-  if (
-    (wow_one>0)
-    and (pitch_degps<-10)
-  )
-  {
-    gear_one_torn=teargear(0, "peck "~pitch_degps);
+  if (wow_three > 0 and vspeed_gear_three > (gear_main_maxload/mass_factor)) {
+    gear_three_torn = teargear(2, "main gear broken: " ~ vspeed_gear_three ~ "m/s");
   }
 }
 
@@ -1106,10 +1157,9 @@ init_gearbreakslistener = func
 
 init_gearbreakslistener();
 
-setlistener("gear/gear/wow", gearbreakslistener);
-setlistener("gear/gear[1]/wow", gearbreakslistener);
-setlistener("gear/gear[2]/wow", gearbreakslistener);
-
+setlistener("gear/gear[0]/wow", gearbreakslistener,0,0);
+setlistener("gear/gear[1]/wow", gearbreakslistener,0,0);
+setlistener("gear/gear[2]/wow", gearbreakslistener,0,0);
 
 #--------------------------------------------------------------------
 # Gear breaks
@@ -1144,7 +1194,6 @@ gearbreaksprocess = func
   maximum_g=getprop("fdm/jsbsim/accelerations/Nz-max");
   speed=getprop("velocities/airspeed-kt");
   mach=getprop("velocities/mach");
-  pitch_degps=getprop("orientation/pitch-rate-degps");
   roll_speed_one=getprop("gear/gear/rollspeed-ms");
   roll_speed_two=getprop("gear/gear[1]/rollspeed-ms");
   roll_speed_three=getprop("gear/gear[2]/rollspeed-ms");
@@ -1162,7 +1211,6 @@ gearbreaksprocess = func
     or (maximum_g==nil)
     or (speed==nil)
     or (mach==nil)
-    or (pitch_degps==nil)
     or (roll_speed_one==nil)
     or (roll_speed_two==nil)
     or (roll_speed_three==nil)
@@ -1212,7 +1260,7 @@ gearbreaksprocess = func
       )
   {
     speed_km=speed*1.852;
-    #Middle gear speed limit max 550 km\h on 0.5 of extraction, 520 on 1
+    #Middle gear speed limit max 550 km/h on 0.5 of extraction, 520 on 1
     speed_limit_middle=500-((gear_one_pos-0.5)/(1-0.5))*(550-525);
     setprop("fdm/jsbsim/gear/unit[0]/speed-limit", speed_limit_middle);
     if ((speed_km>speed_limit_middle) and (speed_limit_middle>0))
@@ -1255,28 +1303,7 @@ gearbreaksprocess = func
     {
       gear_three_torn=teargear(2, "overroll "~speed_km);
     }
-
-    if ((gear_one_torn==0) and (wow_one==0) and (abs(pilot_g)>3))
-    {
-      gear_one_torn=teargear(0, "flight overload "~pilot_g);
-    }
-    if (
-      (gear_two_torn==0) 
-      and (wow_two==0) 
-      and (abs(pilot_g)>3)
-        )
-    {
-      gear_two_torn=teargear(1, "flight overload "~pilot_g);
-    }
-    if (
-      (gear_three_torn==0) 
-      and (wow_three==0) 
-      and (abs(pilot_g)>3)
-        )
-    {
-      gear_three_torn=teargear(2, "flight overload "~pilot_g);
-    }
-
+    
     if (info[1].solid!=1)
     {
       if ((gear_one_torn==0) and (wow_one>0))
@@ -1337,6 +1364,7 @@ gearbreaksprocess = func
     if (gear_impact!="")
     {
       setprop("ai/submodels/gear-middle-impact", "");
+      logprint(3,"-----gear-middle-impact");
       gear_touch_down();
     }
   }
@@ -1688,17 +1716,20 @@ gearmove = func
     setprop("processes/gear-move/sound-enabled", 0);
   }
   speed_km=speed*1.852;
+  
+  var geartime = 8.0 + 1.5 * rand();
   if (gear_one_torn==0)
   {
-    one_gear_move(0, gear_one_pos, gear_command_real, gear_one_stuck, 4.2, 1.459, 105, speed_km, 375);
+    one_gear_move(0, gear_one_pos, gear_command_real, gear_one_stuck, geartime, 1.459, 105, speed_km, 425);
   }
   if (gear_two_torn==0)
   {
-    one_gear_move(1, gear_two_pos, gear_command_real, gear_two_stuck, 4.8, 1.332, 95, speed_km, 355);
+    one_gear_move(1, gear_two_pos, gear_command_real, gear_two_stuck, 10.0, 1.332, 95, speed_km, 400);
   }
+  var geartime = 9.5 + 2 * rand();
   if (gear_three_torn==0)
   {
-    one_gear_move(2, gear_three_pos, gear_command_real, gear_three_stuck, 5, 1.332, 95, speed_km, 350);
+    one_gear_move(2, gear_three_pos, gear_command_real, gear_three_stuck, geartime, 1.332, 95, speed_km, 400);
   }
   settimer(gearmove, 0.0);
 }
@@ -2271,8 +2302,7 @@ flapsbreaksprocess = func
   if ((torn==0) and (flaps_pos_deg>5))
   {
     speed_km=speed*1.852;
-    #max 450 km\h on 20 deg, 350 on 55 deg
-    speed_limit=450-((flaps_pos_deg-20)/(55-20))*(450-350);
+    speed_limit=500-((flaps_pos_deg-20)/(55-20))*(500-380);
     setprop("fdm/jsbsim/fcs/flap-speed-limit", speed_limit);
     if ((speed_km>speed_limit) and (speed_limit>0))
     {
@@ -2903,7 +2933,7 @@ engineprocess=func
       setprop("engines/engine/low-throttle-time", 0);
       setprop("engines/engine/low-throttle-prev-time", 0);
     }
-    if (engine_temperature_degc>825 and getprop ("processes/engine/failures-enabled") == 1)
+    if (engine_temperature_degc>870 and getprop ("processes/engine/failures-enabled") == 1)
     {
       #Engine switch off if it goes on high temperature too long
       if (high_temperature_prev_time==0)
@@ -2911,9 +2941,9 @@ engineprocess=func
         high_temperature_prev_time=simulation_time;
       }
       setprop("engines/engine/high-temperature-prev-time", simulation_time);
-      var high_temperature_time=high_temperature_time+(simulation_time-high_temperature_prev_time)*(engine_temperature_degc-825)/25;
+      var high_temperature_time=high_temperature_time+(simulation_time-high_temperature_prev_time)*(engine_temperature_degc-870)/10;
       setprop("engines/engine/high-temperature-time", high_temperature_time);
-      if (high_temperature_time>30)
+      if (high_temperature_time>400)
       {
         running=engine_stop("high temperature "~engine_temperature_degc);
       }
@@ -4763,13 +4793,6 @@ droptank = func
       settimer(setdrop, 0.2);
     }
   }
-  if ((dropped==1) and ((left_level>0) or (right_level>0)))
-  {
-    setprop("instrumentation/drop-tank/dropped", 0);
-    setprop("fdm/jsbsim/tanks/fastened", 1);
-    setprop("ai/submodels/drop-tank", 0);
-    setprop("ai/submodels/bomb-tank", 0);
-  }
   left_bomb_tank_impact=getprop("ai/submodels/left-bomb-tank-impact");
   if (left_bomb_tank_impact!=nil)
   {
@@ -4820,8 +4843,39 @@ init_droptank=func
   #values to move object to real zero
   setprop("instrumentation/drop-tank/one", 1);
 }
-
 init_droptank();
+
+# Listener added to detect if tanks have been dropped or disabled my menu
+var set_droptanks_1=func{
+  var cond=getprop("fdm/jsbsim/tanks/attached");
+  if (cond) {
+    setprop("fdm/jsbsim/tanks/fastened", 1);
+    setprop("consumables/fuel/tank[3]/level-gal_us", 60.6);
+    setprop("consumables/fuel/tank[3]/selected", 1);
+    setprop("consumables/fuel/tank[4]/level-gal_us", 60.6);
+    setprop("consumables/fuel/tank[4]/selected", 1);
+    setprop("instrumentation/drop-tank/dropped", 0);
+    # setprop("ai/submodels/drop-tank", 1);
+    # setprop("ai/submodels/bomb-tank", 1);
+    setprop ("/sim/messages/copilot", "Droptanks attached");
+  } else {
+    setprop("fdm/jsbsim/tanks/fastened", 0);
+    setprop("consumables/fuel/tank[3]/level-gal_us", 0);
+    setprop("consumables/fuel/tank[3]/selected", 0);
+    setprop("consumables/fuel/tank[4]/level-gal_us", 0);
+    setprop("consumables/fuel/tank[4]/selected", 0);
+    setprop("instrumentation/drop-tank/dropped", 1);
+    # setprop("ai/submodels/drop-tank", 0);
+    # setprop("ai/submodels/bomb-tank", 0);
+    setprop ("/sim/messages/copilot", "Droptanks removed");
+  }
+}
+setlistener("fdm/jsbsim/tanks/attached", set_droptanks_1,1,0);
+
+var set_droptanks_2=func{
+  setprop("fdm/jsbsim/tanks/attached", getprop("fdm/jsbsim/tanks/fastened"));
+}
+setlistener("fdm/jsbsim/tanks/fastened", set_droptanks_2,1,0);
 
 setdrop = func
 {
@@ -5253,7 +5307,7 @@ aircraftbreakprocess=func
   if (
     (exploded!=1)
     and
-    (abs(pilot_g)>maximum_g)
+    (abs(pilot_g)>(1.5*maximum_g)) # max.load=8g, but destructive load=12g
       )
   {
     exploded=1;
@@ -6394,6 +6448,7 @@ autostart_process = func
   if (pos==40)
   {
     setprop("fdm/jsbsim/systems/rightpanel/headsight-input", 1);
+    setprop("fdm/jsbsim/systems/headsight/gyro-command", 0);
     switch_pos=getprop("fdm/jsbsim/systems/rightpanel/headsight-switch");
     if (switch_pos==nil)
     {
