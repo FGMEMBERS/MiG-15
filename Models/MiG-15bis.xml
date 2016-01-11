@@ -60,10 +60,12 @@ rplayer.getNode("instrumentation/oxygen-pressure-meter/oxygen-on", 1).
 alias(rplayer.getNode("sim/multiplay/generic/float[15]"));
 
 MiG_15bis_bombable.load(rplayer);
+var livery_update = aircraft.livery_update.new("Aircraft/MiG-15/Models/Liveries");
     ]]></load>
     <unload><![CDATA[
 var rplayer = cmdarg();
 print("UNLOAD MiG-15bis ", rplayer.getPath());
+livery_update.stop();
 MiG_15bis_bombable.unload(rplayer);
     ]]></unload>
   </nasal>
@@ -83,14 +85,14 @@ MiG_15bis_bombable.unload(rplayer);
     <object-name>PLT_Glass</object-name>
     <condition>
       <or>
-	<equals>
-	  <property>sim/current-view/internal</property>
-	  <value>false</value>	
-	</equals>
-	<not-equals>
-	  <property>id</property>
-	  <value>0.0</value>	
-	</not-equals>
+        <equals>
+          <property>sim/current-view/internal</property>
+          <value>false</value>  
+        </equals>
+        <not-equals>
+          <property>id</property>
+          <value>0.0</value>    
+        </not-equals>
       </or>
     </condition>
   </animation>
@@ -101,48 +103,13 @@ MiG_15bis_bombable.unload(rplayer);
     <object-name>PLT_FaceMask</object-name>
     <condition>
       <not>
-	<equals>
-	  <property>instrumentation/oxygen-pressure-meter/oxygen-on</property>
-	  <value>0</value>
-	</equals>
+        <equals>
+          <property>instrumentation/oxygen-pressure-meter/oxygen-on</property>
+          <value>0</value>
+        </equals>
       </not>
     </condition>
   </animation>
-
-  <!--
-
-<effect>
-<inherits-from>Aircraft/Generic/Effects/Fuselagereflect</inherits-from>
-<object-name>WNG_PitotProbe</object-name>
-<object-name>UC_MainL_CStLow</object-name>
-<object-name>UC_MainR_CStLow</object-name>
-<object-name>UC_MainL_StLow</object-name>
-<object-name>UC_MainR_StLow</object-name>
-<object-name>FUS_Hull</object-name>
-<object-name>UC_MainL_DoorIS</object-name>
-<object-name>UC_MainR_DoorIS</object-name>
-<object-name>UC_MainL_DoorLS</object-name>
-<object-name>UC_MainR_DoorLS</object-name>
-<object-name>UC_MainL_DoorMS</object-name>
-<object-name>UC_MainR_DoorMS</object-name>
-<object-name>UC_MainL_DoorOS</object-name>
-<object-name>UC_MainR_DoorOS</object-name>
-<object-name>WNG_FlapLUp</object-name>
-<object-name>WNG_FlapLDown</object-name>
-<object-name>WNG_FlapRUp</object-name>
-<object-name>WNG_FlapRDown</object-name>
-<object-name>WNG_AileronL</object-name>
-<object-name>WNG_AileronR</object-name>
-<object-name>WNG_Trimmer</object-name>
-<object-name>TF_Rudder</object-name>
-<object-name>TP_ElevatorL</object-name>
-<object-name>TP_ElevatorR</object-name>
-<object-name>TP_Trimmer</object-name>
-<object-name>FUS_RSBPisSmall</object-name>
-<object-name>FUS_LSBPisSmall</object-name>
-</effect>
-
-  -->
 
   <!-- Rudder -->
   <animation>
@@ -245,8 +212,10 @@ MiG_15bis_bombable.unload(rplayer);
   <!-- Elevator -->
   <animation>
     <type>rotate</type>
-    <object-name>TP_ElevatorL</object-name>
-    <object-name>TP_Trimmer</object-name>
+    <object-name>TP_ElevatorL_0</object-name>
+    <object-name>TP_ElevatorL_1</object-name>
+    <object-name>TP_Trimmer_0</object-name>
+    <object-name>TP_Trimmer_1</object-name>
     <property>surface-positions/elevator-pos-norm</property>
     <factor>-31.51</factor>
     <center>
@@ -263,7 +232,8 @@ MiG_15bis_bombable.unload(rplayer);
 
   <animation>
     <type>rotate</type>
-    <object-name>TP_ElevatorR</object-name>
+    <object-name>TP_ElevatorR_0</object-name>
+    <object-name>TP_ElevatorR_1</object-name>
     <property>surface-positions/elevator-pos-norm</property>
     <factor>31.51</factor>
     <center>
@@ -282,7 +252,8 @@ MiG_15bis_bombable.unload(rplayer);
 
   <animation>
     <type>rotate</type>
-    <object-name>TP_Trimmer</object-name>
+    <object-name>TP_Trimmer_0</object-name>
+    <object-name>TP_Trimmer_1</object-name>
     <property>fdm/jsbsim/fcs/pitch-trim-norm-indicated</property>
     <factor>15</factor>
     <axis>   
@@ -407,8 +378,8 @@ MiG_15bis_bombable.unload(rplayer);
     <object-name>WNG_FlapRDown</object-name>
     <condition>
       <equals>
-	<property>fdm/jsbsim/fcs/flap-torn</property>
-	<value>0</value>	
+        <property>fdm/jsbsim/fcs/flap-torn</property>
+        <value>0</value>        
       </equals>
     </condition>
   </animation>
@@ -614,14 +585,14 @@ MiG_15bis_bombable.unload(rplayer);
     <object-name>FUS_Nose_WWell</object-name>
     <condition>
       <or>
-	<greater-than>
-	  <property>fdm/jsbsim/gear/unit[0]/pos-norm-real</property>
-	  <value>0.0</value>
-	</greater-than>
-	<greater-than>
-	  <property>fdm/jsbsim/gear/unit[0]/torn</property>
-	  <value>0.0</value>
-	</greater-than>
+        <greater-than>
+          <property>fdm/jsbsim/gear/unit[0]/pos-norm-real</property>
+          <value>0.0</value>
+        </greater-than>
+        <greater-than>
+          <property>fdm/jsbsim/gear/unit[0]/torn</property>
+          <value>0.0</value>
+        </greater-than>
       </or>
     </condition>
   </animation>
@@ -636,8 +607,8 @@ MiG_15bis_bombable.unload(rplayer);
     <object-name>UC_Nose_Tyre</object-name>
     <condition>
       <greater-than>
-	<property>fdm/jsbsim/gear/unit[0]/pos-norm-real</property>
-	<value>0.0</value>
+        <property>fdm/jsbsim/gear/unit[0]/pos-norm-real</property>
+        <value>0.0</value>
       </greater-than>
     </condition>
   </animation>
@@ -648,8 +619,8 @@ MiG_15bis_bombable.unload(rplayer);
     <object-name>FUS_NoseDoorRS</object-name>
     <condition>
       <less-than>
-	<property>fdm/jsbsim/gear/unit[0]/torn</property>
-	<value>1.0</value>
+        <property>fdm/jsbsim/gear/unit[0]/torn</property>
+        <value>1.0</value>
       </less-than>
     </condition>
   </animation>
@@ -778,14 +749,14 @@ MiG_15bis_bombable.unload(rplayer);
     <object-name>WNG_WheelWellL</object-name>
     <condition>
       <or>
-	<greater-than>
-	  <property>fdm/jsbsim/gear/unit[1]/pos-norm-real</property>
-	  <value>0.0</value>
-	</greater-than>
-	<greater-than>
-	  <property>fdm/jsbsim/gear/unit[1]/torn</property>
-	  <value>0.0</value>
-	</greater-than>
+        <greater-than>
+          <property>fdm/jsbsim/gear/unit[1]/pos-norm-real</property>
+          <value>0.0</value>
+        </greater-than>
+        <greater-than>
+          <property>fdm/jsbsim/gear/unit[1]/torn</property>
+          <value>0.0</value>
+        </greater-than>
       </or>
     </condition>
   </animation>
@@ -805,8 +776,8 @@ MiG_15bis_bombable.unload(rplayer);
     <object-name>UC_MainL_DoorOB</object-name>
     <condition>
       <greater-than>
-	<property>fdm/jsbsim/gear/unit[1]/pos-norm-real</property>
-	<value>0.0</value>
+        <property>fdm/jsbsim/gear/unit[1]/pos-norm-real</property>
+        <value>0.0</value>
       </greater-than>
     </condition>
   </animation>
@@ -818,8 +789,8 @@ MiG_15bis_bombable.unload(rplayer);
     <object-name>UC_MainL_DoorOS</object-name>
     <condition>
       <less-than>
-	<property>fdm/jsbsim/gear/unit[1]/torn</property>
-	<value>1.0</value>
+        <property>fdm/jsbsim/gear/unit[1]/torn</property>
+        <value>1.0</value>
       </less-than>
     </condition>
   </animation>
@@ -994,14 +965,14 @@ MiG_15bis_bombable.unload(rplayer);
     <object-name>WNG_WheelWellR</object-name>
     <condition>
       <or>
-	<greater-than>
-	  <property>fdm/jsbsim/gear/unit[2]/pos-norm-real</property>
-	  <value>0.0</value>
-	</greater-than>
-	<greater-than>
-	  <property>fdm/jsbsim/gear/unit[2]/torn</property>
-	  <value>0.0</value>
-	</greater-than>
+        <greater-than>
+          <property>fdm/jsbsim/gear/unit[2]/pos-norm-real</property>
+          <value>0.0</value>
+        </greater-than>
+        <greater-than>
+          <property>fdm/jsbsim/gear/unit[2]/torn</property>
+          <value>0.0</value>
+        </greater-than>
       </or>
     </condition>
   </animation>
@@ -1021,8 +992,8 @@ MiG_15bis_bombable.unload(rplayer);
     <object-name>UC_MainR_DoorOB</object-name>
     <condition>
       <greater-than>
-	<property>fdm/jsbsim/gear/unit[2]/pos-norm-real</property>
-	<value>0.0</value>
+        <property>fdm/jsbsim/gear/unit[2]/pos-norm-real</property>
+        <value>0.0</value>
       </greater-than>
     </condition>
   </animation>
@@ -1034,8 +1005,8 @@ MiG_15bis_bombable.unload(rplayer);
     <object-name>UC_MainR_DoorOS</object-name>
     <condition>
       <less-than>
-	<property>fdm/jsbsim/gear/unit[2]/torn</property>
-	<value>1.0</value>
+        <property>fdm/jsbsim/gear/unit[2]/torn</property>
+        <value>1.0</value>
       </less-than>
     </condition>
   </animation>
@@ -1236,7 +1207,7 @@ MiG_15bis_bombable.unload(rplayer);
       <y>1.0</y>
       <z>0.0</z>
     </axis>
-  </animation>	
+  </animation>  
 
   <animation>
     <type>spin</type>
@@ -1254,7 +1225,7 @@ MiG_15bis_bombable.unload(rplayer);
       <y>1.0</y>
       <z>0.0</z>
     </axis>
-  </animation>	
+  </animation>  
 
 
   <!-- Canopy -->
@@ -1418,4 +1389,135 @@ MiG_15bis_bombable.unload(rplayer);
     <max-m>15000</max-m>
   </animation>
 
+  <!-- selectable livery -->
+  <animation>
+    <type>material</type>
+    <object-name>FUS_Hull_Main</object-name>
+    <property-base>sim/model/livery</property-base>
+    <texture-prop>txt_0</texture-prop>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>FUS_Tail_Antennas</object-name>
+    <property-base>sim/model/livery</property-base>
+    <texture-prop>txt_1</texture-prop>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>FUS_Intake</object-name>
+    <property-base>sim/model/livery</property-base>
+    <texture-prop>txt_2</texture-prop>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>FUS_NoseDoorLS</object-name>
+    <object-name>FUS_NoseDoorRS</object-name>
+    <object-name>UC_MainR_DoorIB</object-name>
+    <object-name>UC_MainL_DoorIB</object-name>
+    <property-base>sim/model/livery</property-base>
+    <texture-prop>txt_3</texture-prop>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>FUS_SBDoorLB</object-name>
+    <object-name>FUS_SBDoorRB</object-name>
+    <object-name>FUS_SBWellL_1</object-name>
+    <object-name>FUS_SBWelR</object-name>
+    <property-base>sim/model/livery</property-base>
+    <texture-prop>txt_4</texture-prop>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>FUS_SBDoorLS</object-name>
+    <property-base>sim/model/livery</property-base>
+    <texture-prop>txt_5</texture-prop>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>FUS_SBDoorRS</object-name>
+    <property-base>sim/model/livery</property-base>
+    <texture-prop>txt_6</texture-prop>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>TP_ElevatorL_0</object-name>
+    <object-name>TP_ElevatorR_0</object-name>
+    <object-name>TP_Trimmer_0</object-name>
+    <object-name>TF_Rudder</object-name>
+    <object-name>FUS_ElDown</object-name>
+    <property-base>sim/model/livery</property-base>
+    <texture-prop>txt_7</texture-prop>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>TP_ElevatorL_1</object-name>
+    <object-name>TP_ElevatorR_1</object-name>
+    <object-name>TP_Trimmer_1</object-name>
+    <object-name>FUS_ElUp_1</object-name>
+    <property-base>sim/model/livery</property-base>
+    <texture-prop>txt_8</texture-prop>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>FUS_Hull_5</object-name>
+    <object-name>UC_MainL_DoorIS</object-name>
+    <object-name>UC_MainL_DoorMS</object-name>
+    <object-name>UC_MainL_DoorOS</object-name>
+    <object-name>UC_MainR_DoorIS</object-name>
+    <object-name>UC_MainR_DoorMS</object-name>
+    <object-name>UC_MainR_DoorOS</object-name>
+    <object-name>WNG_FlapLDown</object-name>
+    <object-name>WNG_FlapLUp</object-name>
+    <object-name>WNG_FlapRDown</object-name>
+    <object-name>WNG_FlapRUp</object-name>
+    <property-base>sim/model/livery</property-base>
+    <texture-prop>txt_9</texture-prop>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>FUS_Hull_1</object-name>
+    <property-base>sim/model/livery</property-base>
+    <texture-prop>txt_10</texture-prop>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>WNG_AileronL</object-name>
+    <property-base>sim/model/livery</property-base>
+    <texture-prop>txt_11</texture-prop>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>WNG_AileronR</object-name>
+    <property-base>sim/model/livery</property-base>
+    <texture-prop>txt_12</texture-prop>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>WNG_Trimmer</object-name>
+    <property-base>sim/model/livery</property-base>
+    <texture-prop>txt_13</texture-prop>
+  </animation>
+
+  <!-- droptank livery select -->
+
+  <path>MiG-15bis-Fueltank.ac</path> 
+
+  <animation>
+    <type>material</type>
+    <object-name>TK_HUp</object-name>
+    <object-name>TK_HDown</object-name>
+    <object-name>TK_Wing</object-name>
+    <property-base>sim/model/livery</property-base>
+    <texture-prop>txt_14</texture-prop>
+  </animation>
+
+  <!-- heattube visibility -->
+  <animation>
+    <type>select</type>
+    <object-name>HeatTube</object-name>
+    <condition>
+      <property>/sim/model/show_heattube</property>
+    </condition>
+  </animation>
+  
 </PropertyList>

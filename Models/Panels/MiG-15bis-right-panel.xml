@@ -86,6 +86,17 @@
   </model>
 
   <model>
+    <path>Aircraft/MiG-15/Models/Instruments/Radiocompassbox/RC_Scalemark.xml</path>
+    <offsets>
+      <x-m>2.015</x-m>
+      <y-m>0.3882</y-m>
+      <z-m>0.3374</z-m>
+      <pitch-deg>0.0</pitch-deg>
+      <roll-deg>40</roll-deg>
+    </offsets>
+  </model>
+
+  <model>
     <path>Aircraft/MiG-15/Models/Instruments/Trimmer/MiG-15bis-Trimmer.xml</path>
     <offsets>
       <x-m>2.05</x-m>

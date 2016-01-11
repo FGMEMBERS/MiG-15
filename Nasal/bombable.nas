@@ -333,7 +333,7 @@ var bombableObject = {
 bombableObject.weapons.ns_23_outer = bombableObject.weapons.ns_23_inner;
 
 load = func (thisNode) {
-  var thisNodeName = thisNode.getPath():
+  var thisNodeName = thisNode.getPath();
   print("MiG-15: loading bombable support ", thisNodeName);
 
   if (getprop ("/bombable/menusettings/bombable-enabled") != 1) {
