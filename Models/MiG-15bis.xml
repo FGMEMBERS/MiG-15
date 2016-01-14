@@ -1511,13 +1511,4 @@ MiG_15bis_bombable.unload(rplayer);
     <texture-prop>txt_14</texture-prop>
   </animation>
 
-  <!-- heattube visibility -->
-  <animation>
-    <type>select</type>
-    <object-name>HeatTube</object-name>
-    <condition>
-      <property>/sim/model/show_heattube</property>
-    </condition>
-  </animation>
-  
 </PropertyList>

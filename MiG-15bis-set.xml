@@ -388,7 +388,6 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
       <show_gunsight archive="y" type="bool">true</show_gunsight>
       <show_Magcompass archive="y" type="bool">true</show_Magcompass>
       <show_stick archive="y" type="bool">true</show_stick>
-      <show_heattube archive="y" type="bool">true</show_heattube>
     </model>
 
     <configuration>
