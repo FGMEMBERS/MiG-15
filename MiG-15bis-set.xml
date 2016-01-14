@@ -388,6 +388,7 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
       <show_gunsight archive="y" type="bool">true</show_gunsight>
       <show_Magcompass archive="y" type="bool">true</show_Magcompass>
       <show_stick archive="y" type="bool">true</show_stick>
+      <show_heattube archive="y" type="bool">true</show_heattube>
     </model>
 
     <configuration>
@@ -966,6 +967,7 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
         <vspeed_gear_one type="float">0</vspeed_gear_one>
         <vspeed_gear_two type="float">0</vspeed_gear_two>
         <vspeed_gear_three type="float">0</vspeed_gear_three>
+        <init_volume type="double">0</init_volume>
       </calculations>
       <init>
         <finally-initialized type="int">0</finally-initialized>
@@ -1600,8 +1602,6 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
     <q-body type="double">0</q-body>
     <r-body type="double">0</r-body>
   </orientation>
-
-  <init_volume type="double">0</init_volume>
 
 </PropertyList>
 

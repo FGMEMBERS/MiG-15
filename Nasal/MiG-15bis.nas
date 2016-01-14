@@ -6517,7 +6517,7 @@ aircraft_autostart = func
 init_autostart_process();
 
 #-----------------------------------------------------------------------
-#Property tree dump
+# property tree dump
 
 dump_properties=func
 {
@@ -6528,6 +6528,19 @@ dump_properties=func
   }
 }
 
+# livery init
 aircraft.livery.init ("Aircraft/MiG-15/Models/Liveries",
                       "sim/model/livery/name",
                       "sim/model/livery/index");
+
+# init_volume is set to 0 at startup to mute some sounds in MiG-15bis-sound.xml,
+# after a few seconds this timer unmutes the sounds again
+var set_init_volume = func
+{
+  setprop("/fdm/jsbsim/calculations/init_volume",1);
+  logprint(3,"init_volume set to 1");
+}
+var vol_timer = maketimer( 12, set_init_volume);
+vol_timer.singleShot = 1;
+vol_timer.start();
+	
