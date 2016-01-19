@@ -121,7 +121,7 @@
       <pitch>
 	<property>engines/engine[0]/n2</property>
 	<offset>0</offset>
-	<factor>0.017</factor>
+	<factor>0.016</factor>
 	<min>0.0</min>
 	<max>6.0</max>
       </pitch>
