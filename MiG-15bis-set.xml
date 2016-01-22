@@ -62,13 +62,20 @@ MiG-15bis simulation config.
   </consumables>
 
   <sim>
+    <aircraft-data>
+      <path>/sim/model</path>
+      <path>/sim/view</path>
+      <path>/sim/configuration</path>
+      <path>/fdm/jsbsim/tanks</path>
+    </aircraft-data>
+
     <startup>
       <splash-texture>Aircraft/MiG-15/MiG-15bis-splash.png</splash-texture>
     </startup>
 
     <rating>
-      <FDM type="int">5</FDM>
-      <systems type="int">5</systems>
+      <FDM type="int">3</FDM>
+      <systems type="int">4</systems>
       <cockpit type="int">4</cockpit>
       <model type="int">4</model>
     </rating>
@@ -237,7 +244,7 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
     <flight-model>jsb</flight-model>
     <status>advanced production</status>
     <author>Lee Elliott, Victor Slavutinskiy, with great help from Yurik V. Nikiforoff</author>
-    <aircraft-version>3.1.0</aircraft-version>
+    <aircraft-version>3.1.2</aircraft-version>
     <aero>MiG-15bis</aero>
     <fuel-fraction>1.0</fuel-fraction>
     <description>MiG-15bis (JSBSim FDM)</description>
@@ -388,11 +395,13 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
       <show_gunsight archive="y" type="bool">true</show_gunsight>
       <show_Magcompass archive="y" type="bool">true</show_Magcompass>
       <show_stick archive="y" type="bool">true</show_stick>
-      <show_heattube archive="y" type="bool">true</show_heattube>
     </model>
 
     <configuration>
+      <use_std_atmosphere type="bool" archive="y">false</use_std_atmosphere>
+      <show_touchdown_speeds type="bool" archive="y">true</show_touchdown_speeds>
       <rudder_input_exponent type="float" archive="y">2</rudder_input_exponent>
+      <throttle_crack type="bool" archive="y">false</throttle_crack>
     </configuration>
 
     <systems>
@@ -967,6 +976,7 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
         <vspeed_gear_one type="float">0</vspeed_gear_one>
         <vspeed_gear_two type="float">0</vspeed_gear_two>
         <vspeed_gear_three type="float">0</vspeed_gear_three>
+        <init_volume type="double">0</init_volume>
       </calculations>
       <init>
         <finally-initialized type="int">0</finally-initialized>
@@ -1601,8 +1611,6 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
     <q-body type="double">0</q-body>
     <r-body type="double">0</r-body>
   </orientation>
-
-  <init_volume type="double">0</init_volume>
 
 </PropertyList>
 

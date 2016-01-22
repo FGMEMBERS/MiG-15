@@ -773,12 +773,16 @@
         <output>fcs/rudder-pos-norm</output>
       </fcs_function>
 
-      <pure_gain name="fcs/rudder-pos-deg">
+      <!--
+        "fcs/rudder-pos-deg" and "..-rad" apparently aren't writable,
+        therefore the "..-1" addendum is used
+      --> 
+      <pure_gain name="fcs/rudder-pos-deg_1">
         <input>fcs/rudder-pos-norm</input>
         <gain>20.0</gain>
       </pure_gain>
 
-      <pure_gain name="fcs/rudder-pos-rad">
+      <pure_gain name="fcs/rudder-pos-rad_1">
         <input>fcs/rudder-pos-norm</input>
         <gain>0.35</gain>
       </pure_gain>
@@ -1718,7 +1722,7 @@
           <property>aero/qbar-psf</property>
           <property>metrics/Sw-sqft</property>
           <property>metrics/bw-ft</property>
-          <property>fcs/rudder-pos-rad</property>
+          <property>fcs/rudder-pos-rad_1</property>
           <value>0.01</value>
           <table>
             <independentVar lookup="row">velocities/mach</independentVar>
@@ -2061,7 +2065,7 @@
     <function name="fcs/rudder-pos-deg-mod">
       <description>Rudder_angle_modified_due_to_high_g_tremble</description>
       <sum>
-        <property>fcs/rudder-pos-deg</property>
+        <property>fcs/rudder-pos-deg_1</property>
         <property>gtremble/current</property>
       </sum>
     </function>

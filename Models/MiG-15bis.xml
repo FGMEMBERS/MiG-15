@@ -1411,11 +1411,14 @@ MiG_15bis_bombable.unload(rplayer);
   <animation>
     <type>material</type>
     <object-name>FUS_NoseDoorLS</object-name>
-    <object-name>FUS_NoseDoorRS</object-name>
-    <object-name>UC_MainR_DoorIB</object-name>
-    <object-name>UC_MainL_DoorIB</object-name>
     <property-base>sim/model/livery</property-base>
     <texture-prop>txt_3</texture-prop>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>FUS_NoseDoorRS</object-name>
+    <property-base>sim/model/livery</property-base>
+    <texture-prop>txt_4</texture-prop>
   </animation>
   <animation>
     <type>material</type>
@@ -1424,19 +1427,19 @@ MiG_15bis_bombable.unload(rplayer);
     <object-name>FUS_SBWellL_1</object-name>
     <object-name>FUS_SBWelR</object-name>
     <property-base>sim/model/livery</property-base>
-    <texture-prop>txt_4</texture-prop>
+    <texture-prop>txt_5</texture-prop>
   </animation>
   <animation>
     <type>material</type>
     <object-name>FUS_SBDoorLS</object-name>
     <property-base>sim/model/livery</property-base>
-    <texture-prop>txt_5</texture-prop>
+    <texture-prop>txt_6</texture-prop>
   </animation>
   <animation>
     <type>material</type>
     <object-name>FUS_SBDoorRS</object-name>
     <property-base>sim/model/livery</property-base>
-    <texture-prop>txt_6</texture-prop>
+    <texture-prop>txt_7</texture-prop>
   </animation>
   <animation>
     <type>material</type>
@@ -1446,7 +1449,7 @@ MiG_15bis_bombable.unload(rplayer);
     <object-name>TF_Rudder</object-name>
     <object-name>FUS_ElDown</object-name>
     <property-base>sim/model/livery</property-base>
-    <texture-prop>txt_7</texture-prop>
+    <texture-prop>txt_8</texture-prop>
   </animation>
   <animation>
     <type>material</type>
@@ -1455,47 +1458,74 @@ MiG_15bis_bombable.unload(rplayer);
     <object-name>TP_Trimmer_1</object-name>
     <object-name>FUS_ElUp_1</object-name>
     <property-base>sim/model/livery</property-base>
-    <texture-prop>txt_8</texture-prop>
+    <texture-prop>txt_9</texture-prop>
   </animation>
   <animation>
     <type>material</type>
     <object-name>FUS_Hull_5</object-name>
     <object-name>UC_MainL_DoorIS</object-name>
+    <object-name>UC_MainL_DoorIB</object-name>
     <object-name>UC_MainL_DoorMS</object-name>
     <object-name>UC_MainL_DoorOS</object-name>
     <object-name>UC_MainR_DoorIS</object-name>
+    <object-name>UC_MainR_DoorIB</object-name>
     <object-name>UC_MainR_DoorMS</object-name>
     <object-name>UC_MainR_DoorOS</object-name>
-    <object-name>WNG_FlapLDown</object-name>
-    <object-name>WNG_FlapLUp</object-name>
-    <object-name>WNG_FlapRDown</object-name>
-    <object-name>WNG_FlapRUp</object-name>
-    <property-base>sim/model/livery</property-base>
-    <texture-prop>txt_9</texture-prop>
-  </animation>
-  <animation>
-    <type>material</type>
-    <object-name>FUS_Hull_1</object-name>
     <property-base>sim/model/livery</property-base>
     <texture-prop>txt_10</texture-prop>
   </animation>
   <animation>
     <type>material</type>
-    <object-name>WNG_AileronL</object-name>
+    <object-name>FUS_Hull_1</object-name>
     <property-base>sim/model/livery</property-base>
     <texture-prop>txt_11</texture-prop>
   </animation>
   <animation>
     <type>material</type>
-    <object-name>WNG_AileronR</object-name>
+    <object-name>WNG_AileronL</object-name>
     <property-base>sim/model/livery</property-base>
     <texture-prop>txt_12</texture-prop>
   </animation>
   <animation>
     <type>material</type>
-    <object-name>WNG_Trimmer</object-name>
+    <object-name>WNG_AileronR</object-name>
     <property-base>sim/model/livery</property-base>
     <texture-prop>txt_13</texture-prop>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>WNG_FlapLDown</object-name>
+    <property-base>sim/model/livery</property-base>
+    <texture-prop>txt_14</texture-prop>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>WNG_FlapRDown</object-name>
+    <property-base>sim/model/livery</property-base>
+    <texture-prop>txt_15</texture-prop>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>WNG_Trimmer</object-name>
+    <property-base>sim/model/livery</property-base>
+    <texture-prop>txt_16</texture-prop>
+  </animation>
+
+  <!-- canopy livery select -->
+  
+  <path>MiG-15bis-Canopy.ac</path> 
+  
+  <animation>
+    <type>material</type>
+    <object-name>CP_RCFrame_1</object-name>
+    <property-base>sim/model/livery</property-base>
+    <texture-prop>txt_17</texture-prop>
+  </animation>
+  <animation>
+    <type>material</type>
+    <object-name>CP_FCFrameIn_1</object-name>
+    <property-base>sim/model/livery</property-base>
+    <texture-prop>txt_18</texture-prop>
   </animation>
 
   <!-- droptank livery select -->
@@ -1508,16 +1538,7 @@ MiG_15bis_bombable.unload(rplayer);
     <object-name>TK_HDown</object-name>
     <object-name>TK_Wing</object-name>
     <property-base>sim/model/livery</property-base>
-    <texture-prop>txt_14</texture-prop>
+    <texture-prop>txt_19</texture-prop>
   </animation>
 
-  <!-- heattube visibility -->
-  <animation>
-    <type>select</type>
-    <object-name>HeatTube</object-name>
-    <condition>
-      <property>/sim/model/show_heattube</property>
-    </condition>
-  </animation>
-  
 </PropertyList>

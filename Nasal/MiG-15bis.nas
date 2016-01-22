@@ -6517,7 +6517,7 @@ aircraft_autostart = func
 init_autostart_process();
 
 #-----------------------------------------------------------------------
-#Property tree dump
+# property tree dump
 
 dump_properties=func
 {
@@ -6528,6 +6528,53 @@ dump_properties=func
   }
 }
 
+# livery init
 aircraft.livery.init ("Aircraft/MiG-15/Models/Liveries",
                       "sim/model/livery/name",
                       "sim/model/livery/index");
+
+# init_volume is set to 0 at startup to mute some sounds in MiG-15bis-sound.xml,
+# after a few seconds this timer unmutes the sounds again
+var set_init_volume = func
+{
+  setprop("/fdm/jsbsim/calculations/init_volume",1);
+  logprint(3,"init_volume set to 1");
+}
+var vol_timer = maketimer( 12, set_init_volume);
+vol_timer.singleShot = 1;
+vol_timer.start();
+	
+# disable damage effects during replay and enable them with a delay
+# to prevent the gear from breaking when replay ends
+var disable_damage_effects = func
+{
+  logprint(3,"---disable_damage_effects");
+  setprop("listeners/aircraft-break/enabled",0);	
+  setprop("listeners/gear-break/enabled",0);	
+  setprop("processes/aircraft-break/enabled",0);
+  setprop("processes/gear-break/enabled",0);
+}
+var enable_damage_effects = func
+{
+  logprint(3,"---enable_damage_effects");
+  setprop("listeners/aircraft-break/enabled",1);	
+  setprop("listeners/gear-break/enabled",1);	
+  setprop("processes/aircraft-break/enabled",1);
+  setprop("processes/gear-break/enabled",1);
+}
+var damage_effect_timer = maketimer(0.5,enable_damage_effects);
+var set_damage_effects = func
+{
+  logprint(3,"---set_damage_effects");
+  var replay_active = getprop("sim/replay/replay-state");
+  if (replay_active) 
+  {
+    disable_damage_effects();
+  }
+  else 
+  {
+    damage_effect_timer.singleShot=1;
+    logprint(3,"---damage_timer.start");
+  }
+}
+setlistener("sim/replay/replay-state",set_damage_effects,0,0);	
