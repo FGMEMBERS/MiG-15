@@ -6540,7 +6540,7 @@ var set_init_volume = func
   setprop("/fdm/jsbsim/calculations/init_volume",1);
   logprint(3,"init_volume set to 1");
 }
-var vol_timer = maketimer( 12, set_init_volume);
+var vol_timer = maketimer( 18, set_init_volume);
 vol_timer.singleShot = 1;
 vol_timer.start();
 	
