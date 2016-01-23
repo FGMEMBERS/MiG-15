@@ -59,8 +59,9 @@ alias(rplayer.getNode("sim/multiplay/generic/float[14]"));
 rplayer.getNode("instrumentation/oxygen-pressure-meter/oxygen-on", 1).
 alias(rplayer.getNode("sim/multiplay/generic/float[15]"));
 
-MiG_15bis_bombable.load(rplayer);
 var livery_update = aircraft.livery_update.new("Aircraft/MiG-15/Models/Liveries");
+io.load_nasal (getprop ("/sim/fg-aircraft") ~ "/MiG-15/Nasal/bombable.nas", "MiG_15bis_bombable");
+MiG_15bis_bombable.load(rplayer);
     ]]></load>
     <unload><![CDATA[
 var rplayer = cmdarg();
