@@ -5013,6 +5013,10 @@ gtremble();
 #-----------------------------------------------------------------------
 #Aircraft break
 
+var crash_message_timer = maketimer(0.5, func()
+{
+  setprop("/sim/messages/crash_message", 1);                                        
+});                                        
 
 aircraft_lock_unlock = func (new_state)
 {
@@ -5128,7 +5132,14 @@ aircraft_crash=func(crashtype, crashg, solid)
   }
 
   crash_tank_drop();
-  setprop("/sim/messages/copilot", crashtype);
+
+  if (getprop("/sim/messages/crash_message"))
+  {
+    setprop("/sim/messages/copilot", crashtype);
+    setprop("/sim/messages/crash_message", 0);
+    crash_message_timer.singleShot = 1;
+    crash_message_timer.start( 0.5);
+  }  
   return (1);
 }
 
@@ -6562,7 +6573,7 @@ var enable_damage_effects = func
   setprop("processes/aircraft-break/enabled",1);
   setprop("processes/gear-break/enabled",1);
 }
-var damage_effect_timer = maketimer(0.5,enable_damage_effects);
+var damage_effect_timer = maketimer(1.0,enable_damage_effects);
 var set_damage_effects = func
 {
   logprint(3,"---set_damage_effects");
@@ -6574,6 +6585,7 @@ var set_damage_effects = func
   else 
   {
     damage_effect_timer.singleShot=1;
+    damage_effect_timer.start();  
     logprint(3,"---damage_timer.start");
   }
 }
