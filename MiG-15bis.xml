@@ -247,7 +247,7 @@
 
   </propulsion>
 
-  <!-- v3.1: Workaround to adjust engine thrust -->
+  <!-- Workaround to adjust engine thrust -->
   <external_reactions>
     <force name="tweak_for_idle_thrust" frame="BODY">
       <location unit="M">
@@ -766,25 +766,24 @@
         <function>
           <product>
             <property>fcs/rudder-trim-sum-exponent</property>
-            <!-- <property>fcs/rudder-trim-sum</property> -->
             <property>fcs/rudder-scale-factor</property>
           </product>
         </function>
         <output>fcs/rudder-pos-norm</output>
       </fcs_function>
 
-      <!--
-        "fcs/rudder-pos-deg" and "..-rad" apparently aren't writable,
-        therefore the "..-1" addendum is used
-      --> 
-      <pure_gain name="fcs/rudder-pos-deg_1">
+      <pure_gain name="fcs/rudder-pos-deg">
         <input>fcs/rudder-pos-norm</input>
         <gain>20.0</gain>
+        <!-- <output> tag is necessary here -->
+        <output>fcs/rudder-pos-deg</output>
       </pure_gain>
 
-      <pure_gain name="fcs/rudder-pos-rad_1">
+      <pure_gain name="fcs/rudder-pos-rad">
         <input>fcs/rudder-pos-norm</input>
         <gain>0.35</gain>
+        <!-- <output> tag is necessary here -->
+        <output>fcs/rudder-pos-rad</output>
       </pure_gain>
 
     </channel>
@@ -1722,7 +1721,7 @@
           <property>aero/qbar-psf</property>
           <property>metrics/Sw-sqft</property>
           <property>metrics/bw-ft</property>
-          <property>fcs/rudder-pos-rad_1</property>
+          <property>fcs/rudder-pos-rad</property>
           <value>0.01</value>
           <table>
             <independentVar lookup="row">velocities/mach</independentVar>
@@ -2065,7 +2064,7 @@
     <function name="fcs/rudder-pos-deg-mod">
       <description>Rudder_angle_modified_due_to_high_g_tremble</description>
       <sum>
-        <property>fcs/rudder-pos-deg_1</property>
+        <property>fcs/rudder-pos-deg</property>
         <property>gtremble/current</property>
       </sum>
     </function>
