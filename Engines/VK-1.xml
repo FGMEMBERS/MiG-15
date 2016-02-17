@@ -11,23 +11,29 @@
   injected?       no
 -->
 <!--
-  I increased the 'bypass ratio' to increase engine respond time, 
-  trying to make it similar to what can be seen in the YouTube video
-  "MiG-15 takeoff from Runway 2, KSAF, NM, USA".
-  (Actually bypass ratio should be zero for the Klimov VK-1 engine, but
-  in the jsbsim jet module it only serves as a time constant for
-  acceleration). -AZ-
+    I increased the 'bypass ratio' to increase engine respond time, 
+    trying to make it similar to what can be seen in the YouTube video
+    "MiG-15 takeoff from Runway 2, KSAF, NM, USA".
+    (Actually bypass ratio should be zero for the Klimov VK-1 engine, but
+    in the jsbsim jet module it only serves as a time constant for
+    acceleration).
+    Also modified idlen1/2 and maxn1/2 to achieve an idle/maximum RPM of 2500/11650.
+
+    The actual thrust is now calculated in /Systems/Engine.xml,
+    using a virtual external force to override the thrust
+    resulting from this file. -AZ-
 -->
+  
 
 <turbine_engine name="VK-1">
   <milthrust> 5957.2 </milthrust>
   <bypassratio>    22.0 </bypassratio>
   <tsfc>            0.8 </tsfc>
   <bleed>           0.03</bleed>
-  <idlen1>         30.0 </idlen1>
-  <idlen2>         60.0 </idlen2>
-  <maxn1>         100.0 </maxn1>
-  <maxn2>         100.0 </maxn2>
+  <idlen1>         35.0 </idlen1>
+  <idlen2>         65.0 </idlen2>
+  <maxn1>          97.0 </maxn1>
+  <maxn2>          97.0 </maxn2>
   <augmented>         0 </augmented>
   <injected>          0 </injected>
 
@@ -36,6 +42,7 @@
       <independentVar lookup="row">velocities/mach</independentVar>
       <independentVar lookup="column">atmosphere/density-altitude</independentVar>
       <tableData>
+        <!--deprecated, see note above-->
 	     -10000     0     10000   20000   30000   40000   50000
 	0.0  0.0430  0.0488  0.0528  0.0694  0.0899  0.1183  0.1467
 	0.2  0.0500  0.0501  0.0335  0.0544  0.0797  0.1049  0.1342
@@ -52,6 +59,7 @@
       <independentVar lookup="row">velocities/mach</independentVar>
       <independentVar lookup="column">atmosphere/density-altitude</independentVar>
       <tableData>
+        <!--deprecated, see note above-->
 	      -10000       0   10000   20000   30000   40000   50000
 	0.0   1.2600  1.0000  0.7400  0.5340  0.3720  0.2410  0.1490
 	0.1   1.1710  0.9340  0.6970  0.5060  0.3550  0.2310  0.1430

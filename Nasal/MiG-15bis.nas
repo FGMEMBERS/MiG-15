@@ -6590,26 +6590,3 @@ var set_damage_effects = func
   }
 }
 setlistener("sim/replay/replay-state",set_damage_effects,0,0);	
-
-# calculating the "tweak_for_idle_thrust" external force
-
-# Idle thrust was too high, which lead to unrealistic low sink rates
-# during approach. Made a quick and dirty workaround by applying an
-# external force calculated by this nasal script. At idle rpm the thrust is
-# now reduced to 75kg. -AZ-
-
-var tweak_for_idle_thrust = func 
-{
-  current_throttle = getprop("/controls/engines/engine/throttle");
-  if (current_throttle < 0.05) 
-  {
-    current_thrust_lbf = getprop("/engines/engine/thrust_lb");
-    var tweakthrust = current_thrust_lbf - 75 * 2.2054; # kp * kp_to_lbf
-    if (tweakthrust < 0) 
-    {
-      tweakthrust = 0
-    }
-    setprop("/fdm/jsbsim/external_reactions/tweak_for_idle_thrust/magnitude", tweakthrust);
-  }
-}
-setlistener("/engines/engine/thrust_lb", tweak_for_idle_thrust,0,0);
