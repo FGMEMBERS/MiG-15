@@ -6627,5 +6627,4 @@ set_atmosphere = func{
     reset_atmosphere();
   }
 }
-setlistener("/sim/configuration/use_std_atmosphere", set_atmosphere,0,0);
-
+setlistener("/sim/configuration/use_std_atmosphere", set_atmosphere,1,0);
