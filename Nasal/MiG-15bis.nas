@@ -6590,3 +6590,42 @@ var set_damage_effects = func
   }
 }
 setlistener("sim/replay/replay-state",set_damage_effects,0,0);	
+
+# toggle standard atmosphere 
+set_standard_atmosphere = func{
+  logprint(3,"---MiG-15bis.nas: setting up 1976 U.S. standard atmosphere...");
+  setprop("/environment/params/control-fdm-atmosphere",0);
+  setprop("/environment/params/jsbsim-turbulence-model","ttNone");
+  setprop("/environment/params/metar-updates-environment",0);
+  setprop("/sim/gui/dialogs/metar/mode/manual-weather",1);
+  props.setAll("/environment/config/boundary/entry","wind-speed-kt",0);
+  props.setAll("/environment/config/boundary/entry","temperature-sea-level-degc",15);
+  props.setAll("/environment/config/boundary/entry","pressure-sea-level-inhg",29.92);
+  props.setAll("/environment/config/aloft/entry","wind-speed-kt",0);
+  props.setAll("/environment/config/aloft/entry","temperature-sea-level-degc",15);
+  props.setAll("/environment/config/aloft/entry","pressure-sea-level-inhg",29.92);
+  screen.log.write("Standard atmosphere active",0,1,0);
+  logprint(3,"---MiG-15bis.nas: ...done");
+}
+reset_atmosphere = func{
+  logprint(3,"---MiG-15bis.nas: resetting FG default atmosphere...");
+  setprop("/environment/params/control-fdm-atmosphere",1);
+  setprop("/environment/params/jsbsim-turbulence-model","ttMilspec");
+  setprop("/environment/params/metar-updates-environment",1);
+  setprop("/sim/gui/dialogs/metar/mode/manual-weather",0);
+  screen.log.write("Atmosphere reset to default",0,1,0);
+  logprint(3,"---MiG-15bis.nas: ...done");
+}
+set_atmosphere = func{
+  std_atmo = getprop("/sim/configuration/use_std_atmosphere");
+  logprint(3,"---MiG-15bis.nas: toggle atmosphere");
+  logprint(3,std_atmo);
+  if (std_atmo == 1) {
+    set_standard_atmosphere();
+  }
+  else {
+    reset_atmosphere();
+  }
+}
+setlistener("/sim/configuration/use_std_atmosphere", set_atmosphere,0,0);
+

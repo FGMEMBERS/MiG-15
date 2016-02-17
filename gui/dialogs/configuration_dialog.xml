@@ -141,7 +141,7 @@
       </binding>
     </checkbox>
     <text>
-      <label>Use the 1976 U.S. Standard Atmosphere</label>
+      <label>Use the '1976 U.S. Standard Atmosphere' and zero wind conditions</label>
     </text>
     <empty>
       <stretch>true</stretch>
