@@ -244,7 +244,7 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
     <flight-model>jsb</flight-model>
     <status>advanced production</status>
     <author>Lee Elliott, Victor Slavutinskiy, with great help from Yurik V. Nikiforoff</author>
-    <aircraft-version>3.1.4</aircraft-version>
+    <aircraft-version>3.1.7</aircraft-version>
     <aero>MiG-15bis</aero>
     <fuel-fraction>1.0</fuel-fraction>
     <description>MiG-15bis (JSBSim FDM)</description>
@@ -387,6 +387,9 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
 
     <model>
       <path>Aircraft/MiG-15/Models/MiG-15bis.xml</path>
+      <livery>
+        <name archive="y" type="string">USSR_211</name>
+      </livery>
       <MiG-15bis-model>
         <particles>
           <enabled type="bool">true</enabled>

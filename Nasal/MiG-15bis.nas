@@ -6591,25 +6591,40 @@ var set_damage_effects = func
 }
 setlistener("sim/replay/replay-state",set_damage_effects,0,0);	
 
-# calculating the "tweak_for_idle_thrust" external force
-
-# Idle thrust was too high, which lead to unrealistic low sink rates
-# during approach. Made a quick and dirty workaround by applying an
-# external force calculated by this nasal script. At idle rpm the thrust is
-# now reduced to 75kg. -AZ-
-
-var tweak_for_idle_thrust = func 
-{
-  current_throttle = getprop("/controls/engines/engine/throttle");
-  if (current_throttle < 0.05) 
-  {
-    current_thrust_lbf = getprop("/engines/engine/thrust_lb");
-    var tweakthrust = current_thrust_lbf - 75 * 2.2054; # kp * kp_to_lbf
-    if (tweakthrust < 0) 
-    {
-      tweakthrust = 0
-    }
-    setprop("/fdm/jsbsim/external_reactions/tweak_for_idle_thrust/magnitude", tweakthrust);
+# toggle standard atmosphere 
+set_standard_atmosphere = func{
+  logprint(3,"---MiG-15bis.nas: setting up 1976 U.S. standard atmosphere...");
+  setprop("/environment/params/control-fdm-atmosphere",0);
+  setprop("/environment/params/jsbsim-turbulence-model","ttNone");
+  setprop("/environment/params/metar-updates-environment",0);
+  setprop("/sim/gui/dialogs/metar/mode/manual-weather",1);
+  props.setAll("/environment/config/boundary/entry","wind-speed-kt",0);
+  props.setAll("/environment/config/boundary/entry","temperature-sea-level-degc",15);
+  props.setAll("/environment/config/boundary/entry","pressure-sea-level-inhg",29.92);
+  props.setAll("/environment/config/aloft/entry","wind-speed-kt",0);
+  props.setAll("/environment/config/aloft/entry","temperature-sea-level-degc",15);
+  props.setAll("/environment/config/aloft/entry","pressure-sea-level-inhg",29.92);
+  screen.log.write("Standard atmosphere active",0,1,0);
+  logprint(3,"---MiG-15bis.nas: ...done");
+}
+reset_atmosphere = func{
+  logprint(3,"---MiG-15bis.nas: resetting FG default atmosphere...");
+  setprop("/environment/params/control-fdm-atmosphere",1);
+  setprop("/environment/params/jsbsim-turbulence-model","ttMilspec");
+  setprop("/environment/params/metar-updates-environment",1);
+  setprop("/sim/gui/dialogs/metar/mode/manual-weather",0);
+  screen.log.write("Atmosphere reset to default",0,1,0);
+  logprint(3,"---MiG-15bis.nas: ...done");
+}
+set_atmosphere = func{
+  std_atmo = getprop("/sim/configuration/use_std_atmosphere");
+  logprint(3,"---MiG-15bis.nas: toggle atmosphere");
+  logprint(3,std_atmo);
+  if (std_atmo == 1) {
+    set_standard_atmosphere();
+  }
+  else {
+    reset_atmosphere();
   }
 }
-setlistener("/engines/engine/thrust_lb", tweak_for_idle_thrust,0,0);
+setlistener("/sim/configuration/use_std_atmosphere", set_atmosphere,1,0);
