@@ -74,7 +74,7 @@ MiG-15bis simulation config.
     </startup>
 
     <rating>
-      <FDM type="int">3</FDM>
+      <FDM type="int">4</FDM>
       <systems type="int">4</systems>
       <cockpit type="int">4</cockpit>
       <model type="int">4</model>
