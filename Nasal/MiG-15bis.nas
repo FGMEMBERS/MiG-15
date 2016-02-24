@@ -948,10 +948,15 @@ calculate_vspeed_gear_one = func{
   wow = getprop("/gear/gear[0]/wow");
   if (wow) {
     pitch_degps = getprop("/orientation/pitch-rate-degps");
-    vspeed = getprop("/velocities/speed-down-fps");
-    var result = 0.3048 * vspeed - 0.01745 * pitch_degps * 2.9; #m/s
-    setprop("/fdm/jsbsim/calculations/vspeed_gear_one",result);
-    logprint(3,"vspeed_gear_one:" ~ result ~ "m/s");
+    vspeed_fps = getprop("/velocities/speed-down-fps");
+    if ((pitch_degps != nil) and (vspeed_fps != nil)) {
+      if (vspeed_fps < 0) {
+        vspeed_fps = 0
+      }
+      var result = 0.3048 * vspeed_fps - 0.01745 * pitch_degps * 3.07; #m/s
+      setprop("/fdm/jsbsim/calculations/vspeed_gear_one",result);
+      logprint(3,"vspeed_gear_one:" ~ result ~ "m/s. (pitch_degps=" ~ pitch_degps ~ " ;vspeed=" ~ vspeed_fps ~ "fps)");
+    }
   }
 }
 setlistener("/gear/gear[0]/wow",calculate_vspeed_gear_one,0,0);
