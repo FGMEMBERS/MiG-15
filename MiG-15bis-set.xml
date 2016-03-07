@@ -74,7 +74,7 @@ MiG-15bis simulation config.
     </startup>
 
     <rating>
-      <FDM type="int">3</FDM>
+      <FDM type="int">4</FDM>
       <systems type="int">4</systems>
       <cockpit type="int">4</cockpit>
       <model type="int">4</model>
@@ -244,7 +244,7 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
     <flight-model>jsb</flight-model>
     <status>advanced production</status>
     <author>Lee Elliott, Victor Slavutinskiy, with great help from Yurik V. Nikiforoff</author>
-    <aircraft-version>3.1.7</aircraft-version>
+    <aircraft-version>3.1.8</aircraft-version>
     <aero>MiG-15bis</aero>
     <fuel-fraction>1.0</fuel-fraction>
     <description>MiG-15bis (JSBSim FDM)</description>
@@ -431,17 +431,40 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
       <too-fast-deg>3.5</too-fast-deg>  <!-- target -1.5 deg -->         
     </aoa-indexer>
 
+    <!-- replay configuration -->
     <flight-recorder>
       <replay-config type="int">0</replay-config>
       <config n="0" include="/Aircraft/Generic/flightrecorder/generic-jet.xml">
-        <name type="string">MiG-15bis - Flight Recorder</name>
-        <signals>
-          <count type="int">16</count>
-          <signal>
-            <type>float</type>
-            <property>/sim/multiplay/generic/float[%i]</property>
-          </signal>
-        </signals>
+	<name type="string">MiG-15bis - Flight Recorder</name>
+	<!-- Custom properties -->
+	<signal><property>/fdm/jsbsim/gear/unit[0]/pos-norm-real</property></signal>
+	<signal><property>/fdm/jsbsim/gear/unit[1]/pos-norm-real</property></signal>
+	<signal><property>/fdm/jsbsim/gear/unit[2]/pos-norm-real</property></signal>
+	<signal><property type="bool">/fdm/jsbsim/gear/unit[0]/torn</property></signal>
+	<signal><property type="bool">/fdm/jsbsim/gear/unit[1]/torn</property></signal>
+	<signal><property type="bool">/fdm/jsbsim/gear/unit[2]/torn</property></signal>
+	<signal><property>/fdm/jsbsim/fcs/flap-pos-norm</property></signal>
+	<signal><property type="bool">/fdm/jsbsim/fcs/flap-torn</property></signal>
+	<signal><property>/fdm/jsbsim/systems/canopy/pos</property></signal>
+	<signal><property type="bool">/fdm/jsbsim/systems/canopy/torn</property></signal>
+	<signal><property type="bool">/fdm/jsbsim/tanks/fastened</property></signal>
+	<signal><property>/fdm/jsbsim/systems/airspeedometer/indicated-kt</property></signal>
+	<signal><property>/fdm/jsbsim/systems/altimeter/altitude-indicated-ft</property></signal>
+	<signal><property>/fdm/jsbsim/systems/vertspeedometer/indicated-speed-fps</property></signal>
+	<signal><property>/fdm/jsbsim/systems/arthorizon/roll-indicated-deg</property></signal>
+	<signal><property>/fdm/jsbsim/systems/arthorizon/pitch-indicated-deg</property></signal>
+	<signal><property>/fdm/jsbsim/systems/radiocompass/degree</property></signal>
+	<signal><property>/fdm/jsbsim/systems/tachometer/indicated-rpm</property></signal>
+	<signal><property>/fdm/jsbsim/systems/radioaltimeter/indicated-alt</property></signal>
+	<signal><property>/fdm/jsbsim/simulation/exploded</property></signal>
+	<signal><property>/fdm/jsbsim/simulation/crashed</property></signal>
+	<signal><property type="bool">/instrumentation/gear-indicator/left-down</property></signal>
+	<signal><property type="bool">/instrumentation/gear-indicator/left-up</property></signal>
+	<signal><property type="bool">/instrumentation/gear-indicator/middle-down</property></signal>
+	<signal><property type="bool">/instrumentation/gear-indicator/middle-up</property></signal>
+	<signal><property type="bool">/instrumentation/gear-indicator/right-down</property></signal>
+	<signal><property type="bool">/instrumentation/gear-indicator/right-up</property></signal>
+        <signal><property>/sim/multiplay/generic/float[%i]</property></signal>
       </config>
     </flight-recorder>
 
