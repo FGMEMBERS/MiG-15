@@ -183,6 +183,10 @@ MiG-15bis simulation config.
         <name>Shift-U</name>
         <desc>Toggle fUel source, internal or external tanks</desc>
       </key>
+      <key>
+        <name>Shift-L</name>
+        <desc>Toggle auto-coordination</desc>
+      </key>
       <text>
 Detailed documentation in /MiG-15/Documentation directory
 
@@ -244,7 +248,7 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
     <flight-model>jsb</flight-model>
     <status>advanced production</status>
     <author>Lee Elliott, Victor Slavutinskiy, with great help from Yurik V. Nikiforoff</author>
-    <aircraft-version>3.1.8</aircraft-version>
+    <aircraft-version>3.1.9</aircraft-version>
     <aero>MiG-15bis</aero>
     <fuel-fraction>1.0</fuel-fraction>
     <description>MiG-15bis (JSBSim FDM)</description>

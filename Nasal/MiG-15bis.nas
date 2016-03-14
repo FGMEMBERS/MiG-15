@@ -4856,7 +4856,7 @@ init_droptank=func
 }
 init_droptank();
 
-# Listener added to detect if tanks have been dropped or disabled my menu
+# Listener added to detect if tanks have been dropped or disabled by menu
 var set_droptanks_1=func{
   var cond=getprop("fdm/jsbsim/tanks/attached");
   if (cond) {
@@ -4881,17 +4881,17 @@ var set_droptanks_1=func{
     setprop ("/sim/messages/copilot", "Droptanks removed");
   }
 }
-setlistener("fdm/jsbsim/tanks/attached", set_droptanks_1,1,0);
+setlistener("/fdm/jsbsim/tanks/attached", set_droptanks_1,0,0);
 
 var set_droptanks_2=func{
-  setprop("fdm/jsbsim/tanks/attached", getprop("fdm/jsbsim/tanks/fastened"));
+  setprop("/fdm/jsbsim/tanks/attached", getprop("/fdm/jsbsim/tanks/fastened"));
 }
-setlistener("fdm/jsbsim/tanks/fastened", set_droptanks_2,1,0);
+setlistener("/fdm/jsbsim/tanks/fastened", set_droptanks_2,0,0);
 
 setdrop = func
 {
   setprop("instrumentation/drop-tank/dropped", 1);
-  setprop("fdm/jsbsim/tanks/fastened", 0);
+  setprop("/fdm/jsbsim/tanks/fastened", 0);
 }
 
 bomb_explode = func
@@ -6562,10 +6562,19 @@ var set_init_volume = func
   setprop("/fdm/jsbsim/calculations/init_volume",1);
   logprint(3,"init_volume set to 1");
 }
-var vol_timer = maketimer( 18, set_init_volume);
-vol_timer.singleShot = 1;
-vol_timer.start();
 	
+# several init tasks to do when sim is ready
+setlistener("/sim/signals/fdm-initialized",func{
+  var todo_when_sim_is_ready = func{
+    set_init_volume();
+    set_droptanks_1();
+    set_atmosphere();
+  }
+  var sim_ready_tmr = maketimer( 4, todo_when_sim_is_ready);
+  sim_ready_tmr.singleShot = 1;
+  sim_ready_tmr.start();
+},0,0);
+
 # disable damage effects during replay and enable them with a delay
 # to prevent the gear from breaking when replay ends
 var disable_damage_effects = func
@@ -6615,7 +6624,7 @@ set_standard_atmosphere = func{
   props.setAll("/environment/config/aloft/entry","wind-speed-kt",0);
   props.setAll("/environment/config/aloft/entry","temperature-sea-level-degc",15);
   props.setAll("/environment/config/aloft/entry","pressure-sea-level-inhg",29.92);
-  screen.log.write("Standard atmosphere active",0,1,0);
+  setprop ("/sim/messages/copilot", "Standard atmosphere active");
   logprint(3,"---MiG-15bis.nas: ...done");
 }
 reset_atmosphere = func{
@@ -6624,7 +6633,7 @@ reset_atmosphere = func{
   setprop("/environment/params/jsbsim-turbulence-model","ttMilspec");
   setprop("/environment/params/metar-updates-environment",1);
   setprop("/sim/gui/dialogs/metar/mode/manual-weather",0);
-  screen.log.write("Atmosphere reset to default",0,1,0);
+  setprop ("/sim/messages/copilot", "Atmosphere reset to default");
   logprint(3,"---MiG-15bis.nas: ...done");
 }
 set_atmosphere = func{
@@ -6638,4 +6647,8 @@ set_atmosphere = func{
     reset_atmosphere();
   }
 }
-setlistener("/sim/configuration/use_std_atmosphere", set_atmosphere,1,0);
+setlistener("/sim/configuration/use_std_atmosphere", set_atmosphere,0,0);
+
+# # for convenience during development: show property browser at startup
+# # adjust the property tree node and uncomment 
+# settimer(func {gui.property_browser("/fdm/jsbsim/calculations/");}, 0);
