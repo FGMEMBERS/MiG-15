@@ -1,3 +1,8 @@
+# constants
+var lb_to_kg = 0.45359237;
+var nm_to_km = 1.852;
+var in_to_m = 0.0254;
+var gal_us_to_l = 3.785411784;
 #--------------------------------------------------------------------
 toggle_traj_mkr = func {
   if(getprop("ai/submodels/trajectory-markers") == nil) {
@@ -95,17 +100,10 @@ cannon_shells_weight=func
   {
     return (settimer (cannon_shells_weight, 0.1));
   }
-  shell_weight_as_fuel=(n37_count*0.735+(ns23_inner_count+ns23_outer_count)*0.2)/2.76;
-  setprop("consumables/fuel/tank[5]/level-gal_us", shell_weight_as_fuel);
+  shell_weight=(n37_count*1.375+(ns23_inner_count+ns23_outer_count)*0.394);
+  setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[0]", shell_weight / lb_to_kg);
   settimer (cannon_shells_weight, 0.1);
 }
-
-init_cannon_shells_weight=func
-{
-  setprop("consumables/fuel/tank[5]/selected", 0);
-}
-
-init_cannon_shells_weight();
 
 cannon_shells_weight();
 
@@ -1115,7 +1113,7 @@ gearbreakslistener = func
   gear_main_maxload=getprop("/fdm/jsbsim/tweak_factors/gear_main_maxload");
   gear_one_maxload=getprop("/fdm/jsbsim/tweak_factors/gear_one_maxload");
   gear_one_maxload_single=getprop("/fdm/jsbsim/tweak_factors/gear_one_maxload_single");
-  var mass_factor=getprop("/fdm/jsbsim/inertia/weight-lbs")*0.45359/4000;
+  var mass_factor=getprop("/fdm/jsbsim/inertia/weight-lbs") * lb_to_kg / 4000;
   if (
     (gear_one_torn==nil)
     or (gear_two_torn==nil)
@@ -1270,7 +1268,7 @@ gearbreaksprocess = func
     or ((gear_three_pos>0) and (gear_three_torn==0))
       )
   {
-    speed_km=speed*1.852;
+    speed_km=speed * nm_to_km;
     #Middle gear speed limit max 550 km/h on 0.5 of extraction, 520 on 1
     speed_limit_middle=500-((gear_one_pos-0.5)/(1-0.5))*(550-525);
     setprop("fdm/jsbsim/gear/unit[0]/speed-limit", speed_limit_middle);
@@ -1726,7 +1724,7 @@ gearmove = func
   {
     setprop("processes/gear-move/sound-enabled", 0);
   }
-  speed_km=speed*1.852;
+  speed_km=speed * nm_to_km;
   
   var geartime = 8.0 + 1.5 * rand();
   if (gear_one_torn==0)
@@ -2312,7 +2310,7 @@ flapsbreaksprocess = func
   }
   if ((torn==0) and (flaps_pos_deg>5))
   {
-    speed_km=speed*1.852;
+    speed_km=speed*nm_to_km;
     speed_limit=500-((flaps_pos_deg-20)/(55-20))*(500-380);
     setprop("fdm/jsbsim/fcs/flap-speed-limit", speed_limit);
     if ((speed_km>speed_limit) and (speed_limit>0))
@@ -4118,6 +4116,28 @@ bulletricochetsoundoff = func
 
 cannon();
 
+# remove / refill ammunition when gunsight visibility is toggled while parking 
+var ammunition_update = func{
+  var gunsight_visible = getprop("/sim/model/show_gunsight");
+  var groundspeed_kt = getprop("/velocities/groundspeed-kt");
+  if (groundspeed_kt < 0.6) {
+    if (gunsight_visible == 0) {
+      setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[0]",0);
+      setprop("ai/submodels/submodel[1]/count",0);
+      setprop("ai/submodels/submodel[3]/count",0);
+      setprop("ai/submodels/submodel[5]/count",0);
+    }
+    if (gunsight_visible == 1) {
+      setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[0]",118/lb_to_kg);
+      setprop("ai/submodels/submodel[1]/count",40);
+      setprop("ai/submodels/submodel[3]/count",80);
+      setprop("ai/submodels/submodel[5]/count",80);
+    }
+  }
+}
+
+ammunition_update();
+
 #-----------------------------------------------------------------------
 #Wind process
 
@@ -5231,7 +5251,7 @@ aircraftbreakprocess=func
     stop_aircraftbreakprocess();
     return ( settimer(aircraftbreakprocess, 0.1) ); 
   }
-  speed_km=speed*1.852;
+  speed_km=speed*nm_to_km;
   info = geodinfo(lat, lon);
   if (info == nil)
   {
@@ -5571,7 +5591,7 @@ aircraft_crash_sound = func
   sounded=getprop("sounds/aircraft-crash/on");
   if ((speed!=nil) and (sounded!=nil))
   {
-    speed_km=speed*1.852;
+    speed_km=speed*nm_to_km;
     if ((speed_km>10) and (sounded==0))
     {
       setprop("sounds/aircraft-crash/on", 1);
@@ -5591,7 +5611,7 @@ aircraft_water_crash_sound = func
   sounded=getprop("sounds/aircraft-water-crash/on");
   if ((speed!=nil) and (sounded!=nil))
   {
-    speed_km=speed*1.852;
+    speed_km=speed*nm_to_km;
     if ((speed_km>10) and (sounded==0))
     {
       setprop("sounds/aircraft-water-crash/on", 1);
@@ -5725,8 +5745,7 @@ aircraft_start_refuel=func
   setprop("consumables/fuel/tank[2]/level-gal_us", 40);
   setprop("consumables/fuel/tank[3]/level-gal_us", 60);
   setprop("consumables/fuel/tank[4]/level-gal_us", 60);
-  setprop("consumables/fuel/tank[5]/level-gal_us", 22.5);
-  setprop("consumables/fuel/tank[5]/selected", 0);
+  setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs", 118 / lb_to_kg);
 }
 
 aircraft_end_refuel=func

@@ -55,9 +55,6 @@ MiG-15bis simulation config.
       <tank n="4">
         <name type="string">Right drop tank</name>
       </tank>
-      <tank n="5">
-        <name type="string">Ammunition (weight only)</name>
-      </tank>
     </fuel>
   </consumables>
 
@@ -248,7 +245,7 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
     <flight-model>jsb</flight-model>
     <status>advanced production</status>
     <author>Lee Elliott, Victor Slavutinskiy, with great help from Yurik V. Nikiforoff</author>
-    <aircraft-version>3.1.9</aircraft-version>
+    <aircraft-version>3.1.10</aircraft-version>
     <aero>MiG-15bis</aero>
     <fuel-fraction>1.0</fuel-fraction>
     <description>MiG-15bis (JSBSim FDM)</description>
@@ -1641,6 +1638,10 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
     <q-body type="double">0</q-body>
     <r-body type="double">0</r-body>
   </orientation>
+
+  <velocities>
+    <groundspeed-kt type="double">0</groundspeed-kt>
+  </velocities>
 
 </PropertyList>
 
