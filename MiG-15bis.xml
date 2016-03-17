@@ -118,10 +118,28 @@
     <izz unit="SLUG*FT2">     11007 </izz>
     <emptywt unit="KG" >      3680 </emptywt>
     <location name="CG" unit="M">
-      <x>       4.13012 </x>
+      <x>       4.130 </x>
       <y>       0.00 </y>
       <z>       0.00 </z>
     </location>
+    <!--
+        Gunshell weights:
+        The documentary "We flew the MiG", states that shell casing and
+        ammunition links are jettisoned when the cannon is firing.
+        Therefore more than the projectile weight (735g/200g) is lost during
+        gun operation.
+        According to [1] table 27, the ammunition weight is
+        55kg (N-37) + 2 * 31.5kg (NS-23) = 118kg = 260lb
+    -->
+    <pointmass name="Ammunition">
+      <weight unit="KG">118</weight>
+      <location unit="M">
+        <x>     1.85 </x>
+        <y>     0.0  </y>
+        <z>    -0.45 </z>
+      </location>
+    </pointmass>
+
   </mass_balance>
 
   <propulsion>
@@ -223,32 +241,10 @@
       <contents unit="LBS"> 400.00 </contents>
     </tank>
 
-    <!--
-        Tank 5 used to count gunshell weight influence
-        Weights:
-        1 kg is 1/2.76 US gallons, 1/0.453 lbs
-        1 N-37 shell is 0.735 kg, overall 40
-        1 NS-23 shell is 0.2 kg, overall 80x2
-        So, whole weight is
-        (40*0.735+160*0.2)/0.453=135.54 lbs
-        or
-        (40*0.735+160*0.2)/2.76=22.24 gal_us
-    -->
-
-    <tank type="FUEL" number="5">
-      <location unit="M">
-        <x>     1.8</x>
-        <y>     0.0 </y>
-        <z>     -0.45 </z>
-      </location>
-      <capacity unit="LBS"> 150.00 </capacity>
-      <contents unit="LBS"> 136.0 </contents>
-    </tank>
-
   </propulsion>
 
   <!--
-      Workaround for adjusting engine thrust.
+      Workaround to adjust engine thrust.
       See /Systems/Engine.xml for details.
   -->
 

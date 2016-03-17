@@ -120,7 +120,7 @@
     <trigger>ai/submodels/NS-23-O</trigger>
     <speed>2300</speed>
     <repeat>true</repeat>
-    <delay>0.0109</delay> <!-- 550 rounds/minute -->
+    <delay>0.109</delay> <!-- 550 rounds/minute -->
     <count>80</count>
     <!-- In feets -->
     <x-offset>-1.4</x-offset>
