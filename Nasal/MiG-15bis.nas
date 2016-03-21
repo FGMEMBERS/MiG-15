@@ -3926,8 +3926,8 @@ headsight_view_returner=func
     or (on==nil)
       )
   {
-    stop_headsight();
-    return ( settimer(headsight, 0.1) ); 
+    stop_headsight_view_returner();
+    return (settimer(headsight_view_returner, 0.1));
   }
   setprop("sim/view[1]/config/z-offset-m", 1.545+0.184+distance_from_eye_to_sight);
   if (current_view_number==1)
