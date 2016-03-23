@@ -163,7 +163,7 @@
   <submodel>
     <name>Left drop tank</name>
     <model>Aircraft/MiG-15/Models/Instruments/Fueltank/MiG-15bis-Fueltank-Drop.xml</model>
-    <trigger>ai/submodels/drop-tank</trigger>
+    <trigger>ai/submodels/drop-tank_0</trigger>
     <speed>15</speed>
     <pitch-offset>-135.0</pitch-offset>
     <repeat>false</repeat>
@@ -219,7 +219,7 @@
   <submodel>
     <name>Right drop tank</name>
     <model>Aircraft/MiG-15/Models/Instruments/Fueltank/MiG-15bis-Fueltank-Drop.xml</model>
-    <trigger>ai/submodels/drop-tank</trigger>
+    <trigger>ai/submodels/drop-tank_1</trigger>
     <speed>15</speed>
     <pitch-offset>-135.0</pitch-offset>
     <repeat>false</repeat>

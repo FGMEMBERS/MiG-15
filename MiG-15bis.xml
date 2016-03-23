@@ -116,12 +116,33 @@
     <ixx unit="SLUG*FT2">      5000 </ixx>
     <iyy unit="SLUG*FT2">      8452 </iyy>
     <izz unit="SLUG*FT2">     11007 </izz>
-    <emptywt unit="KG" >      3680 </emptywt>
+    <emptywt unit="KG" >       3681 </emptywt>
     <location name="CG" unit="M">
       <x>       4.130 </x>
       <y>       0.00 </y>
       <z>       0.00 </z>
     </location>
+
+    <!--
+        Empty weight of the external tanks (260 l) according to [2], table 19
+    -->
+    <pointmass name="left_external_tank_empty">
+      <weight unit="KG">16</weight>
+      <location>
+        <x>      3.960 </x>
+        <y>     -2.644 </y>
+        <z>     -0.468 </z>
+      </location>
+    </pointmass>
+    <pointmass name="right_external_tank_empty">
+      <weight unit="KG">16</weight>
+      <location>
+        <x>      3.960 </x>
+        <y>      2.644 </y>
+        <z>     -0.468 </z>
+      </location>
+    </pointmass>
+
     <!--
         Gunshell weights:
         The documentary "We flew the MiG", states that shell casing and
@@ -180,17 +201,14 @@
         <x>     3.293 </x>
         <y>     0.00 </y>
         <z>     0.00 </z>
-        </location>1
-        <capacity unit="LBS"> 10.00 </capacity>
-        <contents unit="LBS"> 10.00 </contents>
+      </location>
+      <capacity unit="LBS"> 10.00 </capacity>
+      <contents unit="LBS"> 10.00 </contents>
+      <density unit="KG/L"> 0.83 </density>
     </tank>
 
-    <!--        Tank 1 is main tank -->
-
     <!--
-        1 kg is 1/2.76 US gallons, 1/0.453 lbs
-        Normal 1 tank load is 1035l, that is 828kg, 1827lbs, 300 gal
-        maximum load is 1200l, that is 2119lbs, 347gal
+        Tank 1 capacity is 1245 l = 1033 kg
     -->
 
     <tank type="FUEL" number="1">
@@ -199,36 +217,50 @@
         <y>     0.00 </y>
         <z>     0.00 </z>
       </location>
-      <capacity unit="LBS"> 2120.00 </capacity>
-      <contents unit="LBS"> 1827.00 </contents>
+      <capacity unit="KG"> 1033.0 </capacity>
+      <contents unit="KG"> 1033.0 </contents>
+      <density unit="KG/L"> 0.83 </density>
     </tank>
 
     <!--
-        Tank 2 is back balance tank
-        Normal 1 tank load is 138l, that is 243lbs, 40 gal
-        maximum load is 200l, that is 160kg, 353lbs, 57gal
+        Tank 2 capacity is 167 l = 139 kg
     -->
 
     <tank type="FUEL" number="2">
       <location unit="M">
-        <x>     6.285 </x>
+        <x>     6.29 </x>
         <y>     0.00 </y>
-        <z>     -0.406 </z>
+        <z>    -0.22 </z>
       </location>
-      <capacity unit="LBS"> 355.00 </capacity>
-      <contents unit="LBS"> 243.00 </contents>
+      <capacity unit="KG"> 139.0 </capacity>
+      <contents unit="KG"> 139.0 </contents>
+      <density unit="KG/L"> 0.83 </density>
     </tank>
 
-    <!--        Tanks 3 and 4 is external drop tanks -->
+    <!--
+      Tanks 3 and 4 are external drop tanks.
 
+      It's unclear which version is modelled here, the most common ones where the
+      PTB-260 slipper tank and the PTB-300 pylon mounted tank.
+      I chose the PTB-260, because:
+      Pro: The original capacity was 241 l, so 260 l is the closest model.
+      Pro: The tank model is not mounted on pylons.
+      Pro: The tank's shape looks more like the slipper type than the pylon type.
+      Con: The PTB-260 doesn't have fins.
+      Con: This tank is smaller and slower than the PTB-300. It reduces the maximum
+           velocity to 700 km/h (PTB-300: 900 km/h). -AZ-
+
+      Capacity for each tank is 260 l = 216 kg
+    -->
     <tank type="FUEL" number="3">
       <location unit="M">
         <x>     4.0 </x>
         <y>     -2.644 </y>
         <z>     -0.468 </z>
       </location>
-      <capacity unit="LBS"> 441.00 </capacity>
-      <contents unit="LBS"> 400.00 </contents>
+      <capacity unit="KG"> 216.0 </capacity>
+      <contents unit="KG"> 216.0 </contents>
+      <density unit="KG/L"> 0.83 </density>
     </tank>
 
     <tank type="FUEL" number="4">
@@ -237,8 +269,9 @@
         <y>     2.644 </y>
         <z>     -0.468 </z>
       </location>
-      <capacity unit="LBS"> 441.00 </capacity>
-      <contents unit="LBS"> 400.00 </contents>
+      <capacity unit="KG"> 216.0 </capacity>
+      <contents unit="KG"> 216.0 </contents>
+      <density unit="KG/L"> 0.83 </density>
     </tank>
 
   </propulsion>
@@ -261,10 +294,43 @@
         <z>     0.00 </z>
       </direction>
     </force>
+
+    <!--
+      Drag force of the external fuel tanks, modelled as an external reaction to
+      enable simulation of one single tank (failure simulation).
+    -->
+
+    <force name="drag_droptank_L" frame="WIND">
+      <location unit="M">
+        <x>     4.0 </x>
+        <y>    -2.644 </y>
+        <z>    -0.468 </z>
+      </location>
+      <direction>
+        <x>    -1.00 </x>
+        <y>     0.00 </y>
+        <z>     0.00 </z>
+      </direction>
+    </force>
+
+    <force name="drag_droptank_R" frame="WIND">
+      <location unit="M">
+        <x>     4.0 </x>
+        <y>     2.644 </y>
+        <z>    -0.468 </z>
+      </location>
+      <direction>
+        <x>    -1.00 </x>
+        <y>     0.00 </y>
+        <z>     0.00 </z>
+      </direction>
+    </force>
+
   </external_reactions>
 
   <!--
-      spring_coeff is the spring rate, so it controls how far the model sags at rest. damping_coeff and damping_coeff_rebound control how fast the spring absorbs and releases energy
+      spring_coeff is the spring rate, so it controls how far the model sags at rest.
+      damping_coeff and damping_coeff_rebound control how fast the spring absorbs and releases energy
       Default unit for spring rate is LBF/FT and damping is LBF/FT/S
   -->
 
@@ -883,6 +949,26 @@
 
     </channel>
 
+    <channel name="Drop tank drag">
+
+      <switch>
+        <default value="0"/>
+        <test value="aero/coefficient/CDtank">
+          tanks/attached_0 == 1
+        </test>
+        <output>external_reactions/drag_droptank_L/magnitude</output>
+      </switch>
+
+      <switch>
+        <default value="0"/>
+        <test value="aero/coefficient/CDtank">
+          tanks/attached_1 == 1
+        </test>
+        <output>external_reactions/drag_droptank_R/magnitude</output>
+      </switch>
+      
+    </channel>
+
   </flight_control>
 
   <aerodynamics>
@@ -1201,7 +1287,13 @@
         <product>
           <property>aero/qbar-psf</property>
           <property>metrics/Sw-sqft</property>
-          <property>tanks/fastened</property>
+          <quotient>
+            <sum>
+              <property>tanks/attached_0</property>
+              <property>tanks/attached_1</property>
+            </sum>
+            <value>2</value>
+          </quotient>
           <table>
             <independentVar lookup="row">aero/alpha-wing-rad</independentVar>
             <tableData>
@@ -1259,6 +1351,31 @@
           <property>tweak_factors/ground_effect_drag</property>
         </product>
       </difference>
+    </function>
+
+    <function name="aero/coefficient/CDtank">
+      <!--
+          This is the drag caused by one external fueltank. The result will
+          be applied as an external force to each fuel tank.
+      -->
+      <description>Drag_due_to_fuel_tanks</description>
+      <product>
+        <value>0.5</value>
+        <property>aero/qbar-psf</property>
+        <property>metrics/Sw-sqft</property>
+        <table>
+          <independentVar lookup="row">aero/coefficient/CL</independentVar>
+          <tableData>
+            0.0    0.004
+            0.8    0.005
+            0.9    0.008
+            0.95   0.010
+            0.975  0.021
+            1.0    0.043
+            1.1    0.267
+          </tableData>
+        </table>
+      </product>
     </function>
 
     <axis name="DRAG">
@@ -1417,27 +1534,6 @@
               0.253  0.038   0.047   0.1
               0.262  0.058   0.066   0.2
               0.279  0.2     0.2     0.3
-            </tableData>
-          </table>
-        </product>
-      </function>
-
-      <function name="aero/coefficient/CDtank">
-        <description>Drag_due_to_fuel_tanks</description>
-        <product>
-          <property>aero/qbar-psf</property>
-          <property>metrics/Sw-sqft</property>
-          <property>tanks/fastened</property>
-          <table>
-            <independentVar lookup="row">aero/coefficient/CL</independentVar>
-            <tableData>
-              0.0    0.004
-              0.8    0.005
-              0.9    0.008
-              0.95   0.010
-              0.975  0.021
-              1.0    0.043
-              1.1    0.267
             </tableData>
           </table>
         </product>
@@ -1986,8 +2082,43 @@
         </product>
       </function>
 
-      <!-- Need to add pitch due to fuel tanks-->
-
+      <!-- Fig 62 -->
+      <function name="aero/coefficient/Cmtanks">
+        <description>Pitch_moment_due_to_droptanks</description>
+        <product>
+          <property>aero/qbar-psf</property>
+          <property>metrics/Sw-sqft</property>
+          <property>metrics/cbarw-ft</property>
+          <quotient>
+            <sum>
+              <property>tanks/attached_0</property>
+              <property>tanks/attached_1</property>
+            </sum>
+            <value>2</value>
+          </quotient>
+          <table>
+            <independentVar lookup="column">fcs/flap-pos-deg</independentVar>
+            <independentVar lookup="row">aero/alpha-wing-rad</independentVar>
+            <tableData>
+                      0     55
+              -0.035  0      0.016
+               0      0      0.021
+               0.035  0.005  0.025
+               0.070  0.007  0.029
+               0.105  0.010  0.033
+               0.140  0.012  0.040
+               0.175  0.016  0.044
+               0.209  0.020  0.048
+               0.244  0.024  0.050
+               0.279  0.030  0.046
+               0.314  0.036  0.031
+               0.349  0.032  0.006
+               0.384  0.010 -0.021
+            </tableData>
+          </table>
+        </product>
+      </function>
+      
       <function name="fcs/pitch_moment_due_to_gyro_effect">
         <!--
             The rotating masses inside the engine cause a gyroscopic effect,

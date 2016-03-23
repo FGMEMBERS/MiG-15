@@ -91,12 +91,12 @@
       <live>true</live>
       <property>/fdm/jsbsim/tanks/attached</property>
       <binding>
-        <command>property-toggle</command>
-        <property>/fdm/jsbsim/tanks/attached</property>
+        <command>nasal</command>
+        <script>MIG15BIS.toggle_drop_tanks()</script>
       </binding>
     </checkbox>
     <text>
-      <label>External tanks</label>
+      <label>Drop-tanks</label>
     </text>
     <empty>
       <stretch>true</stretch>
@@ -192,6 +192,7 @@
     <layout>hbox</layout>
     <button>
       <legend>Close</legend>
+      <key>Esc</key>
       <binding>
         <command>dialog-close</command>
       </binding>
