@@ -575,12 +575,12 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
         <float n="11" alias="/velocities/airspeed-kt"/>
 
         <float n="12" alias="/instrumentation/drop-tank/dropped_0"/>
-        <float n="12" alias="/instrumentation/drop-tank/dropped_1"/>
-        <float n="13" alias="/instrumentation/drop-tank/one"/>
+        <float n="13" alias="/instrumentation/drop-tank/dropped_1"/>
+        <float n="14" alias="/instrumentation/drop-tank/one"/>
 
-        <float n="14" alias="/fdm/jsbsim/propulsion/engine/n1"/>
+        <float n="15" alias="/fdm/jsbsim/propulsion/engine/n1"/>
 
-        <float n="15" alias="/instrumentation/oxygen-pressure-meter/oxygen-on"/>
+        <float n="16" alias="/instrumentation/oxygen-pressure-meter/oxygen-on"/>
 
       </generic>
     </multiplay>
