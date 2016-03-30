@@ -245,7 +245,7 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
     <flight-model>jsb</flight-model>
     <status>advanced production</status>
     <author>Lee Elliott, Victor Slavutinskiy, with great help from Yurik V. Nikiforoff</author>
-    <aircraft-version>3.1.11</aircraft-version>
+    <aircraft-version>3.1.13</aircraft-version>
     <aero>MiG-15bis</aero>
     <fuel-fraction>1.0</fuel-fraction>
     <description>MiG-15bis (JSBSim FDM)</description>
@@ -448,7 +448,8 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
 	<signal><property type="bool">/fdm/jsbsim/fcs/flap-torn</property></signal>
 	<signal><property>/fdm/jsbsim/systems/canopy/pos</property></signal>
 	<signal><property type="bool">/fdm/jsbsim/systems/canopy/torn</property></signal>
-	<signal><property type="bool">/fdm/jsbsim/tanks/fastened</property></signal>
+	<signal><property type="bool">/fdm/jsbsim/tanks/attached_0</property></signal>
+	<signal><property type="bool">/fdm/jsbsim/tanks/attached_1</property></signal>
 	<signal><property>/fdm/jsbsim/systems/airspeedometer/indicated-kt</property></signal>
 	<signal><property>/fdm/jsbsim/systems/altimeter/altitude-indicated-ft</property></signal>
 	<signal><property>/fdm/jsbsim/systems/vertspeedometer/indicated-speed-fps</property></signal>
@@ -573,12 +574,13 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
         <float n="10" alias="/fdm/jsbsim/simulation/exploded"/>
         <float n="11" alias="/velocities/airspeed-kt"/>
 
-        <float n="12" alias="/instrumentation/drop-tank/dropped"/>
-        <float n="13" alias="/instrumentation/drop-tank/one"/>
+        <float n="12" alias="/instrumentation/drop-tank/dropped_0"/>
+        <float n="13" alias="/instrumentation/drop-tank/dropped_1"/>
+        <float n="14" alias="/instrumentation/drop-tank/one"/>
 
-        <float n="14" alias="/fdm/jsbsim/propulsion/engine/n1"/>
+        <float n="15" alias="/fdm/jsbsim/propulsion/engine/n1"/>
 
-        <float n="15" alias="/instrumentation/oxygen-pressure-meter/oxygen-on"/>
+        <float n="16" alias="/instrumentation/oxygen-pressure-meter/oxygen-on"/>
 
       </generic>
     </multiplay>
@@ -1547,7 +1549,9 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
       </systems>
 
       <tanks>
-        <attached archive="y" type="bool">1</attached>
+        <attached archive="y" type="float">1</attached> 
+        <attached_0 archive="n" type="bool">1</attached_0>
+        <attached_1 archive="n" type="bool">1</attached_1>
       </tanks>
 
       <tweak_factors>

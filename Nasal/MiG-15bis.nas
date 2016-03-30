@@ -101,7 +101,7 @@ cannon_shells_weight=func
     return (settimer (cannon_shells_weight, 0.1));
   }
   shell_weight=(n37_count*1.375+(ns23_inner_count+ns23_outer_count)*0.394);
-  setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[0]", shell_weight / lb_to_kg);
+  setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[2]", shell_weight / lb_to_kg);
   settimer (cannon_shells_weight, 0.1);
 }
 
@@ -449,7 +449,8 @@ init_fdm  = func
   setprop("fdm/jsbsim/fcs/speedbrake-cmd-norm", 0);
   setprop("fdm/jsbsim/fcs/speedbrake-cmd-norm-real", 0);
   setprop("fdm/jsbsim/fcs/speedbrake-pos-norm", 0);
-  setprop("fdm/jsbsim/tanks/fastened", 0);
+  setprop("fdm/jsbsim/tanks/attached_0", 0);
+  setprop("fdm/jsbsim/tanks/attached_1", 0);
 }
 
 init_fdm();
@@ -4122,13 +4123,13 @@ var ammunition_update = func{
   var groundspeed_kt = getprop("/velocities/groundspeed-kt");
   if (groundspeed_kt < 0.6) {
     if (gunsight_visible == 0) {
-      setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[0]",0);
+      setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[2]",0);
       setprop("ai/submodels/submodel[1]/count",0);
       setprop("ai/submodels/submodel[3]/count",0);
       setprop("ai/submodels/submodel[5]/count",0);
     }
     if (gunsight_visible == 1) {
-      setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[0]",118/lb_to_kg);
+      setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[2]",118/lb_to_kg);
       setprop("ai/submodels/submodel[1]/count",40);
       setprop("ai/submodels/submodel[3]/count",80);
       setprop("ai/submodels/submodel[5]/count",80);
@@ -4766,8 +4767,25 @@ photo();
 
 #----------------------------------------------------------------------
 #Droptank
+
+# property overview:
+# i==0: left tank; i==1: right tank
+# /fdm/jsbsim/tanks/attached_$i : Whether the tank is present or not
+# /fdm/jsbsim/tanks/fastened : Replaced by attached_$i
+# /fdm/jsbsim/tanks/attached : 0: no tanks present; 0.5: one tank; 1.0: both tanks.
+# /ai/submodels/drop-tank_$i : Setting this to true triggers the drop animation
+# /instrumentation/drop-tank/dropped_$i : Animation related, maybe redundant?
+# 
 stop_droptank = func 
 {
+}
+
+var drop_droptank = func (i) {
+  # i==0: left tank, i==i: right tank
+  setprop("consumables/fuel/tank[" ~ (i+3) ~ "]/level-gal_us", 0);
+  setprop("consumables/fuel/tank[" ~ (i+3) ~ "]/selected", 0);
+  setprop("ai/submodels/drop-tank_" ~ i, 1);
+  setprop("/fdm/jsbsim/tanks/attached_" ~ i, 0);
 }
 
 droptank = func 
@@ -4788,14 +4806,13 @@ droptank = func
   bomb_button_pos=getprop("fdm/jsbsim/systems/stick/drop-button-switch");
   left_level=getprop("consumables/fuel/tank[3]/level-gal_us");
   right_level=getprop("consumables/fuel/tank[4]/level-gal_us");
-  dropped=getprop("instrumentation/drop-tank/dropped");
+  #dropped=getprop("instrumentation/drop-tank/dropped"); this variable is unused
   if (
     (drop_power==nil)
     or (bomb_power==nil)
     or (bomb_button_pos==nil)
     or (left_level==nil)
     or (right_level==nil)
-    or (dropped==nil)
       )
   {
     stop_droptank();
@@ -4807,22 +4824,15 @@ droptank = func
   {
     if (drop_power>0)
     {
-      setprop("consumables/fuel/tank[3]/level-gal_us", 0);
-      setprop("consumables/fuel/tank[3]/selected", 0);
-      setprop("consumables/fuel/tank[4]/level-gal_us", 0);
-      setprop("consumables/fuel/tank[4]/selected", 0);
-      left_level=0;
-      right_level=0;
-      if (bomb_power>0)
-      {
-        setprop("ai/submodels/bomb-tank", 1);
-      }
-      else
-      {
-        setprop("ai/submodels/drop-tank", 1);
-      }
-      settimer(setdrop, 0.2);
+      drop_droptank(0);
+      drop_droptank(1);
     }
+    # AFAIK bombs aren't simulated yet
+    if (bomb_power>0)
+    {
+      setprop("ai/submodels/bomb-tank", 1);
+    }
+    settimer(setdrop, 0.2);
   }
   left_bomb_tank_impact=getprop("ai/submodels/left-bomb-tank-impact");
   if (left_bomb_tank_impact!=nil)
@@ -4867,51 +4877,71 @@ droptank = func
 init_droptank=func
 {
   setprop("instrumentation/drop-tank/serviceable", 1);
-  setprop("instrumentation/drop-tank/dropped", 0);
-  setprop("ai/submodels/drop-tank", 0);
+  setprop("instrumentation/drop-tank/dropped_0", 0);
+  setprop("instrumentation/drop-tank/dropped_1", 0);
+  setprop("ai/submodels/drop-tank_0", 0);
+  setprop("ai/submodels/drop-tank_1", 0);
   setprop("ai/submodels/bomb-tank", 0);
-  setprop("fdm/jsbsim/tanks/fastened", 1);
+  setprop("fdm/jsbsim/tanks/attached_0", 1);
+  setprop("fdm/jsbsim/tanks/attached_1", 1);
   #values to move object to real zero
   setprop("instrumentation/drop-tank/one", 1);
 }
 init_droptank();
 
-# Listener added to detect if tanks have been dropped or disabled by menu
-var set_droptanks_1=func{
-  var cond=getprop("fdm/jsbsim/tanks/attached");
+# Listener added to detect if tanks have been dropped, lost or disabled by menu
+# Newly attached tanks are empty
+var set_droptanks=func(i){
+  var cond=getprop("fdm/jsbsim/tanks/attached_" ~ i);
+  var groundspeed_kt=getprop("/velocities/groundspeed-kt");
   if (cond) {
-    setprop("fdm/jsbsim/tanks/fastened", 1);
-    setprop("consumables/fuel/tank[3]/level-gal_us", 60.6);
-    setprop("consumables/fuel/tank[3]/selected", 1);
-    setprop("consumables/fuel/tank[4]/level-gal_us", 60.6);
-    setprop("consumables/fuel/tank[4]/selected", 1);
-    setprop("instrumentation/drop-tank/dropped", 0);
-    # setprop("ai/submodels/drop-tank", 1);
-    # setprop("ai/submodels/bomb-tank", 1);
-    setprop ("/sim/messages/copilot", "Droptanks attached");
+    setprop("instrumentation/drop-tank/dropped_" ~ i, 0);
+    setprop("ai/submodels/drop-tank_" ~ i, 0);
+    setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs["  ~ i ~ "]", 48.5);#22kg: empty tank weight
   } else {
-    setprop("fdm/jsbsim/tanks/fastened", 0);
-    setprop("consumables/fuel/tank[3]/level-gal_us", 0);
-    setprop("consumables/fuel/tank[3]/selected", 0);
-    setprop("consumables/fuel/tank[4]/level-gal_us", 0);
-    setprop("consumables/fuel/tank[4]/selected", 0);
-    setprop("instrumentation/drop-tank/dropped", 1);
-    # setprop("ai/submodels/drop-tank", 0);
-    # setprop("ai/submodels/bomb-tank", 0);
-    setprop ("/sim/messages/copilot", "Droptanks removed");
+    setprop("consumables/fuel/tank["  ~ (i+3) ~ "]/level-gal_us", 0);
+    setprop("consumables/fuel/tank["  ~ (i+3) ~ "]/selected", 0);
+    setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs["  ~ i ~ "]", 0);
   }
 }
-setlistener("/fdm/jsbsim/tanks/attached", set_droptanks_1,0,0);
 
-var set_droptanks_2=func{
-  setprop("/fdm/jsbsim/tanks/attached", getprop("/fdm/jsbsim/tanks/fastened"));
+setlistener("/fdm/jsbsim/tanks/", func{
+  set_droptanks(0);
+  set_droptanks(1);
+  setprop("/fdm/jsbsim/tanks/attached",(getprop("/fdm/jsbsim/tanks/attached_0")/2 + getprop("/fdm/jsbsim/tanks/attached_1")/2 ));
+},1,2);
+
+var drop_tank_status_message = func{
+  var a = int(getprop("/fdm/jsbsim/tanks/attached"));
+  if (a == 0) {
+    setprop ("/sim/messages/copilot", "Drop tanks removed");
+  }
+  else {
+    setprop ("/sim/messages/copilot", "Drop tanks attached");
+  }
+}    
+
+# toggle drop tanks from the menu only works when the aircraft is being parked
+var toggle_drop_tanks = func{
+  if (getprop("/velocities/groundspeed-kt") < 0.6) {
+    var newvalue = int(getprop("/fdm/jsbsim/tanks/attached")) + 1;
+    if (newvalue == 2) {
+      newvalue = 0;
+    }
+    setprop("/fdm/jsbsim/tanks/attached_0",newvalue);
+    setprop("/fdm/jsbsim/tanks/attached_1",newvalue);
+    setprop("consumables/fuel/tank[3]/level-gal_us", 0);# newly attached tanks are empty
+    setprop("consumables/fuel/tank[4]/level-gal_us", 0);# 
+    drop_tank_status_message();
+  }
 }
-setlistener("/fdm/jsbsim/tanks/fastened", set_droptanks_2,0,0);
 
 setdrop = func
 {
-  setprop("instrumentation/drop-tank/dropped", 1);
-  setprop("/fdm/jsbsim/tanks/fastened", 0);
+  setprop("instrumentation/drop-tank/dropped_0", 1);
+  setprop("instrumentation/drop-tank/dropped_1", 1);
+  setprop("/fdm/jsbsim/tanks/attached_0", 0);
+  setprop("/fdm/jsbsim/tanks/attached_1", 0);
 }
 
 bomb_explode = func
@@ -4942,7 +4972,8 @@ crash_tank_drop = func
   setprop("consumables/fuel/tank[3]/selected", 0);
   setprop("consumables/fuel/tank[4]/level-gal_us", 0);
   setprop("consumables/fuel/tank[4]/selected", 0);
-  setprop("instrumentation/drop-tank/dropped", 1);
+  setprop("instrumentation/drop-tank/dropped_0", 1);
+  setprop("instrumentation/drop-tank/dropped_1", 1);
 }
 
 #start
@@ -5500,7 +5531,7 @@ aircraftbreaklistener = func
   wow[9]=getprop("gear/gear[9]/wow");
   #Fus back down
   wow[10]=getprop("gear/gear[10]/wow");
-  tanks_fastened=getprop("fdm/jsbsim/tanks/fastened");
+  tanks_attached=int(getprop("fdm/jsbsim/tanks/attached"));
   gear_started=getprop("fdm/jsbsim/init/finally-initialized");
   if (
     (pilot_g==nil)
@@ -5519,7 +5550,7 @@ aircraftbreaklistener = func
     or (wow[8]==nil)
     or (wow[9]==nil)
     or (wow[10]==nil)
-    or (tanks_fastened==nil)
+    or (tanks_attached==nil)
     or (gear_started==nil)
       )
   {
@@ -5547,7 +5578,7 @@ aircraftbreaklistener = func
      and (pilot_g>3)
     )
     or (
-      (tanks_fastened==1)
+      (tanks_attached==1)
       and (pilot_g>1.5)
       and 
       (
@@ -5741,19 +5772,23 @@ aircraft_start_refuel=func
   wow_two=getprop("gear/gear[1]/wow");
   wow_three=getprop("gear/gear[2]/wow");
   setprop("consumables/fuel/tank[0]/level-gal_us", 1.5);
-  setprop("consumables/fuel/tank[1]/level-gal_us", 300);
-  setprop("consumables/fuel/tank[2]/level-gal_us", 40);
-  setprop("consumables/fuel/tank[3]/level-gal_us", 60);
-  setprop("consumables/fuel/tank[4]/level-gal_us", 60);
-  setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs", 118 / lb_to_kg);
+  setprop("consumables/fuel/tank[1]/level-gal_us", (1245 / gal_us_to_l));
+  setprop("consumables/fuel/tank[2]/level-gal_us", (167 / gal_us_to_l));
+  if (getprop("fdm/jsbsim/tanks/attached_0")) {
+    setprop("consumables/fuel/tank[3]/level-gal_us", (260 / gal_us_to_l));
+  }
+  if (getprop("fdm/jsbsim/tanks/attached_1")) {
+    setprop("consumables/fuel/tank[4]/level-gal_us", (260 / gal_us_to_l));
+  }
+  setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[2]", 118 / lb_to_kg);# ammunition
 }
 
 aircraft_end_refuel=func
 {
   setprop("processes/engine/on", 1);
-  setprop("ai/submodels/submodel[1]/count", 40);
-  setprop("ai/submodels/submodel[3]/count", 80);
-  setprop("ai/submodels/submodel[4]/count", 80);
+  setprop("ai/submodels/submodel[1]/count", 40);# 37mm cannon
+  setprop("ai/submodels/submodel[3]/count", 80);# 23mm cannon (inner)
+  setprop("ai/submodels/submodel[5]/count", 80);# 23mm cannon (outer)
   setprop("fdm/jsbsim/shells/n37", 40);
   setprop("fdm/jsbsim/shells/n23-inner", 80);
   setprop("fdm/jsbsim/shells/n23-outer", 80);
@@ -6586,7 +6621,9 @@ var set_init_volume = func
 setlistener("/sim/signals/fdm-initialized",func{
   var todo_when_sim_is_ready = func{
     set_init_volume();
-    set_droptanks_1();
+    set_droptanks(0);
+    set_droptanks(1);
+    drop_tank_status_message();
     set_atmosphere();
   }
   var sim_ready_tmr = maketimer( 4, todo_when_sim_is_ready);
@@ -6670,4 +6707,4 @@ setlistener("/sim/configuration/use_std_atmosphere", set_atmosphere,0,0);
 
 # # for convenience during development: show property browser at startup
 # # adjust the property tree node and uncomment 
-# settimer(func {gui.property_browser("/fdm/jsbsim/calculations/");}, 0);
+#settimer(func {gui.property_browser("/fdm/jsbsim/tanks/");}, 0);
