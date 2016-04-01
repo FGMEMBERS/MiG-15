@@ -1277,7 +1277,7 @@ gearbreaksprocess = func
     {
       if ((gear_one_torn==0) and (gear_one_pos>0))
       {
-        gear_one_torn=teargear(0, "overspeeed "~speed_km);
+        gear_one_torn=teargear(0, "overspeed "~speed_km);
       }
     }
     speed_limit_left=525-((gear_two_pos-0.5)/(1-0.5))*(525-505);
@@ -1286,7 +1286,7 @@ gearbreaksprocess = func
     {
       if ((gear_two_torn==0) and (gear_two_pos>0))
       {
-        gear_two_torn=teargear(1, "overspeeed "~speed_km);
+        gear_two_torn=teargear(1, "overspeed "~speed_km);
       }
     }
     speed_limit_right=610-((gear_three_pos-0.5)/(1-0.5))*(610-515);
@@ -1295,7 +1295,7 @@ gearbreaksprocess = func
     {
       if ((gear_three_torn==0) and (gear_three_pos>0))
       {
-        gear_three_torn=teargear(2, "overspeeed "~speed_km);
+        gear_three_torn=teargear(2, "overspeed "~speed_km);
       }
     }
     roll_speed_km_one=(roll_speed_one*(60*60)/1000);
@@ -4882,9 +4882,10 @@ init_droptank=func
   setprop("ai/submodels/drop-tank_0", 0);
   setprop("ai/submodels/drop-tank_1", 0);
   setprop("ai/submodels/bomb-tank", 0);
-  setprop("fdm/jsbsim/tanks/attached_0", 1);
-  setprop("fdm/jsbsim/tanks/attached_1", 1);
-  #values to move object to real zero
+  # setprop("fdm/jsbsim/tanks/attached_0", 1);
+  # setprop("fdm/jsbsim/tanks/attached_1", 1);
+
+  # values to move object to real zero
   setprop("instrumentation/drop-tank/one", 1);
 }
 init_droptank();
@@ -4897,7 +4898,7 @@ var set_droptanks=func(i){
   if (cond) {
     setprop("instrumentation/drop-tank/dropped_" ~ i, 0);
     setprop("ai/submodels/drop-tank_" ~ i, 0);
-    setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs["  ~ i ~ "]", 48.5);#22kg: empty tank weight
+    setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs["  ~ i ~ "]", 35.274);#16kg: empty tank weight
   } else {
     setprop("consumables/fuel/tank["  ~ (i+3) ~ "]/level-gal_us", 0);
     setprop("consumables/fuel/tank["  ~ (i+3) ~ "]/selected", 0);
@@ -6705,6 +6706,17 @@ set_atmosphere = func{
 }
 setlistener("/sim/configuration/use_std_atmosphere", set_atmosphere,0,0);
 
+# calculate center of gravity and gross weight
+var update_CoG = func{
+  var CoG = getprop("/fdm/jsbsim/inertia/cg-x-in") * in_to_m;
+  var CoG_MAC = (CoG - 3.492) / 2.120;
+  setprop("/fdm/jsbsim/load/center_of_gravity-x",CoG);
+  setprop("/fdm/jsbsim/load/center_of_gravity-MAC",CoG_MAC);
+  setprop("/fdm/jsbsim/load/gross_weight",(getprop("/fdm/jsbsim/inertia/weight-lbs") * lb_to_kg));
+}
+var update_CoG_timer = maketimer(2.0,update_CoG);
+update_CoG_timer.start();
+
 # # for convenience during development: show property browser at startup
 # # adjust the property tree node and uncomment 
-#settimer(func {gui.property_browser("/fdm/jsbsim/tanks/");}, 0);
+#settimer(func {gui.property_browser("/fdm/jsbsim/calculations/load/");}, 0);

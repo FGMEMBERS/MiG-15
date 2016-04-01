@@ -41,13 +41,13 @@ MiG-15bis simulation config.
   <consumables>
     <fuel>
       <tank n="0">
-        <name type="string">Internal fuel lines</name>
+        <name type="string">Negative-g compartment</name>
       </tank>
       <tank n="1">
-        <name type="string">Main tank</name>
+        <name type="string">Tank No.1</name>
       </tank>
       <tank n="2">
-        <name type="string">Balance tank</name>
+        <name type="string">Tank No.2</name>
       </tank>
       <tank n="3">
         <name type="string">Left drop tank</name>
@@ -218,8 +218,12 @@ Touchdown               250
 BEST CLIMB SPEED
 v_true = 710km/h (11560rpm)
 
-MINIMUM MANOEUVERING SPEED
+MINIMUM MANEUVERING SPEED
 v_ind = 300km/h
+
+BE CAREFUL to stay above 300km/h during approach, or you'll have too little control for corrections!
+Only drop below that speed when the flightpath for final approach is established. Abort landing if neccessary.
+The given airspeeds are valid for a landing weight of 4t. When landing at a higher weight, increase speed accordingly.
 
 LANDING
 - Throttle to minimum
@@ -231,7 +235,7 @@ LANDING
 - Increase throttle to maintain 300 km/h
 - Align with runway
 - Release throttle holder (Shift+R)
-- Final approach 250 km/h
+- Final approach 250 km/h (4010 kg)
 - Extend gear
 - Throttle to idle above runway threshold
 - Flare at 225 km/h
@@ -245,7 +249,7 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
     <flight-model>jsb</flight-model>
     <status>advanced production</status>
     <author>Lee Elliott, Victor Slavutinskiy, with great help from Yurik V. Nikiforoff</author>
-    <aircraft-version>3.1.13</aircraft-version>
+    <aircraft-version>3.1.14</aircraft-version>
     <aero>MiG-15bis</aero>
     <fuel-fraction>1.0</fuel-fraction>
     <description>MiG-15bis (JSBSim FDM)</description>
@@ -1549,9 +1553,9 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
       </systems>
 
       <tanks>
-        <attached archive="y" type="float">1</attached> 
-        <attached_0 archive="n" type="bool">1</attached_0>
-        <attached_1 archive="n" type="bool">1</attached_1>
+        <attached archive="n" type="float">1</attached> 
+        <attached_0 archive="y" type="bool">1</attached_0>
+        <attached_1 archive="y" type="bool">1</attached_1>
       </tanks>
 
       <tweak_factors>

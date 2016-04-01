@@ -91,7 +91,7 @@
     <vtailarea unit="FT2">              43.06 </vtailarea>
     <vtailarm  unit="FT" >              14.485 </vtailarm>
     <location name="AERORP" unit="M">
-      <x>       4.022 </x>
+      <x>   4.022 </x>
       <y>   0.00 </y>
       <z>   0.00 </z>
     </location>
@@ -110,15 +110,20 @@
   <!--
       Center of mass of empty aircraft is 30.1% of mean aerodynamical chord by Tab. 25
       4.139-0.647+2.120*0.301=4.13012 by Fig. 117
-      ~Same poit as K 4.139-0.55 on Fig. 117
+      ~Same point as K 4.139-0.55 on Fig. 117
+
+      Emptyweight: 3681kg
+      + Pilot    :   97kg
+      ___________________
+                 = 3778kg
   -->
   <mass_balance>
     <ixx unit="SLUG*FT2">      5000 </ixx>
     <iyy unit="SLUG*FT2">      8452 </iyy>
     <izz unit="SLUG*FT2">     11007 </izz>
-    <emptywt unit="KG" >       3681 </emptywt>
+    <emptywt unit="KG" >       3778 </emptywt>
     <location name="CG" unit="M">
-      <x>       4.130 </x>
+      <x>       4.13012 </x>
       <y>       0.00 </y>
       <z>       0.00 </z>
     </location>
@@ -129,7 +134,8 @@
     <pointmass name="left_external_tank_empty">
       <weight unit="KG">16</weight>
       <location>
-        <x>      3.960 </x>
+        <!-- <x>      3.960 </x> -->
+        <x>      4.666 </x>
         <y>     -2.644 </y>
         <z>     -0.468 </z>
       </location>
@@ -137,7 +143,7 @@
     <pointmass name="right_external_tank_empty">
       <weight unit="KG">16</weight>
       <location>
-        <x>      3.960 </x>
+        <x>      4.666 </x>
         <y>      2.644 </y>
         <z>     -0.468 </z>
       </location>
@@ -155,7 +161,7 @@
     <pointmass name="Ammunition">
       <weight unit="KG">118</weight>
       <location unit="M">
-        <x>     1.85 </x>
+        <x>     1.891</x>
         <y>     0.0  </y>
         <z>    -0.45 </z>
       </location>
@@ -191,56 +197,60 @@
       </thruster>
     </engine>
 
+    <!--
+        Tanks positions where derived from the center of gravity shifts for different
+        fuel distributions given in [1], table 23
+    -->
 
-    <!--        Places of tanks is by model and some MiG internal scheme -->
-
-    <!--        Tank 0 is fuel system imitation actually -->
-
+    <!--
+        Tank 0 is the negative-g compartment inside tank 1
+        (provides fuel for 15s during inverted flight - not simulated yet).
+        Capacity is 26 l = 21.61 kg.
+    -->
     <tank type="FUEL" number="0">
       <location unit="M">
-        <x>     3.293 </x>
+        <x>     3.318 </x>
         <y>     0.00 </y>
         <z>     0.00 </z>
       </location>
-      <capacity unit="LBS"> 10.00 </capacity>
-      <contents unit="LBS"> 10.00 </contents>
-      <density unit="KG/L"> 0.83 </density>
+      <capacity unit="KG"> 21.61 </capacity>
+      <contents unit="KG"> 21.61 </contents>
+      <density unit="KG/L"> 0.831 </density>
     </tank>
 
     <!--
-        Tank 1 capacity is 1245 l = 1033 kg
+        Tank 1 total capacity is 1245 l = 1035 kg
+        minus tank 0, which is inside tank 1 = 1013.39 kg.
     -->
-
     <tank type="FUEL" number="1">
       <location unit="M">
-        <x>     3.293 </x>
+        <x>     3.318</x>
         <y>     0.00 </y>
         <z>     0.00 </z>
       </location>
-      <capacity unit="KG"> 1033.0 </capacity>
-      <contents unit="KG"> 1033.0 </contents>
-      <density unit="KG/L"> 0.83 </density>
+      <capacity unit="KG"> 1013.39</capacity>
+      <contents unit="KG"> 1013.39</contents>
+      <density unit="KG/L"> 0.831 </density>
     </tank>
 
     <!--
-        Tank 2 capacity is 167 l = 139 kg
+        Tank 2 capacity is 167 l = 138 kg.
     -->
-
     <tank type="FUEL" number="2">
       <location unit="M">
-        <x>     6.29 </x>
+        <x>     6.374</x>
         <y>     0.00 </y>
         <z>    -0.22 </z>
       </location>
-      <capacity unit="KG"> 139.0 </capacity>
-      <contents unit="KG"> 139.0 </contents>
-      <density unit="KG/L"> 0.83 </density>
+      <capacity unit="KG"> 138.0 </capacity>
+      <contents unit="KG"> 138.0 </contents>
+      <density unit="KG/L"> 0.831 </density>
     </tank>
 
     <!--
       Tanks 3 and 4 are external drop tanks.
 
-      It's unclear which version is modelled here, the most common ones where the
+      It's unclear which version is modelled here, the most common ones were the
       PTB-260 slipper tank and the PTB-300 pylon mounted tank.
       I chose the PTB-260, because:
       Pro: The original capacity was 241 l, so 260 l is the closest model.
@@ -250,28 +260,28 @@
       Con: This tank is smaller and slower than the PTB-300. It reduces the maximum
            velocity to 700 km/h (PTB-300: 900 km/h). -AZ-
 
-      Capacity for each tank is 260 l = 216 kg
+      Capacity for each tank is 260 l = 216 kg.
     -->
     <tank type="FUEL" number="3">
       <location unit="M">
-        <x>     4.0 </x>
-        <y>     -2.644 </y>
-        <z>     -0.468 </z>
+        <x>     4.666 </x>
+        <y>    -2.644 </y>
+        <z>    -0.468 </z>
       </location>
       <capacity unit="KG"> 216.0 </capacity>
       <contents unit="KG"> 216.0 </contents>
-      <density unit="KG/L"> 0.83 </density>
+      <density unit="KG/L"> 0.831</density>
     </tank>
 
     <tank type="FUEL" number="4">
       <location unit="M">
-        <x>     4.0 </x>
+        <x>     4.666 </x>
         <y>     2.644 </y>
-        <z>     -0.468 </z>
+        <z>    -0.468 </z>
       </location>
       <capacity unit="KG"> 216.0 </capacity>
       <contents unit="KG"> 216.0 </contents>
-      <density unit="KG/L"> 0.83 </density>
+      <density unit="KG/L"> 0.831</density>
     </tank>
 
   </propulsion>
@@ -280,7 +290,6 @@
       Workaround to adjust engine thrust.
       See /Systems/Engine.xml for details.
   -->
-
   <external_reactions>
     <force name="thrust_correction" frame="BODY">
       <location unit="M">
@@ -299,7 +308,6 @@
       Drag force of the external fuel tanks, modelled as an external reaction to
       enable simulation of one single tank (failure simulation).
     -->
-
     <force name="drag_droptank_L" frame="WIND">
       <location unit="M">
         <x>     4.0 </x>
@@ -333,7 +341,6 @@
       damping_coeff and damping_coeff_rebound control how fast the spring absorbs and releases energy
       Default unit for spring rate is LBF/FT and damping is LBF/FT/S
   -->
-
   <ground_reactions>
 
     <contact type="BOGEY" name="NOSE">
@@ -1287,13 +1294,7 @@
         <product>
           <property>aero/qbar-psf</property>
           <property>metrics/Sw-sqft</property>
-          <quotient>
-            <sum>
-              <property>tanks/attached_0</property>
-              <property>tanks/attached_1</property>
-            </sum>
-            <value>2</value>
-          </quotient>
+          <property>tanks/attached</property>
           <table>
             <independentVar lookup="row">aero/alpha-wing-rad</independentVar>
             <tableData>
@@ -1853,27 +1854,6 @@
     <property value="80">weights/shells/n23-inner</property>
     <property value="80">weights/shells/n23-outer</property>
 
-    <function name="calculations/pitch-weights-delta/mass-center-m">
-      <product>
-        <value>0.0254</value><!--To convert from inches to meters -->
-        <property>inertia/cg-x-in</property>
-      </product>
-    </function>
-
-    <function name="calculations/pitch-weights-delta/mass-center-shift-m">
-      <sum>
-        <value>-4.13012</value>
-        <property>calculations/pitch-weights-delta/mass-center-m</property>
-      </sum>
-    </function>
-
-    <function name="calculations/pitch-weights-delta/mass-center-shift-ft">
-      <product>
-        <value>3.2808</value><!--1/0.3048 to convert from meters to feets-->
-        <property>calculations/pitch-weights-delta/mass-center-shift-m</property>
-      </product>
-    </function>
-
     <axis name="PITCH">
 
       <!-- Fig 169
@@ -1913,21 +1893,10 @@
       -->
 
       <!--
-         Delta pitch due to weight diffrence, page 26
-         Common formulae is Mz=Mznorm+(CMw-CMnorm)*Cynorm,
-         so delta is Cynorm*(CMw-CMnorm),
-         Length of mean aoerodynamical horde is is 2.120 m
-         Center of mass of empty aircraft is 4.13012 m
-         Need to convert it to feets, though.
+        The pitch moment due to deviation of the center of gravity is already considered by
+        FlightGear. Therefore, the sections calculating "delta pitch due to weight difference"
+        have been removed because they duplicated the effect.
       -->
-
-      <function name="aero/coefficient/Cmwddp">
-        <description>Pitch_moment_due_to_weight diffrence</description>
-        <product>
-          <property>aero/coefficient/CLalphaflaps</property>
-          <property>calculations/pitch-weights-delta/mass-center-shift-ft</property>
-        </product>
-      </function>
 
       <!-- Fig 63 -->
       <function name="aero/coefficient/Cmalphaelev">
@@ -2073,10 +2042,16 @@
           <property>metrics/Sw-sqft</property>
           <property>metrics/cbarw-ft</property>
           <table>
-            <independentVar lookup="row">fcs/flap-pos-deg</independentVar>
+            <independentVar lookup="column">fcs/flap-pos-deg</independentVar>
+            <independentVar lookup="row">aero/alpha-wing-rad</independentVar>
             <tableData>
-              0.0 0.0
-              55.0        -0.04
+                      0  55
+              -0.035  0  -0.029
+               0.244  0  -0.058
+               0.279  0  -0.040 
+               0.314  0  -0.067
+               0.349  0  -0.058
+               0.384  0  -0.050
             </tableData>
           </table>
         </product>
@@ -2089,13 +2064,7 @@
           <property>aero/qbar-psf</property>
           <property>metrics/Sw-sqft</property>
           <property>metrics/cbarw-ft</property>
-          <quotient>
-            <sum>
-              <property>tanks/attached_0</property>
-              <property>tanks/attached_1</property>
-            </sum>
-            <value>2</value>
-          </quotient>
+          <property>tanks/attached</property>
           <table>
             <independentVar lookup="column">fcs/flap-pos-deg</independentVar>
             <independentVar lookup="row">aero/alpha-wing-rad</independentVar>
