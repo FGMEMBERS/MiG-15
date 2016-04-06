@@ -1043,6 +1043,10 @@ teargear = func (gear_number, breaktype)
   gears_torn_sound=getprop("sounds/gears-torn/on");
   setprop("/sim/messages/copilot",
     "Gear " ~ gear_number ~ " torn: " ~ breaktype ~ "!");
+  # set gear weight to zero
+  setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[" ~ (gear_number*2 + 3) ~ "]", 0); #gear in
+  setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[" ~ (gear_number*2 + 4) ~ "]", 0); #gear out
+
   if (gears_torn_sound!=nil)
   {
     if (gears_torn_sound==0)
@@ -1613,6 +1617,10 @@ one_gear_move=func(gear_num, gear_pos, gear_command, gear_stuck, move_time, z_ma
     {
       setprop("fdm/jsbsim/gear/unit["~gear_num~"]/stuck", 0);
     }
+    # weight distribution
+    var gear_weight = (28.4 + int((gear_num+1)/2) * (65.2 - 28.4)) / lb_to_kg; # front gear 28.4kg, main gear 65.2kg
+    setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[" ~ (gear_num*2 + 3) ~ "]", ((1-gear_pos) * gear_weight)); #gear in
+    setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[" ~ (gear_num*2 + 4) ~ "]", (gear_pos * gear_weight));     #gear out
   }
 }
 
