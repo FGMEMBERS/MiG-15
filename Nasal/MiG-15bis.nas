@@ -449,8 +449,6 @@ init_fdm  = func
   setprop("fdm/jsbsim/fcs/speedbrake-cmd-norm", 0);
   setprop("fdm/jsbsim/fcs/speedbrake-cmd-norm-real", 0);
   setprop("fdm/jsbsim/fcs/speedbrake-pos-norm", 0);
-  setprop("fdm/jsbsim/tanks/attached_0", 0);
-  setprop("fdm/jsbsim/tanks/attached_1", 0);
 }
 
 init_fdm();
