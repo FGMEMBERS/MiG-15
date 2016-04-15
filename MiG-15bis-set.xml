@@ -259,7 +259,7 @@ increase throttle to 7000 rpm to taxi.
     <flight-model>jsb</flight-model>
     <status>advanced production</status>
     <author>Lee Elliott, Victor Slavutinskiy, with great help from Yurik V. Nikiforoff</author>
-    <aircraft-version>3.1.17</aircraft-version>
+    <aircraft-version>3.1.18</aircraft-version>
     <aero>MiG-15bis</aero>
     <fuel-fraction>1.0</fuel-fraction>
     <description>MiG-15bis (JSBSim FDM)</description>
@@ -416,6 +416,7 @@ increase throttle to 7000 rpm to taxi.
     </model>
 
     <configuration>
+      <monospace_font_option type="bool" archive="y">false</monospace_font_option>
       <use_std_atmosphere type="bool" archive="y">false</use_std_atmosphere>
       <show_touchdown_speeds type="bool" archive="y">true</show_touchdown_speeds>
       <rudder_input_exponent type="float" archive="y">2</rudder_input_exponent>
@@ -562,6 +563,20 @@ increase throttle to 7000 rpm to taxi.
             <binding>
               <command>dialog-show</command>
               <dialog-name>configuration_dialog</dialog-name>
+            </binding>
+          </item>
+          <item n="7">
+            <label>---------------------</label>
+          </item>
+          <item n="8">
+            <label>Toggle monospace font</label>
+            <binding>
+              <command>property-toggle</command>
+              <property>/sim/configuration/monospace_font_option</property>
+            </binding>
+            <binding>
+              <command>nasal</command>
+              <script>MIG15BIS.gui_update(getprop("/sim/configuration/monospace_font_option"))</script>
             </binding>
           </item>
         </menu>

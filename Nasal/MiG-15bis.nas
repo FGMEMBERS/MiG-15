@@ -6836,6 +6836,32 @@ var update_CoG = func{
 var update_CoG_timer = maketimer(2.0,update_CoG);
 update_CoG_timer.start();
 
+## gui option
+# save the old font settings before changing them
+var old_gui_font = [];
+foreach(var w; props.globals.getNode("/sim/gui").getChildren("style")) {
+  append(old_gui_font, w.getNode("fonts/gui").getValue("name"));
+}
+# using an archived property for the gui font option
+var gui_update = func(monospace_chosen) {
+  var current_style = getprop("/sim/gui/current-style");
+  if (monospace_chosen) {
+    setprop("/sim/gui/style[" ~ current_style ~ "]/fonts/gui/name","FIXED_8x13");
+  }
+  else {
+    setprop("/sim/gui/style[" ~ current_style ~ "]/fonts/gui/name",old_gui_font[current_style]);
+  }
+  fgcommand("gui-redraw");
+}
+# set font at startup and when gui changes
+setlistener("/sim/gui/current-style",func{
+  gui_update(getprop("/sim/configuration/monospace_font_option"));
+},1,2);
+# restore the old setting when exiting fgfs
+setlistener("/sim/signals/exit",func{
+  gui_update(false);
+},0,0);
+
 # # for convenience during development: show property browser at startup
 # # adjust the property tree node and uncomment 
 #settimer(func {gui.property_browser("/fdm/jsbsim/calculations/load/");}, 0);
