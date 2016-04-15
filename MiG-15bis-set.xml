@@ -259,7 +259,7 @@ increase throttle to 7000 rpm to taxi.
     <flight-model>jsb</flight-model>
     <status>advanced production</status>
     <author>Lee Elliott, Victor Slavutinskiy, with great help from Yurik V. Nikiforoff</author>
-    <aircraft-version>3.1.16</aircraft-version>
+    <aircraft-version>3.1.17</aircraft-version>
     <aero>MiG-15bis</aero>
     <fuel-fraction>1.0</fuel-fraction>
     <description>MiG-15bis (JSBSim FDM)</description>
@@ -462,8 +462,10 @@ increase throttle to 7000 rpm to taxi.
 	<signal><property type="bool">/fdm/jsbsim/fcs/flap-torn</property></signal>
 	<signal><property>/fdm/jsbsim/systems/canopy/pos</property></signal>
 	<signal><property type="bool">/fdm/jsbsim/systems/canopy/torn</property></signal>
-	<signal><property type="bool">/fdm/jsbsim/tanks/attached_0</property></signal>
-	<signal><property type="bool">/fdm/jsbsim/tanks/attached_1</property></signal>
+	<signal><property>/fdm/jsbsim/tanks/attached_0</property></signal>
+	<signal><property>/fdm/jsbsim/tanks/attached_1</property></signal>
+	<signal><property>/instrumentation/drop-tank/dropped_0</property></signal>
+	<signal><property>/instrumentation/drop-tank/dropped_1</property></signal>
 	<signal><property>/fdm/jsbsim/systems/airspeedometer/indicated-kt</property></signal>
 	<signal><property>/fdm/jsbsim/systems/altimeter/altitude-indicated-ft</property></signal>
 	<signal><property>/fdm/jsbsim/systems/vertspeedometer/indicated-speed-fps</property></signal>

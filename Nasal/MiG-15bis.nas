@@ -3,6 +3,8 @@ var lb_to_kg = 0.45359237;
 var nm_to_km = 1.852;
 var in_to_m = 0.0254;
 var gal_us_to_l = 3.785411784;
+# seed the random number generator
+srand();
 #--------------------------------------------------------------------
 toggle_traj_mkr = func {
   if(getprop("ai/submodels/trajectory-markers") == nil) {
@@ -4792,6 +4794,7 @@ var drop_droptank = func (i) {
   setprop("consumables/fuel/tank[" ~ (i+3) ~ "]/selected", 0);
   setprop("ai/submodels/drop-tank_" ~ i, 1);
   setprop("/fdm/jsbsim/tanks/attached_" ~ i, 0);
+  setprop("/instrumentation/drop-tank/dropped_" ~ i, 1);
 }
 
 droptank = func 
@@ -5672,6 +5675,116 @@ setlistener("gear/gear[8]/wow", aircraftbreaklistener);
 setlistener("gear/gear[9]/wow", aircraftbreaklistener);
 setlistener("gear/gear[10]/wow", aircraftbreaklistener);
 
+# Overspeed-------------------------------------------------------
+var overspeed_check_interval = 2; # check every 2 seconds
+var aircraft_break = func{
+  aircraft_crash_sound();
+  aircraft_lock_unlock (0);
+  setprop("/sim/messages/copilot", "Structural failure due to overspeed!");
+}
+var tank_break = func{
+  var i = int(2*rand()); # 0:left tank, 1:right tank
+  if (getprop("/fdm/jsbsim/tanks/attached_" ~ i)==1) {
+    drop_droptank(i);
+    geartornsound();
+    if (i==0) {setprop("/sim/messages/copilot", "Left drop tank lost due to overspeed!");}
+    else {setprop("/sim/messages/copilot", "Right drop tank lost due to overspeed!");}
+  }
+}
+var squeak_sound = func(p){
+  # p is the probability of the sound being played
+  if (rand() < p) {
+    setprop("/sounds/aircraft-crack/volume",1);
+    setprop("/sounds/aircraft-crack/on",1);
+    var soundoff = maketimer(1.0,func{
+      setprop("/sounds/aircraft-crack/volume",0);
+      setprop("/sounds/aircraft-crack/on",0);
+    });
+    soundoff.singleShot=1;
+    soundoff.start();
+  }
+}
+var risk_simulation = func(x,x0,x1){
+  # This function takes a value x (typically a speed value)
+  # and two limits, x0 and x1, which mark a "red zone".
+  # If x is in this zone, there is a risk of some event (typically something bad) occurring. 
+  # The closer x gets to the x1 limit, the higher the risk of the event gets.
+  # The return value is 1 in case of the event, 0 otherwise. 
+  # x=x0 => r=0.0
+  # x=x1 => r=1.0
+  # r=0.0: after 300s, there is a 50/50 chance of the event occurring
+  # r=0.5: after  30s, there is a 50/50 chance of the event occurring
+  # r=1.0: after   3s, there is a 50/50 chance of the event occurring
+  var r = (x-x0)/(x1-x0);
+  if (r < 0) { r = 0};
+  var n = 3/overspeed_check_interval * math.pow( 100, (1-r));
+  var p = math.pow( 0.5, (1/n));
+  return int(rand()-p+1);
+}
+var overspeed_check = func{
+  # speed limits are listed in [1], table 7
+  if (getprop("/processes/aircraft-break/enabled")) {
+    var V = getprop("/velocities/airspeed-kt") * nm_to_km;
+    var H = getprop("/fdm/jsbsim/calculations/H_density");
+    var M = getprop("/velocities/mach");
+
+    # without drop tanks
+    if (getprop("/fdm/jsbsim/tanks/attached") == 0) {
+      if ((H <= 900) and (V > 1090)) { # limit: 1070km/h
+        if (risk_simulation(V,1090,1130)) {
+          aircraft_break();
+        }
+        squeak_sound(0.33);
+      }
+      if ((900 < H) and (H <= 5000) and (M > 0.94)) { # limit: M=0.92
+        if (risk_simulation(M,0.94,0.97)) {
+          aircraft_break();
+        }
+        squeak_sound(0.33);
+      }
+      if ((5000 < H) and (H <= 7500) and (M > 0.98)) { # limit: M=0.96
+        if (risk_simulation(M,0.98,1.00)) {
+          aircraft_break();
+        }
+        squeak_sound(0.33);
+      }
+      if ((7500 < H) and (M > 1.01)) { # limit: M=1.00
+        if (risk_simulation(M,1.01,1.02)) {
+          aircraft_break();
+        }
+        squeak_sound(0.33);
+      }
+    }
+      
+    # with drop tanks    
+    else {
+      if ((H <= 3500) and (V > 730)) { # limit: 700km/h
+        if (risk_simulation(V,730,810)) {
+          tank_break();
+        }
+        squeak_sound(0.67);
+      }
+      if ((H > 3500) and (M > 0.73)) { # limit: M=0.70
+        if (risk_simulation(M,0.73,0.81)) {
+          tank_break();
+        }
+        squeak_sound(0.67);
+      }
+      if ((H <= 3500) and (V > 770)) { # limit: 700km/h
+        if (risk_simulation(V,770,840)) {
+          aircraft_break();
+        }
+      }
+      if ((H > 3500) and (M > 0.77)) { # limit: M=0.70
+        if (risk_simulation(M,0.77,0.84)) {
+          aircraft_break();
+        }
+      }
+    }
+  }
+}
+var overspeed_check_timer = maketimer( overspeed_check_interval, overspeed_check);
+overspeed_check_timer.start();
 #-----------------------------------------------------------------------
 #Aircraft repair
 
