@@ -54,12 +54,6 @@
         <command>property-toggle</command>
         <property>/sim/model/show_gunsight</property>
       </binding>
-      <binding>
-        <command>nasal</command>
-        <script>
-          MIG15BIS.ammunition_update()
-        </script>
-      </binding>
     </checkbox>
     <text>
       <label>Gunsight</label>

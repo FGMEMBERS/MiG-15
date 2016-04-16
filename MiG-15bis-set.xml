@@ -241,6 +241,7 @@ increase throttle to 7000 rpm to taxi.
 - Throttle to minimum
 - Extend speed brakes
 - Slow down to 450 km/h
+- Extend gear
 - Flaps 20 deg
 - Slow down to 350 km/h
 - Flaps 55 deg
@@ -248,7 +249,6 @@ increase throttle to 7000 rpm to taxi.
 - Align with runway
 - Release throttle holder (Shift+R)
 - Final approach 250 km/h (4010 kg)
-- Extend gear
 - Throttle to idle above runway threshold
 - Flare at 225 km/h
 - Touch down at 172 km/h (4010 kg)
@@ -259,7 +259,7 @@ increase throttle to 7000 rpm to taxi.
     <flight-model>jsb</flight-model>
     <status>advanced production</status>
     <author>Lee Elliott, Victor Slavutinskiy, with great help from Yurik V. Nikiforoff</author>
-    <aircraft-version>3.1.18</aircraft-version>
+    <aircraft-version>3.1.19</aircraft-version>
     <aero>MiG-15bis</aero>
     <fuel-fraction>1.0</fuel-fraction>
     <description>MiG-15bis (JSBSim FDM)</description>

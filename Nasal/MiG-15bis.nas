@@ -2953,7 +2953,7 @@ engineprocess=func
     }
     if (engine_temperature_degc>870 and getprop ("processes/engine/failures-enabled") == 1)
     {
-      #Engine switch off if it goes on high temperature too long
+      #Engine switch off if it goes on high temperature too long (flameout due to overheat)
       if (high_temperature_prev_time==0)
       {
         high_temperature_prev_time=simulation_time;
@@ -4125,27 +4125,15 @@ bulletricochetsoundoff = func
 
 cannon();
 
-# remove / refill ammunition when gunsight visibility is toggled while parking 
-var ammunition_update = func{
-  var gunsight_visible = getprop("/sim/model/show_gunsight");
-  var groundspeed_kt = getprop("/velocities/groundspeed-kt");
-  if (groundspeed_kt < 0.6) {
-    if (gunsight_visible == 0) {
-      setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[2]",0);
-      setprop("ai/submodels/submodel[1]/count",0);
-      setprop("ai/submodels/submodel[3]/count",0);
-      setprop("ai/submodels/submodel[5]/count",0);
-    }
-    if (gunsight_visible == 1) {
-      setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[2]",118/lb_to_kg);
-      setprop("ai/submodels/submodel[1]/count",40);
-      setprop("ai/submodels/submodel[3]/count",80);
-      setprop("ai/submodels/submodel[5]/count",80);
-    }
-  }
+# refill ammunition
+var ammunition_refill = func{
+  setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[2]",118/lb_to_kg);
+  setprop("ai/submodels/submodel[1]/count",40);
+  setprop("ai/submodels/submodel[3]/count",80);
+  setprop("ai/submodels/submodel[5]/count",80);
 }
 
-ammunition_update();
+ammunition_refill();
 
 #-----------------------------------------------------------------------
 #Wind process
@@ -5918,6 +5906,7 @@ aircraft_end_refuel=func
 aircraft_refuel=func
 {
   aircraft_start_refuel();
+  ammunition_refill();
   settimer(aircraft_end_refuel, 1);
 }
 
@@ -6809,7 +6798,7 @@ reset_atmosphere = func{
   setprop("/environment/params/jsbsim-turbulence-model","ttMilspec");
   setprop("/environment/params/metar-updates-environment",1);
   setprop("/sim/gui/dialogs/metar/mode/manual-weather",0);
-  setprop ("/sim/messages/copilot", "Atmosphere reset to default");
+  setprop ("/sim/messages/copilot", "Atmosphere set to default");
   logprint(3,"---MiG-15bis.nas: ...done");
 }
 set_atmosphere = func{
@@ -6859,7 +6848,7 @@ setlistener("/sim/gui/current-style",func{
 },1,2);
 # restore the old setting when exiting fgfs
 setlistener("/sim/signals/exit",func{
-  gui_update(false);
+  gui_update(0);
 },0,0);
 
 # # for convenience during development: show property browser at startup
