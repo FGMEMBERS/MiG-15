@@ -118,7 +118,7 @@ MiG-15bis simulation config.
       </key>
       <key>
         <name>Ctrl-Q</name>
-        <desc>Toggle main pump power switch (Off at start up)</desc>
+        <desc>Toggle main pump power switch</desc>
       </key>
       <key>
         <name>R</name>
@@ -126,11 +126,11 @@ MiG-15bis simulation config.
       </key>
       <key>
         <name>Shift-R</name>
-        <desc>On/Off low throttle holdeR (Off at start up)</desc>
+        <desc>On/Off low throttle holdeR</desc>
       </key>
       <key>
         <name>Ctrl-S</name>
-        <desc>Toggle Starter power switch (Off at start up)</desc>
+        <desc>Toggle Starter power switch</desc>
       </key>
       <key>
         <name>Shift-S</name>
@@ -146,15 +146,15 @@ MiG-15bis simulation config.
       </key>
       <key>
         <name>E</name>
-        <desc>Toggle battEry switch (off at start up)</desc>
+        <desc>Toggle battEry switch</desc>
       </key>
       <key>
         <name>Shift-E</name>
-        <desc>Toggle APU gEnerator switch (off at start up)</desc>
+        <desc>Toggle APU gEnerator switch</desc>
       </key>
       <key>
         <name>Ctrl-E</name>
-        <desc>Toggle Engine instrumEntation powEr switch (off at start up)</desc>
+        <desc>Toggle Engine instrumEntation powEr switch</desc>
       </key>
       <key>
         <name>Ctrl-B</name>
@@ -184,10 +184,51 @@ MiG-15bis simulation config.
         <name>Shift-L</name>
         <desc>Toggle auto-coordination</desc>
       </key>
-      <text>
-Detailed documentation in /MiG-15/Documentation directory
 
-TAKEOFF
+      <line>
+Detailed documentation in /MiG-15/Documentation directory        
+      </line>
+      <text>
+=== LOAD LIMITS ===========================================
+- Max. load:         8 g
+- Destructive load: 12 g
+
+=== MAX.SPEED, CLEAN ======================================
+      &lt; 900m: IAS = 1070 km/h
+ 900...5000m: M = 0.92
+5000...7500m: M = 0.96
+7500m &lt;     : M = 1.00
+
+=== MAX.SPEED, WITH DROP TANKS ============================
+&lt; 3500m: IAS = 700 km/h
+&gt; 3500m: M = 0.7
+
+=== GEAR / FLAP SPEEDS ====================================
+Gear extended: 400 km/h
+Flaps 20deg:   500 km/h
+Flaps 55deg:   380 km/h
+Touchdown:     250 km/h
+
+=== BEST CLIMB SPEED ======================================
+v_true = 710 km/h (11560 rpm)
+
+=== MINIMUM MANEUVERING SPEED =============================
+v_ind = 300 km/h
+
+BE CAREFUL to stay above 300km/h during approach until the
+correct glidepath is established. The design landing weight
+is 4010 kg. When landing at a higher weight, increase speed.
+
+=== ENGINE LIMITS =========================================
+- Max.power ( 5min): 11560 rpm
+- Nominal   (60min): 11200 rpm
+- Cruise           : 10870 rpm
+- Max temperature  :   825 degC
+
+The engine will flame out if you keep throttle to idle;
+increase throttle to 7000 rpm to taxi.
+
+=== TAKEOFF ===============================================
 - Flaps 20deg
 - Push stick forward during acceleration
 - At 195km/h gently lift front wheel
@@ -196,60 +237,29 @@ TAKEOFF
 - Retract gear and flaps immediately after liftoff
 - Accelerate to 400km/h
 
-LOAD LIMITS
-- Max. load:         8g
-- Destructive load: 12g
-
-ENGINE LIMITS
-- Max.power ( 5min): 11560rpm
-- Nominal   (60min)  : 11200rpm
-- Cruise                 : 10870rpm
-- Max temperature  :   825degC
-
-MAXIMUM SPEEDS
-                    IAS (km/h)     Mach
-Clean                     1070     0.92
-With drop tanks          700     0.7
-Gear extended           400
-Flaps 20deg              500
-Flaps 55deg              380
-Touchdown               250
-
-BEST CLIMB SPEED
-v_true = 710km/h (11560rpm)
-
-MINIMUM MANEUVERING SPEED
-v_ind = 300km/h
-
-BE CAREFUL to stay above 300km/h during approach, or you'll have too little control for corrections!
-Only drop below that speed when the flightpath for final approach is established. Abort landing if neccessary.
-The given airspeeds are valid for a landing weight of 4t. When landing at a higher weight, increase speed accordingly.
-
-LANDING
+=== LANDING ===============================================
 - Throttle to minimum
 - Extend speed brakes
 - Slow down to 450 km/h
-- Flaps 20deg
+- Extend gear
+- Flaps 20 deg
 - Slow down to 350 km/h
-- Flaps 55deg
+- Flaps 55 deg
 - Increase throttle to maintain 300 km/h
 - Align with runway
 - Release throttle holder (Shift+R)
 - Final approach 250 km/h (4010 kg)
-- Extend gear
 - Throttle to idle above runway threshold
 - Flare at 225 km/h
-- Touch down at 172km/h (4010 kg)
+- Touch down at 172 km/h (4010 kg)
 - Apply brakes
-
-The engine will flame out if you keep throttle to idle; increase throttle to 7000 rpm to taxi.
       </text>
     </help>
 
     <flight-model>jsb</flight-model>
     <status>advanced production</status>
     <author>Lee Elliott, Victor Slavutinskiy, with great help from Yurik V. Nikiforoff</author>
-    <aircraft-version>3.1.15</aircraft-version>
+    <aircraft-version>3.1.19</aircraft-version>
     <aero>MiG-15bis</aero>
     <fuel-fraction>1.0</fuel-fraction>
     <description>MiG-15bis (JSBSim FDM)</description>
@@ -406,6 +416,7 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
     </model>
 
     <configuration>
+      <monospace_font_option type="bool" archive="y">false</monospace_font_option>
       <use_std_atmosphere type="bool" archive="y">false</use_std_atmosphere>
       <show_touchdown_speeds type="bool" archive="y">true</show_touchdown_speeds>
       <rudder_input_exponent type="float" archive="y">2</rudder_input_exponent>
@@ -452,8 +463,10 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
 	<signal><property type="bool">/fdm/jsbsim/fcs/flap-torn</property></signal>
 	<signal><property>/fdm/jsbsim/systems/canopy/pos</property></signal>
 	<signal><property type="bool">/fdm/jsbsim/systems/canopy/torn</property></signal>
-	<signal><property type="bool">/fdm/jsbsim/tanks/attached_0</property></signal>
-	<signal><property type="bool">/fdm/jsbsim/tanks/attached_1</property></signal>
+	<signal><property>/fdm/jsbsim/tanks/attached_0</property></signal>
+	<signal><property>/fdm/jsbsim/tanks/attached_1</property></signal>
+	<signal><property>/instrumentation/drop-tank/dropped_0</property></signal>
+	<signal><property>/instrumentation/drop-tank/dropped_1</property></signal>
 	<signal><property>/fdm/jsbsim/systems/airspeedometer/indicated-kt</property></signal>
 	<signal><property>/fdm/jsbsim/systems/altimeter/altitude-indicated-ft</property></signal>
 	<signal><property>/fdm/jsbsim/systems/vertspeedometer/indicated-speed-fps</property></signal>
@@ -550,6 +563,20 @@ The engine will flame out if you keep throttle to idle; increase throttle to 700
             <binding>
               <command>dialog-show</command>
               <dialog-name>configuration_dialog</dialog-name>
+            </binding>
+          </item>
+          <item n="7">
+            <label>---------------------</label>
+          </item>
+          <item n="8">
+            <label>Toggle monospace font</label>
+            <binding>
+              <command>property-toggle</command>
+              <property>/sim/configuration/monospace_font_option</property>
+            </binding>
+            <binding>
+              <command>nasal</command>
+              <script>MIG15BIS.gui_update(getprop("/sim/configuration/monospace_font_option"))</script>
             </binding>
           </item>
         </menu>

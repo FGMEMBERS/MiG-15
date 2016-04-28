@@ -3,6 +3,8 @@ var lb_to_kg = 0.45359237;
 var nm_to_km = 1.852;
 var in_to_m = 0.0254;
 var gal_us_to_l = 3.785411784;
+# seed the random number generator
+srand();
 #--------------------------------------------------------------------
 toggle_traj_mkr = func {
   if(getprop("ai/submodels/trajectory-markers") == nil) {
@@ -449,8 +451,6 @@ init_fdm  = func
   setprop("fdm/jsbsim/fcs/speedbrake-cmd-norm", 0);
   setprop("fdm/jsbsim/fcs/speedbrake-cmd-norm-real", 0);
   setprop("fdm/jsbsim/fcs/speedbrake-pos-norm", 0);
-  setprop("fdm/jsbsim/tanks/attached_0", 0);
-  setprop("fdm/jsbsim/tanks/attached_1", 0);
 }
 
 init_fdm();
@@ -2953,7 +2953,7 @@ engineprocess=func
     }
     if (engine_temperature_degc>870 and getprop ("processes/engine/failures-enabled") == 1)
     {
-      #Engine switch off if it goes on high temperature too long
+      #Engine switch off if it goes on high temperature too long (flameout due to overheat)
       if (high_temperature_prev_time==0)
       {
         high_temperature_prev_time=simulation_time;
@@ -4125,27 +4125,15 @@ bulletricochetsoundoff = func
 
 cannon();
 
-# remove / refill ammunition when gunsight visibility is toggled while parking 
-var ammunition_update = func{
-  var gunsight_visible = getprop("/sim/model/show_gunsight");
-  var groundspeed_kt = getprop("/velocities/groundspeed-kt");
-  if (groundspeed_kt < 0.6) {
-    if (gunsight_visible == 0) {
-      setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[2]",0);
-      setprop("ai/submodels/submodel[1]/count",0);
-      setprop("ai/submodels/submodel[3]/count",0);
-      setprop("ai/submodels/submodel[5]/count",0);
-    }
-    if (gunsight_visible == 1) {
-      setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[2]",118/lb_to_kg);
-      setprop("ai/submodels/submodel[1]/count",40);
-      setprop("ai/submodels/submodel[3]/count",80);
-      setprop("ai/submodels/submodel[5]/count",80);
-    }
-  }
+# refill ammunition
+var ammunition_refill = func{
+  setprop("/fdm/jsbsim/inertia/pointmass-weight-lbs[2]",118/lb_to_kg);
+  setprop("ai/submodels/submodel[1]/count",40);
+  setprop("ai/submodels/submodel[3]/count",80);
+  setprop("ai/submodels/submodel[5]/count",80);
 }
 
-ammunition_update();
+ammunition_refill();
 
 #-----------------------------------------------------------------------
 #Wind process
@@ -4794,6 +4782,7 @@ var drop_droptank = func (i) {
   setprop("consumables/fuel/tank[" ~ (i+3) ~ "]/selected", 0);
   setprop("ai/submodels/drop-tank_" ~ i, 1);
   setprop("/fdm/jsbsim/tanks/attached_" ~ i, 0);
+  setprop("/instrumentation/drop-tank/dropped_" ~ i, 1);
 }
 
 droptank = func 
@@ -5674,6 +5663,116 @@ setlistener("gear/gear[8]/wow", aircraftbreaklistener);
 setlistener("gear/gear[9]/wow", aircraftbreaklistener);
 setlistener("gear/gear[10]/wow", aircraftbreaklistener);
 
+# Overspeed-------------------------------------------------------
+var overspeed_check_interval = 2; # check every 2 seconds
+var aircraft_break = func{
+  aircraft_crash_sound();
+  aircraft_lock_unlock (0);
+  setprop("/sim/messages/copilot", "Structural failure due to overspeed!");
+}
+var tank_break = func{
+  var i = int(2*rand()); # 0:left tank, 1:right tank
+  if (getprop("/fdm/jsbsim/tanks/attached_" ~ i)==1) {
+    drop_droptank(i);
+    geartornsound();
+    if (i==0) {setprop("/sim/messages/copilot", "Left drop tank lost due to overspeed!");}
+    else {setprop("/sim/messages/copilot", "Right drop tank lost due to overspeed!");}
+  }
+}
+var squeak_sound = func(p){
+  # p is the probability of the sound being played
+  if (rand() < p) {
+    setprop("/sounds/aircraft-crack/volume",1);
+    setprop("/sounds/aircraft-crack/on",1);
+    var soundoff = maketimer(1.0,func{
+      setprop("/sounds/aircraft-crack/volume",0);
+      setprop("/sounds/aircraft-crack/on",0);
+    });
+    soundoff.singleShot=1;
+    soundoff.start();
+  }
+}
+var risk_simulation = func(x,x0,x1){
+  # This function takes a value x (typically a speed value)
+  # and two limits, x0 and x1, which mark a "red zone".
+  # If x is in this zone, there is a risk of some event (typically something bad) occurring. 
+  # The closer x gets to the x1 limit, the higher the risk of the event gets.
+  # The return value is 1 in case of the event, 0 otherwise. 
+  # x=x0 => r=0.0
+  # x=x1 => r=1.0
+  # r=0.0: after 300s, there is a 50/50 chance of the event occurring
+  # r=0.5: after  30s, there is a 50/50 chance of the event occurring
+  # r=1.0: after   3s, there is a 50/50 chance of the event occurring
+  var r = (x-x0)/(x1-x0);
+  if (r < 0) { r = 0};
+  var n = 3/overspeed_check_interval * math.pow( 100, (1-r));
+  var p = math.pow( 0.5, (1/n));
+  return int(rand()-p+1);
+}
+var overspeed_check = func{
+  # speed limits are listed in [1], table 7
+  if (getprop("/processes/aircraft-break/enabled")) {
+    var V = getprop("/velocities/airspeed-kt") * nm_to_km;
+    var H = getprop("/fdm/jsbsim/calculations/H_density");
+    var M = getprop("/velocities/mach");
+
+    # without drop tanks
+    if (getprop("/fdm/jsbsim/tanks/attached") == 0) {
+      if ((H <= 900) and (V > 1090)) { # limit: 1070km/h
+        if (risk_simulation(V,1090,1130)) {
+          aircraft_break();
+        }
+        squeak_sound(0.33);
+      }
+      if ((900 < H) and (H <= 5000) and (M > 0.94)) { # limit: M=0.92
+        if (risk_simulation(M,0.94,0.97)) {
+          aircraft_break();
+        }
+        squeak_sound(0.33);
+      }
+      if ((5000 < H) and (H <= 7500) and (M > 0.98)) { # limit: M=0.96
+        if (risk_simulation(M,0.98,1.00)) {
+          aircraft_break();
+        }
+        squeak_sound(0.33);
+      }
+      if ((7500 < H) and (M > 1.01)) { # limit: M=1.00
+        if (risk_simulation(M,1.01,1.02)) {
+          aircraft_break();
+        }
+        squeak_sound(0.33);
+      }
+    }
+      
+    # with drop tanks    
+    else {
+      if ((H <= 3500) and (V > 730)) { # limit: 700km/h
+        if (risk_simulation(V,730,810)) {
+          tank_break();
+        }
+        squeak_sound(0.67);
+      }
+      if ((H > 3500) and (M > 0.73)) { # limit: M=0.70
+        if (risk_simulation(M,0.73,0.81)) {
+          tank_break();
+        }
+        squeak_sound(0.67);
+      }
+      if ((H <= 3500) and (V > 770)) { # limit: 700km/h
+        if (risk_simulation(V,770,840)) {
+          aircraft_break();
+        }
+      }
+      if ((H > 3500) and (M > 0.77)) { # limit: M=0.70
+        if (risk_simulation(M,0.77,0.84)) {
+          aircraft_break();
+        }
+      }
+    }
+  }
+}
+var overspeed_check_timer = maketimer( overspeed_check_interval, overspeed_check);
+overspeed_check_timer.start();
 #-----------------------------------------------------------------------
 #Aircraft repair
 
@@ -5807,6 +5906,7 @@ aircraft_end_refuel=func
 aircraft_refuel=func
 {
   aircraft_start_refuel();
+  ammunition_refill();
   settimer(aircraft_end_refuel, 1);
 }
 
@@ -6698,7 +6798,7 @@ reset_atmosphere = func{
   setprop("/environment/params/jsbsim-turbulence-model","ttMilspec");
   setprop("/environment/params/metar-updates-environment",1);
   setprop("/sim/gui/dialogs/metar/mode/manual-weather",0);
-  setprop ("/sim/messages/copilot", "Atmosphere reset to default");
+  setprop ("/sim/messages/copilot", "Atmosphere set to default");
   logprint(3,"---MiG-15bis.nas: ...done");
 }
 set_atmosphere = func{
@@ -6724,6 +6824,32 @@ var update_CoG = func{
 }
 var update_CoG_timer = maketimer(2.0,update_CoG);
 update_CoG_timer.start();
+
+## gui option
+# save the old font settings before changing them
+var old_gui_font = [];
+foreach(var w; props.globals.getNode("/sim/gui").getChildren("style")) {
+  append(old_gui_font, w.getNode("fonts/gui").getValue("name"));
+}
+# using an archived property for the gui font option
+var gui_update = func(monospace_chosen) {
+  var current_style = getprop("/sim/gui/current-style");
+  if (monospace_chosen) {
+    setprop("/sim/gui/style[" ~ current_style ~ "]/fonts/gui/name","FIXED_8x13");
+  }
+  else {
+    setprop("/sim/gui/style[" ~ current_style ~ "]/fonts/gui/name",old_gui_font[current_style]);
+  }
+  fgcommand("gui-redraw");
+}
+# set font at startup and when gui changes
+setlistener("/sim/gui/current-style",func{
+  gui_update(getprop("/sim/configuration/monospace_font_option"));
+},1,2);
+# restore the old setting when exiting fgfs
+setlistener("/sim/signals/exit",func{
+  gui_update(0);
+},0,0);
 
 # # for convenience during development: show property browser at startup
 # # adjust the property tree node and uncomment 
