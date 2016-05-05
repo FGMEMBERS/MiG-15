@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="http://jsbsim.sourceforge.net/JSBSim.xsl"?>
 <fdm_config name="MiG-15bis" version="2.0" release="Beta"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -45,25 +45,33 @@
 
       Sources
       =======
-      - [1] "Samolet MiG-15bis. Tekhicheskoe opisanie. Letnye
-        kharakteristiki samoleta. (Kniga 1)". You can find it online, for
-        example here: [http://airspot.ru/book/file/1108/MIG15bis.pdf]. This
-        is what vitos referenced as well.
-      - [2] "Aircraft UTI MiG-15, Description Book One, Flight
-        Charakteristics", an english manual for the MiG-15 trainer version.
-        Most parts of it are translated copies from [1]. Both aircraft are
-        identical except the second pilot seat, less gun power, less tank
-        volume and an older version of the engine (RD-45 instead of the
-        VK-1). As I don't speak russian, this was very helpful. I bought it
-        at a flight manual online shop.
-      - [3] "Samolet UTI MiG-15. Tekhnicheskoye opisaniye. Kniga 3- Opisaniye
-        konstruktsii. (Technical description MiG-15 UTI, book 3).
-      - [4] "Aerodynamik des Flugzeuges, zweiter Teil", written by
-        Schlichting and Truckenbrodt (german). Some of the FDM calculations
-        are based on empirical or theoretical formulas for flight
-        performance estimations found in this book .
-      - [5] "Dubbel - Taschenbuch für den Maschinenbau", a generic
-        engineering handbook.
+      [1] "Самолет МиГ-15бис Техническое Описание Книга 1 Летные Характеристики Самолета"
+          ("Samolet MiG-15bis. Tekhicheskoe Opisanie Kniga 1 Letnye Kharakteristiki Samoleta.").
+          You can find it online, for
+          example here: [http://airspot.ru/book/file/1108/MIG15bis.pdf].
+          This is what vitos referenced as well.
+      [2] "Aircraft UTI MiG-15, Description Book One, Flight
+          Charakteristics", an english manual for the MiG-15 trainer version.
+          Most parts of it are translated copies from [1]. Both aircraft are
+          identical except the second pilot seat, less gun power, less tank
+          volume and an older version of the engine (RD-45 instead of the
+          VK-1). As I don't speak russian, this was very helpful.
+      [3] "Самолет УТИ МиГ-15 Техническое Описание Книга третья Описание Конструкции"
+          ("Samolet UTI MiG-15. Tekhnicheskoye Opisaniye. Kniga 3- Opisaniye
+          Konstruktsii").
+          (Technical description MiG-15 UTI, book 3).
+      [4] "Aerodynamik des Flugzeuges, zweiter Teil", written by
+          Schlichting and Truckenbrodt (german). Some of the FDM calculations
+          are based on empirical or theoretical formulas for flight
+          performance estimations found in this book .
+      [5] "Dubbel - Taschenbuch für den Maschinenbau", a generic
+          engineering handbook.
+      [6] "Единая Инструкция по технической Експлуатации Самолетов-Истребителей
+          УТИ МиГ-15, МиГ-15бис и МиГ-17 всех Модификаций"
+          ("Yedinaya Instruktsiya po tekhnicheskoy Ekspluatatsii Samoletov-Istrebiteley
+          UTI MiG-15, MiG-15bis i MiG-17 vsekh Modifikatsiy")
+      [7] "Fliegerfibel für die Flugzeuge MiG-15bis und MiG-17F, Teil 1, Steuertechnik",
+          a booklet for GDR army cadets, 1962.
 
       Tweak factors
       =============
@@ -278,7 +286,7 @@
 
     <!--
         Tank 0 is the negative-g compartment inside tank 1
-        (provides fuel for 15s during inverted flight - not simulated yet).
+        (provides fuel for 15s during inverted flight).
         Capacity is 26 l = 21.61 kg.
     -->
     <tank type="FUEL" number="0">
@@ -2385,32 +2393,33 @@
 
   </aerodynamics>
 
+  <system file="Accchecker"/>
   <system file="Airspeedometer"/>
+  <system file="Altimeter"/>
   <system file="Arthorizon"/>
+  <system file="Boostercontrol"/>
+  <system file="Canopy"/>
   <system file="Click"/>
   <system file="Engine"/>
-  <system file="Headsight"/>
-  <system file="Tachometer"/>
-  <system file="Gascontrol"/>
   <system file="Flapscontrol"/>
-  <system file="Canopy"/>
-  <system file="Accchecker"/>
-  <system file="Rightpanel"/>
-  <system file="Stopcontrol"/>
-  <system file="Leftpanel"/>
-  <system file="Ignitionbutton"/>
-  <system file="Speedbrakescontrol"/>
-  <system file="Fuelcontrol"/>
-  <system file="Vertspeedometer"/>
-  <system file="Gearcontrol"/>
-  <system file="Radioaltimeter"/>
-  <system file="Stick"/>
-  <system file="Pedals"/>
-  <system file="Gearvalve"/>
   <system file="Flapsvalve"/>
-  <system file="Radiocompass"/>
-  <system file="Boostercontrol"/>
+  <system file="Fuelcontrol"/>
+  <system file="Fuelsystem"/>
+  <system file="Gascontrol"/>
+  <system file="Gearcontrol"/>
+  <system file="Gearvalve"/>
   <system file="Gyrocompass"/>
-  <system file="Altimeter"/>
-
+  <system file="Headsight"/>
+  <system file="Ignitionbutton"/>
+  <system file="Leftpanel"/>
+  <system file="Pedals"/>
+  <system file="Radioaltimeter"/>
+  <system file="Radiocompass"/>
+  <system file="Rightpanel"/>
+  <system file="Speedbrakescontrol"/>
+  <system file="Stick"/>
+  <system file="Stopcontrol"/>
+  <system file="Tachometer"/>  
+  <system file="Vertspeedometer"/>
+  
 </fdm_config>

@@ -65,7 +65,7 @@ MiG-15bis simulation config.
       <path>/sim/configuration</path>
       <path>/fdm/jsbsim/tanks</path>
     </aircraft-data>
-
+    
     <startup>
       <splash-texture>Aircraft/MiG-15/MiG-15bis-splash.png</splash-texture>
     </startup>
@@ -194,14 +194,14 @@ Detailed documentation in /MiG-15/Documentation directory
 - Destructive load: 12 g
 
 === MAX.SPEED, CLEAN ======================================
-      &lt; 900m: IAS = 1070 km/h
- 900...5000m: M = 0.92
-5000...7500m: M = 0.96
-7500m &lt;     : M = 1.00
+      ... 900 m: IAS = 1070 km/h
+ 900 m...5000 m:   M = 0.92
+5000 m...7500 m:   M = 0.96
+7500 m...      :   M = 1.00
 
 === MAX.SPEED, WITH DROP TANKS ============================
-&lt; 3500m: IAS = 700 km/h
-&gt; 3500m: M = 0.7
+      ...3500 m: IAS = 700 km/h
+3500 m...      :   M = 0.7
 
 === GEAR / FLAP SPEEDS ====================================
 Gear extended: 400 km/h
@@ -259,7 +259,7 @@ increase throttle to 7000 rpm to taxi.
     <flight-model>jsb</flight-model>
     <status>advanced production</status>
     <author>Lee Elliott, Victor Slavutinskiy, with great help from Yurik V. Nikiforoff</author>
-    <aircraft-version>3.1.19</aircraft-version>
+    <aircraft-version>3.1.20</aircraft-version>
     <aero>MiG-15bis</aero>
     <fuel-fraction>1.0</fuel-fraction>
     <description>MiG-15bis (JSBSim FDM)</description>
@@ -1638,6 +1638,7 @@ increase throttle to 7000 rpm to taxi.
     <engine n="0">
       <rpm type="float">0</rpm>
       <out-of-fuel type="bool">0</out-of-fuel>
+      <fuel-flow_pph type="float">0</fuel-flow_pph>
     </engine>
   </engines>
 
