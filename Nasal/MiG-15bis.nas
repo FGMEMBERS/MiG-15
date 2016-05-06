@@ -1993,9 +1993,9 @@ fuelometer = func
   # get fuel values
   fuel_pos_zero = getprop("consumables/fuel/tank[0]/level-lbs");
   fuel_pos_one = getprop("consumables/fuel/tank[1]/level-lbs");
-  fuel_pos_two = getprop("consumables/fuel/tank[2]/level-lbs");
-  fuel_pos_three = getprop("consumables/fuel/tank[3]/level-lbs");
-  fuel_pos_four = getprop("consumables/fuel/tank[4]/level-lbs");
+  fuel_pos_two = getprop("consumables/fuel/tank[1]/level-lbs");
+  fuel_pos_three = getprop("consumables/fuel/tank[1]/level-lbs");
+  fuel_pos_four = getprop("consumables/fuel/tank[1]/level-lbs");
   fuel_control_pos=getprop("fdm/jsbsim/systems/fuelcontrol/control-switch");
   third_tank_pump=getprop("systems/electrical-real/outputs/third-tank-pump/volts-norm");
   # get bus value

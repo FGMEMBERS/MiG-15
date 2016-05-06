@@ -25,12 +25,12 @@
 
       * After 100 l have been taken from tank[1], a valve opens to let fuel from the drop tanks flow
         to tank[1]. The drop tanks are pressurized by engine bleed air. A signal lamp indicates when
-        the drop tanks are empty.
+        the drop tanks are empty (not modeled yet).
 
       * After 240 l more have been taken from tank[1], the rear fuel pump starts transmitting fuel
         from tank[2] in the rear to tank[1]. Before that, the rear fuel pump only circulates the fuel
         between tank[1] and tank[2] (maybe a temperature related procedure). A signal lamp indicates
-        when the tank[2] is empty. The rear fuel pump should be switched off then to minimize wear.
+        when the tank[2] is empty (not modeled yet). The rear fuel pump should be switched off then to minimize wear.
 
       * After that, the rest of tank[1] is consumed.
       ===============================================================================================
