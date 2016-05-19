@@ -1993,9 +1993,9 @@ fuelometer = func
   # get fuel values
   fuel_pos_zero = getprop("consumables/fuel/tank[0]/level-lbs");
   fuel_pos_one = getprop("consumables/fuel/tank[1]/level-lbs");
-  fuel_pos_two = getprop("consumables/fuel/tank[2]/level-lbs");
-  fuel_pos_three = getprop("consumables/fuel/tank[3]/level-lbs");
-  fuel_pos_four = getprop("consumables/fuel/tank[4]/level-lbs");
+  fuel_pos_two = getprop("consumables/fuel/tank[1]/level-lbs");
+  fuel_pos_three = getprop("consumables/fuel/tank[1]/level-lbs");
+  fuel_pos_four = getprop("consumables/fuel/tank[1]/level-lbs");
   fuel_control_pos=getprop("fdm/jsbsim/systems/fuelcontrol/control-switch");
   third_tank_pump=getprop("systems/electrical-real/outputs/third-tank-pump/volts-norm");
   # get bus value
@@ -2609,105 +2609,6 @@ engineprocess=func
     return ( settimer(engineprocess, 0.1) ); 
   }
   setprop("engines/engine/error", 0);
-  if (fuel_control_pos==1)
-  {
-    if ((tank[2]>0) and (pump>0))
-    {
-      setprop("consumables/fuel/tank[2]/selected", 1);
-      tank_selected[2]=1;
-      setprop("consumables/fuel/tank[1]/selected", 0);
-      setprop("consumables/fuel/tank[3]/selected", 0);
-      setprop("consumables/fuel/tank[4]/selected", 0);
-      tank_selected[1]=0;
-      tank_selected[3]=0;
-      tank_selected[4]=0;
-    }
-    else
-    {
-      setprop("consumables/fuel/tank[2]/selected", 0);
-      tank_selected[2]=0;
-    }
-  }
-  if ((fuel_control_pos==0) or (tank[2]<=0))
-  {
-    if (third_tank_pump!=0)
-    {
-      if (tank[3]>0)
-      {
-        setprop("consumables/fuel/tank[3]/selected", 1);
-        tank_selected[3]=1;
-        setprop("consumables/fuel/tank[1]/selected", 0);
-        setprop("consumables/fuel/tank[2]/selected", 0);
-        tank_selected[1]=0;
-        tank_selected[2]=0;
-      }
-      else
-      {
-        setprop("consumables/fuel/tank[3]/selected", 0);
-        tank_selected[3]=0;
-      }
-      if (tank[4]>0)
-      {
-        setprop("consumables/fuel/tank[4]/selected", 1);
-        tank_selected[4]=1;
-        setprop("consumables/fuel/tank[1]/selected", 0);
-        setprop("consumables/fuel/tank[2]/selected", 0);
-        tank_selected[1]=0;
-        tank_selected[2]=0;
-      }
-      else
-      {
-        setprop("consumables/fuel/tank[4]/selected", 0);
-        tank_selected[4]=0;
-      }
-    }
-    if ((third_tank_pump==0) or ((tank[3]<=0) and (tank[4]<=0)))
-    {
-      if ((tank[1]>0) and (pump>0))
-      {
-        setprop("consumables/fuel/tank[1]/selected", 1);
-        tank_selected[1]=1;
-      }
-      else
-      {
-        setprop("consumables/fuel/tank[0]/selected", 0);
-        tank_selected[1]=0;
-      }
-      setprop("consumables/fuel/tank[2]/selected", 0);
-      setprop("consumables/fuel/tank[3]/selected", 0);
-      setprop("consumables/fuel/tank[4]/selected", 0);
-      tank_selected[2]=0;
-      tank_selected[3]=0;
-      tank_selected[4]=0;
-    }
-  }
-  if (tank[0]<1)
-  {
-    var active_tanks=0;
-    for (i=0; i<5; i+=1)
-    {
-      if (tank_selected[i]>0)
-      {
-        active_tanks=active_tanks+1;
-      }
-    }
-    if (active_tanks>0)
-    {
-      for (i=0; i<5; i+=1)
-      {
-        if (tank_selected[i]>0)
-        {
-          tank[i]=tank[i]-(1-tank[0])/active_tanks;
-          if (tank[i]<0)
-          {
-            tank[i]==0;
-          }
-          setprop("consumables/fuel/tank["~i~"]/level-gal_us", tank[i]);
-        }
-      }
-      setprop("consumables/fuel/tank[0]/level-gal_us", 1);
-    }
-  }
   var engine_temperature_degc=((engine_temperature-32)*5/9)/740*850;
   setprop("engines/engine/egt-degc", engine_temperature_degc);
   #get speed, ignition type, engine emergency brake, control switch and isolation valve values
@@ -4915,7 +4816,15 @@ var drop_tank_status_message = func{
     setprop ("/sim/messages/copilot", "Drop tanks removed");
   }
   else {
-    setprop ("/sim/messages/copilot", "Drop tanks attached");
+    if (getprop("/consumables/fuel/tank[3]/empty") and getprop("/consumables/fuel/tank[4]/empty")) {
+      setprop ("/sim/messages/copilot", "Drop tanks attached (empty)");
+    }
+    elsif (getprop("/consumables/fuel/tank[3]/level-norm") + getprop("/consumables/fuel/tank[4]/level-norm") > 0.98) {
+      setprop ("/sim/messages/copilot", "Drop tanks filled up");
+    }
+    else {
+      setprop ("/sim/messages/copilot", "Drop tanks attached");
+    }        
   }
 }    
 
@@ -5879,8 +5788,8 @@ aircraft_start_refuel=func
   wow_one=getprop("gear/gear/wow");
   wow_two=getprop("gear/gear[1]/wow");
   wow_three=getprop("gear/gear[2]/wow");
-  setprop("consumables/fuel/tank[0]/level-gal_us", 1.5);
-  setprop("consumables/fuel/tank[1]/level-gal_us", (1245 / gal_us_to_l));
+  setprop("consumables/fuel/tank[0]/level-gal_us", (26 / gal_us_to_l));
+  setprop("consumables/fuel/tank[1]/level-gal_us", (1219 / gal_us_to_l));
   setprop("consumables/fuel/tank[2]/level-gal_us", (167 / gal_us_to_l));
   if (getprop("fdm/jsbsim/tanks/attached_0")) {
     setprop("consumables/fuel/tank[3]/level-gal_us", (260 / gal_us_to_l));
@@ -6618,6 +6527,7 @@ autostart_process = func
   {
     setprop("fdm/jsbsim/systems/rightpanel/drop-tank-input", 1);
     switch_pos=getprop("fdm/jsbsim/systems/rightpanel/drop-tank-switch");
+    setprop("/fdm/jsbsim/systems/fuelcontrol/control-input", 1);
     if (switch_pos==nil)
     {
       stop_autostart_process();
