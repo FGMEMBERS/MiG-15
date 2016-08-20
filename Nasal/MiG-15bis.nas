@@ -1968,98 +1968,6 @@ init_flapslamp();
 flapslamp ();
 
 #--------------------------------------------------------------------
-# Fuelometer and fuelometer lamp
-
-# helper 
-stop_fuelometer = func 
-{
-  setprop("instrumentation/fuelometer/lamp-ligth-norm", 0);
-}
-
-fuelometer = func 
-{
-  # check power
-  in_service = getprop("instrumentation/fuelometer/serviceable" );
-  if (in_service == nil)
-  {
-    stop_fuelometer();
-    return ( settimer(fuelometer, 10) ); 
-  }
-  if ( in_service != 1 )
-  {
-    stop_fuelometer();
-    return ( settimer(fuelometer, 10) ); 
-  }
-  # get fuel values
-  fuel_pos_zero = getprop("consumables/fuel/tank[0]/level-lbs");
-  fuel_pos_one = getprop("consumables/fuel/tank[1]/level-lbs");
-  fuel_pos_two = getprop("consumables/fuel/tank[1]/level-lbs");
-  fuel_pos_three = getprop("consumables/fuel/tank[1]/level-lbs");
-  fuel_pos_four = getprop("consumables/fuel/tank[1]/level-lbs");
-  fuel_control_pos=getprop("fdm/jsbsim/systems/fuelcontrol/control-switch");
-  third_tank_pump=getprop("systems/electrical-real/outputs/third-tank-pump/volts-norm");
-  # get bus value
-  bus=getprop("systems/electrical-real/bus");
-  if (
-    (fuel_pos_zero == nil)
-    or (fuel_pos_one == nil)  
-    or (fuel_pos_two == nil)
-    or (fuel_pos_three == nil)
-    or (fuel_pos_four == nil)
-    or (fuel_control_pos == nil)
-    or (third_tank_pump == nil)  
-    or (bus==nil)
-      )
-  {
-    stop_fuelometer();
-    return ( settimer(fuelometer, 10) ); 
-  }
-  if (bus==0)
-  {
-    setprop("instrumentation/fuelometer/fuel-level-lbs", 0);
-    stop_fuelometer();
-    return ( settimer(fuelometer, 10) ); 
-  }
-  if (fuel_control_pos==0)
-  {
-    if (third_tank_pump==0)
-    {
-      fuel_result=fuel_pos_one*0.453;
-    }
-    else
-    {
-      fuel_result=(fuel_pos_three+fuel_pos_four)*0.453;
-    }
-  }
-  else
-  {
-    fuel_result=fuel_pos_two*0.453;
-  }
-  setprop("instrumentation/fuelometer/fuel-level-litres", fuel_result);
-  lamp_light=0;
-  if (fuel_pos_one<300) 
-  {
-    lamp_light=1;
-  }
-  setprop("instrumentation/fuelometer/lamp-ligth-norm", lamp_light);
-  settimer(fuelometer, 10);
-}
-
-# set startup configuration
-
-init_fuelometer = func 
-{
-  setprop("instrumentation/fuelometer/serviceable", 1);
-  setprop("instrumentation/fuelometer/lamp-ligth-norm", 0);
-  setprop("instrumentation/fuelometer/fuel-level-lbs", 0);
-}
-
-init_fuelometer();
-
-# start fuel lamp process first time
-fuelometer ();
-
-#--------------------------------------------------------------------
 # Altimeter
 
 # set startup configuration
@@ -3644,7 +3552,7 @@ motormeter=func
     stop_motormeter();
     return ( settimer(motormeter, 0.1) ); 
   }
-  #Constatnts get from test runs
+  # Constants obtained from test runs
   setprop("instrumentation/motormeter/fuel-flow-norm", fuel_flow/5000);
   setprop("instrumentation/motormeter/oil-pressure-norm", oil_pressure/70);
   setprop("instrumentation/motormeter/oil-temperature-norm", engine_temperature/1000);
@@ -4678,7 +4586,7 @@ stop_droptank = func
 }
 
 var drop_droptank = func (i) {
-  # i==0: left tank, i==i: right tank
+  # i==0: left tank, i==1: right tank
   setprop("consumables/fuel/tank[" ~ (i+3) ~ "]/level-gal_us", 0);
   setprop("consumables/fuel/tank[" ~ (i+3) ~ "]/selected", 0);
   setprop("ai/submodels/drop-tank_" ~ i, 1);
@@ -4994,7 +4902,6 @@ aircraft_lock_unlock = func (new_state)
   setprop("instrumentation/manometer/serviceable", new_state);
   setprop("instrumentation/gear-indicator/serviceable", new_state);
   setprop("instrumentation/flaps-lamp/serviceable", new_state);
-  setprop("instrumentation/fuelometer/serviceable", new_state);
   setprop("instrumentation/altimeter-lamp/serviceable", new_state);
   setprop("instrumentation/gear-lamp/serviceable", new_state);
   setprop("instrumentation/oxygen-pressure-meter/serviceable", new_state);
@@ -5735,7 +5642,6 @@ aircraft_init=func
   init_magnetic_compass();
   init_gearindicator();
   init_flapslamp();
-  init_fuelometer();
   init_altlamp();
   init_gearlamp();
   init_oxypressmeter();
