@@ -1905,69 +1905,6 @@ init_gearvalve=func
 init_gearvalve();
 
 #--------------------------------------------------------------------
-# Flaps lamp
-
-# helper 
-stop_flapslamp = func 
-{
-  setprop("instrumentation/flaps-lamp/lamp-ligth-norm", 0);
-}
-
-flapslamp = func 
-{
-  # check power
-  in_service = getprop("instrumentation/flaps-lamp/serviceable" );
-  if (in_service == nil)
-  {
-    stop_flapslamp();
-    return ( settimer(flapslamp, 0.1) ); 
-  }
-  if ( in_service != 1 )
-  {
-    stop_flapslamp();
-    return ( settimer(flapslamp, 0.1) ); 
-  }
-  # get flaps value
-  flaps_pos = getprop("surface-positions/flap-pos-norm");
-  # get bus value
-  bus=getprop("systems/electrical-real/bus");
-  torn = getprop("fdm/jsbsim/fcs/flap-torn");
-  if ((flaps_pos == nil) or (bus==nil) or (torn==nil))
-  {
-    stop_flapslamp();
-    return ( settimer(flapslamp, 0.1) ); 
-  }
-  if ((bus==0) or (torn==1))
-  {
-    stop_flapslamp();
-    return ( settimer(flapslamp, 0.1) ); 
-  }
-  lamp_light=0;
-  if (flaps_pos>0) 
-  {
-    lamp_light=0.5;
-  }
-  if (flaps_pos==1) 
-  {
-    lamp_light=1;
-  }
-  setprop("instrumentation/flaps-lamp/lamp-ligth-norm", lamp_light);
-  settimer(flapslamp, 0.1);
-}
-
-# set startup configuration
-init_flapslamp = func
-{
-  setprop("instrumentation/flaps-lamp/serviceable", 1);
-  setprop("instrumentation/flaps-lamp/lamp-ligth-norm", 0);
-}
-
-init_flapslamp();
-
-# start flaps lamp process first time
-flapslamp ();
-
-#--------------------------------------------------------------------
 # Altimeter
 
 # set startup configuration
@@ -1977,58 +1914,6 @@ init_altimeter = func
 }
 
 init_altimeter();
-
-#--------------------------------------------------------------------
-# Altimeter lamp
-
-# helper 
-stop_altlamp = func 
-{
-  setprop("instrumentation/altimeter-lamp/lamp-ligth-norm", 0);
-}
-
-altlamp = func 
-{
-  # check power
-  in_service = getprop("instrumentation/altimeter-lamp/serviceable" );
-  if (in_service == nil)
-  {
-    stop_altlamp();
-    return ( settimer(altlamp, 0.1) ); 
-  }
-  if ( in_service != 1 )
-  {
-    stop_altlamp();
-    return ( settimer(altlamp, 0.1) ); 
-  }
-  # get altitude and electrical bus values
-  alt_pos = getprop("fdm/jsbsim/position/h-sl-meters");     
-  bus=getprop("systems/electrical-real/bus");
-  if ((alt_pos == nil) or (bus==nil))
-  {
-    stop_altlamp();
-    return ( settimer(altlamp, 0.1) ); 
-  }
-  lamp_light=0;
-  if ((alt_pos<250) and (bus==1))
-  {
-    lamp_light=1;
-  }
-  setprop("instrumentation/altimeter-lamp/lamp-ligth-norm", lamp_light);
-  settimer(altlamp, 0.1);
-}
-
-# set startup configuration
-init_altlamp = func 
-{
-  setprop("instrumentation/altimeter-lamp/serviceable", 1);
-  setprop("instrumentation/altimeter-lamp/lamp-ligth-norm", 0);
-}
-
-init_altlamp();
-
-# start altimeter lamp process first time
-altlamp ();
 
 #--------------------------------------------------------------------
 # Gear caution lamp
@@ -3099,25 +2984,10 @@ ignitionlamp ();
 #So, electrical system seems works strange in Flight Gear too
 #There's pretty simple "on/off" electrical system for aircraft
 
-stop_realelectric=func
-{
-}
-
-realelectric=func
+var realelectric = maketimer (0.1, nil, func()
 {
   # check power
-  var in_service = getprop("systems/electrical-real/serviceable");
-  if (in_service == nil)
-  {
-    stop_realelectric();
-    return ( settimer(realelectric, 0.1) ); 
-  }
-  if ( in_service != 1 )
-  {
-    stop_realelectric();
-    return ( settimer(realelectric, 0.1) ); 
-  }
-  #Get switches values
+  # Get switches values
   var set_battery=getprop("fdm/jsbsim/systems/rightpanel/battery-switch");
   var set_generator=getprop("fdm/jsbsim/systems/rightpanel/generator-switch");
 
@@ -3187,8 +3057,7 @@ realelectric=func
 
       )
   {
-    stop_realelectric();
-    return ( settimer(realelectric, 0.1) ); 
+    return;
   }
 
   if ((crashed!=0) or (exploded!=0))
@@ -3209,14 +3078,7 @@ realelectric=func
 
   setprop("controls/switches/battery", set_battery);
 
-  if ((set_generator==1) and (engine_running==1))
-  {
-    generator_on=1;
-  }
-  else
-  {
-    generator_on=0;
-  }
+  generator_on = ((set_generator==1) and (engine_running==1));
   setprop("systems/electrical-real/inputs/generator", generator_on);
 
   setprop("controls/switches/generator", generator_on);
@@ -3262,14 +3124,7 @@ realelectric=func
   setprop("systems/electrical-real/battery-time", battery_time);
   setprop("systems/electrical-real/battery-load-time", battery_load_time);
   
-  if ((set_battery==1) or (generator_on==1))
-  {
-    bus_on=1;
-  }
-  else
-  {
-    bus_on=0;
-  }
+  bus_on = ((set_battery==1) or (generator_on==1));
   setprop("fdm/jsbsim/systems/bus/on", bus_on);
 
   if (generator_on==1)
@@ -3389,13 +3244,10 @@ realelectric=func
     setprop("fdm/jsbsim/systems/tachometer/on", 0);
     setprop("fdm/jsbsim/systems/radioaltimeter/on", 0);
   }
-  settimer(realelectric, 0.1);
-}
+});
 
 init_realelectric = func 
 {
-  setprop("systems/electrical-real/serviceable", 1);
-
   setprop("systems/electrical-real/battery-time", 0);
   setprop("systems/electrical-real/battery-load-time", 0);
   setprop("systems/electrical-real/battery-maximum-load-time", 360);
@@ -3443,8 +3295,7 @@ init_realelectric = func
 }
 
 init_realelectric();
-
-realelectric();
+realelectric.start();
 
 #-----------------------------------------------------------------------
 #Lightning system
@@ -4902,7 +4753,6 @@ aircraft_lock_unlock = func (new_state)
   setprop("instrumentation/manometer/serviceable", new_state);
   setprop("instrumentation/gear-indicator/serviceable", new_state);
   setprop("instrumentation/flaps-lamp/serviceable", new_state);
-  setprop("instrumentation/altimeter-lamp/serviceable", new_state);
   setprop("instrumentation/gear-lamp/serviceable", new_state);
   setprop("instrumentation/oxygen-pressure-meter/serviceable", new_state);
   setprop("instrumentation/brake-pressure-meter/serviceable", new_state);
