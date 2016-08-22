@@ -121,9 +121,6 @@ start_up = func {
   gui.menuEnable ("autopilot", 0); # glorious Soviet pilots do not need one :)
 }
 
-#---------------------------------------------------------------------------
-#Common switch functions
-
 #Common click sound to responce
 clicksound = func
 {
@@ -137,224 +134,6 @@ clickoff = func
 }
 
 setprop("sounds/click/on", 0);
-
-#Common switch move function
-switchmove = func (switch_name, property_name)
-{
-  switch_pos=getprop(switch_name~"/switch-pos-norm");
-  interpolated_pos=getprop(switch_name~"/switch-pos-inter");
-  set_pos=getprop(switch_name~"/set-pos");
-  swap_pos=getprop(switch_name~"/swap-pos");
-  move_count=getprop(switch_name~"/move-count");
-  if (
-    (switch_pos == nil)
-    or (interpolated_pos == nil)
-    or (set_pos == nil)
-    or (swap_pos == nil)
-    or (move_count==nil)
-  )
-  {
-    return (0); 
-  }
-  if (set_pos==swap_pos)
-  {
-    swap_pos=abs(1-set_pos);
-    setprop(switch_name~"/swap-pos", swap_pos);
-  }
-  if (switch_pos!=set_pos)
-  {
-    way_to=abs(set_pos-switch_pos)/(set_pos-switch_pos);
-    switch_pos=switch_pos+0.3*way_to;
-    if (((way_to>0) and (switch_pos>set_pos)) or ((way_to<0) and (switch_pos<set_pos)))
-    {
-      setprop(switch_name~"/switch-pos-norm", set_pos);
-      interpolate(switch_name~"/switch-pos-inter", set_pos, 0);
-    }
-    else
-    {
-      setprop(switch_name~"/switch-pos-norm", switch_pos);
-      interpolate(switch_name~"/switch-pos-inter", switch_pos, 0.09);
-    }
-    move_count=move_count+1;
-    setprop(switch_name~"/move-count", move_count);
-  }
-  else
-  {
-    if (move_count>0)
-    {
-      setprop(switch_name~"/move-count", 0);
-      clicksound();
-      if (switch_pos==0)
-      {
-        setprop(property_name, 0);
-      }
-      if (switch_pos==1)
-      {
-        setprop(property_name, 1);
-      }
-      if (interpolated_pos!=switch_pos)
-      {
-        interpolate(switch_name~"/switch-pos-inter", switch_pos, 0);
-      }             
-    }
-  }
-  return (1); 
-}
-
-#Timed switch move to move switch in time, call timer time must be 0.1
-#Sound property to click or not to click
-timedswitchmove = func (switch_name, switch_time, property_name, sound_on)
-{
-  switch_pos=getprop(switch_name~"/switch-pos-norm");
-  prev_pos=getprop(switch_name~"/switch-pos-prev");
-  set_pos=getprop(switch_name~"/set-pos");
-  swap_pos=getprop(switch_name~"/swap-pos");
-  move_count=getprop(switch_name~"/move-count");
-  if (
-    (switch_pos == nil)
-    or (set_pos == nil)
-    or (prev_pos == nil)
-    or (swap_pos == nil)
-    or (move_count==nil)
-  )
-  {
-    return (0); 
-  }
-  if (set_pos==swap_pos)
-  {
-    swap_pos=abs(1-set_pos);
-    setprop(switch_name~"/swap-pos", swap_pos);
-  }
-  if (switch_pos!=set_pos)
-  {
-    way_to=abs(set_pos-switch_pos)/(set_pos-switch_pos);
-    switch_pos=switch_pos+0.1/switch_time*way_to;
-    if (((way_to>0) and (switch_pos>set_pos)) or ((way_to<0) and (switch_pos<set_pos)))
-    {
-      switch_pos=set_pos;
-      setprop(switch_name~"/switch-pos-norm", set_pos);
-      interpolate(switch_name~"/switch-pos-inter", set_pos, 0);
-    }
-    else
-    {
-      setprop(switch_name~"/switch-pos-norm", switch_pos);
-      interpolate(switch_name~"/switch-pos-inter", switch_pos, 0.09);
-    }
-    move_count=move_count+1;
-    setprop(switch_name~"/move-count", move_count);
-  }
-  if (switch_pos==set_pos)
-  {
-    if (move_count>0)
-    {
-      setprop(switch_name~"/move-count", 0);
-      if (sound_on==1)
-      {
-        clicksound();
-      }
-      if (switch_pos==0)
-      {
-        setprop(property_name, 0);
-      }
-      if (switch_pos==1)
-      {
-        setprop(property_name, 1);
-      }
-    }
-  }
-  return (1); 
-}
-
-#Common switch initialisation function
-switchinit = func (switch_name, init_state, property_name)
-{
-  setprop(switch_name~"/switch-pos-prev", init_state);
-  setprop(switch_name~"/switch-pos-norm", init_state);
-  setprop(switch_name~"/switch-pos-inter", init_state);
-  setprop(switch_name~"/set-pos", init_state);
-  setprop(switch_name~"/swap-pos", abs(1-init_state));
-  setprop(switch_name~"/move-count", 0);
-  setprop(property_name, init_state);
-}
-
-#Common switch swap function
-switchswap = func (switch_name)
-{
-  set_pos=getprop(switch_name~"/set-pos");
-  swap_pos=getprop(switch_name~"/swap-pos");
-  switch_pos=getprop(switch_name~"/switch-pos-norm");
-  if ((set_pos == nil) or (swap_pos == nil) or (switch_pos==nil))
-  {
-    return (0); 
-  }
-  setprop(switch_name~"/switch-pos-norm", switch_pos);
-  interpolate(switch_name~"/switch-pos-inter", switch_pos, 0);
-  tempint=set_pos;
-  set_pos=swap_pos;
-  swap_pos=tempint;
-  setprop(switch_name~"/set-pos", set_pos);
-  setprop(switch_name~"/swap-pos", swap_pos);
-  setprop(switch_name~"/move-count", 0);
-  return (1); 
-}
-
-#Common switch back function
-switchback = func (switch_name)
-{
-  set_pos=getprop(switch_name~"/set-pos");
-  swap_pos=getprop(switch_name~"/swap-pos");
-  switch_pos=getprop(switch_name~"/switch-pos-norm");
-  if ((set_pos == nil) or (swap_pos == nil) or (switch_pos==nil))
-  {
-    return (0); 
-  }
-  if (abs(switch_pos-set_pos)>abs(switch_pos-swap_pos))
-    switchswap(switch_name);
-  return (1); 
-}
-
-#Common switch from propery dependance function
-#needed then  property controlled elsethere
-switchfeedback = func (switch_name, property_name)
-{
-  switch_pos=getprop(switch_name~"/switch-pos-norm");
-  set_pos=getprop(switch_name~"/set-pos");
-  swap_pos=getprop(switch_name~"/swap-pos");
-  property=getprop(property_name);
-  if ((switch_pos == nil) or (set_pos == nil) or (swap_pos == nil) or (property==nil))
-  {
-    return (0); 
-  }
-  if ((switch_pos==set_pos) and (swap_pos==(1-abs(set_pos))) and  (property==swap_pos))
-  {
-    switchswap(switch_name);
-  }
-  return (1); 
-}
-
-#smart interpolation, garantee property get to value in time
-smartinterpolation = func (property_name, value, time, counts)
-{
-  current_counts=getprop(property_name~"/counts");
-  if ((current_counts==0) or (current_counts==nil))
-  {
-    interpolate(property_name~"/value", value, time);
-    setprop(property_name~"/counts", 1);
-  }
-  else
-  {
-    if (current_counts==counts)
-    {
-      interpolate(property_name, value, 0);
-      setprop(property_name~"/counts", 0);
-    }
-    else
-    {
-      setprop(property_name~"/counts", current_counts+1);
-    }
-  }
-  return (1); 
-}
 
 #Common bit swap function
 bitswap = func (bit_name)
@@ -1786,103 +1565,6 @@ init_gearmove();
 
 gearmove();
 
-#--------------------------------------------------------------------
-# Gear indicator
-
-# helper 
-stop_gearindicator = func 
-{
-  setprop("instrumentation/gear-indicator/green-light-norm", 0);
-  setprop("instrumentation/gear-indicator/red-light-norm", 0);
-}
-
-gearindicator = func 
-{
-  # check state
-  in_service = getprop("instrumentation/gear-indicator/serviceable" );
-  if (in_service == nil)
-  {
-    stop_gearindicator();
-    return ( settimer(gearindicator, 0.1) ); 
-  }
-  if ( in_service != 1 )
-  {
-    stop_gearindicator();
-    return ( settimer(gearindicator, 0.1) ); 
-  }
-  #get gear value
-  gear_one_pos=getprop("fdm/jsbsim/gear/unit[0]/pos-norm-real");
-  gear_two_pos=getprop("fdm/jsbsim/gear/unit[1]/pos-norm-real");
-  gear_three_pos=getprop("fdm/jsbsim/gear/unit[2]/pos-norm-real");
-  gear_one_torn=getprop("fdm/jsbsim/gear/unit[0]/torn");
-  gear_two_torn=getprop("fdm/jsbsim/gear/unit[1]/torn");
-  gear_three_torn=getprop("fdm/jsbsim/gear/unit[2]/torn");
-  # get instrumentation values    
-  red_pos=getprop("instrumentation/gear-indicator/red-pos-norm");
-  green_pos=getprop("instrumentation/gear-indicator/green-pos-norm");
-  button_check_pos=getprop("instrumentation/gear-indicator/button-check/switch-pos-norm");
-  #get bus value
-  bus=getprop("systems/electrical-real/bus");
-  if (
-    (gear_one_pos==nil)
-    or (gear_two_pos==nil)
-    or (gear_three_pos==nil)
-    or (gear_one_torn==nil)
-    or (gear_two_torn==nil)
-    or (gear_three_torn==nil)
-    or (red_pos==nil)
-    or (green_pos==nil)
-    or (button_check_pos==nil)
-    or (bus==nil)
-      )
-  {
-    stop_gearindicator();
-    return ( settimer(gearindicator, 0.1) ); 
-  }
-  switchmove("instrumentation/gear-indicator", "dummy/dummy");
-  switchmove("instrumentation/gear-indicator/button-check", "dummy/dummy");
-  if (bus==0)
-  {
-    setprop("instrumentation/gear-indicator/middle-up", 0);
-    setprop("instrumentation/gear-indicator/left-up", 0);
-    setprop("instrumentation/gear-indicator/right-up", 0);
-    setprop("instrumentation/gear-indicator/middle-down", 0);
-    setprop("instrumentation/gear-indicator/left-down", 0);
-    setprop("instrumentation/gear-indicator/right-down", 0);
-  }
-  else
-  {
-    setprop("instrumentation/gear-indicator/middle-up", (((gear_one_pos==0) or (button_check_pos==1))) and (gear_one_torn==0));
-    setprop("instrumentation/gear-indicator/left-up", (((gear_two_pos==0) or (button_check_pos==1))) and (gear_two_torn==0));
-    setprop("instrumentation/gear-indicator/right-up", (((gear_three_pos==0) or (button_check_pos==1))) and (gear_three_torn==0));
-    setprop("instrumentation/gear-indicator/middle-down", (((gear_one_pos==1) or (button_check_pos==1))) and (gear_one_torn==0));
-    setprop("instrumentation/gear-indicator/left-down", (((gear_two_pos==1) or (button_check_pos==1))) and (gear_two_torn==0));
-    setprop("instrumentation/gear-indicator/right-down", (((gear_three_pos==1) or (button_check_pos==1))) and (gear_three_torn==0));
-  }
-  settimer(gearindicator, 0.1);
-}
-
-# set startup configuration
-init_gearindicator = func
-{
-  setprop("instrumentation/gear-indicator/serviceable", 1);
-  switchinit("instrumentation/gear-indicator", 1, "dummy/dummy");
-  switchinit("instrumentation/gear-indicator/button-check", 0, "dummy/dummy");
-  setprop("instrumentation/gear-indicator/red-pos-norm", 0.5);
-  setprop("instrumentation/gear-indicator/green-pos-norm", 0.5);
-  setprop("instrumentation/gear-indicator/middle-up", 0);
-  setprop("instrumentation/gear-indicator/left-up", 0);
-  setprop("instrumentation/gear-indicator/right-up", 0);
-  setprop("instrumentation/gear-indicator/middle-down", 0);
-  setprop("instrumentation/gear-indicator/left-down", 0);
-  setprop("instrumentation/gear-indicator/right-down", 0);
-}
-
-init_gearindicator();
-
-# start gear indicator process first time
-gearindicator ();
-
 #-----------------------------------------------------------------------
 
 init_gearvalve=func
@@ -1903,17 +1585,6 @@ init_gearvalve=func
 }
 
 init_gearvalve();
-
-#--------------------------------------------------------------------
-# Altimeter
-
-# set startup configuration
-init_altimeter = func 
-{
-  setprop("fdm/jsbsim/systems/altimeter/serviceable", 1);
-}
-
-init_altimeter();
 
 #--------------------------------------------------------------------
 # Gear caution lamp
@@ -4751,7 +4422,6 @@ aircraft_lock_unlock = func (new_state)
   #instruments
   setprop("instrumentation/clock/serviceable", new_state);
   setprop("instrumentation/manometer/serviceable", new_state);
-  setprop("instrumentation/gear-indicator/serviceable", new_state);
   setprop("instrumentation/flaps-lamp/serviceable", new_state);
   setprop("instrumentation/gear-lamp/serviceable", new_state);
   setprop("instrumentation/oxygen-pressure-meter/serviceable", new_state);
@@ -5490,9 +5160,6 @@ aircraft_init=func
   init_chron();
   init_manometer();
   init_magnetic_compass();
-  init_gearindicator();
-  init_flapslamp();
-  init_altlamp();
   init_gearlamp();
   init_oxypressmeter();
   init_gyrocompass();

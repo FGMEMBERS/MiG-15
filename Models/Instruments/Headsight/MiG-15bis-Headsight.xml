@@ -48,46 +48,6 @@
     </emission>
   </animation>
 
-  <!--
-
-<animation>
-<type>material</type>
-<object-name>HS_Axle</object-name>
-<object-name>HS_BBox</object-name>
-<object-name>HS_Base</object-name>
-<object-name>HS_Bolts</object-name>
-<object-name>HS_Cyl</object-name>
-<object-name>HS_CLUp</object-name>
-<object-name>HS_CLDown</object-name>
-<object-name>HS_DCyl</object-name>
-<object-name>HS_FBox</object-name>
-<object-name>HS_GHolder</object-name>
-<object-name>HS_Holder</object-name>
-<object-name>HS_SRing</object-name>
-<object-name>HS_SRUp</object-name>
-<object-name>HS_SRDown</object-name>
-<object-name>HS_Sphere</object-name>
-<object-name>HS_SUp</object-name>
-<object-name>HS_SDown</object-name>
-<object-name>HS_Switch</object-name>
-<object-name>HS_Vern</object-name>
-<object-name>HS_Frame</object-name>
-<emission>
-<factor-prop>systems/light/canopy-lamps-norm</factor-prop>
-<red>0.777</red>
-<green>0.700</green>
-<blue>0.700</blue>
-</emission>
-<condition>
-<equals>
-<property>systems/light/use-canopy-lamps</property>
-<value>1</value>
-</equals>
-</condition>
-</animation>
-
-  -->
-
   <animation>
     <type>material</type>
     <object-name>HS_CCenter</object-name>
@@ -257,20 +217,12 @@
     <object-name>HS_Frame</object-name>
     <action>
       <button>0</button>
-      <repeatable>false</repeatable>
-      <interval-sec>0.1</interval-sec>
-      <binding>
-        <command>nasal</command>
-        <script>MIG15BIS.bitswap("fdm/jsbsim/systems/headsight/frame-command")</script>
-      </binding>
-    </action>
-    <action>
       <button>1</button>
       <repeatable>false</repeatable>
       <interval-sec>0.1</interval-sec>
       <binding>
-        <command>nasal</command>
-        <script>MIG15BIS.switchswap("fdm/jsbsim/systems/headsight/frame-command")</script>
+        <command>property-toggle</command>
+        <property>fdm/jsbsim/systems/headsight/frame-command</property>
       </binding>
     </action>
   </animation>
@@ -657,25 +609,6 @@
     </condition>
   </animation>
 
-  <!--
-
-<animation>
-<type>select</type>
-<object-name>HS_Cross</object-name>
-<condition>
-<equals>
-<property>instrumentation/headsight/one</property>
-<value>0</value>
-</equals>
-<equals>
-<property>sim/current-view/internal</property>
-<value>true</value>     
-</equals>
-</condition>
-</animation>
-
-  -->
-
   <animation>
     <type>translate</type>
     <object-name>HS_CCenter</object-name>
@@ -729,30 +662,7 @@
       <z>1</z>
     </axis>
   </animation>
-  <!--
-      <animation>
-      <type>select</type>
-      <object-name>HS_CCenter</object-name>
-      <object-name>HS_CUp</object-name>
-      <object-name>HS_CDown</object-name>
-      <object-name>HS_CLeft</object-name>
-      <object-name>HS_CRight</object-name>
-      <object-name>HS_CRUp</object-name>
-      <object-name>HS_CLUp</object-name>
-      <object-name>HS_CRDown</object-name>
-      <object-name>HS_CLDown</object-name>
-      <condition>
-      <greater-than>
-      <property>instrumentation/headsight/cross-lamp</property>
-      <value>0</value>
-      </greater-than>
-      <equals>
-      <property>instrumentation/headsight/sight-visible</property>
-      <value>1</value>
-      </equals>
-      </condition>
-      </animation>
-  -->
+
   <animation>
     <type>select</type>
     <object-name>HS_CCenter</object-name>

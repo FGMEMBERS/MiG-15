@@ -259,7 +259,7 @@ increase throttle to 7000 rpm to taxi.
     <flight-model>jsb</flight-model>
     <status>advanced production</status>
     <author>Lee Elliott, Victor Slavutinskiy, with great help from Yurik V. Nikiforoff</author>
-    <aircraft-version>3.1.23</aircraft-version>
+    <aircraft-version>3.1.24</aircraft-version>
     <aero>MiG-15bis</aero>
     <fuel-fraction>1.0</fuel-fraction>
     <description>MiG-15bis (JSBSim FDM)</description>
@@ -996,6 +996,22 @@ increase throttle to 7000 rpm to taxi.
     <engmonitor>
       <minimised type="bool">true</minimised>
     </engmonitor>
+    <gas-control>
+      <brakes-button>
+        <switch-pos-norm type="double">0</switch-pos-norm>
+        <target-pos-norm type="double">0</target-pos-norm>
+      </brakes-button>
+    </gas-control>
+    <gear-indicator>
+      <button-check>
+        <switch-pos-norm type="double">0</switch-pos-norm>
+        <target-pos-norm type="double">0</target-pos-norm>
+      </button-check>
+      <green-pos-norm type="double">0.5</green-pos-norm>
+      <red-pos-norm type="double">0.5</red-pos-norm>
+      <switch-pos-norm type="double">0</switch-pos-norm>
+      <target-pos-norm type="double">0</target-pos-norm>
+    </gear-indicator>
     <velmonitor>
       <minimised type="bool">true</minimised>
     </velmonitor>
@@ -1084,6 +1100,9 @@ increase throttle to 7000 rpm to taxi.
           <on type="bool">0</on>
           <serviceable type="bool">1</serviceable>
         </airspeedometer>
+        <altimeter>
+          <serviceable type="bool">1</serviceable>
+        </altimeter>
         <arthorizon>
           <on type="bool">0</on>
           <serviceable type="bool">1</serviceable>

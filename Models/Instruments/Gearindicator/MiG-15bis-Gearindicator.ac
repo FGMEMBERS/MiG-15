@@ -3,8 +3,8 @@ MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.5 0.5 0.5  shi 
 MATERIAL "BlackMetal.001" rgb 0.533 0.533 0.533 amb 0.2 0.2 0.2 emis 0 0 0 spec 0.502 0.502 0.502 shi 128 trans 0
 MATERIAL "Needle.002" rgb 1 1 1 amb 1 1 1 emis 0 0 0 spec 0.502 0.502 0.502 shi 64 trans 0
 MATERIAL "Glass.001" rgb 0.8 0.79992 0.79992 amb 0.5 0.5 0.5 emis 0 0 0 spec 1 1 1 shi 96 trans 0.9
-MATERIAL "GPlate.001" rgb 0.1 0.2 0.1 amb 0.5 0.5 0.5 emis 0.8 0.8 0.8 spec 0.1 0.2 0.1 shi 70 trans 0
-MATERIAL "RPlate.001" rgb 0.2 0.1 0.1 amb 0.5 0.5 0.5 emis 0.8 0.8 0.8 spec 0.2 0.1 0.1 shi 70 trans 0
+MATERIAL "GPlate.001" rgb 0.1 0.2 0.1 amb 0.5 0.5 0.5 emis 0 0 0 spec 0.1 0.2 0.1 shi 70 trans 0
+MATERIAL "RPlate.001" rgb 0.2 0.1 0.1 amb 0.5 0.5 0.5 emis 0 0 0 spec 0.2 0.1 0.1 shi 70 trans 0
 MATERIAL "DefaultWhite" rgb 1 1 1 amb 1 1 1 emis 0 0 0 spec 0.5 0.5 0.5 shi 64 trans 0
 OBJECT world
 kids 20

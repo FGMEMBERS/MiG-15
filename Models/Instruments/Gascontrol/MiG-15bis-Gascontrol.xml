@@ -100,19 +100,19 @@
     <action>
       <button>0</button>
       <repeatable>false</repeatable>
-      <interval-sec>0.1</interval-sec>
       <binding>
-        <command>nasal</command>
-        <script>MIG15BIS.switchswap("instrumentation/gas-control/brakes-button")</script>
+        <command>property-toggle</command>
+        <property>instrumentation/gas-control/brakes-button/target-pos-norm</property>
       </binding>
-    </action>
-    <action>
-      <button>1</button>
-      <repeatable>false</repeatable>
-      <interval-sec>0.1</interval-sec>
+      <binding>
+        <command>property-interpolate</command>
+        <property>instrumentation/gas-control/brakes-button/switch-pos-norm</property>
+        <property>instrumentation/gas-control/brakes-button/target-pos-norm</property>
+        <time>0.3</time>
+      </binding>
       <binding>
         <command>nasal</command>
-        <script>MIG15BIS.switchswap("instrumentation/gas-control/brakes-button")</script>
+        <script>MIG15BIS.clicksound();</script>
       </binding>
     </action>
   </animation>
