@@ -6198,4 +6198,4 @@ setlistener("/sim/signals/exit",func{
 
 # # for convenience during development: show property browser at startup
 # # adjust the property tree node and uncomment 
-#settimer(func {gui.property_browser("/fdm/jsbsim/fuel/");}, 0);
+# settimer(func {gui.property_browser("/fdm/jsbsim/fuel/");}, 0);
