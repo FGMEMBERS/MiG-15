@@ -228,6 +228,15 @@ is 4010 kg. When landing at a higher weight, increase speed.
 The engine will flame out if you keep throttle to idle;
 increase throttle to 7000 rpm to taxi.
 
+=== DROP TANKS INDICATOR LIGHT ============================
+On the lower center panel (between the pilot's knees) there
+is an indicator light to the left and a switch to the
+right. Turn on the switch to activate the indicator light.
+The lamp will light up if the drop tanks are empty
+*OR* if the engine speed is lower than 6500 RPM.
+This means: In order to check if the tanks are empty it is
+neccessary to accelerate the engine to at least 6500 RPM.
+      
 === TAKEOFF ===============================================
 - Flaps 20deg
 - Push stick forward during acceleration
@@ -259,7 +268,7 @@ increase throttle to 7000 rpm to taxi.
     <flight-model>jsb</flight-model>
     <status>advanced production</status>
     <author>Lee Elliott, Victor Slavutinskiy, with great help from Yurik V. Nikiforoff</author>
-    <aircraft-version>3.1.24</aircraft-version>
+    <aircraft-version>3.2.1</aircraft-version>
     <aero>MiG-15bis</aero>
     <fuel-fraction>1.0</fuel-fraction>
     <description>MiG-15bis (JSBSim FDM)</description>
@@ -1064,6 +1073,11 @@ increase throttle to 7000 rpm to taxi.
         <roll-trim-sum type="float">0.0</roll-trim-sum>
         <roll-trim-sum-timed type="float">0.0</roll-trim-sum-timed>
       </fcs>
+      <fuel>
+          <drop_tanks_light_switch type="bool">false</drop_tanks_light_switch>
+          <random_0_treshold>0.7</random_0_treshold>
+          <random_1_treshold>2.0</random_1_treshold>
+      </fuel>
       <gear>
         <gear-cmd-norm type="int">1</gear-cmd-norm>
         <gear-cmd-norm-real type="int">1</gear-cmd-norm-real>

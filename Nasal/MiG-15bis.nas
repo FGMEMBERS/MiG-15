@@ -125,7 +125,8 @@ start_up = func {
 clicksound = func
 {
   setprop("sounds/click/on", 1);
-  settimer(clickoff, 0.1);
+ # settimer(clickoff, getprop("/sim/frame-latency-max-ms")*0.004);
+  settimer(clickoff, 0.3);
 }
 
 clickoff = func
@@ -451,6 +452,17 @@ init_leftpanel = func
 }
 
 init_leftpanel();
+
+#---------------------------------------------------------------------
+#Lower panel
+
+# set startup configuration
+init_lowerpanel = func 
+{
+  setprop("fdm/jsbsim/fuel/drop_tanks_light_switch", 0);
+}
+
+init_lowerpanel();
 
 #---------------------------------------------------------------------
 #Stop control
@@ -6186,4 +6198,4 @@ setlistener("/sim/signals/exit",func{
 
 # # for convenience during development: show property browser at startup
 # # adjust the property tree node and uncomment 
-#settimer(func {gui.property_browser("/fdm/jsbsim/calculations/load/");}, 0);
+#settimer(func {gui.property_browser("/fdm/jsbsim/fuel/");}, 0);

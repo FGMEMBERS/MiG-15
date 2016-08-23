@@ -1932,47 +1932,7 @@
 
     </axis>
 
-    <property value="40">weights/shells/n37</property>
-    <property value="80">weights/shells/n23-inner</property>
-    <property value="80">weights/shells/n23-outer</property>
-
     <axis name="PITCH">
-
-      <!-- Fig 169
-      <function name="fcs/elevator-pos-rad-mod">
-        <description>Elevator_modified_due_mach_and_altitude</description>
-        <sum>
-          <property>fcs/elevator-pos-rad</property>
-          <product>
-            <value>-0.01745329</value>
-            <table>
-              <independentVar lookup="column">atmosphere/density-altitude</independentVar>
-              <independentVar lookup="row">velocities/mach</independentVar>
-              <tableData>
-                7545.93         18044.61                35433.07
-                0.20    -10             -10.0                   -7.6
-                0.30    -2.3            -7.0                    -7.6
-                0.40    0.2             -2.0                    -7.6
-                0.50    1.6             -0.2                    -4.6
-                0.60    2.4             1.0                     -2.2
-                0.70    3.0             1.8                     -0.4
-                0.80    3.2             2.4                     0.2
-                0.82    3.2             2.5                     0.2
-                0.84    3.2             2.4                     0.3
-                0.86    3.1             2.3                     0.3
-                0.88    3.1             2.2                     0.4
-                0.90    3.0             1.8                     0.2
-                0.92    3.4             1.7                     -0.4
-                0.94    4.6             2.8                     0.1
-                0.96    5.6             4.0                     2.0
-                0.98    6.8             5.2                     3.2
-                1.00    7.2             5.6                     4.0
-              </tableData>
-            </table>
-          </product>
-        </sum>
-      </function>
-      -->
 
       <!--
         The pitch moment due to deviation of the center of gravity is already considered by
@@ -2012,35 +1972,6 @@
           </table>
         </product>
       </function>
-
-      <!-- Fig 66
-      <function name="aero/coefficient/dCmmach">
-        <description>Delta_pitch_moment_due_to_mach</description>
-        <product>
-          <property>aero/qbar-psf</property>
-          <property>metrics/Sw-sqft</property>
-          <property>metrics/cbarw-ft</property>
-          <table>
-            <independentVar lookup="column">fcs/elevator-pos-deg</independentVar>
-            <independentVar lookup="row">velocities/mach</independentVar>
-            <tableData>
-              -10       -8      -6      -4      -2      0       2       4
-              0.2       0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0
-              0.80      0.0     0.0     0.0     0.0     0.0     0.0     0.0     0.0
-              0.84      0.004   0.004   0.004   0.004   0.004   0.004   0.004   0.004
-              0.88      0.005   0.005   0.005   0.005   0.005   0.005   0.005   0.005
-              0.90      0.006   0.007   0.008   0.008   0.008   0.009   0.009   0.011
-              0.92      0.014   0.015   0.016   0.017   0.018   0.018   0.019   0.02
-              0.94      0.026   0.027   0.028   0.029   0.03    0.032   0.034   0.036
-              0.96      0.028   0.031   0.034   0.038   0.04    0.043   0.046   0.05
-              0.98      0.022   0.027   0.032   0.037   0.042   0.047   0.052   0.06
-              1.0       0.01    0.02    0.03    0.04    0.05    0.06    0.06    0.06
-              1.02      0.0     0.01    0.02    0.028   0.036   0.044   0.044   0.044
-            </tableData>
-          </table>
-        </product>
-      </function>
-      -->
 
       <!-- Fig 65 -->
 

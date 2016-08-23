@@ -2,7 +2,7 @@
 
 <PropertyList>
 
-  <path>MiG-15bis-Photolamps.ac</path> 
+  <path>MiG-15bis-LowerPanel.ac</path> 
 
   <effect>
     <inherits-from>Effects/model-transparent</inherits-from>
@@ -53,6 +53,18 @@
 
   <animation>
     <type>material</type>
+    <object-name>DT_Lamp</object-name>
+    <object-name>DT_Glass</object-name>
+    <emission>
+      <factor-prop>/fdm/jsbsim/fuel/drop_tanks_light</factor-prop>
+      <red>0.0</red>
+      <green>0.6</green>
+      <blue>0.1</blue>
+    </emission>
+  </animation>
+
+  <animation>
+    <type>material</type>
     <object-name>SL_Lamp</object-name>
     <object-name>SL_Glass</object-name>
     <emission>
@@ -87,4 +99,44 @@
     </emission>
   </animation>
 
+  <animation>
+    <type>rotate</type>
+    <object-name>FC_Switch</object-name>
+    <property>/fdm/jsbsim/fuel/drop_tanks_light_switch</property>
+    <interpolation>
+      <entry><ind>0.0</ind><dep>70.0</dep></entry>
+      <entry><ind>1.0</ind><dep>-20.0</dep></entry>
+    </interpolation>
+    <center>
+      <x-m>0.003</x-m>
+      <y-m>0.0</y-m>
+      <z-m>0.0</z-m>
+    </center>  
+    <axis>
+      <x>0</x>
+      <y>1</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
+  <animation>
+    <type>pick</type>
+    <object-name>FC_Switch</object-name>
+    <object-name>DT_SwitchBase</object-name>
+    <object-name>DT_SwitchHolder</object-name>
+    <action>
+      <button>0</button>
+      <repeatable>false</repeatable>
+      <interval-sec>0.2</interval-sec>
+      <binding>
+        <command>property-toggle</command>
+        <property>/fdm/jsbsim/fuel/drop_tanks_light_switch</property>
+      </binding>
+      <binding>
+        <command>nasal</command>
+        <script>MIG15BIS.clicksound()</script>
+      </binding>
+    </action>
+  </animation>
+   
 </PropertyList> 
