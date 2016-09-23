@@ -28,40 +28,22 @@
     </emission>
   </animation>
 
-  <!--
-
-<animation>
-<type>material</type>
-<object-name>FM_Needle</object-name>
-<object-name>FM_Backplate</object-name>
-<object-name>FM_Foreplare</object-name>
-<object-name>FM_Bezel</object-name>
-<emission>
-<factor-prop>systems/light/canopy-lamps-norm</factor-prop>
-<red>0.777</red>
-<green>0.700</green>
-<blue>0.700</blue>
-</emission>
-<condition>
-<equals>
-<property>systems/light/use-canopy-lamps</property>
-<value>1</value>
-</equals>
-</condition>
-</animation>
-
-  -->
-
   <animation>
     <type>rotate</type>
     <object-name>FM_Needle</object-name>
-    <property>instrumentation/fuelometer/fuel-level-litres</property>
+    <condition>
+      <greater-than>
+        <property>systems/electrical-real/volts-norm</property>
+        <value>0.9</value>
+      </greater-than>
+    </condition>
+    <property>consumables/fuel/tank[1]/level-m3</property>
     <interpolation>
-      <entry><ind>   0 </ind><dep>  -15 </dep></entry>
-      <entry><ind>   5 </ind><dep>  5 </dep></entry>
-      <entry><ind>  331 </ind><dep> 45 </dep></entry>
-      <entry><ind>  662 </ind><dep> 90 </dep></entry>
-      <entry><ind> 1324 </ind><dep> 180 </dep></entry>
+      <entry><ind>0    </ind><dep>  -15 </dep></entry>
+      <entry><ind>0.005</ind><dep>    5 </dep></entry>
+      <entry><ind>0.331</ind><dep>   45 </dep></entry>
+      <entry><ind>0.662</ind><dep>   90 </dep></entry>
+      <entry><ind>1.324</ind><dep>  180 </dep></entry>
     </interpolation>
     <center>
       <x-m>0</x-m>

@@ -2,7 +2,7 @@ AC3Db
 MATERIAL "DefaultWhite" rgb 1 1 1  amb 1 1 1  emis 0 0 0  spec 0.5 0.5 0.5  shi 64  trans 0
 MATERIAL "BlackMetal" rgb 0.533 0.533 0.533 amb 0.25 0.25 0.25 emis 0 0 0 spec 0.502 0.502 0.502 shi 128 trans 0
 MATERIAL "RedGlass" rgb 0.193437 0.004549 0.004549 amb 0.5 0.5 0.5 emis 0 0 0 spec 0.1 0 0 shi 96 trans 0.9
-MATERIAL "Plate.001" rgb 0.2 0.005 0.005 amb 0.5 0.5 0.5 emis 0.8 0.8 0.8 spec 0.1 0 0 shi 70 trans 0
+MATERIAL "Plate.001" rgb 0.2 0.005 0.005 amb 0.5 0.5 0.5 emis 0 0 0 spec 0.1 0 0 shi 70 trans 0
 MATERIAL "BlackMetal.003" rgb 0.15 0.15 0.15 amb 0.2 0.2 0.2 emis 0.1 0.1 0.1 spec 0.15 0.15 0.15 shi 128 trans 0
 MATERIAL "Plate.002" rgb 1 1 1 amb 0.5 0.5 0.5 emis 0.1 0.1 0.1 spec 0.75 0.75 0.75 shi 70 trans 0
 OBJECT world

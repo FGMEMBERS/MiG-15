@@ -20,38 +20,32 @@
     <max-m>30</max-m>
   </animation>
 
-  <!--
-
-<animation>
-<type>material</type>
-<object-name>GI_Box</object-name>
-<object-name>GI_GVern</object-name>
-<object-name>GI_RVern</object-name>
-<object-name>GI_Switch</object-name>
-<object-name>GI_BCheck</object-name>
-<object-name>GI_Message</object-name>
-<emission>
-<factor-prop>systems/light/canopy-lamps-norm</factor-prop>
-<red>0.777</red>
-<green>0.700</green>
-<blue>0.700</blue>
-</emission>
-<condition>
-<equals>
-<property>systems/light/use-canopy-lamps</property>
-<value>1</value>
-</equals>
-</condition>
-</animation>
-
-  -->
-
-
   <animation>
     <type>material</type>
     <object-name>GI_MUBackplate</object-name>
+    <condition>
+      <and>
+        <greater-than>
+          <property>systems/electrical-real/bus</property>
+          <value>0.9</value>
+        </greater-than>
+        <or>
+          <equals>
+            <property>fdm/jsbsim/gear/unit[0]/pos-norm-real</property>
+            <value>0</value>
+          </equals>
+          <equals>
+            <property>instrumentation/gear-indicator/button-check/switch-pos-norm</property>
+            <value>1</value>
+          </equals>
+        </or>
+        <not>
+          <property>fdm/jsbsim/gear/unit[0]/torn</property>
+        </not>
+      </and>
+    </condition>
     <emission>
-      <factor-prop>instrumentation/gear-indicator/middle-up</factor-prop>
+      <factor-prop>instrumentation/gear-indicator/red-pos-norm</factor-prop>
       <red>0.9</red>
       <green>0.1</green>
       <blue>0.1</blue>
@@ -61,8 +55,29 @@
   <animation>
     <type>material</type>
     <object-name>GI_LUBackplate</object-name>
+    <condition>
+      <and>
+        <greater-than>
+          <property>systems/electrical-real/bus</property>
+          <value>0.9</value>
+        </greater-than>
+        <or>
+          <equals>
+            <property>fdm/jsbsim/gear/unit[1]/pos-norm-real</property>
+            <value>0</value>
+          </equals>
+          <equals>
+            <property>instrumentation/gear-indicator/button-check/switch-pos-norm</property>
+            <value>1</value>
+          </equals>
+        </or>
+        <not>
+          <property>fdm/jsbsim/gear/unit[1]/torn</property>
+        </not>
+      </and>
+    </condition>
     <emission>
-      <factor-prop>instrumentation/gear-indicator/left-up</factor-prop>
+      <factor-prop>instrumentation/gear-indicator/red-pos-norm</factor-prop>
       <red>0.9</red>
       <green>0.1</green>
       <blue>0.1</blue>
@@ -72,8 +87,29 @@
   <animation>
     <type>material</type>
     <object-name>GI_RUBackplate</object-name>
+    <condition>
+      <and>
+        <greater-than>
+          <property>systems/electrical-real/bus</property>
+          <value>0.9</value>
+        </greater-than>
+        <or>
+          <equals>
+            <property>fdm/jsbsim/gear/unit[2]/pos-norm-real</property>
+            <value>0</value>
+          </equals>
+          <equals>
+            <property>instrumentation/gear-indicator/button-check/switch-pos-norm</property>
+            <value>1</value>
+          </equals>
+        </or>
+        <not>
+          <property>fdm/jsbsim/gear/unit[2]/torn</property>
+        </not>
+      </and>
+    </condition>
     <emission>
-      <factor-prop>instrumentation/gear-indicator/right-up</factor-prop>
+      <factor-prop>instrumentation/gear-indicator/red-pos-norm</factor-prop>
       <red>0.9</red>
       <green>0.1</green>
       <blue>0.1</blue>
@@ -83,8 +119,29 @@
   <animation>
     <type>material</type>
     <object-name>GI_MDBackplate</object-name>
+    <condition>
+      <and>
+        <greater-than>
+          <property>systems/electrical-real/bus</property>
+          <value>0.9</value>
+        </greater-than>
+        <or>
+          <equals>
+            <property>fdm/jsbsim/gear/unit[0]/pos-norm-real</property>
+            <value>1</value>
+          </equals>
+          <equals>
+            <property>instrumentation/gear-indicator/button-check/switch-pos-norm</property>
+            <value>1</value>
+          </equals>
+        </or>
+        <not>
+          <property>fdm/jsbsim/gear/unit[0]/torn</property>
+        </not>
+      </and>
+    </condition>
     <emission>
-      <factor-prop>instrumentation/gear-indicator/middle-down</factor-prop>
+      <factor-prop>instrumentation/gear-indicator/green-pos-norm</factor-prop>
       <red>0.1</red>
       <green>0.9</green>
       <blue>0.1</blue>
@@ -94,8 +151,29 @@
   <animation>
     <type>material</type>
     <object-name>GI_LDBackplate</object-name>
+    <condition>
+      <and>
+        <greater-than>
+          <property>systems/electrical-real/bus</property>
+          <value>0.9</value>
+        </greater-than>
+        <or>
+          <equals>
+            <property>fdm/jsbsim/gear/unit[1]/pos-norm-real</property>
+            <value>1</value>
+          </equals>
+          <equals>
+            <property>instrumentation/gear-indicator/button-check/switch-pos-norm</property>
+            <value>1</value>
+          </equals>
+        </or>
+        <not>
+          <property>fdm/jsbsim/gear/unit[1]/torn</property>
+        </not>
+      </and>
+    </condition>
     <emission>
-      <factor-prop>instrumentation/gear-indicator/left-down</factor-prop>
+      <factor-prop>instrumentation/gear-indicator/green-pos-norm</factor-prop>
       <red>0.1</red>
       <green>0.9</green>
       <blue>0.1</blue>
@@ -105,8 +183,29 @@
   <animation>
     <type>material</type>
     <object-name>GI_RDBackplate</object-name>
+    <condition>
+      <and>
+        <greater-than>
+          <property>systems/electrical-real/bus</property>
+          <value>0.9</value>
+        </greater-than>
+        <or>
+          <equals>
+            <property>fdm/jsbsim/gear/unit[2]/pos-norm-real</property>
+            <value>1</value>
+          </equals>
+          <equals>
+            <property>instrumentation/gear-indicator/button-check/switch-pos-norm</property>
+            <value>1</value>
+          </equals>
+        </or>
+        <not>
+          <property>fdm/jsbsim/gear/unit[2]/torn</property>
+        </not>
+      </and>
+    </condition>
     <emission>
-      <factor-prop>instrumentation/gear-indicator/right-down</factor-prop>
+      <factor-prop>instrumentation/gear-indicator/green-pos-norm</factor-prop>
       <red>0.1</red>
       <green>0.9</green>
       <blue>0.1</blue>
@@ -188,7 +287,7 @@
         <command>property-adjust</command>
         <property>instrumentation/gear-indicator/red-pos-norm</property>
         <step>0.1</step>
-        <min>0</min>
+        <min>0.1</min>
         <max>1</max>
         <wrap>false</wrap>
       </binding>
@@ -201,7 +300,7 @@
         <command>property-adjust</command>
         <property>instrumentation/gear-indicator/red-pos-norm</property>
         <step>0.1</step>
-        <min>0</min>
+        <min>0.1</min>
         <max>1</max>
         <wrap>false</wrap>
       </binding>
@@ -219,7 +318,7 @@
         <command>property-adjust</command>
         <property>instrumentation/gear-indicator/red-pos-norm</property>
         <step>-0.1</step>
-        <min>0</min>
+        <min>0.1</min>
         <max>1</max>
         <wrap>false</wrap>
       </binding>
@@ -232,7 +331,7 @@
         <command>property-adjust</command>
         <property>instrumentation/gear-indicator/red-pos-norm</property>
         <step>-0.1</step>
-        <min>0</min>
+        <min>0.1</min>
         <max>1</max>
         <wrap>false</wrap>
       </binding>
@@ -250,7 +349,7 @@
         <command>property-adjust</command>
         <property>instrumentation/gear-indicator/green-pos-norm</property>
         <step>0.1</step>
-        <min>0</min>
+        <min>0.1</min>
         <max>1</max>
         <wrap>false</wrap>
       </binding>
@@ -263,7 +362,7 @@
         <command>property-adjust</command>
         <property>instrumentation/gear-indicator/green-pos-norm</property>
         <step>0.1</step>
-        <min>0</min>
+        <min>0.1</min>
         <max>1</max>
         <wrap>false</wrap>
       </binding>
@@ -281,7 +380,7 @@
         <command>property-adjust</command>
         <property>instrumentation/gear-indicator/green-pos-norm</property>
         <step>-0.1</step>
-        <min>0</min>
+        <min>0.1</min>
         <max>1</max>
         <wrap>false</wrap>
       </binding>
@@ -294,7 +393,7 @@
         <command>property-adjust</command>
         <property>instrumentation/gear-indicator/green-pos-norm</property>
         <step>-0.1</step>
-        <min>0</min>
+        <min>0.1</min>
         <max>1</max>
         <wrap>false</wrap>
       </binding>
@@ -309,19 +408,18 @@
       <repeatable>false</repeatable>
       <interval-sec>0.1</interval-sec>
       <binding>
-        <command>nasal</command>
-        <script>MIG15BIS.switchswap("instrumentation/gear-indicator")</script>
+        <command>property-toggle</command>
+        <property>instrumentation/gear-indicator/target-pos-norm</property>
       </binding>
-    </action>
-    <type>pick</type>
-    <object-name>GI_Switch</object-name>
-    <action>
-      <button>1</button>
-      <repeatable>false</repeatable>
-      <interval-sec>0.1</interval-sec>
+      <binding>
+        <command>property-interpolate</command>
+        <property>instrumentation/gear-indicator/switch-pos-norm</property>
+        <property>instrumentation/gear-indicator/target-pos-norm</property>
+        <time>0.3</time>
+      </binding>
       <binding>
         <command>nasal</command>
-        <script>MIG15BIS.switchswap("instrumentation/gear-indicator")</script>
+        <script>MIG15BIS.clicksound();</script>
       </binding>
     </action>
   </animation>
@@ -335,20 +433,18 @@
       <repeatable>false</repeatable>
       <interval-sec>0.1</interval-sec>
       <binding>
-        <command>nasal</command>
-        <script>MIG15BIS.switchswap("instrumentation/gear-indicator/button-check")</script>
+        <command>property-toggle</command>
+        <property>instrumentation/gear-indicator/button-check/target-pos-norm</property>
       </binding>
-    </action>
-    <type>pick</type>
-    <object-name>GI_BCheck</object-name>
-    <object-name>GI_Message</object-name>
-    <action>
-      <button>1</button>
-      <repeatable>false</repeatable>
-      <interval-sec>0.1</interval-sec>
+      <binding>
+        <command>property-interpolate</command>
+        <property>instrumentation/gear-indicator/button-check/switch-pos-norm</property>
+        <property>instrumentation/gear-indicator/button-check/target-pos-norm</property>
+        <time>0.3</time>
+      </binding>
       <binding>
         <command>nasal</command>
-        <script>MIG15BIS.switchswap("instrumentation/gear-indicator/button-check")</script>
+        <script>MIG15BIS.clicksound();</script>
       </binding>
     </action>
   </animation>

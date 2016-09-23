@@ -121,14 +121,12 @@ start_up = func {
   gui.menuEnable ("autopilot", 0); # glorious Soviet pilots do not need one :)
 }
 
-#---------------------------------------------------------------------------
-#Common switch functions
-
 #Common click sound to responce
 clicksound = func
 {
   setprop("sounds/click/on", 1);
-  settimer(clickoff, 0.1);
+ # settimer(clickoff, getprop("/sim/frame-latency-max-ms")*0.004);
+  settimer(clickoff, 0.3);
 }
 
 clickoff = func
@@ -137,224 +135,6 @@ clickoff = func
 }
 
 setprop("sounds/click/on", 0);
-
-#Common switch move function
-switchmove = func (switch_name, property_name)
-{
-  switch_pos=getprop(switch_name~"/switch-pos-norm");
-  interpolated_pos=getprop(switch_name~"/switch-pos-inter");
-  set_pos=getprop(switch_name~"/set-pos");
-  swap_pos=getprop(switch_name~"/swap-pos");
-  move_count=getprop(switch_name~"/move-count");
-  if (
-    (switch_pos == nil)
-    or (interpolated_pos == nil)
-    or (set_pos == nil)
-    or (swap_pos == nil)
-    or (move_count==nil)
-  )
-  {
-    return (0); 
-  }
-  if (set_pos==swap_pos)
-  {
-    swap_pos=abs(1-set_pos);
-    setprop(switch_name~"/swap-pos", swap_pos);
-  }
-  if (switch_pos!=set_pos)
-  {
-    way_to=abs(set_pos-switch_pos)/(set_pos-switch_pos);
-    switch_pos=switch_pos+0.3*way_to;
-    if (((way_to>0) and (switch_pos>set_pos)) or ((way_to<0) and (switch_pos<set_pos)))
-    {
-      setprop(switch_name~"/switch-pos-norm", set_pos);
-      interpolate(switch_name~"/switch-pos-inter", set_pos, 0);
-    }
-    else
-    {
-      setprop(switch_name~"/switch-pos-norm", switch_pos);
-      interpolate(switch_name~"/switch-pos-inter", switch_pos, 0.09);
-    }
-    move_count=move_count+1;
-    setprop(switch_name~"/move-count", move_count);
-  }
-  else
-  {
-    if (move_count>0)
-    {
-      setprop(switch_name~"/move-count", 0);
-      clicksound();
-      if (switch_pos==0)
-      {
-        setprop(property_name, 0);
-      }
-      if (switch_pos==1)
-      {
-        setprop(property_name, 1);
-      }
-      if (interpolated_pos!=switch_pos)
-      {
-        interpolate(switch_name~"/switch-pos-inter", switch_pos, 0);
-      }             
-    }
-  }
-  return (1); 
-}
-
-#Timed switch move to move switch in time, call timer time must be 0.1
-#Sound property to click or not to click
-timedswitchmove = func (switch_name, switch_time, property_name, sound_on)
-{
-  switch_pos=getprop(switch_name~"/switch-pos-norm");
-  prev_pos=getprop(switch_name~"/switch-pos-prev");
-  set_pos=getprop(switch_name~"/set-pos");
-  swap_pos=getprop(switch_name~"/swap-pos");
-  move_count=getprop(switch_name~"/move-count");
-  if (
-    (switch_pos == nil)
-    or (set_pos == nil)
-    or (prev_pos == nil)
-    or (swap_pos == nil)
-    or (move_count==nil)
-  )
-  {
-    return (0); 
-  }
-  if (set_pos==swap_pos)
-  {
-    swap_pos=abs(1-set_pos);
-    setprop(switch_name~"/swap-pos", swap_pos);
-  }
-  if (switch_pos!=set_pos)
-  {
-    way_to=abs(set_pos-switch_pos)/(set_pos-switch_pos);
-    switch_pos=switch_pos+0.1/switch_time*way_to;
-    if (((way_to>0) and (switch_pos>set_pos)) or ((way_to<0) and (switch_pos<set_pos)))
-    {
-      switch_pos=set_pos;
-      setprop(switch_name~"/switch-pos-norm", set_pos);
-      interpolate(switch_name~"/switch-pos-inter", set_pos, 0);
-    }
-    else
-    {
-      setprop(switch_name~"/switch-pos-norm", switch_pos);
-      interpolate(switch_name~"/switch-pos-inter", switch_pos, 0.09);
-    }
-    move_count=move_count+1;
-    setprop(switch_name~"/move-count", move_count);
-  }
-  if (switch_pos==set_pos)
-  {
-    if (move_count>0)
-    {
-      setprop(switch_name~"/move-count", 0);
-      if (sound_on==1)
-      {
-        clicksound();
-      }
-      if (switch_pos==0)
-      {
-        setprop(property_name, 0);
-      }
-      if (switch_pos==1)
-      {
-        setprop(property_name, 1);
-      }
-    }
-  }
-  return (1); 
-}
-
-#Common switch initialisation function
-switchinit = func (switch_name, init_state, property_name)
-{
-  setprop(switch_name~"/switch-pos-prev", init_state);
-  setprop(switch_name~"/switch-pos-norm", init_state);
-  setprop(switch_name~"/switch-pos-inter", init_state);
-  setprop(switch_name~"/set-pos", init_state);
-  setprop(switch_name~"/swap-pos", abs(1-init_state));
-  setprop(switch_name~"/move-count", 0);
-  setprop(property_name, init_state);
-}
-
-#Common switch swap function
-switchswap = func (switch_name)
-{
-  set_pos=getprop(switch_name~"/set-pos");
-  swap_pos=getprop(switch_name~"/swap-pos");
-  switch_pos=getprop(switch_name~"/switch-pos-norm");
-  if ((set_pos == nil) or (swap_pos == nil) or (switch_pos==nil))
-  {
-    return (0); 
-  }
-  setprop(switch_name~"/switch-pos-norm", switch_pos);
-  interpolate(switch_name~"/switch-pos-inter", switch_pos, 0);
-  tempint=set_pos;
-  set_pos=swap_pos;
-  swap_pos=tempint;
-  setprop(switch_name~"/set-pos", set_pos);
-  setprop(switch_name~"/swap-pos", swap_pos);
-  setprop(switch_name~"/move-count", 0);
-  return (1); 
-}
-
-#Common switch back function
-switchback = func (switch_name)
-{
-  set_pos=getprop(switch_name~"/set-pos");
-  swap_pos=getprop(switch_name~"/swap-pos");
-  switch_pos=getprop(switch_name~"/switch-pos-norm");
-  if ((set_pos == nil) or (swap_pos == nil) or (switch_pos==nil))
-  {
-    return (0); 
-  }
-  if (abs(switch_pos-set_pos)>abs(switch_pos-swap_pos))
-    switchswap(switch_name);
-  return (1); 
-}
-
-#Common switch from propery dependance function
-#needed then  property controlled elsethere
-switchfeedback = func (switch_name, property_name)
-{
-  switch_pos=getprop(switch_name~"/switch-pos-norm");
-  set_pos=getprop(switch_name~"/set-pos");
-  swap_pos=getprop(switch_name~"/swap-pos");
-  property=getprop(property_name);
-  if ((switch_pos == nil) or (set_pos == nil) or (swap_pos == nil) or (property==nil))
-  {
-    return (0); 
-  }
-  if ((switch_pos==set_pos) and (swap_pos==(1-abs(set_pos))) and  (property==swap_pos))
-  {
-    switchswap(switch_name);
-  }
-  return (1); 
-}
-
-#smart interpolation, garantee property get to value in time
-smartinterpolation = func (property_name, value, time, counts)
-{
-  current_counts=getprop(property_name~"/counts");
-  if ((current_counts==0) or (current_counts==nil))
-  {
-    interpolate(property_name~"/value", value, time);
-    setprop(property_name~"/counts", 1);
-  }
-  else
-  {
-    if (current_counts==counts)
-    {
-      interpolate(property_name, value, 0);
-      setprop(property_name~"/counts", 0);
-    }
-    else
-    {
-      setprop(property_name~"/counts", current_counts+1);
-    }
-  }
-  return (1); 
-}
 
 #Common bit swap function
 bitswap = func (bit_name)
@@ -672,6 +452,17 @@ init_leftpanel = func
 }
 
 init_leftpanel();
+
+#---------------------------------------------------------------------
+#Lower panel
+
+# set startup configuration
+init_lowerpanel = func 
+{
+  setprop("fdm/jsbsim/fuel/drop_tanks_light_switch", 0);
+}
+
+init_lowerpanel();
 
 #---------------------------------------------------------------------
 #Stop control
@@ -1786,103 +1577,6 @@ init_gearmove();
 
 gearmove();
 
-#--------------------------------------------------------------------
-# Gear indicator
-
-# helper 
-stop_gearindicator = func 
-{
-  setprop("instrumentation/gear-indicator/green-light-norm", 0);
-  setprop("instrumentation/gear-indicator/red-light-norm", 0);
-}
-
-gearindicator = func 
-{
-  # check state
-  in_service = getprop("instrumentation/gear-indicator/serviceable" );
-  if (in_service == nil)
-  {
-    stop_gearindicator();
-    return ( settimer(gearindicator, 0.1) ); 
-  }
-  if ( in_service != 1 )
-  {
-    stop_gearindicator();
-    return ( settimer(gearindicator, 0.1) ); 
-  }
-  #get gear value
-  gear_one_pos=getprop("fdm/jsbsim/gear/unit[0]/pos-norm-real");
-  gear_two_pos=getprop("fdm/jsbsim/gear/unit[1]/pos-norm-real");
-  gear_three_pos=getprop("fdm/jsbsim/gear/unit[2]/pos-norm-real");
-  gear_one_torn=getprop("fdm/jsbsim/gear/unit[0]/torn");
-  gear_two_torn=getprop("fdm/jsbsim/gear/unit[1]/torn");
-  gear_three_torn=getprop("fdm/jsbsim/gear/unit[2]/torn");
-  # get instrumentation values    
-  red_pos=getprop("instrumentation/gear-indicator/red-pos-norm");
-  green_pos=getprop("instrumentation/gear-indicator/green-pos-norm");
-  button_check_pos=getprop("instrumentation/gear-indicator/button-check/switch-pos-norm");
-  #get bus value
-  bus=getprop("systems/electrical-real/bus");
-  if (
-    (gear_one_pos==nil)
-    or (gear_two_pos==nil)
-    or (gear_three_pos==nil)
-    or (gear_one_torn==nil)
-    or (gear_two_torn==nil)
-    or (gear_three_torn==nil)
-    or (red_pos==nil)
-    or (green_pos==nil)
-    or (button_check_pos==nil)
-    or (bus==nil)
-      )
-  {
-    stop_gearindicator();
-    return ( settimer(gearindicator, 0.1) ); 
-  }
-  switchmove("instrumentation/gear-indicator", "dummy/dummy");
-  switchmove("instrumentation/gear-indicator/button-check", "dummy/dummy");
-  if (bus==0)
-  {
-    setprop("instrumentation/gear-indicator/middle-up", 0);
-    setprop("instrumentation/gear-indicator/left-up", 0);
-    setprop("instrumentation/gear-indicator/right-up", 0);
-    setprop("instrumentation/gear-indicator/middle-down", 0);
-    setprop("instrumentation/gear-indicator/left-down", 0);
-    setprop("instrumentation/gear-indicator/right-down", 0);
-  }
-  else
-  {
-    setprop("instrumentation/gear-indicator/middle-up", (((gear_one_pos==0) or (button_check_pos==1))) and (gear_one_torn==0));
-    setprop("instrumentation/gear-indicator/left-up", (((gear_two_pos==0) or (button_check_pos==1))) and (gear_two_torn==0));
-    setprop("instrumentation/gear-indicator/right-up", (((gear_three_pos==0) or (button_check_pos==1))) and (gear_three_torn==0));
-    setprop("instrumentation/gear-indicator/middle-down", (((gear_one_pos==1) or (button_check_pos==1))) and (gear_one_torn==0));
-    setprop("instrumentation/gear-indicator/left-down", (((gear_two_pos==1) or (button_check_pos==1))) and (gear_two_torn==0));
-    setprop("instrumentation/gear-indicator/right-down", (((gear_three_pos==1) or (button_check_pos==1))) and (gear_three_torn==0));
-  }
-  settimer(gearindicator, 0.1);
-}
-
-# set startup configuration
-init_gearindicator = func
-{
-  setprop("instrumentation/gear-indicator/serviceable", 1);
-  switchinit("instrumentation/gear-indicator", 1, "dummy/dummy");
-  switchinit("instrumentation/gear-indicator/button-check", 0, "dummy/dummy");
-  setprop("instrumentation/gear-indicator/red-pos-norm", 0.5);
-  setprop("instrumentation/gear-indicator/green-pos-norm", 0.5);
-  setprop("instrumentation/gear-indicator/middle-up", 0);
-  setprop("instrumentation/gear-indicator/left-up", 0);
-  setprop("instrumentation/gear-indicator/right-up", 0);
-  setprop("instrumentation/gear-indicator/middle-down", 0);
-  setprop("instrumentation/gear-indicator/left-down", 0);
-  setprop("instrumentation/gear-indicator/right-down", 0);
-}
-
-init_gearindicator();
-
-# start gear indicator process first time
-gearindicator ();
-
 #-----------------------------------------------------------------------
 
 init_gearvalve=func
@@ -1903,224 +1597,6 @@ init_gearvalve=func
 }
 
 init_gearvalve();
-
-#--------------------------------------------------------------------
-# Flaps lamp
-
-# helper 
-stop_flapslamp = func 
-{
-  setprop("instrumentation/flaps-lamp/lamp-ligth-norm", 0);
-}
-
-flapslamp = func 
-{
-  # check power
-  in_service = getprop("instrumentation/flaps-lamp/serviceable" );
-  if (in_service == nil)
-  {
-    stop_flapslamp();
-    return ( settimer(flapslamp, 0.1) ); 
-  }
-  if ( in_service != 1 )
-  {
-    stop_flapslamp();
-    return ( settimer(flapslamp, 0.1) ); 
-  }
-  # get flaps value
-  flaps_pos = getprop("surface-positions/flap-pos-norm");
-  # get bus value
-  bus=getprop("systems/electrical-real/bus");
-  torn = getprop("fdm/jsbsim/fcs/flap-torn");
-  if ((flaps_pos == nil) or (bus==nil) or (torn==nil))
-  {
-    stop_flapslamp();
-    return ( settimer(flapslamp, 0.1) ); 
-  }
-  if ((bus==0) or (torn==1))
-  {
-    stop_flapslamp();
-    return ( settimer(flapslamp, 0.1) ); 
-  }
-  lamp_light=0;
-  if (flaps_pos>0) 
-  {
-    lamp_light=0.5;
-  }
-  if (flaps_pos==1) 
-  {
-    lamp_light=1;
-  }
-  setprop("instrumentation/flaps-lamp/lamp-ligth-norm", lamp_light);
-  settimer(flapslamp, 0.1);
-}
-
-# set startup configuration
-init_flapslamp = func
-{
-  setprop("instrumentation/flaps-lamp/serviceable", 1);
-  setprop("instrumentation/flaps-lamp/lamp-ligth-norm", 0);
-}
-
-init_flapslamp();
-
-# start flaps lamp process first time
-flapslamp ();
-
-#--------------------------------------------------------------------
-# Fuelometer and fuelometer lamp
-
-# helper 
-stop_fuelometer = func 
-{
-  setprop("instrumentation/fuelometer/lamp-ligth-norm", 0);
-}
-
-fuelometer = func 
-{
-  # check power
-  in_service = getprop("instrumentation/fuelometer/serviceable" );
-  if (in_service == nil)
-  {
-    stop_fuelometer();
-    return ( settimer(fuelometer, 10) ); 
-  }
-  if ( in_service != 1 )
-  {
-    stop_fuelometer();
-    return ( settimer(fuelometer, 10) ); 
-  }
-  # get fuel values
-  fuel_pos_zero = getprop("consumables/fuel/tank[0]/level-lbs");
-  fuel_pos_one = getprop("consumables/fuel/tank[1]/level-lbs");
-  fuel_pos_two = getprop("consumables/fuel/tank[1]/level-lbs");
-  fuel_pos_three = getprop("consumables/fuel/tank[1]/level-lbs");
-  fuel_pos_four = getprop("consumables/fuel/tank[1]/level-lbs");
-  fuel_control_pos=getprop("fdm/jsbsim/systems/fuelcontrol/control-switch");
-  third_tank_pump=getprop("systems/electrical-real/outputs/third-tank-pump/volts-norm");
-  # get bus value
-  bus=getprop("systems/electrical-real/bus");
-  if (
-    (fuel_pos_zero == nil)
-    or (fuel_pos_one == nil)  
-    or (fuel_pos_two == nil)
-    or (fuel_pos_three == nil)
-    or (fuel_pos_four == nil)
-    or (fuel_control_pos == nil)
-    or (third_tank_pump == nil)  
-    or (bus==nil)
-      )
-  {
-    stop_fuelometer();
-    return ( settimer(fuelometer, 10) ); 
-  }
-  if (bus==0)
-  {
-    setprop("instrumentation/fuelometer/fuel-level-lbs", 0);
-    stop_fuelometer();
-    return ( settimer(fuelometer, 10) ); 
-  }
-  if (fuel_control_pos==0)
-  {
-    if (third_tank_pump==0)
-    {
-      fuel_result=fuel_pos_one*0.453;
-    }
-    else
-    {
-      fuel_result=(fuel_pos_three+fuel_pos_four)*0.453;
-    }
-  }
-  else
-  {
-    fuel_result=fuel_pos_two*0.453;
-  }
-  setprop("instrumentation/fuelometer/fuel-level-litres", fuel_result);
-  lamp_light=0;
-  if (fuel_pos_one<300) 
-  {
-    lamp_light=1;
-  }
-  setprop("instrumentation/fuelometer/lamp-ligth-norm", lamp_light);
-  settimer(fuelometer, 10);
-}
-
-# set startup configuration
-
-init_fuelometer = func 
-{
-  setprop("instrumentation/fuelometer/serviceable", 1);
-  setprop("instrumentation/fuelometer/lamp-ligth-norm", 0);
-  setprop("instrumentation/fuelometer/fuel-level-lbs", 0);
-}
-
-init_fuelometer();
-
-# start fuel lamp process first time
-fuelometer ();
-
-#--------------------------------------------------------------------
-# Altimeter
-
-# set startup configuration
-init_altimeter = func 
-{
-  setprop("fdm/jsbsim/systems/altimeter/serviceable", 1);
-}
-
-init_altimeter();
-
-#--------------------------------------------------------------------
-# Altimeter lamp
-
-# helper 
-stop_altlamp = func 
-{
-  setprop("instrumentation/altimeter-lamp/lamp-ligth-norm", 0);
-}
-
-altlamp = func 
-{
-  # check power
-  in_service = getprop("instrumentation/altimeter-lamp/serviceable" );
-  if (in_service == nil)
-  {
-    stop_altlamp();
-    return ( settimer(altlamp, 0.1) ); 
-  }
-  if ( in_service != 1 )
-  {
-    stop_altlamp();
-    return ( settimer(altlamp, 0.1) ); 
-  }
-  # get altitude and electrical bus values
-  alt_pos = getprop("fdm/jsbsim/position/h-sl-meters");     
-  bus=getprop("systems/electrical-real/bus");
-  if ((alt_pos == nil) or (bus==nil))
-  {
-    stop_altlamp();
-    return ( settimer(altlamp, 0.1) ); 
-  }
-  lamp_light=0;
-  if ((alt_pos<250) and (bus==1))
-  {
-    lamp_light=1;
-  }
-  setprop("instrumentation/altimeter-lamp/lamp-ligth-norm", lamp_light);
-  settimer(altlamp, 0.1);
-}
-
-# set startup configuration
-init_altlamp = func 
-{
-  setprop("instrumentation/altimeter-lamp/serviceable", 1);
-  setprop("instrumentation/altimeter-lamp/lamp-ligth-norm", 0);
-}
-
-init_altlamp();
-
-# start altimeter lamp process first time
-altlamp ();
 
 #--------------------------------------------------------------------
 # Gear caution lamp
@@ -3191,25 +2667,10 @@ ignitionlamp ();
 #So, electrical system seems works strange in Flight Gear too
 #There's pretty simple "on/off" electrical system for aircraft
 
-stop_realelectric=func
-{
-}
-
-realelectric=func
+var realelectric = maketimer (0.1, nil, func()
 {
   # check power
-  var in_service = getprop("systems/electrical-real/serviceable");
-  if (in_service == nil)
-  {
-    stop_realelectric();
-    return ( settimer(realelectric, 0.1) ); 
-  }
-  if ( in_service != 1 )
-  {
-    stop_realelectric();
-    return ( settimer(realelectric, 0.1) ); 
-  }
-  #Get switches values
+  # Get switches values
   var set_battery=getprop("fdm/jsbsim/systems/rightpanel/battery-switch");
   var set_generator=getprop("fdm/jsbsim/systems/rightpanel/generator-switch");
 
@@ -3279,8 +2740,7 @@ realelectric=func
 
       )
   {
-    stop_realelectric();
-    return ( settimer(realelectric, 0.1) ); 
+    return;
   }
 
   if ((crashed!=0) or (exploded!=0))
@@ -3301,14 +2761,7 @@ realelectric=func
 
   setprop("controls/switches/battery", set_battery);
 
-  if ((set_generator==1) and (engine_running==1))
-  {
-    generator_on=1;
-  }
-  else
-  {
-    generator_on=0;
-  }
+  generator_on = ((set_generator==1) and (engine_running==1));
   setprop("systems/electrical-real/inputs/generator", generator_on);
 
   setprop("controls/switches/generator", generator_on);
@@ -3354,14 +2807,7 @@ realelectric=func
   setprop("systems/electrical-real/battery-time", battery_time);
   setprop("systems/electrical-real/battery-load-time", battery_load_time);
   
-  if ((set_battery==1) or (generator_on==1))
-  {
-    bus_on=1;
-  }
-  else
-  {
-    bus_on=0;
-  }
+  bus_on = ((set_battery==1) or (generator_on==1));
   setprop("fdm/jsbsim/systems/bus/on", bus_on);
 
   if (generator_on==1)
@@ -3481,13 +2927,10 @@ realelectric=func
     setprop("fdm/jsbsim/systems/tachometer/on", 0);
     setprop("fdm/jsbsim/systems/radioaltimeter/on", 0);
   }
-  settimer(realelectric, 0.1);
-}
+});
 
 init_realelectric = func 
 {
-  setprop("systems/electrical-real/serviceable", 1);
-
   setprop("systems/electrical-real/battery-time", 0);
   setprop("systems/electrical-real/battery-load-time", 0);
   setprop("systems/electrical-real/battery-maximum-load-time", 360);
@@ -3535,8 +2978,7 @@ init_realelectric = func
 }
 
 init_realelectric();
-
-realelectric();
+realelectric.start();
 
 #-----------------------------------------------------------------------
 #Lightning system
@@ -3644,7 +3086,7 @@ motormeter=func
     stop_motormeter();
     return ( settimer(motormeter, 0.1) ); 
   }
-  #Constatnts get from test runs
+  # Constants obtained from test runs
   setprop("instrumentation/motormeter/fuel-flow-norm", fuel_flow/5000);
   setprop("instrumentation/motormeter/oil-pressure-norm", oil_pressure/70);
   setprop("instrumentation/motormeter/oil-temperature-norm", engine_temperature/1000);
@@ -4678,7 +4120,7 @@ stop_droptank = func
 }
 
 var drop_droptank = func (i) {
-  # i==0: left tank, i==i: right tank
+  # i==0: left tank, i==1: right tank
   setprop("consumables/fuel/tank[" ~ (i+3) ~ "]/level-gal_us", 0);
   setprop("consumables/fuel/tank[" ~ (i+3) ~ "]/selected", 0);
   setprop("ai/submodels/drop-tank_" ~ i, 1);
@@ -4992,10 +4434,7 @@ aircraft_lock_unlock = func (new_state)
   #instruments
   setprop("instrumentation/clock/serviceable", new_state);
   setprop("instrumentation/manometer/serviceable", new_state);
-  setprop("instrumentation/gear-indicator/serviceable", new_state);
   setprop("instrumentation/flaps-lamp/serviceable", new_state);
-  setprop("instrumentation/fuelometer/serviceable", new_state);
-  setprop("instrumentation/altimeter-lamp/serviceable", new_state);
   setprop("instrumentation/gear-lamp/serviceable", new_state);
   setprop("instrumentation/oxygen-pressure-meter/serviceable", new_state);
   setprop("instrumentation/brake-pressure-meter/serviceable", new_state);
@@ -5733,10 +5172,6 @@ aircraft_init=func
   init_chron();
   init_manometer();
   init_magnetic_compass();
-  init_gearindicator();
-  init_flapslamp();
-  init_fuelometer();
-  init_altlamp();
   init_gearlamp();
   init_oxypressmeter();
   init_gyrocompass();
@@ -6763,4 +6198,4 @@ setlistener("/sim/signals/exit",func{
 
 # # for convenience during development: show property browser at startup
 # # adjust the property tree node and uncomment 
-#settimer(func {gui.property_browser("/fdm/jsbsim/calculations/load/");}, 0);
+# settimer(func {gui.property_browser("/fdm/jsbsim/fuel/");}, 0);
