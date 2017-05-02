@@ -78,7 +78,6 @@ MiG-15bis simulation config.
     </rating>
     <allow-toggle-cockpit>true</allow-toggle-cockpit>
     <tags>
-      <tag>1-engine</tag>
       <tag>1940s</tag> <!-- first flight in 1947 -->
       <tag>1950s</tag> <!-- Operational use in the korean war, 1951-1953 -->
       <tag>coldwar</tag>
@@ -86,8 +85,10 @@ MiG-15bis simulation config.
       <tag>fighter</tag> <!-- famously used against F-86 Sabre -->
       <tag>interceptor</tag> <!-- the heavy cannons were designed to shoot B-29s down -->
       <tag>jet</tag>
-      <tag>pressurised</tag>
+      <tag>mikoyan-gurevitch</tag>
       <tag>retractable-gear</tag>
+      <tag>single-engine</tag>
+      <tag>tricycle</tag>
     </tags>
 
     <help>
