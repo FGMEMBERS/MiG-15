@@ -77,6 +77,19 @@ MiG-15bis simulation config.
       <model type="int">4</model>
     </rating>
     <allow-toggle-cockpit>true</allow-toggle-cockpit>
+    <tags>
+      <tag>1940s</tag> <!-- first flight in 1947 -->
+      <tag>1950s</tag> <!-- Operational use in the korean war, 1951-1953 -->
+      <tag>coldwar</tag>
+      <tag>combat</tag>
+      <tag>fighter</tag> <!-- famously used against F-86 Sabre -->
+      <tag>interceptor</tag> <!-- the heavy cannons were designed to shoot B-29s down -->
+      <tag>jet</tag>
+      <tag>mikoyan-gurevitch</tag>
+      <tag>retractable-gear</tag>
+      <tag>single-engine</tag>
+      <tag>tricycle</tag>
+    </tags>
 
     <help>
       <title>MiG-15 bis</title>
@@ -268,7 +281,7 @@ neccessary to accelerate the engine to at least 6500 RPM.
     <flight-model>jsb</flight-model>
     <status>advanced production</status>
     <author>Lee Elliott, Victor Slavutinskiy, with great help from Yurik V. Nikiforoff</author>
-    <aircraft-version>3.2.2</aircraft-version>
+    <aircraft-version>3.2.3</aircraft-version>
     <aero>MiG-15bis</aero>
     <fuel-fraction>1.0</fuel-fraction>
     <description>MiG-15bis (JSBSim FDM)</description>
@@ -1048,6 +1061,21 @@ neccessary to accelerate the engine to at least 6500 RPM.
       <trigger type="bool">0</trigger>
     </armament>
 
+    <switches>
+      <!-- These are needed by the FDM below: create them before loading the FDM. -->
+      <battery type="bool">0</battery>
+      <engine-control type="bool">0</engine-control>
+      <flashing-beacon type="bool">0</flashing-beacon>
+      <generator type="bool">0</generator>
+      <ignition type="bool">0</ignition>
+      <landing-light type="bool">0</landing-light>
+      <nav-lights type="bool">0</nav-lights>
+      <pitot-heat type="bool">0</pitot-heat>
+      <pump type="bool">0</pump>
+      <radiocompass type="bool">0</radiocompass>
+      <strobe-lights type="bool">0</strobe-lights>
+      <taxi-lights type="bool">0</taxi-lights>
+    </switches>
   </controls>
 
   <!-- FDM initialization -->
@@ -1114,9 +1142,6 @@ neccessary to accelerate the engine to at least 6500 RPM.
           <on type="bool">0</on>
           <serviceable type="bool">1</serviceable>
         </airspeedometer>
-        <altimeter>
-          <serviceable type="bool">1</serviceable>
-        </altimeter>
         <arthorizon>
           <on type="bool">0</on>
           <serviceable type="bool">1</serviceable>
