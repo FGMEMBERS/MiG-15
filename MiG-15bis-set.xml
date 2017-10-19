@@ -280,7 +280,7 @@ neccessary to accelerate the engine to at least 6500 RPM.
 
     <flight-model>jsb</flight-model>
     <status>advanced production</status>
-    <author>Lee Elliott, Victor Slavutinskiy, Yurik V. Nikiforoff, Ludovic Brenta, Andreas Zimmermann</author>
+    <author>Lee Elliott, Victor Slavutinskiy, Yurik V. Nikiforoff, Ludovic Brenta, Andreas Zenner</author>
     <aircraft-version>3.2.3</aircraft-version>
     <aero>MiG-15bis</aero>
     <fuel-fraction>1.0</fuel-fraction>
