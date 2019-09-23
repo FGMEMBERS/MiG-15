@@ -280,11 +280,22 @@ neccessary to accelerate the engine to at least 6500 RPM.
 
     <flight-model>jsb</flight-model>
     <status>advanced production</status>
-    <author>Lee Elliott, Victor Slavutinskiy, with great help from Yurik V. Nikiforoff</author>
+    <author>Lee Elliott, Victor Slavutinskiy, Yurik V. Nikiforoff, Ludovic Brenta, Andreas Zenner</author>
     <aircraft-version>3.2.3</aircraft-version>
     <aero>MiG-15bis</aero>
     <fuel-fraction>1.0</fuel-fraction>
-    <description>MiG-15bis (JSBSim FDM)</description>
+    <description>MiG-15bis</description>
+    <long-description>
+      This first-generation jet fighter took the West by surprise when
+      it appeared over Korea.  Initially designed to shoot B-29 heavy
+      bombers with a single shell of its massive 37-mm cannon, the
+      MiG-15 also proved a capable dog-fighter, easily outclassing the
+      P-51 Mustang and even the first straight-winged jet fighters and
+      forcing the USAF to rush the F-86 Sabre into combat.  The MiG-15
+      was mass-produced in very large numbers. This aircraft supports
+      the Bombable add-on, so you can fight your friends over
+      multiplayer.
+    </long-description>
     <virtual-cockpit archive="y">true</virtual-cockpit>
 
     <chase-distance-m type="double">20.0</chase-distance-m>
